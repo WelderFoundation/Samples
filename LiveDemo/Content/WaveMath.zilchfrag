@@ -1,0 +1,222 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///
+/// Authors: Joshua Claeys
+/// Copyright 2018, DigiPen Institute of Technology
+///
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//---------------------------------------------------------------------------------------- Wave Base
+//struct WaveBase
+//{
+//  // Crest-to-crest distance between waves in world space.
+//  var Wavelength = 1.0;
+//  
+//  // Height from the water plane to the wave crest.
+//  var Amplitude = 1.0;
+//  
+//  // The distance the crest moves per second.
+//  var Speed = 1.0;
+//  
+//  // The direction horizontal to the water plane in which the crest of the wave travels.
+//  var Direction = Real2(0.1, 0);
+//  
+//  var Gravity = 9.81;
+//  
+//  // Frequency
+//  //var Frequency : Real { get { return 2.0 / this.Wavelength; } }
+//  var Frequency : Real { get { return Math.Sqrt(this.Gravity * (2.0 * Math.Pi / this.Wavelength)); } }
+//  
+//  var PhaseConstant : Real { get { return this.Speed * 2.0 / this.Wavelength; } }
+//  
+//  var Circular = false;
+//  
+//  
+//  //************************************************************************************************
+//  function Sample(pos : Real2, t : Real) : Real3
+//  {
+//    return this.SampleInternal(pos, t, this.Direction);
+//  }
+//  
+//  //************************************************************************************************
+//  function SampleCircular(pos : Real2, t : Real, center : Real2) : Real3
+//  {
+//    var direction = Math.Normalize(pos - center);
+//    return this.SampleInternal(pos, t, direction);
+//  }
+//  
+//  //************************************************************************************************
+//  // Used to avoid branching on different wave types.
+//  function Sample(pos : Real2, t : Real, center : Real2) : Real3
+//  {
+//    var direction = Math.Normalize(pos - center);
+//    direction = Math.Lerp(this.Direction, direction, this.Circular as Real);
+//    return this.SampleInternal(pos, t, direction);
+//  }
+//  
+//  //************************************************************************************************
+//  function SampleNormal(pos : Real2, t : Real, center : Real2) : Real3
+//  {
+//    return Real3();
+//  }
+//  
+//  //************************************************************************************************
+//  [Virtual] function SampleInternal(pos : Real2, t : Real, waveDirection : Real2) : Real3
+//  {
+//    return Real3();
+//  }
+//  
+//  // Needed due to shader translation error
+//  function GetFrequency() : Real
+//  {
+//    return this.Frequency;
+//  }
+//  
+//  // Needed due to shader translation error
+//  function GetPhaseConstant() : Real
+//  {
+//    return this.PhaseConstant;
+//  }
+//}
+
+//-------------------------------------------------------------------------------------- Simple Wave
+struct SimpleWave
+{
+  // Crest-to-crest distance between waves in world space.
+  var Wavelength = 1.0;
+  
+  // Height from the water plane to the wave crest.
+  var Amplitude = 1.0;
+  
+  // The distance the crest moves per second.
+  var Speed = 1.0;
+  
+  // The direction horizontal to the water plane in which the crest of the wave travels.
+  var Direction = Real2(0.1, 0);
+  
+  var Gravity = 9.81;
+  
+  // Frequency
+  //var Frequency : Real { get { return 2.0 / this.Wavelength; } }
+  var Frequency : Real { get { return Math.Sqrt(this.Gravity * (2.0 * Math.Pi / this.Wavelength)); } }
+  
+  var PhaseConstant : Real { get { return this.Speed * 2.0 / this.Wavelength; } }
+  
+  var Circular = false;
+  
+  var Exponent = 2.0;
+  
+  //************************************************************************************************
+  function Sample(pos : Real2, t : Real) : Real3
+  {
+    return this.SampleInternal(pos, t, this.Direction);
+  }
+  
+  //************************************************************************************************
+  function SampleCircular(pos : Real2, t : Real, center : Real2) : Real3
+  {
+    var direction = Math.Normalize(pos - center);
+    return this.SampleInternal(pos, t, direction);
+  }
+  
+  //************************************************************************************************
+  // Used to avoid branching on different wave types.
+  function Sample(pos : Real2, t : Real, center : Real2) : Real3
+  {
+    var direction = Math.Normalize(pos - center);
+    direction = Math.Lerp(this.Direction, direction, this.Circular as Real);
+    return this.SampleInternal(pos, t, direction);
+  }
+  
+  //************************************************************************************************
+  function SampleNormal(pos : Real2, t : Real, center : Real2) : Real3
+  {
+    return Real3();
+  }
+  
+  //************************************************************************************************
+  function SampleInternal(pos : Real2, t : Real, waveDirection : Real2) : Real3
+  {
+    // Not sure what's going on here and why this is needed
+    waveDirection = -waveDirection * 0.1;
+    
+    var height = Math.Sin(Math.Dot(waveDirection, pos) * this.Frequency + (this.PhaseConstant + t)) + 1.0;
+    height /= 2.0;
+    height = 2.0 * this.Amplitude * Math.Pow(height, this.Exponent);
+    return Real3(pos.X, height, pos.Y);
+  }
+}
+
+//------------------------------------------------------------------------------------ Gerstner Wave
+struct GerstnerWave
+{
+  // Crest-to-crest distance between waves in world space.
+  var Wavelength = 1.0;
+  
+  // Height from the water plane to the wave crest.
+  var Amplitude = 1.0;
+  
+  // The distance the crest moves per second.
+  var Speed = 1.0;
+  
+  // The direction horizontal to the water plane in which the crest of the wave travels.
+  var Direction = Real2(1, 0);
+  
+  var Gravity = 9.81;
+  
+  var Circular = false;
+  var Steepness = 1.0;
+  
+  // Frequency
+  //var Frequency : Real { get { return 2.0 / this.Wavelength; } }
+  var Frequency : Real { get { return Math.Sqrt(this.Gravity * (2.0 * Math.Pi / this.Wavelength)); } }
+  
+  var PhaseConstant : Real { get { return this.Speed * 2.0 / this.Wavelength; } }
+  
+  //************************************************************************************************
+  function Sample(pos : Real2, t : Real) : Real3
+  {
+    return this.SampleInternal(pos, t, this.Direction);
+  }
+  
+  //************************************************************************************************
+  function SampleCircular(pos : Real2, t : Real, center : Real2) : Real3
+  {
+    var direction = Math.Normalize(pos - center);
+    return this.SampleInternal(pos, t, direction);
+  }
+  
+  //************************************************************************************************
+  // Used to avoid branching on different wave types.
+  function Sample(pos : Real2, t : Real, center : Real2) : Real3
+  {
+    var direction = Math.Normalize(pos - center);
+    direction = Math.Lerp(this.Direction, direction, this.Circular as Real);
+    return this.SampleInternal(pos, t, direction);
+  }
+  
+  //************************************************************************************************
+  function SampleNormal(pos : Real2, t : Real, center : Real2) : Real3
+  {
+    return Real3();
+  }
+  
+  //************************************************************************************************
+  function SampleInternal(pos : Real2, t : Real, waveDirection : Real2) : Real3
+  {
+    // Not sure what's going on here and why this is needed
+    var direction = -waveDirection * 0.1;
+    
+    var frequency = this.Frequency;
+    
+    var q = this.Steepness * 100.0 / (frequency * this.Amplitude);
+    
+    var theta = Math.Dot(frequency * direction, pos) + this.PhaseConstant * t;
+    var cosineTerm = Math.Cos(theta);
+    
+    var final = Real3(pos.X, 0, pos.Y);
+    final.X += q * this.Amplitude * direction.X * cosineTerm;
+    final.Z += q * this.Amplitude * direction.Y * cosineTerm;
+    final.Y = this.Amplitude * Math.Sin(theta);
+    return final;
+  }
+}

@@ -1,0 +1,19 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "enemy_new",
+		uint64 ResourceId = 524aa9f463a3dd21,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 499,
+		uint FrameSizeY = 665,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 249,
+		float OriginY = 332,
+		float PixelsPerUnit = 150,
+		bool Smoothing = true,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+	},
+},

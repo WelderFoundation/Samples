@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	TextBuilder 
+	{
+		var Name = "Test"
+		var ResourceId = 0x5a94b684a687d375
+	}
+}

@@ -1,0 +1,23 @@
+[Pixel][PostProcess]
+struct ComputeCharWeights
+{
+  [StageInput] var Uv : Real2;
+  [Input] var FontTexture : SampledImage2d;
+  [Input] var CharSize : Integer2;
+  
+  [Output] var Target0 : Real4;
+  
+  
+  function Main()
+  {
+    var totalAlpha = 0.0;
+    
+    for (var y = 0; y < this.CharSize.Y; ++y)
+    {
+      for (var x = 0; x < this.CharSize.X; ++x)
+      {
+        totalAlpha += this.FontTexture.Sample(this.Uv).W;
+      }
+    }
+  }
+}

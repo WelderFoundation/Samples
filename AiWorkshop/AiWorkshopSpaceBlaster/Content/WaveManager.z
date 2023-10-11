@@ -1,0 +1,44 @@
+class WaveManager : ZilchComponent
+{
+  // How long to wait before the first wave starts
+  [Property] var TimeBeforeFirstWave : Real = 3.0;
+  
+  // Which wave we will spawn next
+  var CurrentWave : Integer = 0;
+  
+  // All waves to be spawned
+  var Waves : Array[Cog] = new Array[Cog]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Add all the waves
+    foreach(var child in this.Owner.Children)
+      this.Waves.Add(child);
+    
+    // Wait until starting the first wave
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, this.TimeBeforeFirstWave);
+    Action.Call(seq, this.StartNextWave);
+  }
+  
+  function StartNextWave()
+  {
+    // Check to see if we've hit the last wave
+    if(this.CurrentWave >= this.Waves.Count)
+      return;
+    
+    // Get the current wave to spawn
+    var waveSpawner = this.Waves.Get(this.CurrentWave).WaveSpawner;
+    
+    // Start the wave
+    waveSpawner.StartWave();
+    
+    // Move on to the next wave
+    this.CurrentWave += 1;
+    
+    // Queue an action to start the next wave
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, waveSpawner.TimeUntilNextWave);
+    Action.Call(seq, this.StartNextWave);
+  }
+}

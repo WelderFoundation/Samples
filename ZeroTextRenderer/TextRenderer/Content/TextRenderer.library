@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "TextRenderer"
+	var LibraryId = 0x5f002eead08d84d9
+	var SourceControlType = ""
+	var ReadOnly = false
+}

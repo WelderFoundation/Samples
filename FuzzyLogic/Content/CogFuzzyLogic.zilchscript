@@ -1,0 +1,134 @@
+//--------------------------------------------------------------------------------- Cog Fuzzy System
+[RunInEditor]
+class CogFuzzySystem : ZilchComponent
+{
+  var Inputs : Cog;
+  var Outputs : Cog;
+  var Rules : Cog;
+  
+  var FuzzySystem : FuzzySystem;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    this.Inputs = this.Owner.FindChildByName("Inputs");
+    this.Outputs = this.Owner.FindChildByName("Outputs");
+    this.Rules = this.Owner.FindChildByName("Rules");
+    
+    this.ConnectToAll(this.Owner);
+  }
+  
+  //************************************************************************************************
+  function GetFuzzySystem() : FuzzySystem
+  {
+    if(this.FuzzySystem == null)
+      this.FuzzySystem = this.BuildFuzzySystem();
+    return this.FuzzySystem;
+  }
+  
+  //************************************************************************************************
+  function ConnectToAll(cog : Cog)
+  {
+    Zero.DisconnectAll(cog, this);
+    
+    Zero.Connect(cog, Events.ChildAttached, this.OnTreeChanged);
+    Zero.Connect(cog, Events.ChildDetached, this.OnTreeChanged);
+    Zero.Connect(cog, Events.ChildrenOrderChanged, this.OnTreeChanged);
+    Zero.Connect(cog, "PropertyModifiedIntermediate", this.OnTreeChanged);
+    Zero.Connect(cog, "PropertyModified", this.OnTreeChanged);
+    Zero.Connect(cog, "ComponentsModified", this.OnTreeChanged);
+    Zero.Connect(cog, "ObjectModified", this.OnTreeChanged);
+    Zero.Connect(cog, "ObjectStructureModified", this.OnTreeChanged);
+    Zero.Connect(cog, Events.CogDestroy, this.OnTreeChanged);
+    
+    foreach(var child in cog.Children)
+      this.ConnectToAll(child);
+  }
+
+  //************************************************************************************************
+  function OnTreeChanged(event : Event)
+  {
+    this.FuzzySystem = null;
+    this.ConnectToAll(this.Owner);
+  }
+  
+  //************************************************************************************************
+  function BuildFuzzySystem() : FuzzySystem
+  {
+    var fuzzySystem = FuzzySystem();
+    
+    // Add inputs
+    foreach(var inputCog in this.Inputs.Children)
+    {
+      var cogSet = inputCog.CogFuzzySet;
+      if(cogSet != null)
+      {
+        // Create the fuzzy set
+        var fuzzySet = fuzzySystem.AddInput(inputCog.Name, cogSet.Min, cogSet.Max);
+      
+        // Add all fuzzy numbers
+        foreach(var numberCog in inputCog.Children)
+          numberCog.CogFuzzyNumber.AddNumber(fuzzySet);
+      }
+    }
+    
+    // Add outputs
+    foreach(var outputCog in this.Outputs.Children)
+    {
+      var cogSet = outputCog.CogFuzzySet;
+      if(cogSet != null)
+      {
+        // Create the fuzzy set
+        var fuzzySet = fuzzySystem.AddOutput(outputCog.Name, cogSet.Min, cogSet.Max);
+        
+        // Add all fuzzy numbers
+        foreach(var numberCog in outputCog.Children)
+          numberCog.CogFuzzyNumber.AddNumber(fuzzySet);
+      }
+    }
+    
+    // Add rules
+    foreach(var ruleCog in this.Rules.Children)
+    {
+      if(ruleCog.CogFuzzyRule != null)
+        fuzzySystem.AddRule(ruleCog.CogFuzzyRule.Rule);
+    }
+    
+    return fuzzySystem;
+  }
+}
+
+//------------------------------------------------------------------------------------ Cog Fuzzy Set
+class CogFuzzySet : ZilchComponent
+{
+  [Property] var Min : Real;
+  [Property] var Max : Real;
+}
+
+//--------------------------------------------------------------------------------- Cog Fuzzy Number
+[ComponentInterface]
+class CogFuzzyNumber : ZilchComponent
+{
+  //************************************************************************************************
+  [Virtual] function AddNumber(fuzzySet : FuzzySet) { }
+}
+
+//------------------------------------------------------------------------------- Cog Fuzzy Triangle
+class CogFuzzyTriangle : CogFuzzyNumber
+{
+  [Property] var A = 0.0;
+  [Property] var B = 0.0;
+  [Property] var C = 0.0;
+  
+  //************************************************************************************************
+  [Override] function AddNumber(fuzzySet : FuzzySet)
+  {
+    fuzzySet.AddTriangleTerm(this.Owner.Name, this.A, this.B, this.C);
+  }
+}
+
+//----------------------------------------------------------------------------------- Cog Fuzzy Rule
+class CogFuzzyRule : ZilchComponent
+{
+  [Property] var Rule : String;
+}

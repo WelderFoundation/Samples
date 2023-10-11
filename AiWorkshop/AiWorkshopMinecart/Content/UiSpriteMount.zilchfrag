@@ -1,0 +1,13 @@
+[Pixel]
+struct UiSpriteMount
+{
+  [Input] var Texture : SampledImage2d;
+  [FragmentInput][StageInput] var Uv : Real2;
+  [FragmentInput][StageInput] var UvAux : Real2;
+  [FragmentInput][StageInput][Output] var Color : Real4;
+  
+  function Main()
+  {
+    this.Color = this.Texture.Sample(this.UvAux);
+  }
+}

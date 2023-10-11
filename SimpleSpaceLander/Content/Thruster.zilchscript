@@ -1,0 +1,52 @@
+class Thruster : ZilchComponent
+{
+  [Property] var Key : Keys = Keys.S;
+  [Property] var Shift : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    Zero.Connect(Zero.Keyboard, Events.KeyUp, this.OnKeyUp);
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    this.SetActive(false);
+  }
+  
+  function GetThrusterActive(event : KeyboardEvent) : Boolean
+  {
+    if(!Zero.Keyboard.KeyIsDown(this.Key))
+      return false;
+    if(this.Shift && this.Shift != Zero.Keyboard.KeyIsDown(Keys.Shift))
+      return false;
+    return true;
+  }
+
+  function OnKeyDown(event : KeyboardEvent)
+  {
+    this.SetActive(this.GetThrusterActive(event));
+  }
+  
+  function OnKeyUp(event : KeyboardEvent)
+  {
+    this.SetActive(this.GetThrusterActive(event));
+  }
+  
+  function SetActive(state : Boolean)
+  {
+    
+    if(this.Owner.ThrustEffect != null)
+      this.Owner.ThrustEffect.Active = state;
+    if(this.Owner.ForceEffect != null)
+      this.Owner.ForceEffect.Active = state;
+    
+    this.Owner.Sprite.Visible = state;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

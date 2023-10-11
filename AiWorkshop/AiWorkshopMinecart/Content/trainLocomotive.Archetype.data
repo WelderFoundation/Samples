@@ -1,0 +1,172 @@
+[Version:1]
+Cog 
+{
+	var Name = "trainLocomotive"
+	Transform 
+	{
+		var Translation = Real3{21.2992096, -1.14894676, -33.5865669}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 1, 0, 4.37113883e-08}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5a95f6c9e73de055]
+		{
+			var Name = "trainLocomotiveGeneratedMeshNode0"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5a95f6c9e704aee8:trainLocomotive_trainLocomotiveGeneratedMeshNode0"
+			}
+		}
+		Cog [Id:0x5a95f6c9e73de056]
+		{
+			var Name = "trainLocomotiveGeneratedMeshNode1"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5a95f6c9e704aef9:trainLocomotive_trainLocomotiveGeneratedMeshNode1"
+			}
+		}
+		Cog [Id:0x5a95f6c9e73de058]
+		{
+			var Name = "wheel"
+			Transform 
+			{
+				var Translation = Real3{-3.60597801, 3.05600407e-13, 1.33426297}
+				var Scale = Real3{0.0935000032, 0.0935000032, 0.0935000032}
+				var Rotation = Quaternion{0, 0.707106829, 0, 0.707106829}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5a95f6c9e73de059]
+				{
+					var Name = "wheelGeneratedMeshNode2"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5a95f6c9e704aeff:trainLocomotive_wheelGeneratedMeshNode2"
+					}
+				}
+				Cog [Id:0x5a95f6c9e73de05b]
+				{
+					var Name = "wheelGeneratedMeshNode3"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5a95f6c9e704af04:trainLocomotive_wheelGeneratedMeshNode3"
+					}
+				}
+			}
+		}
+		Cog [Id:0x5a95f6c9e73de05c]
+		{
+			var Name = "wheel1"
+			Transform 
+			{
+				var Translation = Real3{-3.60597801, 0, 0.407210886}
+				var Scale = Real3{9.99999975e-05, 9.99999975e-05, 9.99999975e-05}
+				var Rotation = Quaternion{0.707106829, 0, -0.707106829, 0}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5a95f6c9e73de05e]
+				{
+					var Name = "wheel1GeneratedMeshNode4"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5a95f6c9e704af09:trainLocomotive_wheel1GeneratedMeshNode4"
+					}
+				}
+				Cog [Id:0x5a95f6c9e73de05f]
+				{
+					var Name = "wheel1GeneratedMeshNode5"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5a95f6c9e704af0f:trainLocomotive_wheel1GeneratedMeshNode5"
+					}
+				}
+			}
+		}
+	}
+}

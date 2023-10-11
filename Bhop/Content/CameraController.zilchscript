@@ -1,0 +1,18 @@
+class CameraController : ZilchComponent
+{
+  var OilerRotation : Real3 = Real3();
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Mouse.Trapped = true;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var camMovement =Math.ToRadians(Real3(-Zero.Mouse.RawMovement.Y,Zero.Mouse.RawMovement.X, 0)-this.OilerRotation);
+    this.OilerRotation=Real3(Math.Clamp(this.OilerRotation.X,-85,85),this.OilerRotation.Y,this.OilerRotation.Z);
+    this.OilerRotation+=Real3(Zero.Mouse.RawMovement.Y,Zero.Mouse.RawMovement.X, 0);
+    this.Owner.Parent.Transform.SetEulerAnglesXYZ(0,camMovement.Y,0);
+    this.Owner.Transform.SetEulerAnglesXYZ(camMovement.X,0,0);
+  }
+}

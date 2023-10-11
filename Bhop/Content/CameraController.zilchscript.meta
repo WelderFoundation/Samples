@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "CameraController"
+		var ResourceId = 0x5ab7a41ea6534c49
+	}
+}

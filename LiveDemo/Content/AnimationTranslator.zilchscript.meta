@@ -1,0 +1,16 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "AnimationTranslator"
+		var ResourceId = 0x5b4302061d71c034
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"ZilchScript"
+		}
+	}
+}

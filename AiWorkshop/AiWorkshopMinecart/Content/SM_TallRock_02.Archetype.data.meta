@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "SM_TallRock_02"
+		var ResourceId = 0x592c47972ff1953d
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

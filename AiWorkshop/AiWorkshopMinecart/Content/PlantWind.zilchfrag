@@ -1,0 +1,47 @@
+[Vertex]
+struct PlantWind
+{
+  [Input] var WindTexture : SampledImage2d;
+  [Input] var WindSpeed : Real = 1.0;
+  [AppBuiltInInput] var FrameTime : Real;
+  [AppBuiltInInput] var ViewToPerspective : Real4x4;
+  [AppBuiltInInput] var ViewToWorld : Real4x4;
+  
+  [StageInput] var Uv : Real2;
+  [FragmentInput][Output] var ViewPosition : Real3;
+  [FragmentInput] var ViewNormal : Real3;
+
+  [Output] var PerspectivePosition : Real4;
+
+  function Main()
+  {
+    var worldPos = Math.MultiplyPoint(this.ViewToWorld, this.ViewPosition);
+    
+    var windScalar = this.SampleWind(worldPos) * 7.0;
+    
+    // Move more towards the top end of the plant (uv of 1)
+    var uvScalar = Math.Pow((1.0 - this.Uv.Y), 4);
+    
+    // Just some extra randomness
+    var randomNoise = Math.Sin(this.FrameTime * 3.0 + worldPos.X);
+    
+    var scalar = uvScalar * windScalar * randomNoise;
+    
+    var offset = Real3(0, 0.02, 0);
+    offset.X = Math.Sin(worldPos.X) * 0.02;
+    offset.Z = Math.Cos(worldPos.Z * 3.5) * 0.02;
+    
+    //offset = Math.Dot(offset, this.ViewNormal) * this.ViewNormal;
+    
+    this.ViewPosition += offset * scalar;
+    this.PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(this.ViewPosition, 1.0));
+  }
+  
+  function SampleWind(worldPos : Real3) : Real
+  {
+    //var uv = worldPos.XZ;
+    var uv = Real2(0.5, worldPos.Z * 0.2);
+    uv += Real2(0, 0.01) * this.FrameTime * 3.0 * this.WindSpeed;
+    return this.WindTexture.Sample(uv).X;
+  }
+}

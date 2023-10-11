@@ -1,0 +1,278 @@
+[Version:1]
+Cog 
+{
+	var Name = "GroundSlamParticles"
+	Transform 
+	{
+		var Translation = Real3{-4.05731058, 2.2346015, -4.32320309}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	ParticleReset 
+	{
+		var ResetInGame = false
+		var TimeToReset = 1.5
+		var StartDelay = 1.25
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b4dfe8f497d15d7]
+		{
+			var Name = "BaseSmoke"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			SpriteParticleSystem 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5b4df467630ee64b:AdditveSpriteSoft"
+				var BoundingBoxSize = 2
+				var ChildSystem = false
+				var SystemSpace = SystemSpace.WorldSpace
+				var WarmUpTime = 0
+				var PreviewInEditor = true
+				var VertexColor = Real4{0.379999995, 0.321346998, 0.260299981, 0.120000005}
+				var GeometryMode = SpriteParticleGeometryMode.Billboarded
+				var SpriteSource = "5b4c21cbb44b5f58:Smoke2"
+				var ParticleAnimation = SpriteParticleAnimationMode.Single
+				var ParticleSort = SpriteParticleSortMode.None
+				var BeamBaseScale = 1
+				var BeamVelocityScale = 1
+			}
+			SphericalParticleEmitter 
+			{
+				var Active = true
+				var EmitCount = 200
+				var EmitDelay = 0
+				var EmitRate = 9999
+				var EmitVariance = 0
+				var EmitRateSoftStartTime = 0
+				var Size = 1
+				var SizeVariance = 0.200000003
+				var Lifetime = 0.800000012
+				var LifetimeVariance = 0.699999988
+				var Spin = 0
+				var SpinVariance = 50
+				var RandomSpin = true
+				var Fill = 1
+				var EmitterVelocityPercent = 0
+				var StartVelocity = Real3{0, 1, 0}
+				var RandomVelocity = Real3{19, 1, 19}
+				var TangentVelocity = Real3{0, 0, 0}
+				var EmitterSize = Real3{0, 0, 0}
+				var FastMovingEmitter = false
+			}
+			LinearParticleAnimator 
+			{
+				var Force = Real3{0, 5, 0}
+				var RandomForce = Real3{0, 0, 0}
+				var Torque = 0
+				var Growth = 0
+				var Dampening = 9
+				var Twist = Real3{0, 0, 0}
+			}
+			ParticleColorAnimator 
+			{
+				var TimeGradient = "5b4dfdb726463ab2:FadeInLongFadeOut"
+				var VelocityGradient = "null"
+				var MaxParticleSpeed = 5
+			}
+			SelectionIcon 
+			{
+				var Visible = true
+				var VisibilityEvents = true
+				var Material = "56581e2bb81777be:DebugDrawOnTop"
+				var SpriteSource = "59937d65f2659971:ParticleIcon"
+				var ViewScale = 1
+				var OverrideSelections = true
+			}
+			ParticleWander 
+			{
+				var WanderAngle = 1
+				var WanderAngleVariance = 1
+				var WanderStrength = 4
+			}
+		}
+		Cog [Id:0x5b4dfe9155192ad0]
+		{
+			var Name = "ExtendedPuffs"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			SpriteParticleSystem 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5b4df467630ee64b:AdditveSpriteSoft"
+				var BoundingBoxSize = 2
+				var ChildSystem = false
+				var SystemSpace = SystemSpace.WorldSpace
+				var WarmUpTime = 0
+				var PreviewInEditor = true
+				var VertexColor = Real4{0.379999995, 0.321346998, 0.260299981, 0.120000005}
+				var GeometryMode = SpriteParticleGeometryMode.Billboarded
+				var SpriteSource = "5b4c26a72f26fb86:WhiteCloud"
+				var ParticleAnimation = SpriteParticleAnimationMode.Single
+				var ParticleSort = SpriteParticleSortMode.None
+				var BeamBaseScale = 1
+				var BeamVelocityScale = 1
+			}
+			SphericalParticleEmitter 
+			{
+				var Active = true
+				var EmitCount = 15
+				var EmitDelay = 0
+				var EmitRate = 9999
+				var EmitVariance = 0
+				var EmitRateSoftStartTime = 0
+				var Size = 2
+				var SizeVariance = 0.200000003
+				var Lifetime = 1.79999995
+				var LifetimeVariance = 0.699999988
+				var Spin = 0
+				var SpinVariance = 50
+				var RandomSpin = true
+				var Fill = 1
+				var EmitterVelocityPercent = 0
+				var StartVelocity = Real3{0, 0.300000012, 0}
+				var RandomVelocity = Real3{25, 2, 25}
+				var TangentVelocity = Real3{0, 0, 0}
+				var EmitterSize = Real3{0, 0, 0}
+				var FastMovingEmitter = false
+			}
+			LinearParticleAnimator 
+			{
+				var Force = Real3{0, 5, 0}
+				var RandomForce = Real3{0, 0, 0}
+				var Torque = 0
+				var Growth = 0
+				var Dampening = 9
+				var Twist = Real3{0, 0, 0}
+			}
+			ParticleColorAnimator 
+			{
+				var TimeGradient = "5b4dfdb726463ab2:FadeInLongFadeOut"
+				var VelocityGradient = "null"
+				var MaxParticleSpeed = 5
+			}
+			SelectionIcon 
+			{
+				var Visible = true
+				var VisibilityEvents = true
+				var Material = "56581e2bb81777be:DebugDrawOnTop"
+				var SpriteSource = "59937d65f2659971:ParticleIcon"
+				var ViewScale = 1
+				var OverrideSelections = true
+			}
+			ParticleWander 
+			{
+				var WanderAngle = 1
+				var WanderAngleVariance = 1
+				var WanderStrength = 4
+			}
+		}
+		Cog [Id:0x5b4dff565bd5660b]
+		{
+			var Name = "SmallParticles"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			SpriteParticleSystem 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c50d330d372c3:AdditiveSprite"
+				var BoundingBoxSize = 2
+				var ChildSystem = false
+				var SystemSpace = SystemSpace.WorldSpace
+				var WarmUpTime = 0
+				var PreviewInEditor = true
+				var VertexColor = Real4{0.379999995, 0.321346998, 0.260299981, 0.150000006}
+				var GeometryMode = SpriteParticleGeometryMode.Billboarded
+				var SpriteSource = "5b4c2bdf79df0fa5:Laser"
+				var ParticleAnimation = SpriteParticleAnimationMode.Single
+				var ParticleSort = SpriteParticleSortMode.None
+				var BeamBaseScale = 1
+				var BeamVelocityScale = 1
+			}
+			SphericalParticleEmitter 
+			{
+				var Active = true
+				var EmitCount = 100
+				var EmitDelay = 0
+				var EmitRate = 9999
+				var EmitVariance = 0
+				var EmitRateSoftStartTime = 0
+				var Size = 0.0299999993
+				var SizeVariance = 0.0199999996
+				var Lifetime = 2.5
+				var LifetimeVariance = 0.699999988
+				var Spin = 0
+				var SpinVariance = 50
+				var RandomSpin = true
+				var Fill = 1
+				var EmitterVelocityPercent = 0
+				var StartVelocity = Real3{0, 3, 0}
+				var RandomVelocity = Real3{25, 6, 25}
+				var TangentVelocity = Real3{0, 0, 0}
+				var EmitterSize = Real3{0, 0, 0}
+				var FastMovingEmitter = false
+			}
+			LinearParticleAnimator 
+			{
+				var Force = Real3{0, 5, 0}
+				var RandomForce = Real3{0, 0, 0}
+				var Torque = 0
+				var Growth = 0
+				var Dampening = 9
+				var Twist = Real3{0, 0, 0}
+			}
+			ParticleColorAnimator 
+			{
+				var TimeGradient = "5b4dfdb726463ab2:FadeInLongFadeOut"
+				var VelocityGradient = "null"
+				var MaxParticleSpeed = 5
+			}
+			SelectionIcon 
+			{
+				var Visible = true
+				var VisibilityEvents = true
+				var Material = "56581e2bb81777be:DebugDrawOnTop"
+				var SpriteSource = "59937d65f2659971:ParticleIcon"
+				var ViewScale = 1
+				var OverrideSelections = true
+			}
+			ParticleWander 
+			{
+				var WanderAngle = 1
+				var WanderAngleVariance = 1
+				var WanderStrength = 9
+			}
+		}
+	}
+}

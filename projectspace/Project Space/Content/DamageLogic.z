@@ -1,0 +1,90 @@
+class DamageLogic : ZilchComponent
+{
+    [Property]
+    var Damage : Real = 1.0;
+   
+    [Property]
+    var SendsDeathEvent : Boolean = true;
+   
+    [Property]
+    var DeathOnCollision : Boolean = true; //Player - Enemy collision destroys player
+
+    [Property]
+    var BulletType : String = null;
+
+    sends Death : ZilchEvent;
+    sends ApplyDamage : DamageEvent;
+
+
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollision);
+    }
+
+
+    function OnCollision(collisionEvent : CollisionEvent)
+    {
+        var otherObject = collisionEvent.OtherObject;
+        var meleeDamage = otherObject.DamageLogic;
+
+        var otherRoot = otherObject.FindRoot();
+
+        if(otherRoot.ArchetypeName == this.BulletType)
+        {
+            otherRoot.ArchetypeName == "EnemyBullet";
+            return;
+        }
+
+        if(otherRoot.ArchetypeName == this.BulletType)
+        {
+            otherRoot.ArchetypeName == "PlayerBullet";
+            return;
+        }
+
+        //Player Damage Logic
+        if(otherRoot.ArchetypeName == "EnemyBullet")
+        {
+            var hp = this.Owner.HPLogic;
+
+            if(hp != null)
+            {
+                var damageEvent = DamageEvent();
+                damageEvent.Damage = this.Damage;
+                this.Owner.DispatchEvent(Events.ApplyDamage, damageEvent);
+            }
+            
+            if(this.DeathOnCollision)
+                this.Owner.Destroy();
+        }
+
+        //Enemy Damage Logic
+        if(otherRoot.ArchetypeName == "PlayerBullet")
+        {
+            var hp = this.Owner.HPLogic;
+
+
+            //if((bullet must have penetrating properies then run loop if not no destroy bullet)
+            //{
+            //    if(otherObject.TYPE != "Penetrating")
+            //    {
+            //        run hp != null loop
+            //    }
+            //}
+            //else
+            //{
+            //    this.Owner.Destroy();
+            //}
+            if(hp != null)
+            {
+                var damageEvent = DamageEvent();
+                damageEvent.Damage = this.Damage;
+                this.Owner.DispatchEvent(Events.ApplyDamage, damageEvent);
+            }
+        }
+    }
+}
+
+class DamageEvent : ZilchEvent
+{
+    var Damage : Real = 0.0;
+}

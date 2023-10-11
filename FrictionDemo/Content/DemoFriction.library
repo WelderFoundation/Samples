@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "DemoFriction"
+	var LibraryId = 0x59839ec988ac14ec
+	var SourceControlType = ""
+	var ReadOnly = false
+}

@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "AiWorkshopPlatformer",
+	uint64 LibraryId = 553c343a9f9200e1,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

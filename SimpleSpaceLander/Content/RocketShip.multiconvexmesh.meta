@@ -1,0 +1,13 @@
+[Version:1]
+BinaryContent 
+{
+	BinaryBuilder 
+	{
+		var Name = "RocketShip"
+		var ResourceId = 0x587e7daf2b95713a
+		var LoaderType = "MultiConvexMesh"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = ""
+	}
+}

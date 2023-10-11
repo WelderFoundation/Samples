@@ -1,0 +1,19 @@
+[Pixel]
+struct TileAlbedo
+{
+  [FragmentInput][StageInput] var Uv : Real2;
+  [Input] var AlbedoMap : SampledImage2d;
+  [Input] var AlbedoValue : Real4 = Real4(1.0);
+  [Input] var GammaCorrect : Boolean = true;
+  
+  [Output] var Albedo : Real3;
+  
+  function Main()
+  {
+    this.Albedo = this.AlbedoMap.Sample(this.Uv).XYZ;
+    
+    var power = Math.Lerp(Real3(1.0), Real3(2.2), this.GammaCorrect as Real);
+    //this.Albedo = Math.Lerp(this.Albedo, Math.Pow(this.AlbedoValue.XYZ, power), 0.1);
+    this.Albedo *= Math.Pow(this.AlbedoValue.XYZ, power);
+  }
+}

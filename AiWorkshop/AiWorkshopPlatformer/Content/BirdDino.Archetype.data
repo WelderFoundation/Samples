@@ -1,0 +1,1309 @@
+[Version:1]
+Cog 
+{
+	var Name = "Bird"
+	Transform 
+	{
+		var Translation = Real3{12.6000004, 8.86999989, 0}
+		var Scale = Real3{0.5, 0.5, 0.5}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	AnimationGraph 
+	{
+		var Active = true
+		var PlayMode = AnimationPlayMode.PlayOnce
+		var TimeScale = 1
+		var Animation = "4f8ebbde619389d0:DefaultAnimation"
+		var DebugPreviewId = 3
+	}
+	SimpleAnimation 
+	{
+		var Animation = "542211aab1954691:BirdFly"
+		var PlayMode = AnimationPlayMode.Loop
+	}
+	AnimationFlip 
+	{
+		var Active = false
+	}
+	Bird 
+	{
+		var Speed = 4
+		var ObjectToDrop = CogPath
+		{
+			var Path = "Body/Rock"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+	}
+	BirdAi 
+	{
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b6055e8452c21f5]
+		{
+			var Name = "Body"
+			Transform 
+			{
+				var Translation = Real3{0, 3, -0.000999451033}
+				var Scale = Real3{0.899999976, 0.899999976, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "54226fd91a23f483:Body"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b6055e8452c221c]
+				{
+					var Name = "LegPivotL"
+					Transform 
+					{
+						var Translation = Real3{0.374424994, 0.0307477005, 1.20099998}
+						var Scale = Real3{1.11110997, 1.11110997, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b6055e8452c2235]
+						{
+							var Name = "ThighL"
+							Transform 
+							{
+								var Translation = Real3{0.214153007, -0.0588826984, 1}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5422606ee476bd73:Drumstick"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+						Cog [Id:0x5b6055e8452c227a]
+						{
+							var Name = "LegL1"
+							Transform 
+							{
+								var Translation = Real3{0.859700978, -0.284386009, 0}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b6055e8452c2298]
+								{
+									var Name = "LegParts1L"
+									Transform 
+									{
+										var Translation = Real3{0.0479261018, -0.077496998, 0.899999976}
+										var Scale = Real3{0.999998987, 0.999998987, 1}
+										var Rotation = Quaternion{0, 0, 0.766044021, 0.642787993}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5422606ee476df55:LegParts"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+								Cog [Id:0x5b6055e8452c22f3]
+								{
+									var Name = "LegL2"
+									Transform 
+									{
+										var Translation = Real3{0.142857, -0.120362997, 0}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b6055e8452c2317]
+										{
+											var Name = "LegParts2L"
+											Transform 
+											{
+												var Translation = Real3{0.0410689004, -0.0893846005, 0.800000012}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, 0.737276971, 0.675589979}
+											}
+											Sprite 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5422606ee476df55:LegParts"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b6055e8452c2385]
+										{
+											var Name = "LegL3"
+											Transform 
+											{
+												var Translation = Real3{0.150648996, -0.157560006, 0}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Hierarchy 
+											{
+												Cog [Id:0x5b6055e8452c23ae]
+												{
+													var Name = "LegParts3L"
+													Transform 
+													{
+														var Translation = Real3{0.0341163985, -0.0656222999, 0.699999988}
+														var Scale = Real3{0.999998987, 0.999998987, 1}
+														var Rotation = Quaternion{0, 0, 0.737276971, 0.675589979}
+													}
+													Sprite 
+													{
+														var Visible = true
+														var ViewCulling = true
+														var VisibilityEvents = false
+														var OverrideBoundingBox = false
+														var LocalAabbCenter = Real3{0, 0, 0}
+														var LocalAabbHalfExtents = Real3{1, 1, 1}
+														var GroupSortValue = 0
+														var Material = "582c575af53d18c9:AlphaSprite"
+														var VertexColor = Real4{1, 1, 1, 1}
+														var GeometryMode = SpriteGeometryMode.ZPlane
+														var SpriteSource = "5422606ee476df55:LegParts"
+														var FlipX = false
+														var FlipY = false
+														var AnimationActive = true
+														var AnimationSpeed = 1
+														var StartFrame = 0
+													}
+													Hierarchy 
+													{
+													}
+												}
+												Cog [Id:0x5b6055e8452c2455]
+												{
+													var Name = "LegL4"
+													Transform 
+													{
+														var Translation = Real3{0.130195007, -0.182895005, 0.600000024}
+														var Scale = Real3{1, 1, 1}
+														var Rotation = Quaternion{0, 0, -7.82311034e-08, 1}
+													}
+													Sprite 
+													{
+														var Visible = true
+														var ViewCulling = true
+														var VisibilityEvents = false
+														var OverrideBoundingBox = false
+														var LocalAabbCenter = Real3{0, 0, 0}
+														var LocalAabbHalfExtents = Real3{1, 1, 1}
+														var GroupSortValue = 0
+														var Material = "582c575af53d18c9:AlphaSprite"
+														var VertexColor = Real4{1, 1, 1, 1}
+														var GeometryMode = SpriteGeometryMode.ZPlane
+														var SpriteSource = "5422606ee476df55:LegParts"
+														var FlipX = false
+														var FlipY = false
+														var AnimationActive = true
+														var AnimationSpeed = 1
+														var StartFrame = 0
+													}
+													Hierarchy 
+													{
+														Cog [Id:0x5b6055e8452c24ae]
+														{
+															var Name = "LegL5"
+															Transform 
+															{
+																var Translation = Real3{-0.0462500006, -0.0462400988, -0.100000001}
+																var Scale = Real3{1, 1, 1}
+																var Rotation = Quaternion{0, 0, 0, 1}
+															}
+															Sprite 
+															{
+																var Visible = true
+																var ViewCulling = true
+																var VisibilityEvents = false
+																var OverrideBoundingBox = false
+																var LocalAabbCenter = Real3{0, 0, 0}
+																var LocalAabbHalfExtents = Real3{1, 1, 1}
+																var GroupSortValue = 0
+																var Material = "582c575af53d18c9:AlphaSprite"
+																var VertexColor = Real4{1, 1, 1, 1}
+																var GeometryMode = SpriteGeometryMode.ZPlane
+																var SpriteSource = "5422606ee476df55:LegParts"
+																var FlipX = false
+																var FlipY = false
+																var AnimationActive = true
+																var AnimationSpeed = 1
+																var StartFrame = 0
+															}
+															Hierarchy 
+															{
+																Cog [Id:0x5b6055e8452c2512]
+																{
+																	var Name = "LegL6"
+																	Transform 
+																	{
+																		var Translation = Real3{-0.0520300008, -0.0462399013, -0.100000001}
+																		var Scale = Real3{1, 1, 1}
+																		var Rotation = Quaternion{0, 0, 0, 1}
+																	}
+																	Sprite 
+																	{
+																		var Visible = true
+																		var ViewCulling = true
+																		var VisibilityEvents = false
+																		var OverrideBoundingBox = false
+																		var LocalAabbCenter = Real3{0, 0, 0}
+																		var LocalAabbHalfExtents = Real3{1, 1, 1}
+																		var GroupSortValue = 0
+																		var Material = "582c575af53d18c9:AlphaSprite"
+																		var VertexColor = Real4{1, 1, 1, 1}
+																		var GeometryMode = SpriteGeometryMode.ZPlane
+																		var SpriteSource = "5422606ee476df55:LegParts"
+																		var FlipX = false
+																		var FlipY = false
+																		var AnimationActive = true
+																		var AnimationSpeed = 1
+																		var StartFrame = 0
+																	}
+																	Hierarchy 
+																	{
+																		Cog [Id:0x5b6055e8452c257f]
+																		{
+																			var Name = "LegL7"
+																			Transform 
+																			{
+																				var Translation = Real3{-0.0520300008, -0.0462501012, -0.100000001}
+																				var Scale = Real3{1, 1, 1}
+																				var Rotation = Quaternion{0, 0, 0, 1}
+																			}
+																			Sprite 
+																			{
+																				var Visible = true
+																				var ViewCulling = true
+																				var VisibilityEvents = false
+																				var OverrideBoundingBox = false
+																				var LocalAabbCenter = Real3{0, 0, 0}
+																				var LocalAabbHalfExtents = Real3{1, 1, 1}
+																				var GroupSortValue = 0
+																				var Material = "582c575af53d18c9:AlphaSprite"
+																				var VertexColor = Real4{1, 1, 1, 1}
+																				var GeometryMode = SpriteGeometryMode.ZPlane
+																				var SpriteSource = "5422606ee476df55:LegParts"
+																				var FlipX = false
+																				var FlipY = false
+																				var AnimationActive = true
+																				var AnimationSpeed = 1
+																				var StartFrame = 0
+																			}
+																			Hierarchy 
+																			{
+																				Cog [Id:0x5b6055e8452c25f8]
+																				{
+																					var Name = "LegL8"
+																					Transform 
+																					{
+																						var Translation = Real3{-0.0520301014, -0.0520297997, -0.100000001}
+																						var Scale = Real3{1, 1, 1}
+																						var Rotation = Quaternion{0, 0, 0, 1}
+																					}
+																					Sprite 
+																					{
+																						var Visible = true
+																						var ViewCulling = true
+																						var VisibilityEvents = false
+																						var OverrideBoundingBox = false
+																						var LocalAabbCenter = Real3{0, 0, 0}
+																						var LocalAabbHalfExtents = Real3{1, 1, 1}
+																						var GroupSortValue = 0
+																						var Material = "582c575af53d18c9:AlphaSprite"
+																						var VertexColor = Real4{1, 1, 1, 1}
+																						var GeometryMode = SpriteGeometryMode.ZPlane
+																						var SpriteSource = "5422606ee476df55:LegParts"
+																						var FlipX = false
+																						var FlipY = false
+																						var AnimationActive = true
+																						var AnimationSpeed = 1
+																						var StartFrame = 0
+																					}
+																					Hierarchy 
+																					{
+																						Cog [Id:0x5b6055e8452c267a]
+																						{
+																							var Name = "LegL9"
+																							Transform 
+																							{
+																								var Translation = Real3{-0.0635899007, -0.0578101017, -0.100000001}
+																								var Scale = Real3{1, 1, 1}
+																								var Rotation = Quaternion{0, 0, 0, 1}
+																							}
+																							Sprite 
+																							{
+																								var Visible = true
+																								var ViewCulling = true
+																								var VisibilityEvents = false
+																								var OverrideBoundingBox = false
+																								var LocalAabbCenter = Real3{0, 0, 0}
+																								var LocalAabbHalfExtents = Real3{1, 1, 1}
+																								var GroupSortValue = 0
+																								var Material = "582c575af53d18c9:AlphaSprite"
+																								var VertexColor = Real4{1, 1, 1, 1}
+																								var GeometryMode = SpriteGeometryMode.ZPlane
+																								var SpriteSource = "5422606ee476df55:LegParts"
+																								var FlipX = false
+																								var FlipY = false
+																								var AnimationActive = true
+																								var AnimationSpeed = 1
+																								var StartFrame = 0
+																							}
+																							Hierarchy 
+																							{
+																								Cog [Id:0x5b6055e8452c270a]
+																								{
+																									var Name = "LegL10"
+																									Transform 
+																									{
+																										var Translation = Real3{-0.0165832993, -0.0572957993, -0.100000001}
+																										var Scale = Real3{1, 1, 1}
+																										var Rotation = Quaternion{0, 0, 0, 1}
+																									}
+																									Hierarchy 
+																									{
+																										Cog [Id:0x5b6055e8452c275a]
+																										{
+																											var Name = "FeetL"
+																											Transform 
+																											{
+																												var Translation = Real3{-0.599162996, -0.476604015, 0}
+																												var Scale = Real3{1, 1, 1}
+																												var Rotation = Quaternion{0, 0, 0, 1}
+																											}
+																											Sprite 
+																											{
+																												var Visible = true
+																												var ViewCulling = true
+																												var VisibilityEvents = false
+																												var OverrideBoundingBox = false
+																												var LocalAabbCenter = Real3{0, 0, 0}
+																												var LocalAabbHalfExtents = Real3{1, 1, 1}
+																												var GroupSortValue = 0
+																												var Material = "582c575af53d18c9:AlphaSprite"
+																												var VertexColor = Real4{1, 1, 1, 1}
+																												var GeometryMode = SpriteGeometryMode.ZPlane
+																												var SpriteSource = "5422606ee476c5ce:FeetLeft"
+																												var FlipX = false
+																												var FlipY = false
+																												var AnimationActive = true
+																												var AnimationSpeed = 1
+																												var StartFrame = 0
+																											}
+																										}
+																										Cog [Id:0x5b6055e8452c2845]
+																										{
+																											var Name = "PunchL"
+																											EditorFlags 
+																											{
+																												var Locked = false
+																												var Hidden = true
+																											}
+																											Transform 
+																											{
+																												var Translation = Real3{0.0617282018, -0.163084, 1}
+																												var Scale = Real3{1, 1, 1}
+																												var Rotation = Quaternion{0, 0, 7.82311034e-08, 1}
+																											}
+																											Sprite 
+																											{
+																												var Visible = false
+																												var ViewCulling = true
+																												var VisibilityEvents = false
+																												var OverrideBoundingBox = false
+																												var LocalAabbCenter = Real3{0, 0, 0}
+																												var LocalAabbHalfExtents = Real3{1, 1, 1}
+																												var GroupSortValue = 0
+																												var Material = "582c575af53d18c9:AlphaSprite"
+																												var VertexColor = Real4{1, 1, 1, 1}
+																												var GeometryMode = SpriteGeometryMode.ZPlane
+																												var SpriteSource = "5422606ee476f899:PunchLeft"
+																												var FlipX = false
+																												var FlipY = false
+																												var AnimationActive = true
+																												var AnimationSpeed = 1
+																												var StartFrame = 0
+																											}
+																										}
+																										Cog [Id:0x5b6055e8452c2932]
+																										{
+																											var Name = "ProjectileL"
+																											EditorFlags 
+																											{
+																												var Locked = false
+																												var Hidden = true
+																											}
+																											Transform 
+																											{
+																												var Translation = Real3{-0.370627999, -0.485812992, 1.5}
+																												var Scale = Real3{1, 1, 1}
+																												var Rotation = Quaternion{0, 0, 7.82311034e-08, 1}
+																											}
+																											Sprite 
+																											{
+																												var Visible = false
+																												var ViewCulling = true
+																												var VisibilityEvents = false
+																												var OverrideBoundingBox = false
+																												var LocalAabbCenter = Real3{0, 0, 0}
+																												var LocalAabbHalfExtents = Real3{1, 1, 1}
+																												var GroupSortValue = 0
+																												var Material = "582c575af53d18c9:AlphaSprite"
+																												var VertexColor = Real4{1, 1, 1, 1}
+																												var GeometryMode = SpriteGeometryMode.ZPlane
+																												var SpriteSource = "5422606ee476e888:ProjectileLeft"
+																												var FlipX = false
+																												var FlipY = false
+																												var AnimationActive = true
+																												var AnimationSpeed = 1
+																												var StartFrame = 0
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b6055e8452c2dbd]
+				{
+					var Name = "LegPivotR"
+					Transform 
+					{
+						var Translation = Real3{-0.215781003, 0.0385890007, -1.99899995}
+						var Scale = Real3{1.11110997, 1.11110997, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b6055e8452c2dd3]
+						{
+							var Name = "ThighR"
+							Transform 
+							{
+								var Translation = Real3{0.214153007, -0.0588826984, 1}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5422606ee476bd73:Drumstick"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+						Cog [Id:0x5b6055e8452c2e17]
+						{
+							var Name = "LegR1"
+							Transform 
+							{
+								var Translation = Real3{0.859700978, -0.284386009, 0}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b6055e8452c2e34]
+								{
+									var Name = "LegParts1R"
+									Transform 
+									{
+										var Translation = Real3{0.0479261018, -0.077496998, 0.899999976}
+										var Scale = Real3{0.999998987, 0.999998987, 1}
+										var Rotation = Quaternion{0, 0, 0.766044021, 0.642787993}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5422606ee476df55:LegParts"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+								Cog [Id:0x5b6055e8452c2e8e]
+								{
+									var Name = "LegR2"
+									Transform 
+									{
+										var Translation = Real3{0.142857, -0.120362997, 0}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b6055e8452c2eb2]
+										{
+											var Name = "LegParts2R"
+											Transform 
+											{
+												var Translation = Real3{0.0410689004, -0.0893846005, 0.800000012}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, 0.737276971, 0.675589979}
+											}
+											Sprite 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5422606ee476df55:LegParts"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b6055e8452c2f1e]
+										{
+											var Name = "LegR3"
+											Transform 
+											{
+												var Translation = Real3{0.150648996, -0.157560006, 0}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Hierarchy 
+											{
+												Cog [Id:0x5b6055e8452c2f49]
+												{
+													var Name = "LegParts3R"
+													Transform 
+													{
+														var Translation = Real3{0.0341163985, -0.0656222999, 0.699999988}
+														var Scale = Real3{0.999998987, 0.999998987, 1}
+														var Rotation = Quaternion{0, 0, 0.737276971, 0.675589979}
+													}
+													Sprite 
+													{
+														var Visible = true
+														var ViewCulling = true
+														var VisibilityEvents = false
+														var OverrideBoundingBox = false
+														var LocalAabbCenter = Real3{0, 0, 0}
+														var LocalAabbHalfExtents = Real3{1, 1, 1}
+														var GroupSortValue = 0
+														var Material = "582c575af53d18c9:AlphaSprite"
+														var VertexColor = Real4{1, 1, 1, 1}
+														var GeometryMode = SpriteGeometryMode.ZPlane
+														var SpriteSource = "5422606ee476df55:LegParts"
+														var FlipX = false
+														var FlipY = false
+														var AnimationActive = true
+														var AnimationSpeed = 1
+														var StartFrame = 0
+													}
+													Hierarchy 
+													{
+													}
+												}
+												Cog [Id:0x5b6055e8452c2ff6]
+												{
+													var Name = "LegR4"
+													Transform 
+													{
+														var Translation = Real3{0.130195007, -0.182895005, 0.600000024}
+														var Scale = Real3{1, 1, 1}
+														var Rotation = Quaternion{0, 0, -7.82311034e-08, 1}
+													}
+													Sprite 
+													{
+														var Visible = true
+														var ViewCulling = true
+														var VisibilityEvents = false
+														var OverrideBoundingBox = false
+														var LocalAabbCenter = Real3{0, 0, 0}
+														var LocalAabbHalfExtents = Real3{1, 1, 1}
+														var GroupSortValue = 0
+														var Material = "582c575af53d18c9:AlphaSprite"
+														var VertexColor = Real4{1, 1, 1, 1}
+														var GeometryMode = SpriteGeometryMode.ZPlane
+														var SpriteSource = "5422606ee476df55:LegParts"
+														var FlipX = false
+														var FlipY = false
+														var AnimationActive = true
+														var AnimationSpeed = 1
+														var StartFrame = 0
+													}
+													Hierarchy 
+													{
+														Cog [Id:0x5b6055e8452c3051]
+														{
+															var Name = "LegR5"
+															Transform 
+															{
+																var Translation = Real3{-0.0462500006, -0.0462400988, -0.100000001}
+																var Scale = Real3{1, 1, 1}
+																var Rotation = Quaternion{0, 0, 0, 1}
+															}
+															Sprite 
+															{
+																var Visible = true
+																var ViewCulling = true
+																var VisibilityEvents = false
+																var OverrideBoundingBox = false
+																var LocalAabbCenter = Real3{0, 0, 0}
+																var LocalAabbHalfExtents = Real3{1, 1, 1}
+																var GroupSortValue = 0
+																var Material = "582c575af53d18c9:AlphaSprite"
+																var VertexColor = Real4{1, 1, 1, 1}
+																var GeometryMode = SpriteGeometryMode.ZPlane
+																var SpriteSource = "5422606ee476df55:LegParts"
+																var FlipX = false
+																var FlipY = false
+																var AnimationActive = true
+																var AnimationSpeed = 1
+																var StartFrame = 0
+															}
+															Hierarchy 
+															{
+																Cog [Id:0x5b6055e8452c30b7]
+																{
+																	var Name = "LegR6"
+																	Transform 
+																	{
+																		var Translation = Real3{-0.0520300008, -0.0462399013, -0.100000001}
+																		var Scale = Real3{1, 1, 1}
+																		var Rotation = Quaternion{0, 0, 0, 1}
+																	}
+																	Sprite 
+																	{
+																		var Visible = true
+																		var ViewCulling = true
+																		var VisibilityEvents = false
+																		var OverrideBoundingBox = false
+																		var LocalAabbCenter = Real3{0, 0, 0}
+																		var LocalAabbHalfExtents = Real3{1, 1, 1}
+																		var GroupSortValue = 0
+																		var Material = "582c575af53d18c9:AlphaSprite"
+																		var VertexColor = Real4{1, 1, 1, 1}
+																		var GeometryMode = SpriteGeometryMode.ZPlane
+																		var SpriteSource = "5422606ee476df55:LegParts"
+																		var FlipX = false
+																		var FlipY = false
+																		var AnimationActive = true
+																		var AnimationSpeed = 1
+																		var StartFrame = 0
+																	}
+																	Hierarchy 
+																	{
+																		Cog [Id:0x5b6055e8452c3127]
+																		{
+																			var Name = "LegR7"
+																			Transform 
+																			{
+																				var Translation = Real3{-0.0520300008, -0.0462501012, -0.100000001}
+																				var Scale = Real3{1, 1, 1}
+																				var Rotation = Quaternion{0, 0, 0, 1}
+																			}
+																			Sprite 
+																			{
+																				var Visible = true
+																				var ViewCulling = true
+																				var VisibilityEvents = false
+																				var OverrideBoundingBox = false
+																				var LocalAabbCenter = Real3{0, 0, 0}
+																				var LocalAabbHalfExtents = Real3{1, 1, 1}
+																				var GroupSortValue = 0
+																				var Material = "582c575af53d18c9:AlphaSprite"
+																				var VertexColor = Real4{1, 1, 1, 1}
+																				var GeometryMode = SpriteGeometryMode.ZPlane
+																				var SpriteSource = "5422606ee476df55:LegParts"
+																				var FlipX = false
+																				var FlipY = false
+																				var AnimationActive = true
+																				var AnimationSpeed = 1
+																				var StartFrame = 0
+																			}
+																			Hierarchy 
+																			{
+																				Cog [Id:0x5b6055e8452c31a1]
+																				{
+																					var Name = "LegR8"
+																					Transform 
+																					{
+																						var Translation = Real3{-0.0520301014, -0.0520297997, -0.100000001}
+																						var Scale = Real3{1, 1, 1}
+																						var Rotation = Quaternion{0, 0, 0, 1}
+																					}
+																					Sprite 
+																					{
+																						var Visible = true
+																						var ViewCulling = true
+																						var VisibilityEvents = false
+																						var OverrideBoundingBox = false
+																						var LocalAabbCenter = Real3{0, 0, 0}
+																						var LocalAabbHalfExtents = Real3{1, 1, 1}
+																						var GroupSortValue = 0
+																						var Material = "582c575af53d18c9:AlphaSprite"
+																						var VertexColor = Real4{1, 1, 1, 1}
+																						var GeometryMode = SpriteGeometryMode.ZPlane
+																						var SpriteSource = "5422606ee476df55:LegParts"
+																						var FlipX = false
+																						var FlipY = false
+																						var AnimationActive = true
+																						var AnimationSpeed = 1
+																						var StartFrame = 0
+																					}
+																					Hierarchy 
+																					{
+																						Cog [Id:0x5b6055e8452c3226]
+																						{
+																							var Name = "LegR9"
+																							Transform 
+																							{
+																								var Translation = Real3{-0.0635899007, -0.0578101017, -0.100000001}
+																								var Scale = Real3{1, 1, 1}
+																								var Rotation = Quaternion{0, 0, 0, 1}
+																							}
+																							Sprite 
+																							{
+																								var Visible = true
+																								var ViewCulling = true
+																								var VisibilityEvents = false
+																								var OverrideBoundingBox = false
+																								var LocalAabbCenter = Real3{0, 0, 0}
+																								var LocalAabbHalfExtents = Real3{1, 1, 1}
+																								var GroupSortValue = 0
+																								var Material = "582c575af53d18c9:AlphaSprite"
+																								var VertexColor = Real4{1, 1, 1, 1}
+																								var GeometryMode = SpriteGeometryMode.ZPlane
+																								var SpriteSource = "5422606ee476df55:LegParts"
+																								var FlipX = false
+																								var FlipY = false
+																								var AnimationActive = true
+																								var AnimationSpeed = 1
+																								var StartFrame = 0
+																							}
+																							Hierarchy 
+																							{
+																								Cog [Id:0x5b6055e8452c32b7]
+																								{
+																									var Name = "LegR10"
+																									Transform 
+																									{
+																										var Translation = Real3{-0.0165832993, -0.0572957993, -0.100000001}
+																										var Scale = Real3{1, 1, 1}
+																										var Rotation = Quaternion{0, 0, 0, 1}
+																									}
+																									Hierarchy 
+																									{
+																										Cog [Id:0x5b6055e8452c330c]
+																										{
+																											var Name = "FeetR"
+																											Transform 
+																											{
+																												var Translation = Real3{-0.609800994, -0.476599991, -0.5}
+																												var Scale = Real3{1, 1, 1}
+																												var Rotation = Quaternion{0, 0, 7.82311034e-08, 1}
+																											}
+																											Sprite 
+																											{
+																												var Visible = true
+																												var ViewCulling = true
+																												var VisibilityEvents = false
+																												var OverrideBoundingBox = false
+																												var LocalAabbCenter = Real3{0, 0, 0}
+																												var LocalAabbHalfExtents = Real3{1, 1, 1}
+																												var GroupSortValue = 0
+																												var Material = "582c575af53d18c9:AlphaSprite"
+																												var VertexColor = Real4{1, 1, 1, 1}
+																												var GeometryMode = SpriteGeometryMode.ZPlane
+																												var SpriteSource = "5422606ee476ce22:FeetRight"
+																												var FlipX = false
+																												var FlipY = false
+																												var AnimationActive = true
+																												var AnimationSpeed = 1
+																												var StartFrame = 0
+																											}
+																										}
+																										Cog [Id:0x5b6055e8452c3404]
+																										{
+																											var Name = "PunchR"
+																											EditorFlags 
+																											{
+																												var Locked = false
+																												var Hidden = true
+																											}
+																											Transform 
+																											{
+																												var Translation = Real3{0.0710576028, -0.140929997, 1.5}
+																												var Scale = Real3{1, 1, 1}
+																												var Rotation = Quaternion{0, 0, 7.82311034e-08, 1}
+																											}
+																											Sprite 
+																											{
+																												var Visible = false
+																												var ViewCulling = true
+																												var VisibilityEvents = false
+																												var OverrideBoundingBox = false
+																												var LocalAabbCenter = Real3{0, 0, 0}
+																												var LocalAabbHalfExtents = Real3{1, 1, 1}
+																												var GroupSortValue = 0
+																												var Material = "582c575af53d18c9:AlphaSprite"
+																												var VertexColor = Real4{1, 1, 1, 1}
+																												var GeometryMode = SpriteGeometryMode.ZPlane
+																												var SpriteSource = "5422606ee4770097:PunchRight"
+																												var FlipX = false
+																												var FlipY = false
+																												var AnimationActive = true
+																												var AnimationSpeed = 1
+																												var StartFrame = 0
+																											}
+																										}
+																										Cog [Id:0x5b6055e8452c34fa]
+																										{
+																											var Name = "ProjectileR"
+																											EditorFlags 
+																											{
+																												var Locked = false
+																												var Hidden = true
+																											}
+																											Transform 
+																											{
+																												var Translation = Real3{-0.398057014, -0.397329986, 2}
+																												var Scale = Real3{1, 1, 1}
+																												var Rotation = Quaternion{0, 0, 7.82311034e-08, 1}
+																											}
+																											Sprite 
+																											{
+																												var Visible = false
+																												var ViewCulling = true
+																												var VisibilityEvents = false
+																												var OverrideBoundingBox = false
+																												var LocalAabbCenter = Real3{0, 0, 0}
+																												var LocalAabbHalfExtents = Real3{1, 1, 1}
+																												var GroupSortValue = 0
+																												var Material = "582c575af53d18c9:AlphaSprite"
+																												var VertexColor = Real4{1, 1, 1, 1}
+																												var GeometryMode = SpriteGeometryMode.ZPlane
+																												var SpriteSource = "5422606ee476f065:ProjectileRight"
+																												var FlipX = false
+																												var FlipY = false
+																												var AnimationActive = true
+																												var AnimationSpeed = 1
+																												var StartFrame = 0
+																											}
+																										}
+																									}
+																								}
+																							}
+																						}
+																					}
+																				}
+																			}
+																		}
+																	}
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b6055e8452c399d]
+				{
+					var Name = "Tail3Pivot"
+					Transform 
+					{
+						var Translation = Real3{1.17876995, 0.0778079033, 0.000999451033}
+						var Scale = Real3{1.11110997, 1.11110997, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b6055e8452c39b4]
+						{
+							var Name = "Tail3"
+							Transform 
+							{
+								var Translation = Real3{0.729870021, -0.197797, -0.699999988}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54226c192c82f93e:Tail3"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b6055e8452c3a13]
+				{
+					var Name = "Tail2Pivot"
+					Transform 
+					{
+						var Translation = Real3{1.10031998, 0.0307375994, 0.000999451033}
+						var Scale = Real3{1.11110997, 1.11110997, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b6055e8452c3a29]
+						{
+							var Name = "Tail2"
+							Transform 
+							{
+								var Translation = Real3{0.64714402, -0.251264006, -0.300000012}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54226c192c82ef72:Tail2"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b6055e8452c3a7f]
+				{
+					var Name = "Tail1Pivot"
+					Transform 
+					{
+						var Translation = Real3{1.17876995, 0.132716998, 0.000999451033}
+						var Scale = Real3{1.11110997, 1.11110997, 1}
+						var Rotation = Quaternion{0, 0, 2.08059991e-09, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b6055e8452c3a94]
+						{
+							var Name = "Tail1"
+							Transform 
+							{
+								var Translation = Real3{0.562295973, -0.128264993, -0.5}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54226c192c82d273:Tail1"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b6055e8452c3aef]
+				{
+					var Name = "HeadPivot"
+					Transform 
+					{
+						var Translation = Real3{-1.23520005, 0.0625168979, 0.000999451033}
+						var Scale = Real3{1.11110997, 1.11110997, 1}
+						var Rotation = Quaternion{0, 0, -0.173648, 0.984808028}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b6055e8452c3b04]
+						{
+							var Name = "Head"
+							Transform 
+							{
+								var Translation = Real3{-0.0995343998, 0.218364999, 0.5}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5422606ee476d73e:Head"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b6055e8452c3b35]
+								{
+									var Name = "BeakPivot"
+									Transform 
+									{
+										var Translation = Real3{-0.00530254981, -0.332733005, -0.5}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, -0.0610485002, 0.998134971}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b6055e8452c3b57]
+										{
+											var Name = "Beak"
+											Transform 
+											{
+												var Translation = Real3{-0.133636996, -0.281037003, 0.300000012}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5422606ee476ab3b:Beak"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b6055e8452c3c22]
+				{
+					var Name = "WingsR"
+					Transform 
+					{
+						var Translation = Real3{0.744288981, 0.180423006, -2.99900007}
+						var Scale = Real3{1.11110997, 1.11110997, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Sprite 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = false
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{1, 1, 1, 1}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var SpriteSource = "54220f6948348b54:WingsRight"
+						var FlipX = false
+						var FlipY = false
+						var AnimationActive = true
+						var AnimationSpeed = 1
+						var StartFrame = 0
+					}
+				}
+				Cog [Id:0x5b6055e8452c3c51]
+				{
+					var Name = "WingsL"
+					Transform 
+					{
+						var Translation = Real3{1.19754004, 0.252766997, 3}
+						var Scale = Real3{1.11110997, 1.11110997, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Sprite 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = false
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{1, 1, 1, 1}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var SpriteSource = "5420b1ecbd3d0a17:WingsLeft"
+						var FlipX = false
+						var FlipY = false
+						var AnimationActive = true
+						var AnimationSpeed = 1
+						var StartFrame = 0
+					}
+				}
+				Cog [Id:0x5b6055e8452c3d36][InheritId:"553d01fcf4e4d35d:Rock"]
+				{
+					Transform 
+					{
+						var Translation = Real3{-0.252013206, -2.96055818, 0}
+					}
+				}
+			}
+		}
+	}
+}

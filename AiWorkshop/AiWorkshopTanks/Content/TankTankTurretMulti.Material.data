@@ -1,0 +1,15 @@
+MultiMaterial = 
+{
+	MultiMaterialBlock = 
+	{
+		Array Materials = 
+		[
+			{
+				string MaterialName = "5567a7f2877aa4d9:lambert3",
+			},
+			{
+				string MaterialName = "5567a7f2877adad8:lambert1",
+			},
+		],
+	},
+},

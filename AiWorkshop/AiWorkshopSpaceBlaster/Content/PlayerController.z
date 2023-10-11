@@ -1,0 +1,34 @@
+class PlayerController : ZilchComponent
+{
+  // We rely on the Ship Component
+  [Dependency] var Ship : Ship;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to run our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    // Generate a direction vector for movement
+    var direction = Real3(0);
+    
+    if(Zero.Keyboard.KeyIsDown(Keys.A))
+        direction += Real3(-1, 0, 0);
+    if(Zero.Keyboard.KeyIsDown(Keys.D))
+        direction += Real3(1, 0, 0);
+    if(Zero.Keyboard.KeyIsDown(Keys.W))
+        direction += Real3(0, 1, 0);
+    if(Zero.Keyboard.KeyIsDown(Keys.S))
+        direction += Real3(0, -1, 0);
+    
+    // Move in the direction we just calculated
+    this.Owner.Ship.MoveInDirection(direction, event.Dt);
+    
+    // If space is down, attempt to fire
+    if(Zero.Keyboard.KeyIsDown(Keys.Space))
+      this.Owner.Ship.Fire();
+  }
+}

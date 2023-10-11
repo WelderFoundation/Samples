@@ -1,0 +1,273 @@
+
+//--------------------------------------------------------------------------------- Fuzzy Rule Token
+enum FuzzyRuleTokenType {Identifier, If, Is, And, Or, Then, Somewhat, Very, Extremely}
+class FuzzyRuleToken
+{
+  var TokenType : FuzzyRuleTokenType;
+  var Text : String;
+}
+
+//--------------------------------------------------------------------------------- Fuzzy Rule Parser
+class FuzzyRuleParser
+{
+  // Internals
+  [Static] var Keywords = HashMap[String, FuzzyRuleTokenType]();
+  
+  var Rule : FuzzyRule;
+  var ErrorMessage = "";
+  var CurrentIndex = 0;
+  var System : FuzzySystem;
+  var Tokens : StringSplitRange;
+  var LastToken : FuzzyRuleToken;
+  
+  //************************************************************************************************
+  [Static] function InitializeTokens()
+  {
+    // No need to do anything if they're already initialized
+    if(FuzzyRuleParser.Keywords.Count > 0)
+      return;
+    
+    FuzzyRuleParser.Keywords["if"] = FuzzyRuleTokenType.If;
+    FuzzyRuleParser.Keywords["is"] = FuzzyRuleTokenType.Is;
+    FuzzyRuleParser.Keywords["and"] = FuzzyRuleTokenType.And;
+    FuzzyRuleParser.Keywords["or"] = FuzzyRuleTokenType.Or;
+    FuzzyRuleParser.Keywords["then"] = FuzzyRuleTokenType.Then;
+    FuzzyRuleParser.Keywords["somewhat"] = FuzzyRuleTokenType.Somewhat;
+    FuzzyRuleParser.Keywords["very"] = FuzzyRuleTokenType.Very;
+    FuzzyRuleParser.Keywords["extremely"] = FuzzyRuleTokenType.Extremely;
+  }
+  
+  //************************************************************************************************
+  function Parse(rule : FuzzyRule, system : FuzzySystem) : String
+  {
+    // Initialize tokens in case they haven't yet been initialized
+    FuzzyRuleParser.InitializeTokens();
+    
+    this.Rule = rule;
+    this.System = system;
+    this.ParseInternal(rule.Text);
+    return this.ErrorMessage;
+  }
+  
+  //************************************************************************************************
+  function ParseInternal(rule : String)
+  {
+    // Tokenize
+    this.Tokens = rule.Split(" ");
+    
+    // Grammar:
+    //
+    // Start = if << Condition << then << Identifier << is << Identifier
+    // Condition = Identifier << is << Identifier << *(ConditionAppend << Condition)
+    // ConditionAppend = (and | or)
+    
+    // Must start with an "if"
+    if(this.Expect(FuzzyRuleTokenType.If, "You must start with the word \"if\"") == false)
+      return;
+      
+    // Parse the input tree
+    this.Rule.Input = this.Condition();
+    
+    // Return if there was an error in parsing the inputs
+    if(this.ErrorMessage.IsNotEmpty)
+      return;
+    
+    // Must have a "then"
+    if(this.Expect(FuzzyRuleTokenType.Then, "Expected \"then\"") == false)
+      return;
+    
+    // Parse an output set
+    this.Rule.OutputSet = this.ExpectFuzzySet(this.System.Outputs, "Expected an output set name");
+    if(this.Rule.OutputSet == null)
+      return;
+    
+    if(this.Expect(FuzzyRuleTokenType.Is, "Expected an \"is\"") == false)
+      return;
+    
+    // Parse a number in the output set
+    this.Rule.OutputNumber = this.ExpectNumberName(this.Rule.OutputSet);
+  }
+  
+  //************************************************************************************************
+  function Condition() : FuzzyRuleNode
+  {
+    // This function parses: "set is adjective" with any amount of "and" or "or"
+    var leafNode = FuzzyRuleLeafNode();
+    var node : FuzzyRuleNode = leafNode;
+    
+    // Parse an input set
+    var inputSet = this.ExpectFuzzySet(this.System.Inputs, "Expected an input set name");
+    if(inputSet == null)
+      return null;
+    
+    if(this.Expect(FuzzyRuleTokenType.Is, "Expected an \"is\"") == false)
+      return null;
+    
+    // Accept any modifiers
+    var modifierNode = this.AcceptModifier(node);
+    if(modifierNode != null)
+      node = modifierNode;
+    
+    // Parse a number in the input set
+    leafNode.FuzzyNumber = this.ExpectNumberName(inputSet);
+    
+    // And
+    var andNode = this.ConditionAnd(node);
+    if(andNode != null)
+      return andNode;
+    
+    // Or
+    var orNode = this.ConditionOr(node);
+    if(orNode != null)
+      return orNode;
+      
+    return node;
+  }
+  
+  //************************************************************************************************
+  function AcceptModifier(child : FuzzyRuleNode) : FuzzyRuleNode
+  {
+    // Somewhat
+    if(this.Accept(FuzzyRuleTokenType.Somewhat))
+    {
+      var modifierNode = FuzzyRuleSomewhatNode();
+      modifierNode.ChildNode = child;
+      return modifierNode;
+    }
+    
+    // Very
+    if(this.Accept(FuzzyRuleTokenType.Very))
+    {
+      var modifierNode = FuzzyRuleVeryNode();
+      modifierNode.ChildNode = child;
+      return modifierNode;
+    }
+    
+    // Somewhat
+    if(this.Accept(FuzzyRuleTokenType.Extremely))
+    {
+      var modifierNode = FuzzyRuleExtremelyNode();
+      modifierNode.ChildNode = child;
+      return modifierNode;
+    }
+    return null;
+  }
+  
+  //************************************************************************************************
+  function ConditionAnd(leftNode : FuzzyRuleNode) : FuzzyRuleNode
+  {
+    if(this.Accept(FuzzyRuleTokenType.And))
+    {
+      var rightNode = this.Condition();
+      var andNode = FuzzyRuleAndNode();
+      andNode.LeftNode = leftNode;
+      andNode.RightNode = rightNode;
+      return andNode;
+    }
+    
+    return null;
+  }
+  
+  //************************************************************************************************
+  function ConditionOr(leftNode : FuzzyRuleNode) : FuzzyRuleNode
+  {
+    if(this.Accept(FuzzyRuleTokenType.Or))
+    {
+      var rightNode = this.Condition();
+      var orNode = FuzzyRuleOrNode();
+      orNode.LeftNode = leftNode;
+      orNode.RightNode = rightNode;
+      return orNode;
+    }
+    
+    return null;
+  }
+  
+  //************************************************************************************************
+  function Expect(tokenType : FuzzyRuleTokenType, error : String) : Boolean
+  {
+    return this.Expect(tokenType, error, true);
+  }
+  
+  //************************************************************************************************
+  function Expect(tokenType : FuzzyRuleTokenType, error : String, moveNext : Boolean) : Boolean
+  {
+    if(!this.Tokens.IsNotEmpty)
+      return false;
+    
+    var token = this.GetNextToken();
+    this.LastToken = token;
+    
+    if(token.TokenType == tokenType)
+    {
+      if(moveNext)
+        this.Tokens.MoveNext();
+      return true;
+    }
+    
+    this.ErrorMessage = error;
+    return false;
+  }
+  
+  //************************************************************************************************
+  function Accept(tokenType : FuzzyRuleTokenType) : Boolean
+  {
+    if(!this.Tokens.IsNotEmpty)
+      return false;
+    
+    var token = this.GetNextToken();
+    
+    if(token.TokenType == tokenType)
+    {
+      this.LastToken = token;
+      this.Tokens.MoveNext();
+      return true;
+    }
+    
+    return false;
+  }
+  
+  //************************************************************************************************
+  function ExpectFuzzySet(fuzzySetMap : HashMap[String, FuzzySet], error : String) : FuzzySet
+  {
+    if(this.Expect(FuzzyRuleTokenType.Identifier, error, false) == false)
+      return null;
+    
+    var setName = this.LastToken.Text;
+    var fuzzySet = fuzzySetMap.GetOrDefault(setName, null);
+    
+    if(fuzzySet == null)
+      this.ErrorMessage = "A set by the name '`setName`' could not be found";
+    else
+      this.Tokens.MoveNext();
+    return fuzzySet;
+  }
+  
+  //************************************************************************************************
+  function ExpectNumberName(fuzzySet : FuzzySet) : FuzzyNumber
+  {
+    if(this.Expect(FuzzyRuleTokenType.Identifier, "Expected the name of a number in the '`fuzzySet.Name`' set", false) == false)
+      return null;
+      
+    var numberName = this.LastToken.Text;
+    var number = fuzzySet.Numbers.GetOrDefault(numberName, null);
+    
+    if(number == null)
+      this.ErrorMessage = "The number '`numberName`' could not be found in the '`fuzzySet.Name`' set";
+    else
+      this.Tokens.MoveNext();
+    return number;
+  }
+  
+  //************************************************************************************************
+  function GetNextToken() : FuzzyRuleToken
+  {
+    // We don't want to be case sensitive
+    var text = this.Tokens.Current.ToLower();
+    
+    // Check to see if it's a keyword
+    var tokenType = FuzzyRuleParser.Keywords.GetOrDefault(text, FuzzyRuleTokenType.Identifier);
+      
+    return FuzzyRuleToken() {TokenType = tokenType, Text = text};
+  }
+}

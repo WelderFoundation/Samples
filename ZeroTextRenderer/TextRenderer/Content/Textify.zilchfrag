@@ -1,0 +1,45 @@
+// PostProcess fragments are intended to be constructed in script
+// and passed directly to the AddRenderTaskPostProcess method.
+[Pixel][PostProcess]
+struct TextifyW
+{
+  [StageInput] var Uv : Real2;
+  [Input] var FinalSize : Integer2;
+  [Input] var SceneBuffer : SampledImage2d;
+  [Input] var FontTexture : SampledImage2d;
+  [Input] var CharSize : Integer2;
+  [Input] var CharCount : Integer = 224;
+  [Input] var RGBCoeffecients : Real3 = Real3(0.2126, 0.7152, 0.0722);
+  [Input] var Color0 : Real4 = Colors.Black;
+  [Input] var Color1 : Real4 = Colors.White;
+  
+  [Output] var Target0 : Real4;
+  
+  
+  function Main()
+  {
+    var finalSize = this.FinalSize;
+    var scenePixel = (this.Uv * finalSize) as Integer2;
+    var moddedScenePixel = scenePixel % this.CharSize;
+    
+    var color = this.SceneBuffer.Sample(this.Uv);
+    var gray = Math.Dot(color.XYZ, this.RGBCoeffecients);
+    var index = (gray * this.CharCount) as Integer;
+    
+    var fontSize = this.FontTexture.SampleSize(0);
+    var charDivisions = fontSize / this.CharSize;
+    var char = Integer2(index % charDivisions.X, index / charDivisions.X);
+    var charPixel = char * this.CharSize + moddedScenePixel;
+    var charUv = charPixel / (fontSize as Real2);
+    
+    var charColor = this.FontTexture.Sample(charUv);
+    var charAlpha = charColor.W;
+    var charRGB = charColor.XYZ;
+    var finalColor = Math.Lerp(this.Color0, this.Color1, charAlpha);
+    
+    //var booleanInterpolant = (charAlpha > 0.001) as Real;
+    //finalColor = Math.Lerp(finalColor, finalColor * Real4(charRGB, 1.0), booleanInterpolant);
+    
+    this.Target0 = finalColor;
+  }
+}

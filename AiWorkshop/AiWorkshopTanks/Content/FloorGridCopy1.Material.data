@@ -1,0 +1,27 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	UvScale 
+	{
+		var Scalar = Real2{25, 25}
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "5b7e94cb06b3522a:FloorTexture2Glow"
+	}
+	AlbedoScalar 
+	{
+		var Scalar = 0.137120038
+	}
+	EmissiveMap 
+	{
+		var Texture = "5b7e94cb06b3522a:FloorTexture2Glow"
+		var EmissiveColor = Real4{0.181500018, 0.253785044, 0.300000012, 1}
+		var EmissiveIntensity = 1
+	}
+}

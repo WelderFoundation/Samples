@@ -1,0 +1,117 @@
+//------------------------------------------------------------------------------
+class ParticleObject : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  
+  [Property] var Time : Real;
+  [Property] var Lifetime : Real;
+}
+
+//------------------------------------------------------------------------------
+class ObjectParticleSystem : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Property] var Active = true;
+  
+  [Property] var EmittedObject : Archetype;
+  
+  [Property] var Color = Real4(1);
+  [Property] var EmitCount : Real;
+  [Property] var EmitRate : Real;
+  [Property] var Size : Real;
+  [Property] var SizeVariance : Real;
+  [Property] var Lifetime : Real;
+  [Property] var LifetimeVariance : Real;
+  [Property] var StartVelocity : Real3;
+  [Property] var RandomVelocity : Real3;
+  [Property] var EmitterSize : Real3;
+  
+  [Property] var TimeGradient : ColorGradient;
+  
+  var Random : Random = Random(1234);
+  var Particles : Array[Cog] = Array[Cog]();
+  
+  
+  /****************************************************************************/
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    if(this.Active)
+      this.Emit();
+  }
+  
+  /****************************************************************************/
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.UpdateParticles(event.Dt);
+  }
+  
+  /****************************************************************************/
+  function Emit()
+  {
+    if(this.Space.MarkedForDestruction || this.Space.IsEditorMode)
+      return;
+    var startPosition = this.Transform.WorldTranslation;
+
+    for(var p = 0; p < this.EmitCount; ++p)
+    {
+      var object = this.Space.Create(this.EmittedObject);
+      object.AttachTo(this.Owner);
+      object.AddComponentByType(typeid(ParticleObject));
+      object.Transient = true;
+      
+      if(object.StippleInputs != null)
+        object.StippleInputs.AlbedoValue = this.Color;
+      
+      var particle = object.ParticleObject;
+      particle.Time = 0;
+      particle.Lifetime = this.Random.Variance(this.Lifetime, this.LifetimeVariance);
+      
+      var transform = object.Transform;
+      transform.WorldScale *= Real3(this.Random.Variance(this.Size, this.SizeVariance));
+      var position = startPosition + this.Random.UnitReal3() * this.EmitterSize;
+      transform.WorldTranslation = position;
+      
+      var vx = 2 * (this.Random.Real() - 0.5) * this.RandomVelocity.X;
+      var vy = 2 * (this.Random.Real() - 0.5) * this.RandomVelocity.Y;
+      var vz = 2 * (this.Random.Real() - 0.5) * this.RandomVelocity.Z;
+      object.RigidBody.Velocity = this.StartVelocity + Real3(vx, vy, vz);
+      
+      this.Particles.Add(object);
+    }
+    
+  }
+  
+  /****************************************************************************/
+  function UpdateParticles(dt : Real)
+  {
+    var deadParticleCount = 0;
+    foreach(var object in this.Particles.All)
+    {
+      if(object == null)
+        continue;
+      var particle = object.ParticleObject;
+      particle.Time += dt;
+      
+      if(particle.Time >= particle.Lifetime)
+      {
+        ++deadParticleCount;
+        particle.Time = particle.Lifetime;
+      }
+      
+      var color = this.TimeGradient.Sample(particle.Time / particle.Lifetime);
+      color *= this.Color;
+      
+      if(object.StippleInputs != null)
+      {
+        object.StippleInputs.AlbedoValue = color;
+        object.StippleInputs.StippleDensity = color.W;
+      }
+    }
+    
+    if(deadParticleCount >= this.EmitCount)
+      this.Owner.Destroy();
+  }
+  
+}

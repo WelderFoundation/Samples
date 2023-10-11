@@ -1,0 +1,20 @@
+class PlayerMovement : ZilchComponent
+{
+    [Property]  
+    var Velocity : Real3 = Real3(0,0,0);
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        var pos = Integer2(Math.Round(this.Owner.Transform.Translation.X+50) as Integer,Math.Round(this.Owner.Transform.Translation.Y+50.5) as Integer);
+        Console.WriteLine(pos);
+        Console.WriteLine(this.LevelSettings.World.Items.Get(pos.X).Get(pos.Y-1).Type);
+        Console.WriteLine(this.LevelSettings.World.Items.Get(pos.X).Get(pos.Y).Type);
+        if(this.LevelSettings.World.Items.Get(pos.X).Get(pos.Y-1).Type==0&&this.LevelSettings.World.Items.Get(pos.X).Get(pos.Y).Type==0)
+        {
+            this.Owner.Transform.Translation+=Real3(0,-event.Dt,0);
+        }
+    }
+}

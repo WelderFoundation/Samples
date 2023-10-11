@@ -1,0 +1,32 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "59afdddb0d99e382:Albedo_SpaceMarine_armor"
+	}
+	NormalMap 
+	{
+		var NormalMap = "59afde7d2fd7ac5b:Normals_SpaceMarine_armor"
+		var Bumpiness = 0.5
+		var RedLeft = false
+		var GreenDown = false
+	}
+	MetallicMap 
+	{
+		var MetallicMap = "59afdf625e6aa58d:Metallic_SpaceMarine_armor"
+	}
+	RoughnessMap 
+	{
+		var RoughnessMap = "59afde072b2ae0ae:Roughness_SpaceMarine_armor"
+	}
+	SpecularMap 
+	{
+		var SpecularMap = "59afde1334c4f643:Specular_SpaceMarine_armor"
+	}
+}

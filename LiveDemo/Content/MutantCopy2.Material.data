@@ -1,0 +1,37 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "5b4371dd220e827e:MutantAlbedo"
+	}
+	NormalMap 
+	{
+		var NormalMap = "5b4371dd220db358:MutantNormal"
+		var Bumpiness = 0.5
+		var RedLeft = false
+		var GreenDown = false
+	}
+	MetallicMap 
+	{
+		var MetallicMap = "5b4371dd220d1dff:MutantMetallic"
+	}
+	RoughnessMap 
+	{
+		var RoughnessMap = "5b4371dd220c4679:MutantRoughness"
+	}
+	PbrScalars 
+	{
+		var MetallicScalar = 1.29999995
+		var RoughnessScalar = 1
+	}
+	AlbedoHueShift 
+	{
+		var Hue = 172
+	}
+}

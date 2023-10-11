@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "JumpJoint"
+		var ResourceId = 0x5b11468d6c2b9ba1
+	}
+}

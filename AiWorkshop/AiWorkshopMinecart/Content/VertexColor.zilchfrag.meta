@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "VertexColor"
+		var ResourceId = 0x59249bcafe7db97a
+	}
+}

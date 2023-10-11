@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "AlphaSpriteOverride"
+		var ResourceId = 0x587e45d17a6cd2dd
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

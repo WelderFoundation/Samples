@@ -1,0 +1,55 @@
+[Pixel]
+struct FloorGridPixel
+{
+  [Input] var TileTexture : SampledImage2d;
+  [Input] var ColorScale = Real4(1);
+  [Input] var ColorAdd = Real4(0);
+  [Input] var GridColorTexture : SampledImage2d;
+  [Input] var GridDimensions : Integer2;
+
+  [Output] var Emissive : Real3;
+  [FragmentInput][StageInput][Output] var Uv : Real2;
+
+  [Output] var Albedo : Real3;
+
+  function Main()
+  {
+    // This needs to be sampled before the uv's are scaled
+    
+    var color = this.GridColorTexture.Sample(this.Uv).XYZ;
+    color = Math.Pow(color, Real3(2));
+    color *= this.ColorScale.XYZ;
+    color += this.ColorAdd.XYZ;
+    
+    this.Uv = this.Uv * (this.GridDimensions as Real2);
+    this.Albedo = this.TileTexture.Sample(this.Uv).XYZ * color;
+    this.Emissive = this.Albedo;
+    this.Albedo = Real3();
+  }
+}
+
+// PostProcess fragments are intended to be constructed in script
+// and passed directly to the AddRenderTaskPostProcess method.
+[Pixel][PostProcess]
+struct FloorGridPost
+{
+  [StageInput] var Uv : Real2;
+  
+  [Input] var PreviousFrame : SampledImage2d;
+  [Input] var Control : SampledImage2d;
+  [Input] var InterpolateIn  = 0.3;
+  [Input] var InterpolateOut = 0.06;
+
+  [Output] var Target0 : Real4;
+
+  function Main()
+  {
+    var from = this.PreviousFrame.Sample(this.Uv).XYZ;
+    var to = this.Control.Sample(this.Uv).XYZ;
+    
+    var fadingOut = (Math.LengthSq(to) < 0.01);
+    var interpolant = Math.Lerp(this.InterpolateIn, this.InterpolateOut, fadingOut as Real);
+    
+    this.Target0 = Real4(Math.Lerp(from, to, interpolant), 1);
+  }
+}

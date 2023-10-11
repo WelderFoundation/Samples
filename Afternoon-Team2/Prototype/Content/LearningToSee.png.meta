@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "LearningToSee"
+		var ResourceId = 0x5ce02441ea0ded28
+		var FrameSizeX = 700
+		var FrameSizeY = 521
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 350
+		var OriginY = 260.5
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

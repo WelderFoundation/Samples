@@ -1,0 +1,12 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"582fad0ca055e4df:AdditiveBlend"
+	}
+	ColorValue 
+	{
+		var Color = Real4{0.600000143, 2.06400013, 3, 1}
+	}
+}

@@ -1,0 +1,312 @@
+//------------------------------------------------------------------------------- Fuzzy Logic System
+class FuzzySystem
+{
+  //************************************************************************************************
+  function AddInput(name : String, min : Real, max : Real) : FuzzyInput
+  {
+    var nameLower = name.ToLower();
+    var fuzzySet = FuzzyInput() {Name = nameLower, Min = min, Max = max};
+    this.Inputs[nameLower] = fuzzySet;
+    this.InputArray.Add(fuzzySet);
+    return fuzzySet;
+  }
+  
+  //************************************************************************************************
+  function AddOutput(name : String, min : Real, max : Real) : FuzzyOutput
+  {
+    var nameLower = name.ToLower();
+    var fuzzySet = FuzzyOutput() {Name = nameLower, Min = min, Max = max};
+    this.Outputs[nameLower] = fuzzySet;
+    this.OutputArray.Add(fuzzySet);
+    return fuzzySet;
+  }
+  
+  //************************************************************************************************
+  function AddRule(ruleText : String)
+  {
+    var rule = FuzzyRule(ruleText, this);
+    this.Rules.Add(rule);
+  }
+  
+  //************************************************************************************************
+  function Execute()
+  {
+    // Reset all values to the max
+    foreach(var outputSet in this.OutputArray)
+    {
+      foreach(var outputNumber in outputSet.Numbers.Values)
+        outputNumber.ClampValue = 1.0;
+    }
+    
+    // Execute all rules
+    foreach(var rule in this.Rules)
+      rule.Execute();
+      
+    // Get the results
+    foreach(var outputSet in this.OutputArray)
+      outputSet.CalculateCenterOfMass();
+  }
+  
+  var Inputs = HashMap[String, FuzzySet]();
+  var Outputs = HashMap[String, FuzzySet]();
+  var InputArray = Array[FuzzyInput]();
+  var OutputArray = Array[FuzzyOutput]();
+  var Rules = Array[FuzzyRule]();
+}
+
+//---------------------------------------------------------------------------------------- Fuzzy Set
+class FuzzySet
+{
+  var Name : String;
+  var Min : Real;
+  var Max : Real;
+  var Numbers = HashMap[String, FuzzyTriangleNumber]();
+  
+  //************************************************************************************************
+  function AddTriangleTerm(name : String, a : Real, b : Real, c : Real)
+  {
+    var nameLower = name.ToLower();
+    var range = (this.Max - this.Min);
+    this.Numbers[nameLower] = FuzzyTriangleNumber()
+    {
+      OwningSet = this,
+      Name = nameLower,
+      A = (a - this.Min) / range,
+      B = (b - this.Min) / range,
+      C = (c - this.Min) / range
+    };
+  }
+}
+
+//-------------------------------------------------------------------------------------- Fuzzy Input
+class FuzzyInput : FuzzySet
+{
+  // [0,1] value
+  var InputValue : Real;
+  
+  //************************************************************************************************
+  function SetInputValue(inputValue : Real)
+  {
+    this.InputValue = (inputValue - this.Min) / this.Max;
+  }
+}
+
+//------------------------------------------------------------------------------------- Fuzzy Output
+class FuzzyOutput : FuzzySet
+{
+  var OutputValue : Real;
+  
+  //************************************************************************************************
+  function CalculateCenterOfMass()
+  {
+    var totalValue = 0.0;
+    var totalWeight = 0.0;
+    
+    var sampleCount = 100;
+    for(var i = 0; i <= sampleCount; ++i)
+    {
+      var x = (i as Real) / (sampleCount as Real);
+      
+      var valueMax = 0.0;
+      foreach(var number in this.Numbers.Values)
+      {
+        var currentSample = number.Sample(x);
+        
+        // Clamp the sample
+        currentSample = Math.Min(currentSample, number.ClampValue);
+        
+        totalWeight += currentSample;
+        currentSample = x * currentSample;
+        
+        valueMax = Math.Max(valueMax, currentSample);
+      }
+      
+      totalValue += valueMax;
+    }
+    
+    this.OutputValue = 0.0;
+    if(totalWeight > 0.00001)
+      this.OutputValue = totalValue / totalWeight;
+    this.OutputValue = this.Min + this.OutputValue * (this.Max - this.Min);
+  }
+}
+
+//---------------------------------------------------------------------------- Fuzzy Triangle Number
+class FuzzyNumber
+{
+  var ClampValue : Real = 0;
+  var Name : String;
+  var OwningSet : FuzzySet;
+  
+  //************************************************************************************************
+  function Sample() : Real
+  {
+    var inputSet = this.OwningSet as FuzzyInput;
+    return this.Sample(inputSet.InputValue);
+  }
+  
+  //************************************************************************************************
+  [Virtual] function Sample(x : Real) : Real
+  {
+    throw Exception("Must override");
+  }
+}
+
+//---------------------------------------------------------------------------- Fuzzy Triangle Number
+class FuzzyTriangleNumber : FuzzyNumber
+{
+  var A : Real;
+  var B : Real;
+  var C : Real;
+  
+  //************************************************************************************************
+  [Override] function Sample(x : Real) : Real
+  {
+    if(x < this.A)
+      return 0;
+    if(x > this.C)
+      return 0;
+    
+    if(x < this.B)
+      return (x - this.A) / (this.B - this.A);
+    
+    if(this.C - this.B < 0.00001)
+      return 1;
+      
+    return 1.0 - (x - this.B) / (this.C - this.B);
+  }
+}
+
+//--------------------------------------------------------------------------------------- Fuzzy Rule
+class FuzzyRule
+{
+  var Text : String;
+  var Input : FuzzyRuleNode;
+  var OutputSet : FuzzySet;
+  var OutputNumber : FuzzyNumber;
+  var InvalidReason = "";
+  var ErrorBeforeText = "";
+  var ErrorText = "";
+  var ErrorAfterText = "";
+  
+  //************************************************************************************************
+  constructor(rule : String, system : FuzzySystem)
+  {
+    this.Text = rule;
+    
+    var parser = FuzzyRuleParser();
+    this.InvalidReason = parser.Parse(this, system);
+    
+    if(this.InvalidReason.IsNotEmpty)
+    {
+      var currentToken = parser.Tokens.Current;
+      
+      // Before text
+      this.ErrorBeforeText = rule.SubString(rule.Begin, currentToken.Begin);
+      
+      this.ErrorText = currentToken.ToString();
+      
+      this.ErrorAfterText = rule.SubString(currentToken.End, rule.End);
+    }
+  }
+  
+  //************************************************************************************************
+  function Execute()
+  {
+    if(this.OutputNumber == null)
+      return;
+      
+    var inputResult = this.Input.Sample();
+    this.OutputNumber.ClampValue = Math.Min(this.OutputNumber.ClampValue, inputResult);
+  }
+}
+
+//---------------------------------------------------------------------------------- Fuzzy Rule Node
+class FuzzyRuleNode
+{
+
+  //************************************************************************************************
+  [Virtual] function Sample() : Real { return 0; }
+}
+
+//------------------------------------------------------------------------------ Fuzzy Rule And Node
+class FuzzyRuleAndNode : FuzzyRuleNode
+{
+  var LeftNode : FuzzyRuleNode;
+  var RightNode : FuzzyRuleNode;
+  
+  //************************************************************************************************
+  [Override] function Sample() : Real
+  {
+    var leftResult = this.LeftNode.Sample();
+    var rightResult = this.RightNode.Sample();
+    return Math.Min(leftResult, rightResult);
+  }
+}
+
+//------------------------------------------------------------------------------- Fuzzy Rule Or Node
+class FuzzyRuleOrNode : FuzzyRuleNode
+{
+  var LeftNode : FuzzyRuleNode;
+  var RightNode : FuzzyRuleNode;
+  
+  //************************************************************************************************
+  [Override] function Sample() : Real
+  {
+    var leftResult = this.LeftNode.Sample();
+    var rightResult = this.RightNode.Sample();
+    return Math.Max(leftResult, rightResult);
+  }
+}
+
+//------------------------------------------------------------------------- Fuzzy Rule Somehwat Node
+class FuzzyRuleSomewhatNode : FuzzyRuleNode
+{
+  var ChildNode : FuzzyRuleNode;
+  
+  //************************************************************************************************
+  [Override] function Sample() : Real
+  {
+    var childResult = this.ChildNode.Sample();
+    return Math.Pow(childResult, 0.5);
+  }
+}
+
+//----------------------------------------------------------------------------- Fuzzy Rule Very Node
+class FuzzyRuleVeryNode : FuzzyRuleNode
+{
+  var ChildNode : FuzzyRuleNode;
+  
+  //************************************************************************************************
+  [Override] function Sample() : Real
+  {
+    var childResult = this.ChildNode.Sample();
+    return Math.Pow(childResult, 2.0);
+  }
+}
+
+//------------------------------------------------------------------------ Fuzzy Rule Extremely Node
+class FuzzyRuleExtremelyNode : FuzzyRuleNode
+{
+  var ChildNode : FuzzyRuleNode;
+  
+  //************************************************************************************************
+  [Override] function Sample() : Real
+  {
+    var childResult = this.ChildNode.Sample();
+    return Math.Pow(childResult, 3.0);
+  }
+}
+
+//----------------------------------------------------------------------------- Fuzzy Rule Leaf Node
+class FuzzyRuleLeafNode : FuzzyRuleNode
+{
+  var FuzzyNumber : FuzzyNumber;
+  
+  //************************************************************************************************
+  [Override] function Sample() : Real
+  {
+    var num = this.FuzzyNumber.Sample();
+    return num;
+  }
+}

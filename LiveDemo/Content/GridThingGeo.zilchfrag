@@ -1,0 +1,245 @@
+struct GridThingGeoInput
+{
+  [Input] var ViewPosition : Real3;
+  [Input] var Uv : Real2;
+}
+
+struct GridThingGeoOutput
+{
+  [Output] var PerspectivePosition : Real4;
+  [Output] var ViewNormal : Real3;
+  [Output] var ViewPosition : Real3;
+  [Output] var Uv : Real2;
+}
+
+[Geometry(maxVertices : 35)]
+struct GridThingGeo
+{
+  [Input] var HeightTexture : SampledImage2d;
+  [AppBuiltInInput] var FrameTime : Real;
+  [AppBuiltInInput] var ViewToPerspective : Real4x4;
+  [AppBuiltInInput] var ViewToWorld : Real4x4;
+  [AppBuiltInInput] var WorldToView : Real4x4;
+  [AppBuiltInInput] var LocalToView : Real4x4;
+  [AppBuiltInInput] var ViewToLocal : Real4x4;
+  [PropertyInput] var Width : Real = 0.1;
+
+  function Main(input : PointInput[GridThingGeoInput], output : TriangleOutput[GridThingGeoOutput])
+  {
+    var worldPos = Math.MultiplyPoint(this.ViewToWorld, input[0].ViewPosition);
+    var viewUp = Math.MultiplyNormal(this.LocalToView, Real3(0,1,0));
+    var viewRight = Math.MultiplyNormal(this.LocalToView, Real3(1,0,0));
+    var viewForward = Math.Cross(viewUp, viewRight);
+    
+    // Bottom corners
+    var bottomCorners = FixedArray[Real3, 4]();
+    bottomCorners[0] = input[0].ViewPosition + viewRight * -this.Width + viewForward *  this.Width; // TopLeft
+    bottomCorners[1] = input[0].ViewPosition + viewRight * -this.Width + viewForward * -this.Width; // BottomLeft
+    bottomCorners[2] = input[0].ViewPosition + viewRight *  this.Width + viewForward * -this.Width; // BottomRight
+    bottomCorners[3] = input[0].ViewPosition + viewRight *  this.Width + viewForward *  this.Width; // TopRight
+    
+    var waveHeight = this.GetWaveHeight(worldPos);
+    
+    var waveSample = this.HeightTexture.SampleLod(input[0].Uv, 0);
+    var waveSampleT = waveSample.X;
+    var waveSampleHeight = waveSample.Y;
+    waveHeight = Math.Lerp(waveHeight, waveSampleHeight, Math.Clamp(waveSampleT * 1.5, 0, 1));
+    
+    var topCorners = FixedArray[Real3, 4]();
+    topCorners[0] = bottomCorners[0] + viewUp * waveHeight;
+    topCorners[1] = bottomCorners[1] + viewUp * waveHeight;
+    topCorners[2] = bottomCorners[2] + viewUp * waveHeight;
+    topCorners[3] = bottomCorners[3] + viewUp * waveHeight;
+    
+    //var heightT = Math.Clamp(Math.Pow(waveHeight + 0.02, 2) / 0.2, 0, 0.9);
+    //var waveT = Math.Lerp(0, 0.1, heightT);
+    //topCorners[0] = topCorners[0] + viewRight * waveT - viewForward * waveT;
+    //topCorners[1] = topCorners[1] + viewRight * waveT + viewForward * waveT;
+    //topCorners[2] = topCorners[2] - viewRight * waveT + viewForward * waveT;
+    //topCorners[3] = topCorners[3] - viewRight * waveT - viewForward * waveT;
+    
+    // Output vertex position and uv
+    var vertices = FixedArray[GridThingGeoOutput, 4]();
+
+    vertices[0].Uv = Real2(0, 0);
+    vertices[1].Uv = Real2(0, 1);
+    vertices[2].Uv = Real2(1, 1);
+    vertices[3].Uv = Real2(1, 0);
+    
+    //------------------------------------- Top Quad
+    vertices[0].ViewPosition = topCorners[0];
+    vertices[1].ViewPosition = topCorners[1];
+    vertices[2].ViewPosition = topCorners[2];
+    vertices[3].ViewPosition = topCorners[3];
+
+    vertices[0].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[0].ViewPosition, 1.0));
+    vertices[1].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[1].ViewPosition, 1.0));
+    vertices[2].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[2].ViewPosition, 1.0));
+    vertices[3].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[3].ViewPosition, 1.0));
+    
+    vertices[0].ViewNormal = viewUp;
+    vertices[1].ViewNormal = viewUp;
+    vertices[2].ViewNormal = viewUp;
+    vertices[3].ViewNormal = viewUp;
+    
+    // First triangle
+    output.Append(vertices[0], 0);
+    output.Append(vertices[1], 0);
+    output.Append(vertices[2], 0);
+    output.Restart();
+
+    // Second triangle
+    output.Append(vertices[2], 0);
+    output.Append(vertices[3], 0);
+    output.Append(vertices[0], 0);
+    output.Restart();
+    
+    //------------------------------------- Front Quad
+    vertices[0].ViewPosition = bottomCorners[1];
+    vertices[1].ViewPosition = bottomCorners[2];
+    vertices[2].ViewPosition = topCorners[2];
+    vertices[3].ViewPosition = topCorners[1];
+
+    vertices[0].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[0].ViewPosition, 1.0));
+    vertices[1].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[1].ViewPosition, 1.0));
+    vertices[2].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[2].ViewPosition, 1.0));
+    vertices[3].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[3].ViewPosition, 1.0));
+    
+    vertices[0].ViewNormal = viewForward;
+    vertices[1].ViewNormal = viewForward;
+    vertices[2].ViewNormal = viewForward;
+    vertices[3].ViewNormal = viewForward;
+    
+    // First triangle
+    output.Append(vertices[0], 0);
+    output.Append(vertices[1], 0);
+    output.Append(vertices[2], 0);
+    output.Restart();
+
+    // Second triangle
+    output.Append(vertices[2], 0);
+    output.Append(vertices[3], 0);
+    output.Append(vertices[0], 0);
+    output.Restart();
+    
+    //------------------------------------- Right Quad
+    vertices[0].ViewPosition = bottomCorners[2];
+    vertices[1].ViewPosition = bottomCorners[3];
+    vertices[2].ViewPosition = topCorners[3];
+    vertices[3].ViewPosition = topCorners[2];
+
+    vertices[0].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[0].ViewPosition, 1.0));
+    vertices[1].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[1].ViewPosition, 1.0));
+    vertices[2].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[2].ViewPosition, 1.0));
+    vertices[3].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[3].ViewPosition, 1.0));
+
+    vertices[0].ViewNormal = viewRight;
+    vertices[1].ViewNormal = viewRight;
+    vertices[2].ViewNormal = viewRight;
+    vertices[3].ViewNormal = viewRight;
+    
+    // First triangle
+    output.Append(vertices[0], 0);
+    output.Append(vertices[1], 0);
+    output.Append(vertices[2], 0);
+    output.Restart();
+
+    // Second triangle
+    output.Append(vertices[2], 0);
+    output.Append(vertices[3], 0);
+    output.Append(vertices[0], 0);
+    output.Restart();
+    
+    //------------------------------------- Back Quad
+    vertices[0].ViewPosition = bottomCorners[3];
+    vertices[1].ViewPosition = bottomCorners[0];
+    vertices[2].ViewPosition = topCorners[0];
+    vertices[3].ViewPosition = topCorners[3];
+
+    vertices[0].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[0].ViewPosition, 1.0));
+    vertices[1].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[1].ViewPosition, 1.0));
+    vertices[2].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[2].ViewPosition, 1.0));
+    vertices[3].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[3].ViewPosition, 1.0));
+
+    vertices[0].ViewNormal = -viewForward;
+    vertices[1].ViewNormal = -viewForward;
+    vertices[2].ViewNormal = -viewForward;
+    vertices[3].ViewNormal = -viewForward;
+    
+    // First triangle
+    output.Append(vertices[0], 0);
+    output.Append(vertices[1], 0);
+    output.Append(vertices[2], 0);
+    output.Restart();
+
+    // Second triangle
+    output.Append(vertices[2], 0);
+    output.Append(vertices[3], 0);
+    output.Append(vertices[0], 0);
+    output.Restart();
+    
+    //------------------------------------- Left Quad
+    vertices[0].ViewPosition = bottomCorners[0];
+    vertices[1].ViewPosition = bottomCorners[1];
+    vertices[2].ViewPosition = topCorners[1];
+    vertices[3].ViewPosition = topCorners[0];
+
+    vertices[0].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[0].ViewPosition, 1.0));
+    vertices[1].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[1].ViewPosition, 1.0));
+    vertices[2].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[2].ViewPosition, 1.0));
+    vertices[3].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(vertices[3].ViewPosition, 1.0));
+
+    vertices[0].ViewNormal = -viewRight;
+    vertices[1].ViewNormal = -viewRight;
+    vertices[2].ViewNormal = -viewRight;
+    vertices[3].ViewNormal = -viewRight;
+    
+    // First triangle
+    output.Append(vertices[0], 0);
+    output.Append(vertices[1], 0);
+    output.Append(vertices[2], 0);
+    output.Restart();
+
+    // Second triangle
+    output.Append(vertices[2], 0);
+    output.Append(vertices[3], 0);
+    output.Append(vertices[0], 0);
+    output.Restart();
+  }
+  
+  function GetWaveHeight(worldPos : Real3) : Real
+  {
+    // Animate height based on a wave
+    var sampler = GerstnerWave();
+    sampler.Wavelength = 0.2;
+    sampler.Amplitude = 0.2;
+    sampler.Speed = 0.1;
+    sampler.Direction = Real2(0.7,0.3);
+    sampler.Steepness = 0;
+    
+    var height = sampler.Sample(worldPos.XZ, this.FrameTime, Real2()).Y + 0.2;
+    
+    sampler.Wavelength = 0.23;
+    sampler.Amplitude = 0.26;
+    sampler.Direction = Real2(0.8, 0.4);
+    sampler.Speed = 0.25;
+    height += sampler.Sample(worldPos.XZ, this.FrameTime, Real2()).Y + 0.26;
+    
+    sampler.Wavelength = 0.23;
+    sampler.Amplitude = 0.16;
+    sampler.Direction = Real2(0.6, 0.2);
+    sampler.Speed = 0.25;
+    height += sampler.Sample(worldPos.XZ, this.FrameTime, Real2()).Y + 0.16;
+    
+    sampler.Wavelength = 0.23;
+    sampler.Amplitude = 0.36;
+    sampler.Direction = Real2(0.6, 0.2);
+    sampler.Speed = 0.25;
+    sampler.Circular = true;
+    height += sampler.Sample(worldPos.XZ, this.FrameTime, Real2(0.01)).Y + 0.36;
+    
+    height /= 3;
+    
+    return height;
+  }
+}

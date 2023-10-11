@@ -1,0 +1,17 @@
+[Pixel][RenderPass]
+struct GridDisplaceRenderPass
+{
+  [Input] var Color : Real4 = Real4(1.0, 0.0, 0.0, 1.0);
+  [Input] var ViewPosition : Real3;
+  [AppBuiltInInput] var ViewToWorld : Real4x4;
+
+  [Output] var Target0 : Real4;
+
+  function Main()
+  {
+    var height = Math.MultiplyPoint(this.ViewToWorld, this.ViewPosition).Y;
+    var color = this.Color;
+    color.Y = height;
+    this.Target0 = color;
+  }
+}

@@ -1,0 +1,162 @@
+[Version:1]
+Cog 
+{
+	var Name = "Coin"
+	Transform 
+	{
+		var Translation = Real3{-5.7215414, 0, -8.15593147}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	CylinderCollider 
+	{
+		var Ghost = true
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5b00f37623c44703:Coin"
+		var Offset = Real3{0, 0, 0}
+		var Radius = 0.347797453
+		var Height = 0.19574441
+		var Direction = AxisDirection.Z
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Kinematic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	Coin 
+	{
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b00ca560071a14a]
+		{
+			var Name = "Graphical"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{0.528157473, 0.105631493, 0.528157473}
+				var Rotation = Quaternion{0.707106769, 0, 0, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5b00ca0c0bc792a2:Coin"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5b00cad21b3e136c]
+		{
+			var Name = "Graphical"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{0.444839984, 0.176879063, 0.444839984}
+				var Rotation = Quaternion{0.707106769, 0, 0, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5b00ca0c0bc792a2:Coin"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5b00cbeb50f8945a]
+		{
+			var Name = "SpriteParticles"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			SpriteParticleSystem 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c50d330d372c3:AdditiveSprite"
+				var BoundingBoxSize = 2
+				var ChildSystem = false
+				var SystemSpace = SystemSpace.WorldSpace
+				var WarmUpTime = 0
+				var PreviewInEditor = false
+				var VertexColor = Real4{1, 0.720000029, 0, 1}
+				var GeometryMode = SpriteParticleGeometryMode.Billboarded
+				var SpriteSource = "5b11307f021b2d01:Twinkle"
+				var ParticleAnimation = SpriteParticleAnimationMode.Single
+				var ParticleSort = SpriteParticleSortMode.None
+				var BeamBaseScale = 1
+				var BeamVelocityScale = 1
+			}
+			SphericalParticleEmitter 
+			{
+				var Active = true
+				var EmitCount = 0
+				var EmitDelay = 0
+				var EmitRate = 10
+				var EmitVariance = 0
+				var EmitRateSoftStartTime = 0
+				var Size = 0.699999988
+				var SizeVariance = 0.0500000007
+				var Lifetime = 0.300000012
+				var LifetimeVariance = 0
+				var Spin = 0
+				var SpinVariance = 50
+				var RandomSpin = true
+				var Fill = 1
+				var EmitterVelocityPercent = 0
+				var StartVelocity = Real3{0, 0, 0}
+				var RandomVelocity = Real3{0, 0, 0}
+				var TangentVelocity = Real3{0, 0, 0}
+				var EmitterSize = Real3{0.349999994, 0.349999994, 0.300000012}
+				var FastMovingEmitter = false
+			}
+			LinearParticleAnimator 
+			{
+				var Force = Real3{0, 0, 0}
+				var RandomForce = Real3{0, 0, 0}
+				var Torque = 0
+				var Growth = -0.5
+				var Dampening = 0
+				var Twist = Real3{0, 0, 0}
+			}
+			ParticleColorAnimator 
+			{
+				var TimeGradient = "591abd225f232eaa:FadeInOut"
+				var VelocityGradient = "null"
+				var MaxParticleSpeed = 5
+			}
+			SelectionIcon 
+			{
+				var Visible = true
+				var VisibilityEvents = true
+				var Material = "56581e2bb81777be:DebugDrawOnTop"
+				var SpriteSource = "59937d65f2659971:ParticleIcon"
+				var ViewScale = 1
+				var OverrideSelections = true
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "SM_BirchTree_02"
+		var ResourceId = 0x592c47ff2409f023
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

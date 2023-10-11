@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManGetOnLedge_Stomach"
+				var ResourceId = 0x59af21f47ad9d0b6
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_Chest"
+				var ResourceId = 0x59af21f47ad9d0c1
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_Head"
+				var ResourceId = 0x59af21f47ad9d0c6
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_LArm"
+				var ResourceId = 0x59af21f47ad9d0ca
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_LArm01"
+				var ResourceId = 0x59af21f47ad9d0ce
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_RArm"
+				var ResourceId = 0x59af21f47ad9d0d2
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_RArm01"
+				var ResourceId = 0x59af21f47ad9d0d5
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_LLeg"
+				var ResourceId = 0x59af21f47ad9d0da
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_LLeg01"
+				var ResourceId = 0x59af21f47ad9d0dd
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_RLeg"
+				var ResourceId = 0x59af21f47ad9d0e0
+			}
+			Object
+			{
+				var Name = "BoxManGetOnLedge_RLeg01"
+				var ResourceId = 0x59af21f47ad9d0e5
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManGetOnLedge"
+				var ResourceId = 0x59af21f47ad9d0eb
+			}
+		}
+	}
+}

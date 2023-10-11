@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "CircleFragment"
+		var ResourceId = 0x587e4c4540059fb3
+	}
+}

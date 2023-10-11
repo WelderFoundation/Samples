@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "CheckBoxBehaviour",
+		uint64 ResourceId = 57ae1fb51f1596fa,
+	},
+},

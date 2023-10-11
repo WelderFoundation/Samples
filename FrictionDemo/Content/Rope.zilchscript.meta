@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "Rope"
+		var ResourceId = 0x59ef7210b0f08af6
+	}
+}

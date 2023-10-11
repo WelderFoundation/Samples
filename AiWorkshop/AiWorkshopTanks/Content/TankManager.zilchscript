@@ -1,0 +1,14 @@
+class TankManager : ZilchComponent
+{
+  var Tanks : Array[Cog] = new Array[Cog]();
+  
+  function AddTank(tank : Cog)
+  {
+    this.Tanks.Add(tank);
+  }
+  
+  function RemoveTank(tank : Cog)
+  {
+    this.Tanks.RemoveFirst(tank);
+  }
+}

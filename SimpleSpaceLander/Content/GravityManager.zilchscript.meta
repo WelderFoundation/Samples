@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "GravityManager"
+		var ResourceId = 0x587e7ca20075b1a7
+	}
+}

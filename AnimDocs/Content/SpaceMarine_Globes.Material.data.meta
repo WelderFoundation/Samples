@@ -1,0 +1,20 @@
+[Version:1]
+DataContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"SpaceMarine"
+			"Globes"
+		}
+	}
+	DataBuilder 
+	{
+		var Name = "SpaceMarine_Globes"
+		var ResourceId = 0x59afdfe5731135dc
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

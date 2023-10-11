@@ -1,0 +1,134 @@
+//-------------------------------------------------------------------------------- Spline Attachment
+class SplineAttachment : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var Orientation : Orientation;
+  
+  [Property] var DistanceToDetach = 0.6;
+  [Property] var MotorActive = true;
+  
+  var AttachedSpline : Cog;
+  
+  var IgnoreSpline : Cog;
+  
+  var SplineJoint : SplineJoint;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    // Create the spline joint
+    this.SplineJoint = this.Space.Create(Archetype.SplineJoint).SplineJoint;
+    this.SplineJoint.Owner.AttachTo(this.Owner);
+    this.SplineJoint.SetTarget(this.Owner);
+    this.SplineJoint.Active = false;
+    this.SplineJoint.MotorActive = this.MotorActive;
+  }
+  
+  //************************************************************************************************
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Try and find a new spline if we aren't attached to one
+    if(this.AttachedSpline == null)
+      this.AttachToNearestSpline();
+  
+    // Update the logic for the currently attached spline
+    if(this.AttachedSpline != null)
+    {
+      this.SplineJoint.MotorActive = this.MotorActive;
+      this.UpdateOnSpline(event);
+    }
+    else
+    {
+      this.SplineJoint.MotorActive = false;
+    }
+  }
+  
+  //************************************************************************************************
+  function DetachFromSpline()
+  {
+    this.IgnoreSpline = this.AttachedSpline;
+    this.AttachedSpline = null;
+    this.SplineJoint.Active = false;
+  
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, 0.3);
+    Action.Call(seq, this.ResetCanAttach);
+  }
+  
+  //************************************************************************************************
+  function UpdateOnSpline(event : UpdateEvent)
+  {
+    var worldPos = this.Transform.WorldTranslation;
+    var closestPoint = this.AttachedSpline.ScriptHierarchySpline.Spline.FindClosestPoint(worldPos);
+    
+    var distance = Math.Distance(worldPos, closestPoint.Point);
+    
+    if(Math.DistanceSq(worldPos, closestPoint.Point) >= this.DistanceToDetach)
+    {
+      this.IgnoreSpline = this.AttachedSpline;
+      this.AttachedSpline = null;
+      this.SplineJoint.Active = false;
+    }
+    
+    DebugDraw.Add(DebugSphere(closestPoint.Point, 0.2){Color = Real4(1,0,0,1)});
+    DebugDraw.Add(DebugLine(closestPoint.Point, closestPoint.Point + closestPoint.Tangent, 0.2){Color = Real4(1,0,0,1)});
+  }
+  
+  //************************************************************************************************
+  function AttachToNearestSpline()
+  {
+    this.AttachedSpline = this.FindNearestSpline();
+    if(this.AttachedSpline != null)
+    {
+      var up = Math.Dot(this.Orientation.WorldUp, Real3.YAxis);
+      if(up > 0.5)
+      {
+        this.SplineJoint.Spline.Cog = this.AttachedSpline;
+        this.SplineJoint.Active = true;
+      }
+      else
+      {
+        this.AttachedSpline = null;
+      }
+    }
+  }
+  
+  //************************************************************************************************
+  function FindNearestSpline() : Cog
+  {
+    var worldPos = this.Transform.WorldTranslation;
+    
+    var closestSplineCog : Cog = null;
+    var closestDistance = Real.PositiveMax;
+    
+    foreach(var track in this.LevelSettings.TrackList.Tracks)
+    {
+      var splineCog = track.Track.Spline.Cog;
+      var spline = splineCog.ScriptHierarchySpline.Spline;
+      
+      if(splineCog == this.IgnoreSpline)
+        continue;
+        
+      var closestPoint = spline.FindClosestPoint(worldPos);
+      
+      var distance = Math.DistanceSq(worldPos, closestPoint.Point);
+      if(distance < closestDistance)
+      {
+        closestSplineCog = splineCog;
+        closestDistance = distance;
+      }
+    }
+    
+    if(closestDistance < 0.1)
+      return closestSplineCog;
+    return null;
+  }
+  
+  //************************************************************************************************
+  function ResetCanAttach()
+  {
+    this.IgnoreSpline = null;
+  }
+}

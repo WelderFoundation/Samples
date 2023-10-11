@@ -1,0 +1,18 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "RopeArrow"
+		var ResourceId = 0x59b22a9dd8f0e1d9
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+		}
+	}
+}

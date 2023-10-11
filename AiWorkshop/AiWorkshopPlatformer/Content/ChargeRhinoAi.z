@@ -1,0 +1,53 @@
+class ChargeRhinoAi : ZilchComponent
+{
+  // All logic is done through the rhino
+  [Dependency] var Rhino : Rhino;
+  
+  [Property]
+  var Range : Real = 2;
+  
+  var Charging : Boolean = false;
+  var ChargingRight : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want our logic to run every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    
+    if(this.Rhino.PlayerIsDead)
+      return;
+    
+    // Don't do anything if we're attacking
+    if(this.Rhino.Attacking)
+      return;
+    
+    var playerPos = this.Rhino.PlayerPosition;
+    var ourPos = this.Rhino.OurPosition;
+    
+    // Is the player to the left of us?
+    var playerIsLeft = (playerPos.X < ourPos.X);
+    
+    // The distance to the player
+    var distance = Math.Distance(playerPos, ourPos);
+    
+    // If we're really close to the player, attack
+    if(distance < 3)
+    {
+      this.Rhino.Attack();
+    }
+    // If the player is close(ish), charge them
+    else if(distance < 10.0)
+    {
+      // Charge in whichever direction they are in
+      if(playerIsLeft)
+        this.Rhino.ChargeLeft();
+      else
+        this.Rhino.ChargeRight();
+    }
+  }
+}

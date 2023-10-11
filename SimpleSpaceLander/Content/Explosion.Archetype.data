@@ -1,0 +1,105 @@
+[Version:1]
+Cog 
+{
+	var Name = "Explosion"
+	var LinkId = 1
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	PointForceEffect 
+	{
+		var Active = true
+		var WakeUpOnChange = true
+		var MinDistance = 1
+		var MaxDistance = 5
+		var StrengthAtMin = 0
+		var StrengthAtMax = -10
+		var LocalPositionOffset = Real3{0, 0, 0}
+		var InterpolationType = PhysicsEffectInterpolationType.Quadratic
+		var EndCondition = PhysicsEffectEndCondition.ClampToMax
+	}
+	SphereCollider 
+	{
+		var Ghost = true
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var Radius = 5
+	}
+	Region 
+	{
+		var WakeUpOnEffectChange = false
+	}
+	SpriteParticleSystem 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var ChildSystem = false
+		var SystemSpace = SystemSpace.WorldSpace
+		var DrawOrder = 0
+		var Tint = Real4{1, 1, 1, 1}
+		var WarmUpTime = 0
+		var GeometryMode = ParticleGeometryMode.Billboarded
+		var SortMode = ParticleSortMode.Youngest
+		var ParticleAnimation = ParticleAnimationMode.Single
+		var SpriteSource = "587e786d8a760239:spaceEffects_015"
+		var VelocityScale = 1
+		var LengthScale = 1
+		var SystemSize = Real3{4, 4, 4}
+		var PreviewInEditor = false
+	}
+	ParticleColorAnimator 
+	{
+		var Color0 = Real4{0, 0, 0, 0}
+		var Color1 = Real4{0.392156839, 0.392156839, 0.392156869, 0.5}
+		var Color2 = Real4{0.392156839, 0.588235319, 0.588235319, 0.75}
+		var Color3 = Real4{0.784313738, 0.784313738, 0.784313738, 0.25}
+		var Color4 = Real4{1, 1, 1, 0}
+	}
+	SphericalParticleEmitter 
+	{
+		var Active = true
+		var EmitCount = 10
+		var EmitDelay = 0
+		var EmitRate = 100
+		var EmitVariance = 0
+		var EmitRateSoftStartTime = 0
+		var Size = 1
+		var SizeVariance = 0.5
+		var Lifetime = 1
+		var LifetimeVariance = 0
+		var Spin = 0
+		var SpinVariance = 50
+		var RandomSpin = true
+		var Fill = 1
+		var EmitterVelocityPercent = 0
+		var StartVelocity = Real3{0, 0, 0}
+		var RandomVelocity = Real3{2, 2, 2}
+		var TangentVelocity = Real3{0, 0, 0}
+		var EmitterSize = Real3{0, 0, 0}
+		var FastMovingEmitter = false
+	}
+	LinearParticleAnimator 
+	{
+		var Force = Real3{0, 0, 0}
+		var RandomForce = Real3{0, 0, 0}
+		var Torque = 0
+		var Growth = 0
+		var Dampening = 0
+		var Twist = Real3{0, 0, 0}
+	}
+	Explosion 
+	{
+		var Lifetime = 0.5
+		var ForceLifetime = 0.100000001
+	}
+	Hierarchy 
+	{
+	}
+}

@@ -1,0 +1,116 @@
+class NonCollapsingAnimationController : ZilchComponent
+{
+  [Dependency] var AnimationGraph : AnimationGraph;
+  
+  [Property]
+  var IdleAnimation : Animation;
+  
+  [Property]
+  var RunAnimation : Animation;
+  
+  [Property]
+  var JumpStartAnimation : Animation;
+  
+  [Property]
+  var JumpAirAnimation : Animation;
+  
+  [Property]
+  var JumpEndAnimation : Animation;
+  
+  [Property]
+  var DoubleJumpAnimation : Animation;
+  
+  var Root : Cog;
+  
+  [Property]
+  var WaveAnimation : Animation;
+  
+  [Property]
+  var UpperBodyObj : CogPath = CogPath();
+  
+  var MoveDir : Real3 = Real3();
+  
+  var RootNode : AnimationNode;
+  var UpperBodyNode : AnimationNode;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Root = this.Owner.Parent.Parent;
+    this.AnimationGraph.ActiveNode = this.AnimationGraph.CreateBasicNode(this.IdleAnimation, AnimationPlayMode.Loop);
+    this.RootNode = this.AnimationGraph.ActiveNode;
+    this.RootNode.CollapseToPoseOnFinish = false;
+    
+    
+    Zero.Connect(this.Owner, Events.IdleEvent, this.OnIdleEvent);
+    Zero.Connect(this.Owner, Events.MovementEvent, this.OnMovementEvent);
+    Zero.Connect(this.Owner, Events.JumpEvent, this.OnJumpEvent);
+    Zero.Connect(this.Owner, Events.AnimationEnded, this.OnAnimationEnded);
+  }
+
+  function OnIdleEvent(event : ZilchEvent)
+  {
+    if(this.AnimationGraph.IsPlayingInGraph(this.IdleAnimation))
+      return;
+    
+    var activeNode = this.AnimationGraph.ActiveNode;
+    
+    var activeCrossToIdle = this.ActiveCrossTo(this.IdleAnimation, AnimationPlayMode.Loop);
+    this.RootNode = activeCrossToIdle;
+    this.AnimationGraph.ActiveNode = this.RootNode;
+  }
+
+  function OnMovementEvent(event : MovementEvent)
+  {
+    this.MoveDir = event.MoveDir;
+    if(!this.Root.SweptController.Grounded)
+      return;
+    
+    var activeNode = this.AnimationGraph.ActiveNode;
+    var targetNode = this.AnimationGraph.CreateBasicNode(this.RunAnimation, AnimationPlayMode.Loop);
+    
+    
+  }
+
+  function OnJumpEvent(event : JumpEvent)
+  {
+    
+  }
+
+  function OnAnimationEnded(event : AnimationGraphEvent)
+  {
+    
+  }
+  
+  function ActiveCrossTo(anim : Animation, playMode : AnimationPlayMode) : CrossBlend
+  {
+    Console.WriteLine("CrossTo:");
+    var activeNode = this.AnimationGraph.ActiveNode;
+    var targetNode = this.AnimationGraph.CreateBasicNode(anim, playMode);
+    targetNode.Duration = anim.Duration;
+    Console.WriteLine("  activeNode: `activeNode` `this.Space.TimeSpace.RealTimePassed`");
+    Console.WriteLine("  targetNode: `targetNode` `anim.Name` `this.Space.TimeSpace.RealTimePassed`");
+    
+    var cross = this.AnimationGraph.CreateCrossBlendNode();
+    cross.From = activeNode;
+    cross.To = targetNode;
+    cross.Duration = anim.Duration/2;
+    Console.WriteLine("  crossNode: `cross` `this.Space.TimeSpace.RealTimePassed`");
+    
+    return cross;
+  }
+  
+  //function ActiveCrossTo(anim : Animation, playMode : AnimationPlayMode, duration : Real) : CrossBlend
+  //{
+  //  var cross = this.CrossTo(anim, playMode);
+  //  cross.Duration = duration;    
+  //  return cross;
+  //}
+  //
+  //function ActiveCrossTo(anim : Animation, playMode : AnimationPlayMode, duration : Real, targetDur : Real) : CrossBlend
+  //{
+  //  var cross = this.CrossTo(anim, playMode);
+  //  cross.Duration = duration;
+  //  cross.To.Duration = targetDur;
+  //  return cross;
+  //}
+}

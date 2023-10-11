@@ -1,0 +1,39 @@
+class HUDLifeCounter : ZilchComponent
+{
+    [Property]
+    var LifeTextPath : CogPath = null;
+    
+    [Property]
+    var LifeTextOffset : Real3 = Real3();
+    
+    [Property]
+    var LifeCount : Real = 3;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        
+        var heart1 = this.Space.FindObjectByName("Heart1");
+        var heart2 = this.Space.FindObjectByName("Heart2");
+        var heart3 = this.Space.FindObjectByName("Heart3");
+        
+        if (this.LifeCount <= 2)
+        {
+            heart3.Sprite.Visible = false;
+        }
+        
+        if (this.LifeCount <= 1)
+        {
+            heart2.Sprite.Visible = false;
+        }
+        
+        if (this.LifeCount <= 0)
+        {
+            heart1.Sprite.Visible = false;
+        }
+    }
+}

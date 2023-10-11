@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "WaveManager",
+		uint64 ResourceId = 555a636c71e295db,
+	},
+},

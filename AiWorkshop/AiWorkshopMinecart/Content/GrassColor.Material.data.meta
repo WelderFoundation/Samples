@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "GrassColor"
+		var ResourceId = 0x592c7c5c032da08c
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

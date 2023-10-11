@@ -1,0 +1,14 @@
+class Teleporter : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    // When anything Collides with us, we want to teleport it to our destination
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    var pos = this.Owner.FindChildByName("Destination").Transform.WorldTranslation;
+    event.OtherObject.Transform.Translation = pos;
+  }
+}

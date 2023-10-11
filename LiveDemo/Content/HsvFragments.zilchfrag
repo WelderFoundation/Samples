@@ -1,0 +1,55 @@
+[Pixel]
+struct AlbedoHueSet
+{
+  [Input][Slider(0, 360, 0.01)] var Hue = 0.0;
+  [FragmentInput][StageInput][Output] var Albedo : Real3;
+  
+  function Main()
+  {
+    var hsva = Color.ToHsva(Real4(this.Albedo, 1));
+    hsva.X = this.Hue / 360.0;
+    this.Albedo = Color.FromHsva(hsva).XYZ;
+  }
+}
+
+[Pixel]
+struct ColorHueSet
+{
+  [Input][Slider(0, 360, 0.01)] var Hue = 0.0;
+  [FragmentInput][StageInput][Output] var Color : Real4;
+  
+  function Main()
+  {
+    var hsva = Color.ToHsva(this.Color);
+    hsva.X = this.Hue / 360.0;
+    this.Color.XYZ = Color.FromHsva(hsva).XYZ;
+  }
+}
+
+[Pixel]
+struct AlbedoHueShift
+{
+  [Input][Slider(0, 360, 0.01)] var Hue = 0.0;
+  [FragmentInput][StageInput][Output] var Albedo : Real3;
+  
+  function Main()
+  {
+    var hsva = Color.ToHsva(Real4(this.Albedo, 1));
+    hsva.X += this.Hue / 360.0;
+    this.Albedo = Color.FromHsva(hsva).XYZ;
+  }
+}
+
+[Pixel]
+struct ColorHueShift
+{
+  [Input][Slider(0, 360, 0.01)] var Hue = 0.0;
+  [FragmentInput][StageInput][Output] var Color : Real4;
+  
+  function Main()
+  {
+    var hsva = Color.ToHsva(this.Color);
+    hsva.X += this.Hue / 360.0;
+    this.Color.XYZ = Color.FromHsva(hsva).XYZ;
+  }
+}

@@ -1,0 +1,6 @@
+
+[RunInEditor]
+class PopupOverride : ZilchComponent
+{
+  [Property][ShaderInput] var Texture : Texture;
+}

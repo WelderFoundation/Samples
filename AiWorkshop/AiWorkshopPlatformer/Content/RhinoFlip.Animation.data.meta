@@ -1,0 +1,9 @@
+DataContent = 
+{
+	RichAnimationBuilder = 
+	{
+		string Name = "RhinoFlip",
+		uint64 ResourceId = 553c3343886a592f,
+		string PreviewArchetype = "",
+	},
+},

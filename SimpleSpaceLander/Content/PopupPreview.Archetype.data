@@ -1,0 +1,31 @@
+[Version:1]
+Cog 
+{
+	var Name = "Cube"
+	var LinkId = 1
+	Transform 
+	{
+		var Translation = Real3{60.2268219, 71.4120483, 0}
+		var Scale = Real3{3, 3, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	PopupOverride 
+	{
+		var Texture = "5827b28df611775d:ZeroRoughness"
+	}
+	Sprite 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var Material = "587e45d17a6cd2dd:AlphaSpriteOverride"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var SpriteSource = "5274db4c2e7c11f9:Circle"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = true
+		var AnimationSpeed = 1
+		var StartFrame = 0
+	}
+}

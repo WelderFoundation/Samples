@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "FuzzyUi"
+		var ResourceId = 0x5a93965c348cb485
+		var LoaderType = "Level"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

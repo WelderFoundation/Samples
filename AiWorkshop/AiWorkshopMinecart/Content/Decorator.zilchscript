@@ -1,0 +1,11 @@
+class Decorator : BaseDecorator
+{
+  function Generate()
+  {
+    var size = this.Transform.WorldScale;
+    var area = Math.Length(size.XY);
+    
+    //----------------------------------- Student code goes here
+    
+  }
+}

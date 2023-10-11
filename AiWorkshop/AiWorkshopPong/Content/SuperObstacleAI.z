@@ -1,0 +1,150 @@
+class SuperObstacleAI : ZilchComponent
+{
+  [Dependency]
+  var Paddle : Paddle;
+  
+  var LeftBoundary : Real = -8.5;
+  var RightBoundary : Real = 8.5;
+  
+  [Property]
+  var Speed : Integer = 1;
+  
+  [Property]
+  var RotationSpeed : Integer = 1;
+  
+  [Property]
+  var ScaleSpeed : Integer = 1;
+  
+  // So you think you're advanced huh?
+  //  You think you've got the stuff?
+  //   We'll see about that...
+  
+  var StartingPosition : Real3 = Real3(0);
+  
+  [Property]
+  var Pacing : Boolean = false;
+  
+  [Property]
+  var Horizontal : Boolean = false;
+  
+  [Property]
+  var Vertical : Boolean = false;
+  
+  // Used to determine which direction the obstacle should be moving first, and what direction it's currently moving
+  [Property]
+  var MovingUp : Boolean = false;
+  
+  // Used to determine which direction the obstacle should be moving first, and what direction it's currently moving
+  [Property]
+  var MovingRight : Boolean = false;
+  
+  [Property]
+  var HorizontalRange : Real = 1;
+  
+  [Property]
+  var VerticalRange : Real = 1;
+  
+  // Whether or not the object size is pulsing or not
+  [Property]
+  var ScalePulsing : Boolean = false;
+  
+  [Property]
+  var ScalingUp : Boolean = false;
+  
+  // Initial value = 150% size
+  [Property]
+  var ScaleUpperBound : Real = 2.6;
+  
+  // Initial value = 50% size
+  [Property]
+  var ScaleLowerBound : Real = 0.87;
+  
+  [Property]
+  var Rotating : Boolean = false;
+  
+  [Property]
+  var Clockwise : Boolean = false;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    this.StartingPosition = this.Owner.Transform.Translation;
+  }
+  
+  //************************************************************************************************
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+      //------------------------------------------------------- Student Code Below
+      
+      // Pacing
+      
+      // Scaling
+      
+      // Rotating
+      
+  }
+  
+  //************************************************************************************************
+  function MoveLeft(dt : Real)
+  {
+    this.Owner.Transform.Translation -= Real3(this.Speed * dt, 0, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.X < this.LeftBoundary)
+      this.Owner.Transform.Translation = Real3(this.LeftBoundary, pos.Y, pos.Z);
+  }
+  
+  //************************************************************************************************
+  function MoveRight(dt : Real)
+  {
+    this.Owner.Transform.Translation += Real3(this.Speed * dt, 0, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.X > this.RightBoundary)
+      this.Owner.Transform.Translation = Real3(this.RightBoundary, pos.Y, pos.Z);
+  }
+  
+  //************************************************************************************************
+  function MoveUp(dt : Real)
+  {
+    this.Owner.Transform.Translation += Real3(0, this.Speed * dt, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.X > this.RightBoundary)
+      this.Owner.Transform.Translation = Real3(this.RightBoundary, pos.Y, pos.Z);
+  }
+  
+  //************************************************************************************************
+  function MoveDown(dt : Real)
+  {
+    this.Owner.Transform.Translation -= Real3(0, this.Speed * dt, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.X > this.RightBoundary)
+      this.Owner.Transform.Translation = Real3(this.RightBoundary, pos.Y, pos.Z);
+  }
+  
+  //************************************************************************************************
+  function Rotate(dt : Real)
+  {
+    this.Owner.Transform.RotateLocal(Quaternion(0, 0, this.RotationSpeed * dt, 1));
+  }
+  
+  //************************************************************************************************
+  function ScaleUp(dt : Real)
+  {
+    this.Owner.Transform.Scale += this.Owner.Transform.Scale * this.ScaleSpeed * dt;
+  }
+  
+  //************************************************************************************************
+  function ScaleDown(dt : Real)
+  {
+    this.Owner.Transform.Scale -= this.Owner.Transform.Scale * this.ScaleSpeed * dt;
+  }
+}

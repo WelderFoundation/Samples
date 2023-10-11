@@ -1,0 +1,18 @@
+[Pixel]
+struct SoftSprite
+{  
+  [FragmentInput][StageInput] var ViewPosition : Real3;
+  [AppBuiltInInput] var FarPlane : Real;
+  [FragmentInput] var GeoDepth : Real;
+  
+  [FragmentInput][StageInput][Output] var Color : Real4;
+  
+  function Main()
+  {
+    var ourDepth = -this.ViewPosition.Z / this.FarPlane;
+    
+    var diff = (this.GeoDepth - ourDepth);
+    //diff = 1.0;
+    this.Color.W *= Math.Saturate(diff / 0.002);
+  }
+}

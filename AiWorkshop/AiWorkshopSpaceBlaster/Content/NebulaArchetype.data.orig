@@ -1,0 +1,78 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "Nebula",
+	},
+	Archetyped = 
+	{
+		string Name = "4ebcf831212e9d84:Nebula",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [-0.330479, -4.59964, -111.094],
+		Vec3 Scale = [1, 1, 1],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	SpriteParticleSystem = 
+	{
+		SystemChildMode ChildMode = Independent,
+		SystemSpace SystemSpace = WorldSpace,
+		uint DrawOrder = 0,
+		float WarmUpTime = 5,
+		ParticleGeometry GeometryMode = Billboarded,
+		ParticleRenderMode RenderMode = Additive,
+		ParticleSortMode SortMode = None,
+		string Texture = "52437a753684e01d:Smoke2",
+		Vec4 Tint = [1, 1, 1, 0.745],
+		float VelocityScale = 1,
+		float LengthScale = 0,
+		float MaxParticleSize = 100,
+		Vec3 SystemSize = [20, 20, 20],
+	},
+	SphericalParticleEmitter = 
+	{
+		bool Active = true,
+		uint EmitCount = 0,
+		float EmitRate = 35,
+		float EmitVariance = 0,
+		float Size = 45,
+		float SizeVariance = 4,
+		float Lifetime = 10,
+		float LifetimeVariance = 0,
+		float Spin = 0,
+		float SpinVariance = 15,
+		bool RandomSpin = false,
+		float Fill = 0.3,
+		float EmitterVelocityPercent = 0,
+		Vec3 StartVelocity = [0, 0, 0],
+		Vec3 RandomVelocity = [1, 1, 1],
+		Vec3 TangentVelocity = [0, 0, 0],
+		Vec3 EmitterSize = [200, 200, 10],
+		bool FastMovingEmitter = false,
+	},
+	ParticleColorAnimator = 
+	{
+		Vec4 Color0 = [0.65098, 0.0627451, 1, 0],
+		Vec4 Color1 = [0.5, 0.835294, 1, 0.3],
+		Vec4 Color2 = [0.3, 0.756863, 1, 0.2],
+		Vec4 Color3 = [0.65098, 0.137255, 1, 0.05],
+		Vec4 Color4 = [0.105882, 1, 0, 0],
+	},
+	LinearParticleAnimator = 
+	{
+		Vec3 Force = [0, 0, 0],
+		Vec3 RandomForce = [0, 0, 0],
+		float Torque = 0,
+		float Growth = 0,
+		float Dampening = 0,
+		Vec3 Twist = [0, 0, 0],
+	},
+	Hierarchy = 
+	{
+	},
+},

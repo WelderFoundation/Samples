@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManJumpEnd_Stomach"
+				var ResourceId = 0x59af21f17b40e633
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_Chest"
+				var ResourceId = 0x59af21f17b40e640
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_Head"
+				var ResourceId = 0x59af21f17b40e644
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_LArm"
+				var ResourceId = 0x59af21f17b40e648
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_LArm01"
+				var ResourceId = 0x59af21f17b40e64d
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_RArm"
+				var ResourceId = 0x59af21f17b40e652
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_RArm01"
+				var ResourceId = 0x59af21f17b40e655
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_LLeg"
+				var ResourceId = 0x59af21f17b40e65a
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_LLeg01"
+				var ResourceId = 0x59af21f17b40e65e
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_RLeg"
+				var ResourceId = 0x59af21f17b40e661
+			}
+			Object
+			{
+				var Name = "BoxManJumpEnd_RLeg01"
+				var ResourceId = 0x59af21f17b40e667
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManJumpEnd"
+				var ResourceId = 0x59af21f17b40e66e
+			}
+		}
+	}
+}

@@ -1,0 +1,80 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "trainTender_trainTenderGeneratedMeshNode0"
+				var ResourceId = 0x5a95f667ddef9307
+			}
+			Object
+			{
+				var Name = "trainTender_trainTenderGeneratedMeshNode1"
+				var ResourceId = 0x5a95f667ddef9319
+			}
+			Object
+			{
+				var Name = "trainTender_wheel2GeneratedMeshNode2"
+				var ResourceId = 0x5a95f667ddef931d
+			}
+			Object
+			{
+				var Name = "trainTender_wheel2GeneratedMeshNode3"
+				var ResourceId = 0x5a95f667ddef9324
+			}
+			Object
+			{
+				var Name = "trainTender_wheel3GeneratedMeshNode4"
+				var ResourceId = 0x5a95f667ddef9329
+			}
+			Object
+			{
+				var Name = "trainTender_wheel3GeneratedMeshNode5"
+				var ResourceId = 0x5a95f667ddef932f
+			}
+			Object
+			{
+				var Name = "trainTender_wheel4GeneratedMeshNode6"
+				var ResourceId = 0x5a95f667ddef9333
+			}
+			Object
+			{
+				var Name = "trainTender_wheel4GeneratedMeshNode7"
+				var ResourceId = 0x5a95f667ddef9339
+			}
+			Object
+			{
+				var Name = "trainTender_wheel5GeneratedMeshNode8"
+				var ResourceId = 0x5a95f667ddef933d
+			}
+			Object
+			{
+				var Name = "trainTender_wheel5GeneratedMeshNode9"
+				var ResourceId = 0x5a95f667ddef9341
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5a95f667ddf4d47f
+	}
+}

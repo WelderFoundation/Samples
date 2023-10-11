@@ -1,0 +1,30 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"582fad0ca055e4df:AdditiveBlend"
+		"5961eaa40f1649f6:ZSort"
+	}
+	ParticleCloudVertex 
+	{
+		var DisplacerPos = Real3{0, 0, -3}
+		var Radius = 3
+		var ViewPosition = Real3{0, 0, 0}
+	}
+	PointParticleGeo 
+	{
+	}
+	PointParticlePixel 
+	{
+		var Texture = "5b4dd64f3a9575f4:Smoke2"
+	}
+	GeometryInput 
+	{
+		var GeometryBuffer0 = "null"
+		var GeometryBuffer1 = "null"
+	}
+	SoftSprite 
+	{
+	}
+}

@@ -1,0 +1,38 @@
+class CreateOnDeath : ZilchComponent
+{
+  // The archetype to create when we're destroyed.
+  [Property]
+  var ArchetypeToCreate : Archetype = null;
+  
+  // Whether or not to set the particles velocities to our velocity
+  [Property]
+  var InheritVelocity : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Listen for an event on ourself that says we died.
+    Zero.Connect(this.Owner, Events.Death, this.OnDeath);
+  }
+  
+  function OnDeath(e : Event)
+  {
+    // Create an object at our position.
+    var pos = this.Owner.Transform.Translation;
+    var obj = this.Space.CreateAtPosition(this.ArchetypeToCreate, pos);
+    
+    // Add our velocity to particles if specified
+    if(this.InheritVelocity && this.Owner.RigidBody != null)
+      this.SetParticleEmitVelocity(obj, this.Owner.RigidBody.Velocity);
+  }
+  
+  function SetParticleEmitVelocity(obj : Cog, velocity : Real3)
+  {
+    // Add our velocity to the emitters velocity
+    if(obj.SphericalParticleEmitter != null)
+      obj.SphericalParticleEmitter.StartVelocity += velocity;
+    
+    // Recurse to child particle affects
+    foreach (var child in obj.Children)
+      this.SetParticleEmitVelocity(child, velocity);
+  }
+}

@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "Test",
+		uint64 ResourceId = 553c1f24ced73ae8,
+		string LoaderType = "SpriteLayerOrder",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

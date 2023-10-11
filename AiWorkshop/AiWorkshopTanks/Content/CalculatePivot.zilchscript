@@ -1,0 +1,12 @@
+[RunInEditor]
+class CalculatePivot : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    var transform = this.Owner.Transform;
+    var offset = this.Owner.Model.WorldAabb.Center;
+    offset = transform.TransformPointInverse(offset);
+    
+    this.Owner.Transform.Translation = -offset * transform.WorldScale;
+  }
+}

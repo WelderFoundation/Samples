@@ -1,0 +1,303 @@
+enum BoxManAnimState { Idle, Walk, Run, PreJump, JumpStart, JumpEnd, PostJump, DoubleJump, Wave }
+
+class BlendedAnimationController : ZilchComponent
+{
+  [Dependency] var AnimationGraph : AnimationGraph;
+  
+  [Property]
+  var IdleAnimation : Animation;
+  
+  [Property]
+  var RunAnimation : Animation;
+  
+  [Property]
+  var JumpStartAnimation : Animation;
+  
+  [Property]
+  var JumpAirAnimation : Animation;
+  
+  [Property]
+  var JumpEndAnimation : Animation;
+  
+  [Property]
+  var DoubleJumpAnimation : Animation;
+  
+  var Root : Cog;
+  
+  [Property]
+  var IdleBlendDur : Real = 0.5;
+  
+  [Property]
+  var RunBlendDur : Real = 0.5;
+  
+  [Property]
+  var PreJumpBlendDur : Real = 0.5;
+  
+  [Property]
+  var PreJumpDur : Real = 0.3;
+  
+  [Property]
+  var JumpStartBlendDur : Real = 0.5;
+  
+  [Property]
+  var JumpStartDur : Real = 0.5;
+  
+  [Property]
+  var JumpEndBlendDur : Real = 1;
+  
+  [Property]
+  var JumpEndDur : Real = 0.3;
+  
+  [Property]
+  var PostJumpBlendDur : Real = 1;
+  
+  [Property]
+  var DoubleJumpDur : Real = 0.5;
+  
+  [Property]
+  var DoubleJumpBlendDur : Real = 0.2;
+  
+  var AnimState : BoxManAnimState;
+  
+  var DoubleJumpSeq : ActionSet;
+  
+  [Property]
+  var WaveAnimation : Animation;
+  
+  [Property]
+  var WaveRootObj : CogPath = CogPath();
+  
+  var MoveDir : Real3 = Real3();
+  function Initialize(init : CogInitializer)
+  {
+    this.Root = this.Owner.Parent.Parent;
+    Console.WriteLine(this.AnimationGraph);
+    this.AnimationGraph.ActiveNode = this.CreateBasicNode(this.IdleAnimation, AnimationPlayMode.Loop);
+    this.AnimState = BoxManAnimState.Idle;
+    
+    Zero.Connect(this.Owner, Events.JumpEvent, this.OnJumpEvent);
+    Zero.Connect(this.Owner, Events.DoubleJumpEvent, this.OnDoubleJumpEvent);
+    Zero.Connect(this.Owner, Events.MovementEvent, this.OnMovementEvent);
+    Zero.Connect(this.Owner, Events.AnimationEnded, this.OnAnimationEnded);
+    Zero.Connect(this.Owner, Events.WaveEvent, this.OnWaveEvent);
+  }
+
+  function OnWaveEvent(event : ZilchEvent)
+  {
+    var activeNode = this.AnimationGraph.ActiveNode;
+    
+    var waveBasic = this.CreateBasicNode(this.WaveAnimation, AnimationPlayMode.PlayOnce);
+    var fromWaveNode =  activeNode;
+    var toWaveNode = waveBasic;
+    if(this.AnimationGraph.IsPlayingInGraph(this.RunAnimation))
+    {
+      var root = this.WaveRootObj.Cog;
+      var selectiveWave = this.CreateSelectiveNode(waveBasic, activeNode, root);
+      selectiveWave.Duration = waveBasic.Duration;
+      
+      toWaveNode = selectiveWave;
+    }
+    
+    var toWaveCross = this.CreateCrossBlendNode(fromWaveNode, toWaveNode);
+    
+    this.AnimationGraph.ActiveNode = toWaveCross;
+    this.AnimState = BoxManAnimState.Wave;
+  }
+
+  function OnDoubleJumpEvent(event : JumpEvent)
+  {
+    this.CrossTo(this.DoubleJumpAnimation, AnimationPlayMode.PlayOnce, this.DoubleJumpBlendDur, this.DoubleJumpDur);
+    this.DoubleJumpSeq = Actions.Sequence(this.Owner.Actions);
+    var targApexRot = Math.ToQuaternion(Math.ToRadians(Real3(179, 0, 0)));
+    var targRot = Math.ToQuaternion(Math.ToRadians(Real3(359, 0, 0)));
+    var targFinishRot = Math.ToQuaternion(Math.ToRadians(Real3(0, 0, 0)));
+    Actions.Property(this.DoubleJumpSeq, @this.Owner.Transform.Rotation, targApexRot, this.DoubleJumpDur/2.0, Ease.Linear);
+    Actions.Property(this.DoubleJumpSeq, @this.Owner.Transform.Rotation, targRot, this.DoubleJumpDur/2.0, Ease.Linear);
+    Actions.Property(this.DoubleJumpSeq, @this.Owner.Transform.Rotation, targFinishRot, 0.0, Ease.Linear);
+    Actions.Call(this.DoubleJumpSeq, this.ExitDoubleJump);
+    this.AnimState = BoxManAnimState.DoubleJump;
+  }
+  
+  function ExitDoubleJump()
+  {
+    this.CrossTo(this.JumpEndAnimation, AnimationPlayMode.PlayOnce, this.JumpEndBlendDur, this.JumpEndDur);
+    this.AnimState = BoxManAnimState.JumpEnd;
+  }
+
+  function OnJumpEvent(event : JumpEvent)
+  {
+    //Console.WriteLine("Jump Begin:");
+    this.CrossTo(this.JumpStartAnimation, AnimationPlayMode.PlayOnce, this.PreJumpBlendDur, this.PreJumpDur);
+    this.AnimState = BoxManAnimState.PreJump;
+  }
+  
+  function OnMovementEvent(event : MovementEvent)
+  {
+    this.MoveDir = event.MoveDir;
+    if(!this.Root.SweptController.Grounded || this.AnimState == BoxManAnimState.Wave)
+      return;
+    
+    if(Math.Length(event.MoveDir) > 0.0 && this.AnimState != BoxManAnimState.Run && this.AnimState != BoxManAnimState.PreJump)
+    {
+      this.CrossTo(this.RunAnimation, AnimationPlayMode.Loop, this.RunBlendDur);
+      this.AnimState = BoxManAnimState.Run;
+    }
+    else if(Math.Length(event.MoveDir) == 0.0 && this.AnimState != BoxManAnimState.Idle && this.AnimState != BoxManAnimState.PreJump)
+    {
+      this.CrossTo(this.IdleAnimation, AnimationPlayMode.Loop, this.IdleBlendDur);
+      this.AnimState = BoxManAnimState.Idle;
+    }
+  }
+  
+  function OnAnimationEnded(event : AnimationGraphEvent)
+  {
+    //Console.WriteLine("AnimantionEnded Node: `event.Node` `this.Space.TimeSpace.RealTimePassed`");
+    //Console.WriteLine("AnimantionEnded Animation: `event.Animation.Name` `this.Space.TimeSpace.RealTimePassed`");
+    if(this.AnimState == BoxManAnimState.DoubleJump)
+      return;
+    
+    if(event.Animation == this.JumpStartAnimation)
+    {
+      this.CrossTo(this.JumpAirAnimation, AnimationPlayMode.PlayOnce, this.JumpStartBlendDur, this.JumpStartDur);
+      this.AnimState = BoxManAnimState.JumpStart;
+    }
+    else if(event.Animation == this.JumpAirAnimation)
+    {
+      this.CrossTo(this.JumpEndAnimation, AnimationPlayMode.PlayOnce, this.JumpEndBlendDur, this.JumpEndDur);
+      this.AnimState = BoxManAnimState.JumpEnd;
+    }
+    else if(event.Animation == this.DoubleJumpAnimation)
+    {
+      this.CrossTo(this.JumpEndAnimation, AnimationPlayMode.PlayOnce, this.JumpEndBlendDur, this.JumpEndDur);
+      this.AnimState = BoxManAnimState.JumpEnd;
+    }
+    else if(event.Animation == this.WaveAnimation)
+    {
+      if(!this.Root.SweptController.Grounded)
+        return;
+      
+      if(Math.Length(this.MoveDir) > 0.0 && this.AnimState != BoxManAnimState.Run && this.AnimState != BoxManAnimState.PreJump)
+      {
+        this.CrossTo(this.RunAnimation, AnimationPlayMode.Loop, this.RunBlendDur);
+        this.AnimState = BoxManAnimState.Run;
+      }
+      else if(Math.Length(this.MoveDir) == 0.0 && this.AnimState != BoxManAnimState.Idle && this.AnimState != BoxManAnimState.PreJump)
+      {
+        this.CrossTo(this.IdleAnimation, AnimationPlayMode.Loop, this.IdleBlendDur);
+        this.AnimState = BoxManAnimState.Idle;
+      }
+    }
+  }
+  
+  function CrossTo(anim : Animation, playMode : AnimationPlayMode) : CrossBlend
+  {
+    //Console.WriteLine("CrossTo:");
+    var activeNode = this.AnimationGraph.ActiveNode;
+    var targetNode = this.CreateBasicNode(anim, playMode);
+    targetNode.Duration = anim.Duration;
+    //Console.WriteLine("  activeNode: `activeNode` `this.Space.TimeSpace.RealTimePassed`");
+    //Console.WriteLine("  targetNode: `targetNode` `anim.Name` `this.Space.TimeSpace.RealTimePassed`");
+    
+    var cross = this.CreateCrossBlendNode(activeNode, targetNode);
+    cross.Duration = anim.Duration/2;
+    //Console.WriteLine("  crossNode: `cross` `this.Space.TimeSpace.RealTimePassed`");
+    
+    this.AnimationGraph.ActiveNode = cross;
+    return cross;
+  }
+  
+  function CrossTo(anim : Animation, playMode : AnimationPlayMode, duration : Real) : CrossBlend
+  {
+    var cross = this.CrossTo(anim, playMode);
+    cross.Duration = duration;    
+    return cross;
+  }
+  
+  function CrossTo(anim : Animation, playMode : AnimationPlayMode, duration : Real, targetDur : Real) : CrossBlend
+  {
+    var cross = this.CrossTo(anim, playMode);
+    cross.Duration = duration;
+    cross.To.Duration = targetDur;
+    return cross;
+  }
+  
+  function CreateBasicNode(anim : Animation, playMode : AnimationPlayMode) : AnimationNode
+  {
+    var node = this.AnimationGraph.CreateBasicNode(anim, playMode);
+    this.Owner.DispatchEvent(Events.AnimationNodeCreated, AnimationNodeCreated(this.Owner, node, null, null));
+    return node;
+  }
+  
+  function CreateSelectiveNode(from : AnimationNode, to : AnimationNode, root : Cog) : SelectiveNode
+  {
+    var node = this.AnimationGraph.CreateSelectiveNode();
+    node.From = from;
+    node.To = to;
+    node.Root = root;
+    this.Owner.DispatchEvent(Events.SelectiveNodeCreated, SelectiveNodeCreated(this.Owner, node, from, to));
+    return node;
+  }
+  
+  function CreateCrossBlendNode(from : AnimationNode, to : AnimationNode) : CrossBlend
+  {
+    var node = this.AnimationGraph.CreateCrossBlendNode();
+    node.From = from;
+    node.To = to;
+    this.Owner.DispatchEvent(Events.CrossBlendNodeCreated, CrossBlendNodeCreated(this.Owner, node, from, to));
+    return node;
+  }
+  
+  function CreateDirectBlendNode(from : AnimationNode, to : AnimationNode) : DirectBlend
+  {
+    var node = this.AnimationGraph.CreateDirectBlendNode();
+    node.From = from;
+    node.To = to;
+    this.Owner.DispatchEvent(Events.DirectBlendNodeCreated, DirectBlendNodeCreated(this.Owner, node, from, to));
+    return node;
+  }
+  
+  function TimeRemaining(node : AnimationNode) : Real
+  {
+    return node.Duration * (1.0 - node.GetNormalizedTime());
+  }
+}
+
+class AnimationNodeCreated : ZilchEvent
+{
+  sends AnimationNodeCreated : AnimationNodeCreated;
+  var Source : Cog;
+  
+  [Virtual]
+  var Node : AnimationNode;
+  
+  var From : AnimationNode;
+  var To : AnimationNode;
+  constructor(source : Cog, node : AnimationNode, from : AnimationNode, to : AnimationNode) : base()
+  {
+    this.Source = source;
+    this.Node = node;
+    this.From = from;
+    this.To = to;
+  }
+}
+
+class SelectiveNodeCreated : AnimationNodeCreated
+{
+  sends SelectiveNodeCreated : SelectiveNodeCreated;
+  [Override]
+  var Node : SelectiveNode;
+}
+
+class CrossBlendNodeCreated : AnimationNodeCreated
+{
+  sends CrossBlendNodeCreated : CrossBlendNodeCreated;
+  [Override]
+  var Node : CrossBlend;
+}
+
+class DirectBlendNodeCreated : AnimationNodeCreated
+{
+  sends DirectBlendNodeCreated : DirectBlendNodeCreated;
+  [Override]
+  var Node : DirectBlend;
+}

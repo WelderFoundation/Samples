@@ -1,0 +1,41 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 0.823653519
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 0.103539661
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+	NormalMap 
+	{
+		var NormalMap = "5b76f1628a94e4b6:MaceNormal"
+		var Bumpiness = 1
+		var RedLeft = true
+		var GreenDown = false
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "5b76f1628a947812:MaceAlbedo"
+	}
+	AlbedoAdd 
+	{
+		var Texture = "5b7697e8af26849b:MaceHighlights"
+		var Scalar = Real4{100, 100, 100, 1}
+	}
+	AlbedoHueShift 
+	{
+		var Hue = 78.9000015
+	}
+}

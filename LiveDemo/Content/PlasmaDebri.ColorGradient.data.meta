@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "PlasmaDebri"
+		var ResourceId = 0x5b76fa411e3ecaa2
+		var LoaderType = "ColorGradient"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

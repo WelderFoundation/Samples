@@ -1,0 +1,36 @@
+class CheckBoxBehaviour : ZilchComponent
+{
+    var Flag :Real = 0;
+    
+    [Serialized]
+    var Weapon1 : Array[Boolean] = Array[Boolean]();
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.MouseDown, this.OnMouseDown);
+        this.Weapon1.Add(false);
+    }
+
+    function OnMouseDown(event : ViewportMouseEvent)
+    {
+        if(this.Owner.Name == "Checkbox")
+        {
+            //Uncheck
+            if(this.Flag == 1)
+            {
+                this.Owner.Sprite.VertexColor = Real4(10,10,10,1);
+                this.Flag = 0;
+                this.Space.FindObjectByName("Player1").WeaponBehaviour.Bullet = Archetype.Bullet;
+                this.Weapon1[0] = false;
+            }
+            //Check
+            else
+            {
+                this.Owner.Sprite.VertexColor = Real4(103,103,103,1);
+                this.Flag = 1;
+                this.Space.FindObjectByName("Player1").WeaponBehaviour.Bullet = Archetype.BulletGhost;
+                this.Weapon1[0] = true;
+            }
+        }
+    }
+}

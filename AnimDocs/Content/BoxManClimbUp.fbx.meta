@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManClimbUp_Stomach"
+				var ResourceId = 0x59af21f77b15f116
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_Chest"
+				var ResourceId = 0x59af21f77b15f122
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_Head"
+				var ResourceId = 0x59af21f77b15f125
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_LArm"
+				var ResourceId = 0x59af21f77b15f12a
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_LArm01"
+				var ResourceId = 0x59af21f77b15f12e
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_RArm"
+				var ResourceId = 0x59af21f77b15f133
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_RArm01"
+				var ResourceId = 0x59af21f77b15f136
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_LLeg"
+				var ResourceId = 0x59af21f77b15f13b
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_LLeg01"
+				var ResourceId = 0x59af21f77b15f13e
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_RLeg"
+				var ResourceId = 0x59af21f77b15f141
+			}
+			Object
+			{
+				var Name = "BoxManClimbUp_RLeg01"
+				var ResourceId = 0x59af21f77b15f146
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManClimbUp"
+				var ResourceId = 0x59af21f77b15f14d
+			}
+		}
+	}
+}

@@ -1,0 +1,3346 @@
+[Version:1]
+Level 
+{
+	Cog [ContextId:1]
+	{
+		var Name = "LevelSettings"
+		GravityEffect 
+		{
+			var Active = true
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LocalSpaceDirection = true
+			var Strength = 10
+			var Direction = Real3{0, -1, 0}
+		}
+		DragEffect 
+		{
+			var Active = false
+			var WakeUpOnChange = false
+			var DebugDrawEffect = false
+			var LinearDamping = 0.200000003
+			var AngularDamping = 0.100000001
+			var LinearDrag = 0
+			var AngularDrag = 0
+		}
+		GridDraw 
+		{
+			var Active = false
+			var HalfCellOffset = false
+			var CellSize = 1
+			var Axis = AxisDirection.Y
+			var Lines = 100
+			var DrawAxisOrigins = true
+			var AlwaysDrawInEditor = true
+			var DrawInGame = false
+			var GridColor = Real4{0.5, 0.5, 0.5, 0.400000006}
+			var GridHighlight = Real4{0, 0, 0, 0.400000006}
+			var HighlightInterval = 10
+			var FollowEditorCamera = false
+		}
+		TrackList 
+		{
+		}
+		UiSpace 
+		{
+			var Enabled = true
+			var LevelToLoad = "5b1122c2c080b43c:Ui"
+		}
+		Race 
+		{
+			var Goal = CogPath
+			{
+				var Path = ":/Goal"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+		}
+	}
+	Cog [ContextId:3]
+	{
+		var Name = "Renderer"
+		DeferredRenderer 
+		{
+			var GeometryDebug = GeometryValue.None
+			var EditorDebugDraw = true
+			var GameDebugDraw = false
+			var RenderDiffuse = true
+			var RenderSpecular = true
+			var RenderSkybox = true
+			var Skybox = "5b7fbeb2acc23afd:SkyDay"
+			var ClearColor = Real4{0, 0, 0, 1}
+			var DirectLighting = true
+			var IndirectLighting = true
+			var IndirectIntensity = 1
+			var ToneMap = true
+		}
+		Ssao 
+		{
+			var Active = true
+			var Radius = 1
+			var Intensity = 1
+			var BlurDepthThreshold = 0.0500000007
+			var DebugBuffer = false
+		}
+		Bloom 
+		{
+			var Active = true
+			var Intensity = 0.100000001
+			var Threshold = 1
+			var Bloom1 = true
+			var Bloom2 = true
+			var Bloom3 = true
+			var Bloom4 = true
+			var Bloom5 = true
+			var DebugBuffer = false
+		}
+	}
+	Cog [ContextId:4]
+	{
+		var Name = "DirectionalLightShadows"
+		Transform 
+		{
+			var Translation = Real3{52.0681458, 20, 20}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{-0.382683456, 0, 0, 0.923879504}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be736f5ea2:LightIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = false
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "580267aabbf7843e:DirectionalLightShadows"
+			var Mesh = "59040f1e835d03e1:Triangle"
+		}
+		DirectionalLight 
+		{
+			var LightColor = Real4{1, 1, 1, 1}
+			var LightIntensity = 5
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = true
+			var RenderOrder = -1
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = false
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 100
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 45
+			var Size = 100
+		}
+		ShadowRenderer 
+		{
+			var ResolutionValue = ShadowResolution.High
+			var NormalOffsetBias = 0.100000001
+		}
+	}
+	Cog [ContextId:5]
+	{
+		var Name = "EditorCamera"
+		Transform 
+		{
+			var Translation = Real3{-10.0473394, 18.0705605, 28.5494595}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{-0.189951733, 0.00258370931, 0.000499853748, 0.981789947}
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = false
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 5
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 200
+			var PerspectiveMode = PerspectiveMode.Perspective
+			var FieldOfView = 60
+			var Size = 20
+		}
+		EditorCameraController 
+		{
+			var ControlMode = ControlMode.Orbit
+			var Previous3DMode = ControlMode.Orbit
+			var LookDistance = 30.116909
+			var VerticalAngle = 0.382227302
+			var HorizontalAngle = 25.1274776
+			var LookTarget = Real3{-10.1944218, 6.83731651, 0.606286585}
+			var MoveSensitivity = 1
+		}
+	}
+	Cog [ContextId:6]
+	{
+		var Name = "GameCamera"
+		Transform 
+		{
+			var Translation = Real3{-25.9130821, 16.1444588, 12.3230906}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{-0.172833338, 0, 0, 0.984951079}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be7360cf7c:CameraIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = false
+			var RenderInGame = true
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 6
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Letterbox
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 200
+			var PerspectiveMode = PerspectiveMode.Perspective
+			var FieldOfView = 60
+			var Size = 20
+		}
+		SoundListener 
+		{
+			var Active = true
+			var AttenuationScale = 1
+		}
+		Orientation 
+		{
+			var GlobalUp = Real3{0, 1, 0}
+			var LocalOrientationBasis = Quaternion{0, 0, 0, 1}
+			var DefaultBases = OrientationBases.ForwardNegativeZUpY
+		}
+		MultiFocusCamera2D 
+		{
+			var Active = true
+			var WeightedFocusing = true
+			var TrackingSpeed = 6
+			var FocusSpeed = 1
+			var MinZoom = 100
+			var MaxZoom = 100
+			var ScreenPadding = Real2{0, 0}
+			var DebugPrint = false
+			var BreakOnError = true
+		}
+	}
+	Cog [ContextId:7]
+	{
+		var Name = "Chunk"
+		Transform 
+		{
+			var Translation = Real3{0, 0, 0}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5b7f58cb84d67cf2][ContextId:8]
+			{
+				var Name = "Tracks"
+				Transform 
+				{
+					var Translation = Real3{0, 0, 0}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				Hierarchy 
+				{
+					Cog [Id:0x5b7fbd8b6c3df522][ContextId:9]
+					{
+						var Name = "Track0"
+						Transform 
+						{
+							var Translation = Real3{0, 0, 0}
+							var Scale = Real3{1, 1, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						Track 
+						{
+							var Spline = CogPath
+							{
+								var Path = "Spline"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 10
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+						}
+						Hierarchy 
+						{
+							Cog [Id:0x5a948d0665e7f40c][ContextId:10]
+							{
+								var Name = "Spline"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								ScriptHierarchySpline 
+								{
+									var Closed = false
+									var SplineType = SplineType.BSpline
+									var Error = 0.00999999978
+									var DebugMode = SplineDebugMode.Line
+									var SplineColor = Real4{0, 0.910000086, 1, 1}
+								}
+								Hierarchy 
+								{
+									Cog [Id:0x5b2ac5ea6ad197da][ContextId:11]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-33.7259712, 12.49578, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2ada1c12200cf2][ContextId:12]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-29.3839073, 11.6423178, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2ac5da6df42027][ContextId:13]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-26.9859447, 7.38912678, 9.53674316e-07}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b7fbd936b78aaee][ContextId:14]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-23.4888439, 7.16169786, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+										Hierarchy 
+										{
+										}
+									}
+									Cog [Id:0x5b2aa5fc198adbc9][ContextId:15]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-21.4248066, 7.41461897, -2.86102295e-06}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa538feb88131][ContextId:16]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-20.9240303, 7.44360018, -4.76837158e-06}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+								}
+							}
+							Cog [Id:0x5abeafcc6873982b][ContextId:17]
+							{
+								var Name = "Graphical"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								SplineGraphicalGenerator 
+								{
+									var SplineTarget = CogPath
+									{
+										var Path = "../Spline"
+										var ErrorOnResolveToNull = false
+										var ErrorOnPathCantCompute = false
+										var ErrorOnDirectLinkFail = false
+										var UpdateCogOnPathChange = true
+										var UpdatePathOnCogChange = true
+										var UpdateCogOnInitialize = true
+										var ResolvedNullErrorOccurred = false
+										var Cog = 10
+										var PathPreference0 = CogPathPreference.CogRelative
+										var PathPreference1 = CogPathPreference.SpaceRelative
+										var PathPreference2 = CogPathPreference.Absolute
+									}
+								}
+								Hierarchy 
+								{
+									Cog [Id:0x5abeafd56f458d0d][ContextId:18]
+									{
+										var Name = "Rails"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Hierarchy 
+										{
+											Cog [Id:0x5abeaf1d49101346][ContextId:19]
+											{
+												var Name = "Left"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Scale = Real3{1, 1, 1}
+													var Rotation = Quaternion{0, 0, 0, 1}
+												}
+												Model 
+												{
+													var Visible = true
+													var ViewCulling = false
+													var VisibilityEvents = true
+													var OverrideBoundingBox = false
+													var LocalAabbCenter = Real3{0, 0, 0}
+													var LocalAabbHalfExtents = Real3{1, 1, 1}
+													var GroupSortValue = 0
+													var Material = "5a95f706fd05db54:Rail"
+													var Mesh = "null"
+												}
+												SplineMeshGeneratorRectangle 
+												{
+													var Size = Real2{0.129999995, 0.100000001}
+													var Offset = Real2{-0.430000007, -0.0500000007}
+												}
+												MeshCollider 
+												{
+													var Ghost = false
+													var SendsEvents = true
+													var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+													var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+													var Offset = Real3{0, 0, 0}
+													var PhysicsMesh = "null"
+													var DrawEdges = true
+													var DrawFaces = false
+													var DrawFaceNormals = false
+												}
+											}
+											Cog [Id:0x5a94844dd5829dab][ContextId:20]
+											{
+												var Name = "Right"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Scale = Real3{1, 1, 1}
+													var Rotation = Quaternion{0, 0, 0, 1}
+												}
+												Model 
+												{
+													var Visible = true
+													var ViewCulling = false
+													var VisibilityEvents = true
+													var OverrideBoundingBox = false
+													var LocalAabbCenter = Real3{0, 0, 0}
+													var LocalAabbHalfExtents = Real3{1, 1, 1}
+													var GroupSortValue = 0
+													var Material = "5a95f706fd05db54:Rail"
+													var Mesh = "null"
+												}
+												SplineMeshGeneratorRectangle 
+												{
+													var Size = Real2{0.129999995, 0.100000001}
+													var Offset = Real2{0.430000007, -0.0500000007}
+												}
+												MeshCollider 
+												{
+													var Ghost = false
+													var SendsEvents = true
+													var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+													var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+													var Offset = Real3{0, 0, 0}
+													var PhysicsMesh = "null"
+													var DrawEdges = true
+													var DrawFaces = false
+													var DrawFaceNormals = false
+												}
+											}
+										}
+									}
+									Cog [Id:0x5abeb0d5409a67b9][ContextId:21]
+									{
+										var Name = "CrossSections"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Model 
+										{
+											var Visible = true
+											var ViewCulling = false
+											var VisibilityEvents = true
+											var OverrideBoundingBox = false
+											var LocalAabbCenter = Real3{0, 0, 0}
+											var LocalAabbHalfExtents = Real3{1, 1, 1}
+											var GroupSortValue = 0
+											var Material = "5a95f71ef8447fd9:Wood"
+											var Mesh = "null"
+										}
+										SplineMeshDecorator 
+										{
+											var Distance = 1
+											var StartOffset = 0
+											var Size = Real3{0.200000003, 0.0700000003, 0.699999988}
+											var Offset = Real3{0, -0.170000002, 0}
+										}
+										MeshCollider 
+										{
+											var Ghost = false
+											var SendsEvents = true
+											var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+											var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+											var Offset = Real3{0, 0, 0}
+											var PhysicsMesh = "null"
+											var DrawEdges = true
+											var DrawFaces = false
+											var DrawFaceNormals = false
+										}
+										Hierarchy 
+										{
+										}
+									}
+									Cog [Id:0x5aaaa550483f930d][ContextId:22]
+									{
+										var Name = "Scaffolding"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Model 
+										{
+											var Visible = true
+											var ViewCulling = false
+											var VisibilityEvents = true
+											var OverrideBoundingBox = false
+											var LocalAabbCenter = Real3{0, 0, 0}
+											var LocalAabbHalfExtents = Real3{1, 1, 1}
+											var GroupSortValue = 0
+											var Material = "5a95f71ef8447fd9:Wood"
+											var Mesh = "null"
+										}
+										SplineScaffoldingGenerator 
+										{
+											var SupportDistance = 2
+											var TrackWidth = 0.699999988
+											var SupportSize = Real2{0.0500000007, 0.150000006}
+											var OverHeight = 0.0500000007
+										}
+										MeshCollider 
+										{
+											var Ghost = false
+											var SendsEvents = true
+											var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+											var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+											var Offset = Real3{0, 0, 0}
+											var PhysicsMesh = "null"
+											var DrawEdges = true
+											var DrawFaces = false
+											var DrawFaceNormals = false
+										}
+										Hierarchy 
+										{
+										}
+									}
+								}
+							}
+						}
+					}
+					Cog [Id:0x5b2acb047cbe8768][ContextId:23]
+					{
+						var Name = "Track1"
+						Transform 
+						{
+							var Translation = Real3{0, 0, 0}
+							var Scale = Real3{1, 1, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						Track 
+						{
+							var Spline = CogPath
+							{
+								var Path = "Spline"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 24
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+						}
+						Hierarchy 
+						{
+							Cog [Id:0x5a948d0665e7f40c][ContextId:24]
+							{
+								var Name = "Spline"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								ScriptHierarchySpline 
+								{
+									var Closed = false
+									var SplineType = SplineType.BSpline
+									var Error = 0.00999999978
+									var DebugMode = SplineDebugMode.Line
+									var SplineColor = Real4{0, 0.910000086, 1, 1}
+								}
+								Hierarchy 
+								{
+									Cog [Id:0x5b7fbd936b78aaee][ContextId:25]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-13.02565, 7.34273386, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa53bfe5259c0][ContextId:26]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-12.7267189, 7.32351637, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2acaf37f8bb47d][ContextId:27]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-9.30707264, 7.26805067, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa50be8a6fa6c][ContextId:28]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-5.12557411, 7.26805258, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5aaa48e5eb3a22d7][ContextId:29]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{-4.04903364, 7.07063866, 0.00219726563}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+								}
+							}
+							Cog [Id:0x5abeafcc6873982b][ContextId:30]
+							{
+								var Name = "Graphical"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								SplineGraphicalGenerator 
+								{
+									var SplineTarget = CogPath
+									{
+										var Path = "../Spline"
+										var ErrorOnResolveToNull = false
+										var ErrorOnPathCantCompute = false
+										var ErrorOnDirectLinkFail = false
+										var UpdateCogOnPathChange = true
+										var UpdatePathOnCogChange = true
+										var UpdateCogOnInitialize = true
+										var ResolvedNullErrorOccurred = false
+										var Cog = 24
+										var PathPreference0 = CogPathPreference.CogRelative
+										var PathPreference1 = CogPathPreference.SpaceRelative
+										var PathPreference2 = CogPathPreference.Absolute
+									}
+								}
+								Hierarchy 
+								{
+									Cog [Id:0x5abeafd56f458d0d][ContextId:31]
+									{
+										var Name = "Rails"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Hierarchy 
+										{
+											Cog [Id:0x5abeaf1d49101346][ContextId:32]
+											{
+												var Name = "Left"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Scale = Real3{1, 1, 1}
+													var Rotation = Quaternion{0, 0, 0, 1}
+												}
+												Model 
+												{
+													var Visible = true
+													var ViewCulling = false
+													var VisibilityEvents = true
+													var OverrideBoundingBox = false
+													var LocalAabbCenter = Real3{0, 0, 0}
+													var LocalAabbHalfExtents = Real3{1, 1, 1}
+													var GroupSortValue = 0
+													var Material = "5a95f706fd05db54:Rail"
+													var Mesh = "null"
+												}
+												SplineMeshGeneratorRectangle 
+												{
+													var Size = Real2{0.129999995, 0.100000001}
+													var Offset = Real2{-0.430000007, -0.0500000007}
+												}
+												MeshCollider 
+												{
+													var Ghost = false
+													var SendsEvents = true
+													var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+													var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+													var Offset = Real3{0, 0, 0}
+													var PhysicsMesh = "null"
+													var DrawEdges = true
+													var DrawFaces = false
+													var DrawFaceNormals = false
+												}
+											}
+											Cog [Id:0x5a94844dd5829dab][ContextId:33]
+											{
+												var Name = "Right"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Scale = Real3{1, 1, 1}
+													var Rotation = Quaternion{0, 0, 0, 1}
+												}
+												Model 
+												{
+													var Visible = true
+													var ViewCulling = false
+													var VisibilityEvents = true
+													var OverrideBoundingBox = false
+													var LocalAabbCenter = Real3{0, 0, 0}
+													var LocalAabbHalfExtents = Real3{1, 1, 1}
+													var GroupSortValue = 0
+													var Material = "5a95f706fd05db54:Rail"
+													var Mesh = "null"
+												}
+												SplineMeshGeneratorRectangle 
+												{
+													var Size = Real2{0.129999995, 0.100000001}
+													var Offset = Real2{0.430000007, -0.0500000007}
+												}
+												MeshCollider 
+												{
+													var Ghost = false
+													var SendsEvents = true
+													var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+													var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+													var Offset = Real3{0, 0, 0}
+													var PhysicsMesh = "null"
+													var DrawEdges = true
+													var DrawFaces = false
+													var DrawFaceNormals = false
+												}
+											}
+										}
+									}
+									Cog [Id:0x5abeb0d5409a67b9][ContextId:34]
+									{
+										var Name = "CrossSections"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Model 
+										{
+											var Visible = true
+											var ViewCulling = false
+											var VisibilityEvents = true
+											var OverrideBoundingBox = false
+											var LocalAabbCenter = Real3{0, 0, 0}
+											var LocalAabbHalfExtents = Real3{1, 1, 1}
+											var GroupSortValue = 0
+											var Material = "5a95f71ef8447fd9:Wood"
+											var Mesh = "null"
+										}
+										SplineMeshDecorator 
+										{
+											var Distance = 1
+											var StartOffset = 0
+											var Size = Real3{0.200000003, 0.0700000003, 0.699999988}
+											var Offset = Real3{0, -0.170000002, 0}
+										}
+										MeshCollider 
+										{
+											var Ghost = false
+											var SendsEvents = true
+											var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+											var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+											var Offset = Real3{0, 0, 0}
+											var PhysicsMesh = "null"
+											var DrawEdges = true
+											var DrawFaces = false
+											var DrawFaceNormals = false
+										}
+										Hierarchy 
+										{
+										}
+									}
+									Cog [Id:0x5aaaa550483f930d][ContextId:35]
+									{
+										var Name = "Scaffolding"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Model 
+										{
+											var Visible = true
+											var ViewCulling = false
+											var VisibilityEvents = true
+											var OverrideBoundingBox = false
+											var LocalAabbCenter = Real3{0, 0, 0}
+											var LocalAabbHalfExtents = Real3{1, 1, 1}
+											var GroupSortValue = 0
+											var Material = "5a95f71ef8447fd9:Wood"
+											var Mesh = "null"
+										}
+										SplineScaffoldingGenerator 
+										{
+											var SupportDistance = 2
+											var TrackWidth = 0.699999988
+											var SupportSize = Real2{0.0500000007, 0.150000006}
+											var OverHeight = 0.0500000007
+										}
+										MeshCollider 
+										{
+											var Ghost = false
+											var SendsEvents = true
+											var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+											var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+											var Offset = Real3{0, 0, 0}
+											var PhysicsMesh = "null"
+											var DrawEdges = true
+											var DrawFaces = false
+											var DrawFaceNormals = false
+										}
+										Hierarchy 
+										{
+										}
+									}
+								}
+							}
+						}
+					}
+					Cog [Id:0x5b2aa472c68526eb][ContextId:36]
+					{
+						var Name = "Track2"
+						Transform 
+						{
+							var Translation = Real3{0, 0, 0}
+							var Scale = Real3{1, 1, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						Track 
+						{
+							var Spline = CogPath
+							{
+								var Path = "Spline"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 37
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+						}
+						Hierarchy 
+						{
+							Cog [Id:0x5a948d0665e7f40c][ContextId:37]
+							{
+								var Name = "Spline"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								ScriptHierarchySpline 
+								{
+									var Closed = false
+									var SplineType = SplineType.BSpline
+									var Error = 0.00999999978
+									var DebugMode = SplineDebugMode.Line
+									var SplineColor = Real4{0, 0.910000086, 1, 1}
+								}
+								Hierarchy 
+								{
+									Cog [Id:0x5b7fbd936b78aaee][ContextId:38]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{3.2945261, 4.29743719, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2acaf37f8bb47d][ContextId:39]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{9.62648392, 3.56324339, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa50be8a6fa6c][ContextId:40]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{13.3669777, 0.501580238, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5aaa48e5eb3a22d7][ContextId:41]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{18.2183285, -0.554862022, 0.00219726563}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+								}
+							}
+							Cog [Id:0x5abeafcc6873982b][ContextId:42]
+							{
+								var Name = "Graphical"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								SplineGraphicalGenerator 
+								{
+									var SplineTarget = CogPath
+									{
+										var Path = "../Spline"
+										var ErrorOnResolveToNull = false
+										var ErrorOnPathCantCompute = false
+										var ErrorOnDirectLinkFail = false
+										var UpdateCogOnPathChange = true
+										var UpdatePathOnCogChange = true
+										var UpdateCogOnInitialize = true
+										var ResolvedNullErrorOccurred = false
+										var Cog = 37
+										var PathPreference0 = CogPathPreference.CogRelative
+										var PathPreference1 = CogPathPreference.SpaceRelative
+										var PathPreference2 = CogPathPreference.Absolute
+									}
+								}
+								Hierarchy 
+								{
+									Cog [Id:0x5abeafd56f458d0d][ContextId:43]
+									{
+										var Name = "Rails"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Hierarchy 
+										{
+											Cog [Id:0x5abeaf1d49101346][ContextId:44]
+											{
+												var Name = "Left"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Scale = Real3{1, 1, 1}
+													var Rotation = Quaternion{0, 0, 0, 1}
+												}
+												Model 
+												{
+													var Visible = true
+													var ViewCulling = false
+													var VisibilityEvents = true
+													var OverrideBoundingBox = false
+													var LocalAabbCenter = Real3{0, 0, 0}
+													var LocalAabbHalfExtents = Real3{1, 1, 1}
+													var GroupSortValue = 0
+													var Material = "5a95f706fd05db54:Rail"
+													var Mesh = "null"
+												}
+												SplineMeshGeneratorRectangle 
+												{
+													var Size = Real2{0.129999995, 0.100000001}
+													var Offset = Real2{-0.430000007, -0.0500000007}
+												}
+												MeshCollider 
+												{
+													var Ghost = false
+													var SendsEvents = true
+													var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+													var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+													var Offset = Real3{0, 0, 0}
+													var PhysicsMesh = "null"
+													var DrawEdges = true
+													var DrawFaces = false
+													var DrawFaceNormals = false
+												}
+											}
+											Cog [Id:0x5a94844dd5829dab][ContextId:45]
+											{
+												var Name = "Right"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Scale = Real3{1, 1, 1}
+													var Rotation = Quaternion{0, 0, 0, 1}
+												}
+												Model 
+												{
+													var Visible = true
+													var ViewCulling = false
+													var VisibilityEvents = true
+													var OverrideBoundingBox = false
+													var LocalAabbCenter = Real3{0, 0, 0}
+													var LocalAabbHalfExtents = Real3{1, 1, 1}
+													var GroupSortValue = 0
+													var Material = "5a95f706fd05db54:Rail"
+													var Mesh = "null"
+												}
+												SplineMeshGeneratorRectangle 
+												{
+													var Size = Real2{0.129999995, 0.100000001}
+													var Offset = Real2{0.430000007, -0.0500000007}
+												}
+												MeshCollider 
+												{
+													var Ghost = false
+													var SendsEvents = true
+													var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+													var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+													var Offset = Real3{0, 0, 0}
+													var PhysicsMesh = "null"
+													var DrawEdges = true
+													var DrawFaces = false
+													var DrawFaceNormals = false
+												}
+											}
+										}
+									}
+									Cog [Id:0x5abeb0d5409a67b9][ContextId:46]
+									{
+										var Name = "CrossSections"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Model 
+										{
+											var Visible = true
+											var ViewCulling = false
+											var VisibilityEvents = true
+											var OverrideBoundingBox = false
+											var LocalAabbCenter = Real3{0, 0, 0}
+											var LocalAabbHalfExtents = Real3{1, 1, 1}
+											var GroupSortValue = 0
+											var Material = "5a95f71ef8447fd9:Wood"
+											var Mesh = "null"
+										}
+										SplineMeshDecorator 
+										{
+											var Distance = 1
+											var StartOffset = 0
+											var Size = Real3{0.200000003, 0.0700000003, 0.699999988}
+											var Offset = Real3{0, -0.170000002, 0}
+										}
+										MeshCollider 
+										{
+											var Ghost = false
+											var SendsEvents = true
+											var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+											var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+											var Offset = Real3{0, 0, 0}
+											var PhysicsMesh = "null"
+											var DrawEdges = true
+											var DrawFaces = false
+											var DrawFaceNormals = false
+										}
+										Hierarchy 
+										{
+										}
+									}
+									Cog [Id:0x5aaaa550483f930d][ContextId:47]
+									{
+										var Name = "Scaffolding"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Model 
+										{
+											var Visible = true
+											var ViewCulling = false
+											var VisibilityEvents = true
+											var OverrideBoundingBox = false
+											var LocalAabbCenter = Real3{0, 0, 0}
+											var LocalAabbHalfExtents = Real3{1, 1, 1}
+											var GroupSortValue = 0
+											var Material = "5a95f71ef8447fd9:Wood"
+											var Mesh = "null"
+										}
+										SplineScaffoldingGenerator 
+										{
+											var SupportDistance = 2
+											var TrackWidth = 0.699999988
+											var SupportSize = Real2{0.0500000007, 0.150000006}
+											var OverHeight = 0.0500000007
+										}
+										MeshCollider 
+										{
+											var Ghost = false
+											var SendsEvents = true
+											var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+											var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+											var Offset = Real3{0, 0, 0}
+											var PhysicsMesh = "null"
+											var DrawEdges = true
+											var DrawFaces = false
+											var DrawFaceNormals = false
+										}
+										Hierarchy 
+										{
+										}
+									}
+								}
+							}
+						}
+					}
+					Cog [Id:0x5b2aa6f77257ba49][ContextId:48]
+					{
+						var Name = "Track3"
+						Transform 
+						{
+							var Translation = Real3{0, 0, 0}
+							var Scale = Real3{1, 1, 1}
+							var Rotation = Quaternion{0, 0, 0, 1}
+						}
+						Track 
+						{
+							var Spline = CogPath
+							{
+								var Path = "Spline"
+								var ErrorOnResolveToNull = false
+								var ErrorOnPathCantCompute = false
+								var ErrorOnDirectLinkFail = false
+								var UpdateCogOnPathChange = true
+								var UpdatePathOnCogChange = true
+								var UpdateCogOnInitialize = true
+								var ResolvedNullErrorOccurred = false
+								var Cog = 49
+								var PathPreference0 = CogPathPreference.CogRelative
+								var PathPreference1 = CogPathPreference.SpaceRelative
+								var PathPreference2 = CogPathPreference.Absolute
+							}
+						}
+						Hierarchy 
+						{
+							Cog [Id:0x5a948d0665e7f40c][ContextId:49]
+							{
+								var Name = "Spline"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								ScriptHierarchySpline 
+								{
+									var Closed = false
+									var SplineType = SplineType.BSpline
+									var Error = 0.00999999978
+									var DebugMode = SplineDebugMode.Line
+									var SplineColor = Real4{0, 0.910000086, 1, 1}
+								}
+								Hierarchy 
+								{
+									Cog [Id:0x5b7fbd936b78aaee][ContextId:50]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{27.1165085, -4.76544428, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2acaf37f8bb47d][ContextId:51]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{32.1584702, -7.63413, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa50be8a6fa6c][ContextId:52]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{38.7848053, -10.140975, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa69a63d571b2][ContextId:53]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{45.3675919, -2.1246357, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa6a7620519c9][ContextId:54]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{54.2626228, -2.03521347, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa69e6488b666][ContextId:55]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{58.7433739, -3.87822485, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5aaa48e5eb3a22d7][ContextId:56]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{73.1712952, -12.8180256, 0.00219726563}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+									Cog [Id:0x5b2aa0b2033482f3][ContextId:57]
+									{
+										var Name = "p"
+										Transform 
+										{
+											var Translation = Real3{79.0208054, -3.23866272, 0.00219726563}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										SelectionIcon 
+										{
+											var Visible = true
+											var VisibilityEvents = true
+											var Material = "56581e2bb81777be:DebugDrawOnTop"
+											var SpriteSource = "58f8e4be736fa133:SelectIcon"
+											var ViewScale = 0.400000006
+											var OverrideSelections = true
+										}
+									}
+								}
+							}
+							Cog [Id:0x5abeafcc6873982b][ContextId:58]
+							{
+								var Name = "Graphical"
+								Transform 
+								{
+									var Translation = Real3{0, 0, 0}
+									var Scale = Real3{1, 1, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								SplineGraphicalGenerator 
+								{
+									var SplineTarget = CogPath
+									{
+										var Path = "../Spline"
+										var ErrorOnResolveToNull = false
+										var ErrorOnPathCantCompute = false
+										var ErrorOnDirectLinkFail = false
+										var UpdateCogOnPathChange = true
+										var UpdatePathOnCogChange = true
+										var UpdateCogOnInitialize = true
+										var ResolvedNullErrorOccurred = false
+										var Cog = 49
+										var PathPreference0 = CogPathPreference.CogRelative
+										var PathPreference1 = CogPathPreference.SpaceRelative
+										var PathPreference2 = CogPathPreference.Absolute
+									}
+								}
+								Hierarchy 
+								{
+									Cog [Id:0x5abeafd56f458d0d][ContextId:59]
+									{
+										var Name = "Rails"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Hierarchy 
+										{
+											Cog [Id:0x5abeaf1d49101346][ContextId:60]
+											{
+												var Name = "Left"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Scale = Real3{1, 1, 1}
+													var Rotation = Quaternion{0, 0, 0, 1}
+												}
+												Model 
+												{
+													var Visible = true
+													var ViewCulling = false
+													var VisibilityEvents = true
+													var OverrideBoundingBox = false
+													var LocalAabbCenter = Real3{0, 0, 0}
+													var LocalAabbHalfExtents = Real3{1, 1, 1}
+													var GroupSortValue = 0
+													var Material = "5a95f706fd05db54:Rail"
+													var Mesh = "null"
+												}
+												SplineMeshGeneratorRectangle 
+												{
+													var Size = Real2{0.129999995, 0.100000001}
+													var Offset = Real2{-0.430000007, -0.0500000007}
+												}
+												MeshCollider 
+												{
+													var Ghost = false
+													var SendsEvents = true
+													var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+													var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+													var Offset = Real3{0, 0, 0}
+													var PhysicsMesh = "null"
+													var DrawEdges = true
+													var DrawFaces = false
+													var DrawFaceNormals = false
+												}
+											}
+											Cog [Id:0x5a94844dd5829dab][ContextId:61]
+											{
+												var Name = "Right"
+												Transform 
+												{
+													var Translation = Real3{0, 0, 0}
+													var Scale = Real3{1, 1, 1}
+													var Rotation = Quaternion{0, 0, 0, 1}
+												}
+												Model 
+												{
+													var Visible = true
+													var ViewCulling = false
+													var VisibilityEvents = true
+													var OverrideBoundingBox = false
+													var LocalAabbCenter = Real3{0, 0, 0}
+													var LocalAabbHalfExtents = Real3{1, 1, 1}
+													var GroupSortValue = 0
+													var Material = "5a95f706fd05db54:Rail"
+													var Mesh = "null"
+												}
+												SplineMeshGeneratorRectangle 
+												{
+													var Size = Real2{0.129999995, 0.100000001}
+													var Offset = Real2{0.430000007, -0.0500000007}
+												}
+												MeshCollider 
+												{
+													var Ghost = false
+													var SendsEvents = true
+													var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+													var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+													var Offset = Real3{0, 0, 0}
+													var PhysicsMesh = "null"
+													var DrawEdges = true
+													var DrawFaces = false
+													var DrawFaceNormals = false
+												}
+											}
+										}
+									}
+									Cog [Id:0x5abeb0d5409a67b9][ContextId:62]
+									{
+										var Name = "CrossSections"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Model 
+										{
+											var Visible = true
+											var ViewCulling = false
+											var VisibilityEvents = true
+											var OverrideBoundingBox = false
+											var LocalAabbCenter = Real3{0, 0, 0}
+											var LocalAabbHalfExtents = Real3{1, 1, 1}
+											var GroupSortValue = 0
+											var Material = "5a95f71ef8447fd9:Wood"
+											var Mesh = "null"
+										}
+										SplineMeshDecorator 
+										{
+											var Distance = 1
+											var StartOffset = 0
+											var Size = Real3{0.200000003, 0.0700000003, 0.699999988}
+											var Offset = Real3{0, -0.170000002, 0}
+										}
+										MeshCollider 
+										{
+											var Ghost = false
+											var SendsEvents = true
+											var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+											var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+											var Offset = Real3{0, 0, 0}
+											var PhysicsMesh = "null"
+											var DrawEdges = true
+											var DrawFaces = false
+											var DrawFaceNormals = false
+										}
+										Hierarchy 
+										{
+										}
+									}
+									Cog [Id:0x5aaaa550483f930d][ContextId:63]
+									{
+										var Name = "Scaffolding"
+										Transform 
+										{
+											var Translation = Real3{0, 0, 0}
+											var Scale = Real3{1, 1, 1}
+											var Rotation = Quaternion{0, 0, 0, 1}
+										}
+										Model 
+										{
+											var Visible = true
+											var ViewCulling = false
+											var VisibilityEvents = true
+											var OverrideBoundingBox = false
+											var LocalAabbCenter = Real3{0, 0, 0}
+											var LocalAabbHalfExtents = Real3{1, 1, 1}
+											var GroupSortValue = 0
+											var Material = "5a95f71ef8447fd9:Wood"
+											var Mesh = "null"
+										}
+										SplineScaffoldingGenerator 
+										{
+											var SupportDistance = 2
+											var TrackWidth = 0.699999988
+											var SupportSize = Real2{0.0500000007, 0.150000006}
+											var OverHeight = 0.0500000007
+										}
+										MeshCollider 
+										{
+											var Ghost = false
+											var SendsEvents = true
+											var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+											var CollisionGroup = "5b7b4d510b14dfb7:CartTrack"
+											var Offset = Real3{0, 0, 0}
+											var PhysicsMesh = "null"
+											var DrawEdges = true
+											var DrawFaces = false
+											var DrawFaceNormals = false
+										}
+										Hierarchy 
+										{
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+			Cog [Id:0x5b7f5fb160064cbc][ContextId:64]
+			{
+				var Name = "Vegetation"
+				Transform 
+				{
+					var Translation = Real3{0, 0, 0}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				Hierarchy 
+				{
+					Cog [Id:0x5b7f583d7ac56abd][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:65]
+					{
+						Transform 
+						{
+							var Translation = Real3{-25.4377098, -0.64868784, -15.1569443}
+							var Rotation = Quaternion{0, 0.0584837198, 0, 0.998288393}
+							var Scale = Real3{2.32790828, 1.34624267, 1.34624267}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:66]
+							{
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:67]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b2aa5cc021f26bc][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:68]
+					{
+						Transform 
+						{
+							var Translation = Real3{-17.7118454, -14.8992023, -17.261364}
+							var Rotation = Quaternion{0, 0.0584837198, 0, 0.998288393}
+							var Scale = Real3{2.76370001, 2.75420761, 1.34624267}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:69]
+							{
+								Transform 
+								{
+									var Translation = Real3{0, -5.47640228, 0}
+									var Scale = Real3{1, 1.78658557, 1}
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:70]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56b13][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:71]
+					{
+						Transform 
+						{
+							var Translation = Real3{-28.1771202, -0.546263218, -6.13029289}
+							var Rotation = Quaternion{0, -0.804331183, 0, 0.59418124}
+							var Scale = Real3{1.98731506, 0.943881214, 2.00260854}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:72]
+							{
+							}
+							Cog [Id:0x5b2aa7f5bf6d2cf5][LocallyAdded][ContextId:73]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{0, -36.6149292, 0}
+									var Scale = Real3{0.980779171, 6.37770939, 0.963988483}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:74]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b2aa05df5edcebc][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:75]
+					{
+						Transform 
+						{
+							var Translation = Real3{75.3477249, 2.72003746, -13.1108932}
+							var Rotation = Quaternion{0, -0.908539414, 0, 0.417799294}
+							var Scale = Real3{1.98731506, 0.943881214, 2.00260854}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:76]
+							{
+							}
+							Cog [Id:0x5b2aa7f5bf6d2cf5][LocallyAdded][ContextId:77]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{0, -36.6149292, 0}
+									var Scale = Real3{0.980779171, 6.37770939, 0.963988483}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:78]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b2aa043f96a075d][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:79]
+					{
+						Transform 
+						{
+							var Translation = Real3{85.3287125, 0.924100876, -13.1108932}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1.99343586, 0.943881214, 1.85038388}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:80]
+							{
+							}
+							Cog [Id:0x5b2aa7f5bf6d2cf5][LocallyAdded][ContextId:81]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{0, -14.8300247, 0}
+									var Scale = Real3{0.980779171, 3.21242642, 0.963988483}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:82]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b2aa017e4be18bf][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:83]
+					{
+						Transform 
+						{
+							var Translation = Real3{99.9466934, 0.924102783, 2.4016819}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1.99343586, 0.943881214, 1.85038388}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:84]
+							{
+							}
+							Cog [Id:0x5b2aa7f5bf6d2cf5][LocallyAdded][ContextId:85]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{0, -14.8300247, 0}
+									var Scale = Real3{0.980779171, 3.21242642, 0.963988483}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:86]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b2aa58d0fc3a303][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:87]
+					{
+						Transform 
+						{
+							var Translation = Real3{-9.59095001, -0.546263218, -7.06795692}
+							var Rotation = Quaternion{0, -0.780906379, 0, -0.624648213}
+							var Scale = Real3{2.2379508, 0.943881214, 1.66660416}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:88]
+							{
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:89]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56b59][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:90]
+					{
+						Transform 
+						{
+							var Translation = Real3{-31.652895, 4.8609767, -6.13029099}
+							var Rotation = Quaternion{0, 0.591556311, 0, 0.806263626}
+							var Scale = Real3{1.53592372, 1.1032964, 0.958210289}
+						}
+					}
+					Cog [Id:0x5b2aa05df5edcfbf][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:91]
+					{
+						Transform 
+						{
+							var Translation = Real3{72.1606903, 8.1272831, -14.497798}
+							var Rotation = Quaternion{0, 0.414835393, 0, 0.909896493}
+							var Scale = Real3{1.53592372, 1.1032964, 0.958210289}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56b99][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:92]
+					{
+						Transform 
+						{
+							var Translation = Real3{10.3147163, -1.28406096, -15.8294983}
+							var Rotation = Quaternion{0, 0.97791183, 0, 0.209018067}
+							var Scale = Real3{1.41097903, 1.34624267, 1.28389907}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:93]
+							{
+							}
+							Cog [Id:0x5b2aa59e0cf928c6][LocallyAdded][ContextId:94]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{0, -12.9873514, 0}
+									var Scale = Real3{1, 2.29558611, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:95]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b2aa7acad44a2b5][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:96]
+					{
+						Transform 
+						{
+							var Translation = Real3{13.7171955, -8.05820084, -10.0856209}
+							var Rotation = Quaternion{0, -0.00680844858, 0, 0.999976814}
+							var Scale = Real3{1.41097903, 1.34624267, 1.28389907}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:97]
+							{
+							}
+							Cog [Id:0x5b2aa59e0cf928c6][LocallyAdded][ContextId:98]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{0, -12.9873514, 0}
+									var Scale = Real3{1, 2.29558611, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:99]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b2aa4b0d99c9ecc][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:100]
+					{
+						Transform 
+						{
+							var Translation = Real3{6.38241768, -2.69984484, 0.11615181}
+							var Rotation = Quaternion{0, 0.97791183, 0, 0.209018067}
+							var Scale = Real3{0.658667624, 0.854099989, 0.718148887}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:101]
+							{
+							}
+							Cog [Id:0x5b2aa59e0cf928c6][LocallyAdded][ContextId:102]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{-0.149834454, -5.19384527, 0.226826027}
+									var Scale = Real3{1, 1.49778545, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:103]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b2aa481c23c6249][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:104]
+					{
+						Transform 
+						{
+							var Translation = Real3{13.7445221, -6.25554419, 0.11615181}
+							var Rotation = Quaternion{0, 0.97791183, 0, 0.209018067}
+							var Scale = Real3{1.03830004, 0.854099989, 0.903559029}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:105]
+							{
+							}
+							Cog [Id:0x5b2aa59e0cf928c6][LocallyAdded][ContextId:106]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{-0.0364829749, -5.19384527, 0.232093096}
+									var Scale = Real3{1, 1.49778545, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:107]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56bd2][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:108]
+					{
+						Transform 
+						{
+							var Translation = Real3{24.9821033, -1.28406096, -13.8426933}
+							var Rotation = Quaternion{0, 0.677004397, 0, 0.735978961}
+							var Scale = Real3{2.10926843, 1.5375098, 2.55350041}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:109]
+							{
+							}
+							Cog [Id:0x5b2aa435b3d16405][LocallyAdded][ContextId:110]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{-0.323581427, -14.6281567, 0.0223508738}
+									var Scale = Real3{1, 3.24780369, 1}
+									var Rotation = Quaternion{-0.00126733351, 0, -0.0125190644, 0.999920845}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:111]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56c10][InheritId:"592c47972fe4b3c9:SM_BigRock_01"][ContextId:112]
+					{
+						Transform 
+						{
+							var Translation = Real3{-4.5036869, 0.215204716, -15.8294983}
+							var Rotation = Quaternion{0, 0.97791183, 0, 0.209018067}
+							var Scale = Real3{2.24688029, 2.04890013, 1.994555}
+						}
+						Hierarchy [ChildOrderOverride]
+						{
+							Cog [Id:0x592c4384f2117a58][ContextId:113]
+							{
+							}
+							Cog [Id:0x5b2aa5a1092f4938][LocallyAdded][ContextId:114]
+							{
+								var Name = "SMBigRock01GeneratedMeshNode0"
+								Transform 
+								{
+									var Translation = Real3{-0.0826426148, -12.2362537, 0.212778032}
+									var Scale = Real3{1, 2.28589344, 1}
+									var Rotation = Quaternion{0, 0, 0, 1}
+								}
+								Model 
+								{
+									var Visible = true
+									var ViewCulling = true
+									var VisibilityEvents = true
+									var OverrideBoundingBox = false
+									var LocalAabbCenter = Real3{0, 0, 0}
+									var LocalAabbHalfExtents = Real3{1, 1, 1}
+									var GroupSortValue = 0
+									var Material = "5924959c7091e634:TreeTrunk"
+									var Mesh = "5aaa4c1d0e1a7ece:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+								}
+								MeshCollider 
+								{
+									var Ghost = false
+									var SendsEvents = true
+									var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+									var CollisionGroup = "4e740859314e5515:DefaultGroup"
+									var Offset = Real3{0, 0, 0}
+									var PhysicsMesh = "5b7f5e371deceecd:SM_BigRock_01_SM_BigRock_01GeneratedMeshNode0"
+									var DrawEdges = true
+									var DrawFaces = false
+									var DrawFaceNormals = false
+								}
+							}
+							Cog [Id:0x592c4384f2117f7e][ContextId:115]
+							{
+							}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56c4e][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:116]
+					{
+						Transform 
+						{
+							var Translation = Real3{3.63169432, -1.81456947, 6.04401684}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{2.24025679, 0.707141757, 3.39953542}
+						}
+					}
+					Cog [Id:0x5b2acaca6659fcde][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:117]
+					{
+						Transform 
+						{
+							var Translation = Real3{9.29085541, -4.93885136, 1.69603252}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1.75028014, 0.589486957, 3.39953542}
+						}
+						Obstacle [LocallyAdded]
+						{
+						}
+					}
+					Cog [Id:0x5b2aa6205a17ee36][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:118]
+					{
+						Transform 
+						{
+							var Translation = Real3{30.9057903, -15.4767952, -2.01368999}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{7.59156418, 2.13272524, 6.63465834}
+						}
+					}
+					Cog [Id:0x5b2aa1ad33bc1428][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:119]
+					{
+						Transform 
+						{
+							var Translation = Real3{19.9372272, -11.4138899, 7.86588192}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{11.9875422, 2.49545193, 9.84427261}
+						}
+						ConvexMeshCollider [LocallyRemoved]
+						{
+						}
+					}
+					Cog [Id:0x5b2aa6255b18065c][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:120]
+					{
+						Transform 
+						{
+							var Translation = Real3{50.7266541, -20.4359913, 1.86699581}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{14.2215452, 4.78975582, 17.1571026}
+						}
+					}
+					Cog [Id:0x5b2aa09e0996f40a][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:121]
+					{
+						Transform 
+						{
+							var Translation = Real3{86.3340607, -26.1488571, 1.86699581}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{16.3735504, 4.78975582, 17.1571026}
+						}
+						Obstacle [LocallyAdded]
+						{
+						}
+					}
+					Cog [Id:0x5b2aa08a0bfee52b][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:122]
+					{
+						Transform 
+						{
+							var Translation = Real3{67.3970413, -0.596418858, 1.86699581}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{12.9062166, 4.78975582, 17.1571026}
+						}
+						Obstacle [LocallyAdded]
+						{
+						}
+					}
+					Cog [Id:0x5b2aa1b84f9fbeba][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:123]
+					{
+						Transform 
+						{
+							var Translation = Real3{45.161438, 0.764923096, -7.99788666}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{14.2215452, 4.78975582, 7.00429153}
+						}
+						ConvexMeshCollider [LocallyRemoved]
+						{
+						}
+					}
+					Cog [Id:0x5b2aa109128c641b][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:124]
+					{
+						Transform 
+						{
+							var Translation = Real3{27.8493233, -10.4283943, -5.57229042}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{7.25133181, 4.95648861, 3.57137299}
+						}
+						ConvexMeshCollider [LocallyRemoved]
+						{
+						}
+					}
+					Cog [Id:0x5b2aa60441202851][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:125]
+					{
+						Transform 
+						{
+							var Translation = Real3{33.2137756, 9.01671791, 1.70580864}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{14.2215452, 4.78975582, 17.1571026}
+						}
+						Obstacle [LocallyAdded]
+						{
+						}
+					}
+					Cog [Id:0x5b008127967735ce][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:126]
+					{
+						Transform 
+						{
+							var Translation = Real3{26.3025131, 3.51147699, -6.14494276}
+							var Rotation = Quaternion{-0.320048243, 0, 0, 0.947401285}
+							var Scale = Real3{11.8782692, 3.4052825, 12.1978617}
+						}
+						Obstacle [LocallyAdded]
+						{
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56cd1][InheritId:"592c47ff2409f023:SM_BirchTree_02"][ContextId:127]
+					{
+						Transform 
+						{
+							var Translation = Real3{-18.0858879, 7.68622732, -15.1723938}
+							var Rotation = Quaternion{0, -0.0554855987, 0, 0.998459518}
+							var Scale = Real3{1.55171537, 1.55171537, 1.55171537}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56d10][InheritId:"592c47ff2409f023:SM_BirchTree_02"][ContextId:128]
+					{
+						Transform 
+						{
+							var Translation = Real3{-1.90192223, 13.2375784, -18.5714951}
+							var Rotation = Quaternion{0, 0.23698768, 0, 0.971512675}
+							var Scale = Real3{0.880375266, 0.880375266, 0.880375266}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56d5d][InheritId:"592c47ff2409f023:SM_BirchTree_02"][ContextId:129]
+					{
+						Transform 
+						{
+							var Translation = Real3{0.497801304, 13.1044044, -12.0322018}
+							var Rotation = Quaternion{0, -0.197486401, 0, 0.980305731}
+							var Scale = Real3{1.3055383, 1.3055383, 1.3055383}
+						}
+					}
+					Cog [Id:0x5b7f59eeb976554a][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:130]
+					{
+						Transform 
+						{
+							var Translation = Real3{4.39210844, 2.61557579, -1.66971254}
+							var Rotation = Quaternion{0, -0.569278121, 0, 0.822145045}
+							var Scale = Real3{0.665770113, 0.665770113, 0.665770113}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56e03][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:131]
+					{
+						Transform 
+						{
+							var Translation = Real3{-8.38731384, 13.370719, -10.9904451}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{0.841280937, 0.841280937, 0.841280937}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56e40][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:132]
+					{
+						Transform 
+						{
+							var Translation = Real3{13.2887325, -0.437515885, -8.41058159}
+							var Rotation = Quaternion{0, 0.0678020939, 0, 0.997698843}
+							var Scale = Real3{1.2025851, 1.2025851, 1.2025851}
+						}
+					}
+					Cog [Id:0x5b7f59a6ceb00f00][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:133]
+					{
+						Transform 
+						{
+							var Translation = Real3{18.2747421, 8.41882801, -17.0341702}
+							var Rotation = Quaternion{0, 0.0678020939, 0, 0.997698843}
+							var Scale = Real3{1.2025851, 1.2025851, 1.2025851}
+						}
+					}
+					Cog [Id:0x5b7f59a5ce320621][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:134]
+					{
+						Transform 
+						{
+							var Translation = Real3{24.2415943, 8.24648857, -5.72094345}
+							var Rotation = Quaternion{0, -0.171481043, 0, 0.985187411}
+							var Scale = Real3{1.03208923, 1.03208923, 1.03208923}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56eb1][InheritId:"592c47ff2409f023:SM_BirchTree_02"][ContextId:135]
+					{
+						Transform 
+						{
+							var Translation = Real3{-8.72126579, 5.44039583, -7.23931885}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{1, 1, 1}
+						}
+					}
+					Cog [Id:0x5b7f59bcc8a0afc5][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:136]
+					{
+						Transform 
+						{
+							var Translation = Real3{20.4749336, 8.55757332, -8.95226479}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b7f59bdc876e6fa][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:137]
+					{
+						Transform 
+						{
+							var Translation = Real3{9.89643574, 7.25558186, -12.9594517}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b7f59b2c83d5af5][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:138]
+					{
+						Transform 
+						{
+							var Translation = Real3{5.96626377, 7.23012161, -14.5327396}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b2ac5845f824699][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:139]
+					{
+						Transform 
+						{
+							var Translation = Real3{31.5151424, 8.38195801, -10.6726656}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b2ac5875f501e9d][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:140]
+					{
+						Transform 
+						{
+							var Translation = Real3{14.6456337, -0.904518604, 2.65072823}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{0.999717057, 0.999716818, 0.999717057}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56f21][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:141]
+					{
+						Transform 
+						{
+							var Translation = Real3{-8.36442947, 13.370719, -13.7470579}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56f8f][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:142]
+					{
+						Transform 
+						{
+							var Translation = Real3{-19.7698612, 8.09195137, -14.1053324}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b2aa4ced5e7e124][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:143]
+					{
+						Transform 
+						{
+							var Translation = Real3{-12.4555483, 5.6281786, -5.63876629}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b2aa4c0d525e3e3][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:144]
+					{
+						Transform 
+						{
+							var Translation = Real3{-4.71273041, 5.41657162, -4.79101849}
+							var Rotation = Quaternion{0, -0.750233769, 0, 0.661172628}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56fc5][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:145]
+					{
+						Transform 
+						{
+							var Translation = Real3{-23.3449287, 5.2980051, -3.17980099}
+							var Rotation = Quaternion{0, -0.354502022, 0, 0.935055256}
+							var Scale = Real3{1.27813506, 1.2781347, 1.27813506}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac56ffb][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:146]
+					{
+						Transform 
+						{
+							var Translation = Real3{-28.9673004, 5.26857281, 1.65916157}
+							var Rotation = Quaternion{0, -0.354501963, 0, 0.935055315}
+							var Scale = Real3{0.900699794, 0.900699556, 0.900699794}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57033][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:147]
+					{
+						Transform 
+						{
+							var Translation = Real3{-27.2448616, 5.53033352, 2.14273834}
+							var Rotation = Quaternion{0, -0.354501992, 0, 0.935055315}
+							var Scale = Real3{0.58728379, 0.587283671, 0.58728379}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac5706a][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:148]
+					{
+						Transform 
+						{
+							var Translation = Real3{-30.0495148, 11.7670803, -3.00769663}
+							var Rotation = Quaternion{0.110176608, -0.346220016, -0.18924275, 0.912239015}
+							var Scale = Real3{0.72321111, 0.72321099, 0.72321099}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac5711b][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:149]
+					{
+						Transform 
+						{
+							var Translation = Real3{-33.4646606, 11.7781887, -4.31314135}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{0.72321111, 0.72321099, 0.72321111}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57154][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:150]
+					{
+						Transform 
+						{
+							var Translation = Real3{-31.4369583, 12.3191376, -9.06857872}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{0.626526833, 0.626526773, 0.626526833}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac5718d][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:151]
+					{
+						Transform 
+						{
+							var Translation = Real3{-32.2799225, 12.1361637, -1.80370331}
+							var Rotation = Quaternion{0.165319443, -0.35988766, -0.138104215, 0.907787204}
+							var Scale = Real3{0.562741578, 0.562741578, 0.562741697}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac571cb][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:152]
+					{
+						Transform 
+						{
+							var Translation = Real3{0.325775623, -0.437513977, -6.7722683}
+							var Rotation = Quaternion{-0.333192796, 0.666038811, -0.451892465, -0.491088748}
+							var Scale = Real3{0.692999482, 0.692999125, 1.53094912}
+						}
+					}
+					Cog [Id:0x5b2aa4c5d67e55d2][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:153]
+					{
+						Transform 
+						{
+							var Translation = Real3{-9.8308773, 5.79801035, -8.32159233}
+							var Rotation = Quaternion{-0.333192796, 0.666038811, -0.451892465, -0.491088748}
+							var Scale = Real3{0.692999482, 0.692999125, 1.53094912}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57207][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:154]
+					{
+						Transform 
+						{
+							var Translation = Real3{0.862269163, 12.9011793, -10.2318134}
+							var Rotation = Quaternion{-0.427561551, 0.609767258, -0.519228935, -0.419257045}
+							var Scale = Real3{0.9126513, 1.35254312, 2.1104219}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac572ed][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:155]
+					{
+						Transform 
+						{
+							var Translation = Real3{-23.0774918, 5.46960688, -6.89365864}
+							var Rotation = Quaternion{0, 0.161009833, 0, 0.986952841}
+							var Scale = Real3{1.36359453, 1.36359453, 1.36359453}
+						}
+					}
+					Cog [Id:0x5b2aa05df5edd7e4][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:156]
+					{
+						Transform 
+						{
+							var Translation = Real3{80.3284073, 8.73591328, -11.7759743}
+							var Rotation = Quaternion{0, -0.0434984006, 0, 0.999053538}
+							var Scale = Real3{1.36359453, 1.36359453, 1.36359453}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57326][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:157]
+					{
+						Transform 
+						{
+							var Translation = Real3{-27.4692059, 8.18597221, -16.3090706}
+							var Rotation = Quaternion{0, 0.0678020939, 0, 0.997698843}
+							var Scale = Real3{1.2025851, 1.2025851, 1.2025851}
+						}
+					}
+					Cog [Id:0x5b2aa05df5edd877][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:158]
+					{
+						Transform 
+						{
+							var Translation = Real3{80.0584412, 11.4522781, -22.1617661}
+							var Rotation = Quaternion{0, -0.136940077, 0, 0.990579367}
+							var Scale = Real3{1.2025851, 1.2025851, 1.2025851}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57362][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:159]
+					{
+						Transform 
+						{
+							var Translation = Real3{-29.18437, 12.1428986, -6.77920914}
+							var Rotation = Quaternion{0, -0.247221604, 0, 0.968959033}
+							var Scale = Real3{1.20258522, 1.2025851, 1.20258522}
+						}
+					}
+					Cog [Id:0x5b2aa05df5edd8fe][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:160]
+					{
+						Transform 
+						{
+							var Translation = Real3{74.6830978, 15.4092045, -14.1078224}
+							var Rotation = Quaternion{0, -0.43949613, 0, 0.89824456}
+							var Scale = Real3{1.20258522, 1.2025851, 1.20258522}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac5739f][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:161]
+					{
+						Transform 
+						{
+							var Translation = Real3{8.2827425, -0.276381493, -9.03486633}
+							var Rotation = Quaternion{0.0643604696, -0.479469687, -0.0352881514, 0.874483526}
+							var Scale = Real3{0.747488558, 0.747488499, 0.747488558}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac573dd][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:162]
+					{
+						Transform 
+						{
+							var Translation = Real3{-5.80215645, 13.418066, -12.0621719}
+							var Rotation = Quaternion{0, -0.247221604, 0, 0.968959033}
+							var Scale = Real3{1.20258522, 1.2025851, 1.20258522}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57421][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:163]
+					{
+						Transform 
+						{
+							var Translation = Real3{7.36430168, 7.54236794, -14.9053307}
+							var Rotation = Quaternion{0, -0.247221574, 0, 0.968959033}
+							var Scale = Real3{1.14066815, 1.14066815, 1.14066815}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57459][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:164]
+					{
+						Transform 
+						{
+							var Translation = Real3{-32.6137009, 11.7951822, -2.79858994}
+							var Rotation = Quaternion{0, 0.0678020939, 0, 0.997698843}
+							var Scale = Real3{1.36519074, 1.36519074, 1.36519074}
+						}
+					}
+					Cog [Id:0x5b2aa05df5edda04][InheritId:"592c47ff2404f099:SM_Tree_06"][ContextId:165]
+					{
+						Transform 
+						{
+							var Translation = Real3{69.9502563, 15.0614872, -11.8262119}
+							var Rotation = Quaternion{0, -0.136940077, 0, 0.990579367}
+							var Scale = Real3{1.36519074, 1.36519074, 1.36519074}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57506][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:166]
+					{
+						Transform 
+						{
+							var Translation = Real3{-9.4421339, 1.00852907, 3.07194901}
+							var Rotation = Quaternion{-0.333192825, 0.666038811, -0.451892555, -0.491088688}
+							var Scale = Real3{1.17451859, 1.17451835, 2.59470391}
+						}
+					}
+					Cog [Id:0x5b7f59b6cb456367][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:167]
+					{
+						Transform 
+						{
+							var Translation = Real3{29.3593884, 7.58468962, -5.66551399}
+							var Rotation = Quaternion{-0.333192825, 0.666038811, -0.451892555, -0.491088688}
+							var Scale = Real3{1.17451859, 1.17451835, 2.59470391}
+						}
+					}
+					Cog [Id:0x5b7f59ecb8ec7a7f][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:168]
+					{
+						Transform 
+						{
+							var Translation = Real3{4.710289, -0.681775689, -11.8231688}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{2.50042033, 2.30174494, 2.79417777}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac575a5][InheritId:"592c47b135b653c5:SM_BigLeafFlower_01"][ContextId:169]
+					{
+						Transform 
+						{
+							var Translation = Real3{-10.3834152, 13.370719, -13.600132}
+							var Rotation = Quaternion{0, 0, 0, 1}
+							var Scale = Real3{0.841280937, 0.841280937, 0.841280937}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57611][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:170]
+					{
+						Transform 
+						{
+							var Translation = Real3{-14.3427334, -0.437513977, -11.0325241}
+							var Rotation = Quaternion{-0.333192796, 0.666038811, -0.451892436, -0.491088837}
+							var Scale = Real3{1.88555706, 1.88555682, 4.16550398}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac5764f][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:171]
+					{
+						Transform 
+						{
+							var Translation = Real3{-25.7054958, 5.28263998, -7.37341785}
+							var Rotation = Quaternion{0.60532707, -0.278219491, 0.291250914, 0.686546385}
+							var Scale = Real3{3.23989964, 1.44129598, 2.75151062}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac5768a][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:172]
+					{
+						Transform 
+						{
+							var Translation = Real3{-30.8961411, 5.40107107, -0.127568245}
+							var Rotation = Quaternion{0.566573083, -0.357570916, 0.360891551, 0.648764372}
+							var Scale = Real3{2.39156914, 1.06390917, 2.03105879}
+						}
+					}
+					Cog [Id:0x5b2aa05df5eddb3b][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:173]
+					{
+						Transform 
+						{
+							var Translation = Real3{70.4593506, 8.66737747, -8.69169426}
+							var Rotation = Quaternion{0.4811382, -0.48227787, 0.468779147, 0.562281251}
+							var Scale = Real3{2.39156914, 1.06390917, 2.03105879}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac576c6][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:174]
+					{
+						Transform 
+						{
+							var Translation = Real3{-21.1487103, -0.794987381, -1.60454857}
+							var Rotation = Quaternion{0.563292563, -0.363412499, 0.365991116, 0.645510197}
+							var Scale = Real3{4.67705297, 1.72946107, 6.27169466}
+						}
+					}
+					Cog [Id:0x5b2aa05df5eddbab][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:175]
+					{
+						Transform 
+						{
+							var Translation = Real3{79.9865036, 2.47131872, -6.15654612}
+							var Rotation = Quaternion{0.476887167, -0.487333715, 0.473103166, 0.557904899}
+							var Scale = Real3{4.67705297, 1.72946107, 6.27169466}
+						}
+					}
+					Cog [Id:0x5b2aa3a8d7ff24ba][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:176]
+					{
+						Transform 
+						{
+							var Translation = Real3{79.9865036, -7.35260677, -6.85915613}
+							var Rotation = Quaternion{0.476887167, -0.487333715, 0.473103166, 0.557904899}
+							var Scale = Real3{5.91354609, 4.65729809, 18.607996}
+						}
+					}
+					Cog [Id:0x5b2aa39cdbc7208c][InheritId:"592c47972ff1953d:SM_TallRock_02"][ContextId:177]
+					{
+						Transform 
+						{
+							var Translation = Real3{80.2613068, -18.8722858, -8.00939178}
+							var Rotation = Quaternion{-0.234131023, -0.640389085, -0.299438626, 0.667398691}
+							var Scale = Real3{5.91354609, 6.05929661, 18.607996}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac5784b][InheritId:"592c47ff2409f023:SM_BirchTree_02"][ContextId:178]
+					{
+						Transform 
+						{
+							var Translation = Real3{29.7686119, 8.33300018, -13.872385}
+							var Rotation = Quaternion{0, -0.454569638, 0, 0.890711308}
+							var Scale = Real3{1.75137866, 1.7513783, 1.75137866}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac5792f][InheritId:"592c47b135b4e497:SM_Juncus_01"][ContextId:179]
+					{
+						Transform 
+						{
+							var Translation = Real3{-25.3281002, 5.37469578, 2.10203362}
+							var Rotation = Quaternion{0, 0.177303746, 0, 0.984156191}
+							var Scale = Real3{0.709936023, 0.709936142, 0.709936023}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57961][InheritId:"592c47b135b4e497:SM_Juncus_01"][ContextId:180]
+					{
+						Transform 
+						{
+							var Translation = Real3{-28.9120274, 11.7459736, -4.9663887}
+							var Rotation = Quaternion{0, 0.129723728, 0, 0.991550148}
+							var Scale = Real3{0.709936142, 0.709936142, 0.709936142}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57a95][InheritId:"592c47b135b4e497:SM_Juncus_01"][ContextId:181]
+					{
+						Transform 
+						{
+							var Translation = Real3{-17.3480415, 7.90530825, -13.6997242}
+							var Rotation = Quaternion{0, 0.297146797, 0, 0.954831839}
+							var Scale = Real3{0.709936142, 0.709936142, 0.709936142}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57b0e][InheritId:"592c47b135b4e497:SM_Juncus_01"][ContextId:182]
+					{
+						Transform 
+						{
+							var Translation = Real3{-29.1022205, 5.7550149, -0.838508606}
+							var Rotation = Quaternion{0, 0.320405215, 0, 0.947280645}
+							var Scale = Real3{0.709936142, 0.709936142, 0.709936142}
+						}
+					}
+					Cog [Id:0x5b7f583d7ac57b40][InheritId:"592c47b135b4e497:SM_Juncus_01"][ContextId:183]
+					{
+						Transform 
+						{
+							var Translation = Real3{-33.6741486, 12.069128, -0.242903233}
+							var Rotation = Quaternion{0, 0.343726426, 0, 0.939069867}
+							var Scale = Real3{0.709936142, 0.709936142, 0.709936142}
+						}
+					}
+				}
+			}
+		}
+	}
+	Cog [InheritId:"5b2acb6986613b26:AiCart"][ContextId:184]
+	{
+		Transform 
+		{
+			var Translation = Real3{-32.4179878, 12.3983097, 0}
+			var Rotation = Quaternion{0, 0, -0.0624328218, 0.998049259}
+			var Scale = Real3{0.999999881, 1, 1}
+		}
+	}
+	Cog [ContextId:185]
+	{
+		var Name = "SM_BackGroundLandscape_04"
+		Transform 
+		{
+			var Translation = Real3{48.6710968, -15.7113523, 4.92621756}
+			var Scale = Real3{0.357480168, 0.236926496, 0.210195005}
+			var Rotation = Quaternion{0.00811607018, -0.075948216, -0.105947845, 0.991433859}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "592c40f45df9bcc0:Rock"
+			var Mesh = "5aaa4c1209ff861a:SM_BackGroundLandscape_04"
+		}
+		MeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var PhysicsMesh = "5aaa4c1209ff8625:SM_BackGroundLandscape_04"
+			var DrawEdges = true
+			var DrawFaces = false
+			var DrawFaceNormals = false
+		}
+	}
+	Cog [ContextId:186]
+	{
+		var Name = "SM_BackGroundLandscape_04"
+		Transform 
+		{
+			var Translation = Real3{54.0567856, -9.66944218, -8.84249592}
+			var Scale = Real3{0.357480168, 0.236926496, 0.210195005}
+			var Rotation = Quaternion{0.691954732, 0.0180339087, -0.0172952209, 0.721508324}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "592c40f45df9bcc0:Rock"
+			var Mesh = "5aaa4c1209ff861a:SM_BackGroundLandscape_04"
+		}
+	}
+	Cog [ContextId:187]
+	{
+		var Name = "SM_BackGroundLandscape_04"
+		Transform 
+		{
+			var Translation = Real3{52.7125473, 9.68822765, 10.0567675}
+			var Scale = Real3{0.253677428, 0.236926496, 0.210195005}
+			var Rotation = Quaternion{0.991458774, -0.128189325, -0.00323445746, 0.0238006227}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "592c40f45df9bcc0:Rock"
+			var Mesh = "5aaa4c1209ff861a:SM_BackGroundLandscape_04"
+		}
+	}
+	Cog [ContextId:188]
+	{
+		var Name = "SM_BackGroundLandscape_04"
+		EditorFlags 
+		{
+			var Locked = true
+			var Hidden = false
+		}
+		Transform 
+		{
+			var Translation = Real3{58.4998741, 8.16621017, 17.2878685}
+			var Scale = Real3{0.357480168, 0.236926496, 0.210195005}
+			var Rotation = Quaternion{0.847859442, -0.106219947, -0.0718350857, -0.514481664}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "592c40f45df9bcc0:Rock"
+			var Mesh = "5aaa4c1209ff861a:SM_BackGroundLandscape_04"
+		}
+	}
+	Cog [ContextId:189]
+	{
+		var Name = "PointLight"
+		Transform 
+		{
+			var Translation = Real3{35.897934, -1.73334527, 3.53448963}
+			var Scale = Real3{50, 50, 50}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be736f5ea2:LightIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "580644d674646690:PointLight"
+			var Mesh = "4de0354322b376ae:Sphere"
+		}
+		PointLight 
+		{
+			var LightColor = Real4{1, 1, 1, 1}
+			var LightIntensity = 50
+			var FalloffRadius = 25
+			var LightRadius = 0
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:190]
+	{
+		var Name = "PointLight"
+		Transform 
+		{
+			var Translation = Real3{57.2111053, -1.73334527, 3.53448963}
+			var Scale = Real3{50, 50, 50}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be736f5ea2:LightIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "580644d674646690:PointLight"
+			var Mesh = "4de0354322b376ae:Sphere"
+		}
+		PointLight 
+		{
+			var LightColor = Real4{1, 1, 1, 1}
+			var LightIntensity = 50
+			var FalloffRadius = 25
+			var LightRadius = 0
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [InheritId:"5b04f15fbc1aeece:Goal"][ContextId:2]
+	{
+		Transform 
+		{
+			var Translation = Real3{85.3676376, 9.1493988, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{2.9249928, 4.49192333, 2.9249928}
+		}
+	}
+	Cog [InheritId:"5b00a821413c0a95:JumpRegion"][ContextId:191]
+	{
+		Transform 
+		{
+			var Translation = Real3{-21.4814644, 7.80057621, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{0.796965599, 2.81043577, 2.81043577}
+		}
+	}
+	Cog [InheritId:"5b00a821413c0a95:JumpRegion"][ContextId:192]
+	{
+		Transform 
+		{
+			var Translation = Real3{-4.32767105, 7.80057621, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{0.796965599, 2.81043577, 2.81043577}
+		}
+	}
+}

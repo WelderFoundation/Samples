@@ -1,0 +1,33 @@
+[Version:1]
+Cog 
+{
+	var Name = ""
+	ProjectSettings 
+	{
+		var ProjectName = "MarketVehicleControllers"
+		var ProjectOwner = ""
+		var DefaultLevel = "Level"
+		var ProjectSpace = "Space"
+		var AutoTakeProjectScreenshot = true
+		var Guid = 0x58391361fc634fcb
+	}
+	EditorSettings 
+	{
+		var ViewCube = true
+		var ViewCubeSize = 0.150000006
+		var AutoUpdateContentChanges = true
+	}
+	LauncherProjectInfo 
+	{
+		var Tags = ""
+		var Application = "WelderEditor"
+		var Branch = "dev"
+		var MajorVersion = 0
+		var MinorVersion = 0
+		var PatchVersion = 25
+		var RevisionId = 2177
+		var ShortChangeSet = "70ba14c9b810"
+		var MsSinceEpoch = 1696064962206
+		var PackageExtension = "zip"
+	}
+}

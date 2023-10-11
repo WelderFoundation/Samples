@@ -1,0 +1,19 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "Hud",
+		uint64 ResourceId = 524a9a96a3e36fe4,
+		uint64 AtlasId = 0000000000000000,
+		uint FrameSizeX = 0,
+		uint FrameSizeY = 0,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 960,
+		float OriginY = 540,
+		float PixelsPerUnit = 64,
+		bool Smoothing = true,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+	},
+},

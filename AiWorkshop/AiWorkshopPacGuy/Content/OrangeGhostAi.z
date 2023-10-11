@@ -1,0 +1,131 @@
+class OrangeGhostAi : ZilchComponent
+{
+  // All movement should be done through the Ghost
+  [Dependency] var Ghost : Ghost;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to update our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Don't move if we're in the house
+    if(this.Ghost.InGhostHouse)
+      return;
+    
+    var playerPos = this.Ghost.PlayerPosition;
+    var ourPos = this.Ghost.OurPosition;
+      
+    //------------------------------------------------------- Student Code Below
+    // We only have to make a choice when we're at an intersection
+    if(this.Ghost.AtIntersection())
+    {
+      // We want to see which axis the player is furthest away in and lean towards
+      // moving in that direction
+      var xDifference = Math.Abs(playerPos.X - ourPos.X);
+      var yDifference = Math.Abs(playerPos.Y - ourPos.Y);
+      
+      // Compute where the player is relative to us (don't need to calculate the others
+      // unless you want it to be more clear for the students. May be good practice even if it's not used)
+      var playerIsLeft = (playerPos.X < ourPos.X);
+      var playerIsUp = (playerPos.Y > ourPos.Y);
+      
+      // Based on where the player is, we want to prioritize the directions we move in
+      var priority = new Array[Direction](4);
+      
+      // If they're further away on the x-axis, prioritize moving left or right
+      if(xDifference > yDifference)
+      {
+        // If the player is to the left, moving left is our highest priority,
+        // and moving right is the lowest as is brings us furthest away
+        if(playerIsLeft)
+        {
+          priority[0] = Direction.Left;
+          priority[3] = Direction.Right;
+        }
+        else
+        {
+          priority[0] = Direction.Right;
+          priority[3] = Direction.Left;
+        }
+        
+        // Because we're further away on the x-axis, if we can't move in the direction
+        // of the player on the x-axis, moving up or down will bring us less further away,
+        // so prioritize those next
+        if(playerIsUp)
+        {
+          priority[1] = Direction.Up;
+          priority[2] = Direction.Down;
+        }
+        else
+        {
+          priority[1] = Direction.Down;
+          priority[2] = Direction.Up;
+        }
+      }
+      // They're further away on the y-axis, so do the same as above but
+      // prioritize up and down over left and right
+      else
+      {
+        if(playerIsUp)
+        {
+          priority[0] = Direction.Up;
+          priority[3] = Direction.Down;
+        }
+        else
+        {
+          priority[0] = Direction.Down;
+          priority[3] = Direction.Up;
+        }
+        
+        if(playerIsLeft)
+        {
+          priority[1] = Direction.Left;
+          priority[2] = Direction.Right;
+        }
+        else
+        {
+          priority[1] = Direction.Right;
+          priority[2] = Direction.Left;
+        }
+      }
+      
+      // If we're not frozen, walk through the priorities as set above
+      if(!this.Ghost.IsFrozen)
+      {
+        // Try to move in each direction in order of the priorities
+        for(var i = 0; i < 4; ++i)
+        {
+          var direction = priority[i];
+          
+          // If we can move in the direction, move and we're done
+          if(this.Ghost.CanMoveInDirection(direction))
+          {
+            this.Ghost.MoveInDirection(direction);
+            break;
+          }
+        }
+      }
+      // Our priorities were built as the quickest way to get to the player;
+      // If we're frozen, we can walk the priorities in reverse as the
+      // fastest way to get furthest from the player
+      else
+      {
+        // Try to move in each direction in reverse order of the priorities
+        for(var i = 3; i >= 0; --i)
+        {
+          var direction = priority[i];
+          
+          // If we can move in the direction, move and we're done
+          if(this.Ghost.CanMoveInDirection(direction))
+          {
+            this.Ghost.MoveInDirection(direction);
+            break;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "FuzzyLogicUi"
+		var ResourceId = 0x5a93d4ba4079339b
+	}
+}

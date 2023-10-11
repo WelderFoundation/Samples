@@ -1,0 +1,203 @@
+[Version:1]
+Cog 
+{
+	var Name = "TurretAnchor"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ab19feb5f4c1fea]
+		{
+			var Name = "Turret"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			AnimationGraph 
+			{
+				var Active = false
+				var PlayMode = AnimationPlayMode.PlayOnce
+				var TimeScale = 1
+				var Animation = "4f8ebbde619389d0:DefaultAnimation"
+				var DebugPreviewId = 3
+			}
+			SimpleAnimation 
+			{
+				var Animation = "556677979c40a585:TurretFire"
+				var PlayMode = AnimationPlayMode.PlayOnce
+			}
+			Turret 
+			{
+				var Projectile = "55667225705eec56:TurretProjectile"
+				var ProjectileSpeed = 20
+				var FireSpeed = 0.5
+				var Particles = "55667c6827ab2fa1:TurretFireParticles"
+				var FireAnimation = "556677979c40a585:TurretFire"
+				var SpawnPos = CogPath
+				{
+					var Path = "TurretMesh/Barrel/Muzzle"
+					var ErrorOnResolveToNull = false
+					var ErrorOnPathCantCompute = false
+					var ErrorOnDirectLinkFail = false
+					var UpdateCogOnPathChange = true
+					var UpdatePathOnCogChange = true
+					var UpdateCogOnInitialize = true
+					var ResolvedNullErrorOccurred = false
+					var Cog = 4294967293
+					var PathPreference0 = CogPathPreference.CogRelative
+					var PathPreference1 = CogPathPreference.SpaceRelative
+					var PathPreference2 = CogPathPreference.Absolute
+				}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5abb7a8a333088b9]
+				{
+					var Name = "TurretMesh"
+					Transform 
+					{
+						var Translation = Real3{-2.54753304, -18.2471275, 1.90734863e-06}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0.00305584003, 0.999994993}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = false
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5ab4c3156f2acf66:Tank"
+						var Mesh = "5aa3544729cc9e58:Tank_TankTurretGeneratedMeshNode0"
+					}
+					ManagedColor 
+					{
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5abb798893b08c96]
+						{
+							var Name = "AccesoryGun"
+							Transform 
+							{
+								var Translation = Real3{0.771894932, 0.0633096695, 0.175633192}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Model 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "5ab4c3156f2acf66:Tank"
+								var Mesh = "5aa3544729cc9e60:Tank_TankTurretGeneratedMeshNode1"
+							}
+							ManagedColor 
+							{
+							}
+						}
+						Cog [Id:0x5abb7a8b335e1696]
+						{
+							var Name = "Antenna"
+							Transform 
+							{
+								var Translation = Real3{0.787043393, 2.54188347, 0.175633192}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Model 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "5567a53dc7d65950:AlbedoValue"
+								var Mesh = "5aa3544729cc9e11:Tank_pCube9"
+							}
+							AlbedoValueParam 
+							{
+								var AlbedoValue = Real4{0, 0, 0, 1}
+							}
+						}
+						Cog [Id:0x5abb7a8b335e188d]
+						{
+							var Name = "Barrel"
+							Transform 
+							{
+								var Translation = Real3{23.0716667, 18.1918983, 0}
+								var Scale = Real3{0.100000001, 0.100000001, 0.100000001}
+								var Rotation = Quaternion{0, 0, 0.707107008, 0.707107008}
+							}
+							Model 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "5ab4c3ac761f2880:Barrel"
+								var Mesh = "5aa3544729cc9de3:Tank_TankTurretShaft"
+							}
+							AlbedoValueParam 
+							{
+								var AlbedoValue = Real4{0.784313738, 0.784313738, 0.784313738, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5abb7b6636f78eae]
+								{
+									var Name = "Muzzle"
+									Transform 
+									{
+										var Translation = Real3{0.75, -22.5289059, 0}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 1.42108994e-13, 1}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5ab4c3ac761f2880:Barrel"
+										var Mesh = "5aa3544729cc9dc0:Tank_TankGun"
+									}
+									AlbedoValueParam 
+									{
+										var AlbedoValue = Real4{0.588235319, 0.588235319, 0.588235319, 1}
+									}
+									Orientation 
+									{
+										var GlobalUp = Real3{0, 1, 0}
+										var LocalOrientationBasis = Quaternion{-0.707106769, 0, 0, 0.707106769}
+										var DefaultBases = OrientationBases.Custom
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

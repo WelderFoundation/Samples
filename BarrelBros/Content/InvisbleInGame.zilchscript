@@ -1,0 +1,11 @@
+class InvisbleInGame : ZilchComponent
+{
+  [Dependency] var Graphical : Graphical;
+  
+  [Property] var Visible : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Graphical.Visible = this.Visible;
+  }
+}

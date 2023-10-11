@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TextRenderer"
+		var ResourceId = 0x5f002938fb960593
+	}
+}

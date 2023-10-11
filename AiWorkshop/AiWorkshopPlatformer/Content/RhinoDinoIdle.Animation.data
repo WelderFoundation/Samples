@@ -1,0 +1,4502 @@
+RichAnimation = 
+{
+	float SampleTolerance = 0.05,
+	float Duration = 1.33333,
+	Object Root = 
+	{
+		TrackType Type = Object,
+		string Name = "Root",
+		string Path = "",
+		bool Disabled = false,
+		uint PropertyTypeId = 0,
+		string PropertyTypeName = "void",
+		Array KeyFrames = 
+		[
+		],
+		Array Children = 
+		[
+			{
+				TrackType Type = Object,
+				string Name = "/",
+				string Path = "/",
+				bool Disabled = false,
+				uint PropertyTypeId = 0,
+				string PropertyTypeName = "",
+				Array KeyFrames = 
+				[
+				],
+				Array Children = 
+				[
+					{
+						TrackType Type = Object,
+						string Name = "Body",
+						string Path = "/Body",
+						bool Disabled = false,
+						uint PropertyTypeId = 0,
+						string PropertyTypeName = "",
+						Array KeyFrames = 
+						[
+						],
+						Array Children = 
+						[
+							{
+								TrackType Type = Component,
+								string Name = "Transform",
+								string Path = "Transform",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Property,
+										string Name = "Translation",
+										string Path = "Transform.Translation",
+										bool Disabled = false,
+										uint PropertyTypeId = 8,
+										string PropertyTypeName = "Vec3",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Translation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Translation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 2.40714,
+															Vec2 TangentIn = [-0.0488902, 0.0104762],
+															Vec2 TangentOut = [0.0488902, -0.0104762],
+															uint EditorFlags = 6,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 2.3,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 2.40714,
+															Vec2 TangentIn = [-0.0488902, -0.0104762],
+															Vec2 TangentOut = [0.0488902, 0.0104762],
+															uint EditorFlags = 6,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Translation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Property,
+										string Name = "Rotation",
+										string Path = "Transform.Rotation",
+										bool Disabled = false,
+										uint PropertyTypeId = 10,
+										string PropertyTypeName = "Quat",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Rotation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Rotation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Rotation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 2,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "NeckPivot",
+								string Path = "/Body/NeckPivot",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 5,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Object,
+										string Name = "HeadPivot",
+										string Path = "/Body/NeckPivot/HeadPivot",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Component,
+												string Name = "Transform",
+												string Path = "Transform",
+												bool Disabled = false,
+												uint PropertyTypeId = 0,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = Property,
+														string Name = "Rotation",
+														string Path = "Transform.Rotation",
+														bool Disabled = false,
+														uint PropertyTypeId = 10,
+														string PropertyTypeName = "Quat",
+														Array KeyFrames = 
+														[
+														],
+														Array Children = 
+														[
+															{
+																TrackType Type = SubProperty,
+																string Name = "X",
+																string Path = "Transform.Rotation.X",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Y",
+																string Path = "Transform.Rotation.Y",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Z",
+																string Path = "Transform.Rotation.Z",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = -4,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "ArmorPivot1",
+								string Path = "/Body/ArmorPivot1",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 1.6,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "ArmorPivot2",
+								string Path = "/Body/ArmorPivot2",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -1.4,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "ArmorPivot3",
+								string Path = "/Body/ArmorPivot3",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -4.47485,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "TailPivot1",
+								string Path = "/Body/TailPivot1",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -13.0501,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Object,
+										string Name = "TailPivot2",
+										string Path = "/Body/TailPivot1/TailPivot2",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Component,
+												string Name = "Transform",
+												string Path = "Transform",
+												bool Disabled = false,
+												uint PropertyTypeId = 0,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = Property,
+														string Name = "Rotation",
+														string Path = "Transform.Rotation",
+														bool Disabled = false,
+														uint PropertyTypeId = 10,
+														string PropertyTypeName = "Quat",
+														Array KeyFrames = 
+														[
+														],
+														Array Children = 
+														[
+															{
+																TrackType Type = SubProperty,
+																string Name = "X",
+																string Path = "Transform.Rotation.X",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.333333,
+																		Object value = 
+																		{
+																			float Time = 0.333333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1,
+																		Object value = 
+																		{
+																			float Time = 1,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Y",
+																string Path = "Transform.Rotation.Y",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.333333,
+																		Object value = 
+																		{
+																			float Time = 0.333333,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1,
+																		Object value = 
+																		{
+																			float Time = 1,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Z",
+																string Path = "Transform.Rotation.Z",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.00132449, -0.0499825],
+																			Vec2 TangentOut = [0.00132449, 0.0499825],
+																			uint EditorFlags = 6,
+																		},
+																	},
+																	{
+																		float key = 0.333333,
+																		Object value = 
+																		{
+																			float Time = 0.333333,
+																			float Value = 12.579,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1,
+																		Object value = 
+																		{
+																			float Time = 1,
+																			float Value = -6.84035,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.00243363, -0.0499407],
+																			Vec2 TangentOut = [0.00243363, 0.0499407],
+																			uint EditorFlags = 6,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+					{
+						TrackType Type = Object,
+						string Name = "FrontLeg1L",
+						string Path = "/FrontLeg1L",
+						bool Disabled = false,
+						uint PropertyTypeId = 0,
+						string PropertyTypeName = "",
+						Array KeyFrames = 
+						[
+						],
+						Array Children = 
+						[
+							{
+								TrackType Type = Component,
+								string Name = "Transform",
+								string Path = "Transform",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Property,
+										string Name = "Translation",
+										string Path = "Transform.Translation",
+										bool Disabled = false,
+										uint PropertyTypeId = 8,
+										string PropertyTypeName = "Vec3",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Translation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -0.6,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -0.622375,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -0.6,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Translation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 2.195,
+															Vec2 TangentIn = [-0.0489331, 0.0102739],
+															Vec2 TangentOut = [0.0489331, -0.0102739],
+															uint EditorFlags = 6,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 2.0551,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 6,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 2.195,
+															Vec2 TangentIn = [-0.0489335, -0.0102721],
+															Vec2 TangentOut = [0.0489335, 0.0102721],
+															uint EditorFlags = 6,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Translation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 2,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 2,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 2,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Property,
+										string Name = "Rotation",
+										string Path = "Transform.Rotation",
+										bool Disabled = false,
+										uint PropertyTypeId = 10,
+										string PropertyTypeName = "Quat",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Rotation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Rotation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Rotation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -9.99428,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "FrontLeg2PivotL",
+								string Path = "/FrontLeg1L/FrontLeg2PivotL",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 20,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 2.38419e-007,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Object,
+										string Name = "FrontLeg3PivotL",
+										string Path = "/FrontLeg1L/FrontLeg2PivotL/FrontLeg3PivotL",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Component,
+												string Name = "Transform",
+												string Path = "Transform",
+												bool Disabled = false,
+												uint PropertyTypeId = 0,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = Property,
+														string Name = "Rotation",
+														string Path = "Transform.Rotation",
+														bool Disabled = false,
+														uint PropertyTypeId = 10,
+														string PropertyTypeName = "Quat",
+														Array KeyFrames = 
+														[
+														],
+														Array Children = 
+														[
+															{
+																TrackType Type = SubProperty,
+																string Name = "X",
+																string Path = "Transform.Rotation.X",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Y",
+																string Path = "Transform.Rotation.Y",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Z",
+																string Path = "Transform.Rotation.Z",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = -10,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+					{
+						TrackType Type = Object,
+						string Name = "FrontLeg1R",
+						string Path = "/FrontLeg1R",
+						bool Disabled = false,
+						uint PropertyTypeId = 0,
+						string PropertyTypeName = "",
+						Array KeyFrames = 
+						[
+						],
+						Array Children = 
+						[
+							{
+								TrackType Type = Component,
+								string Name = "Transform",
+								string Path = "Transform",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Property,
+										string Name = "Translation",
+										string Path = "Transform.Translation",
+										bool Disabled = false,
+										uint PropertyTypeId = 8,
+										string PropertyTypeName = "Vec3",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Translation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -1.13,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -1.13064,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -1.13,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Translation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 2.25,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 2.11003,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 2.25,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Translation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -0.5,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -0.5,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -0.5,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Property,
+										string Name = "Rotation",
+										string Path = "Transform.Rotation",
+										bool Disabled = false,
+										uint PropertyTypeId = 10,
+										string PropertyTypeName = "Quat",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Rotation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Rotation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Rotation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -10,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "FrontLeg2PivotR",
+								string Path = "/FrontLeg1R/FrontLeg2PivotR",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 20,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Object,
+										string Name = "FrontLeg3PivotR",
+										string Path = "/FrontLeg1R/FrontLeg2PivotR/FrontLeg3PivotR",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Component,
+												string Name = "Transform",
+												string Path = "Transform",
+												bool Disabled = false,
+												uint PropertyTypeId = 0,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = Property,
+														string Name = "Rotation",
+														string Path = "Transform.Rotation",
+														bool Disabled = false,
+														uint PropertyTypeId = 10,
+														string PropertyTypeName = "Quat",
+														Array KeyFrames = 
+														[
+														],
+														Array Children = 
+														[
+															{
+																TrackType Type = SubProperty,
+																string Name = "X",
+																string Path = "Transform.Rotation.X",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Y",
+																string Path = "Transform.Rotation.Y",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Z",
+																string Path = "Transform.Rotation.Z",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = -10,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+					{
+						TrackType Type = Object,
+						string Name = "HindLeg1R",
+						string Path = "/HindLeg1R",
+						bool Disabled = false,
+						uint PropertyTypeId = 0,
+						string PropertyTypeName = "",
+						Array KeyFrames = 
+						[
+						],
+						Array Children = 
+						[
+							{
+								TrackType Type = Component,
+								string Name = "Transform",
+								string Path = "Transform",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Property,
+										string Name = "Translation",
+										string Path = "Transform.Translation",
+										bool Disabled = false,
+										uint PropertyTypeId = 8,
+										string PropertyTypeName = "Vec3",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Translation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0.6,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0.637292,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0.6,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Translation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 1.95,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 1.8978,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 1.95,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Translation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -1,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -1,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -1,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Property,
+										string Name = "Rotation",
+										string Path = "Transform.Rotation",
+										bool Disabled = false,
+										uint PropertyTypeId = 10,
+										string PropertyTypeName = "Quat",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Rotation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Rotation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Rotation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 10,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "HindLeg2PivotR",
+								string Path = "/HindLeg1R/HindLeg2PivotR",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -20,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Object,
+										string Name = "HindLeg3PivotR",
+										string Path = "/HindLeg1R/HindLeg2PivotR/HindLeg3PivotR",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Component,
+												string Name = "Transform",
+												string Path = "Transform",
+												bool Disabled = false,
+												uint PropertyTypeId = 0,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = Property,
+														string Name = "Rotation",
+														string Path = "Transform.Rotation",
+														bool Disabled = false,
+														uint PropertyTypeId = 10,
+														string PropertyTypeName = "Quat",
+														Array KeyFrames = 
+														[
+														],
+														Array Children = 
+														[
+															{
+																TrackType Type = SubProperty,
+																string Name = "X",
+																string Path = "Transform.Rotation.X",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Y",
+																string Path = "Transform.Rotation.Y",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Z",
+																string Path = "Transform.Rotation.Z",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 10,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+					{
+						TrackType Type = Object,
+						string Name = "HindLeg1L",
+						string Path = "/HindLeg1L",
+						bool Disabled = false,
+						uint PropertyTypeId = 0,
+						string PropertyTypeName = "",
+						Array KeyFrames = 
+						[
+						],
+						Array Children = 
+						[
+							{
+								TrackType Type = Component,
+								string Name = "Transform",
+								string Path = "Transform",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Property,
+										string Name = "Translation",
+										string Path = "Transform.Translation",
+										bool Disabled = false,
+										uint PropertyTypeId = 8,
+										string PropertyTypeName = "Vec3",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Translation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 1.35,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 1.36492,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 1.35,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Translation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 1.95,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 1.8978,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 1.95,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Translation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 2.5,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 2.5,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 2.5,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Property,
+										string Name = "Rotation",
+										string Path = "Transform.Rotation",
+										bool Disabled = false,
+										uint PropertyTypeId = 10,
+										string PropertyTypeName = "Quat",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = SubProperty,
+												string Name = "X",
+												string Path = "Transform.Rotation.X",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Y",
+												string Path = "Transform.Rotation.Y",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = -0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+											{
+												TrackType Type = SubProperty,
+												string Name = "Z",
+												string Path = "Transform.Rotation.Z",
+												bool Disabled = false,
+												uint PropertyTypeId = 3,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+													{
+														float key = 0,
+														Object value = 
+														{
+															float Time = 0,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 0.666667,
+														Object value = 
+														{
+															float Time = 0.666667,
+															float Value = 10,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+													{
+														float key = 1.33333,
+														Object value = 
+														{
+															float Time = 1.33333,
+															float Value = 0,
+															Vec2 TangentIn = [-0.05, 0],
+															Vec2 TangentOut = [0.05, 0],
+															uint EditorFlags = 0,
+														},
+													},
+												],
+												Array Children = 
+												[
+												],
+											},
+										],
+									},
+								],
+							},
+							{
+								TrackType Type = Object,
+								string Name = "HindLeg2PivotL",
+								string Path = "/HindLeg1L/HindLeg2PivotL",
+								bool Disabled = false,
+								uint PropertyTypeId = 0,
+								string PropertyTypeName = "",
+								Array KeyFrames = 
+								[
+								],
+								Array Children = 
+								[
+									{
+										TrackType Type = Component,
+										string Name = "Transform",
+										string Path = "Transform",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Property,
+												string Name = "Rotation",
+												string Path = "Transform.Rotation",
+												bool Disabled = false,
+												uint PropertyTypeId = 10,
+												string PropertyTypeName = "Quat",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = SubProperty,
+														string Name = "X",
+														string Path = "Transform.Rotation.X",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Y",
+														string Path = "Transform.Rotation.Y",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = -0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+													{
+														TrackType Type = SubProperty,
+														string Name = "Z",
+														string Path = "Transform.Rotation.Z",
+														bool Disabled = false,
+														uint PropertyTypeId = 3,
+														string PropertyTypeName = "",
+														Array KeyFrames = 
+														[
+															{
+																float key = 0,
+																Object value = 
+																{
+																	float Time = 0,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 0.666667,
+																Object value = 
+																{
+																	float Time = 0.666667,
+																	float Value = -20,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+															{
+																float key = 1.33333,
+																Object value = 
+																{
+																	float Time = 1.33333,
+																	float Value = 0,
+																	Vec2 TangentIn = [-0.05, 0],
+																	Vec2 TangentOut = [0.05, 0],
+																	uint EditorFlags = 0,
+																},
+															},
+														],
+														Array Children = 
+														[
+														],
+													},
+												],
+											},
+										],
+									},
+									{
+										TrackType Type = Object,
+										string Name = "HindLeg3PivotL",
+										string Path = "/HindLeg1L/HindLeg2PivotL/HindLeg3PivotL",
+										bool Disabled = false,
+										uint PropertyTypeId = 0,
+										string PropertyTypeName = "",
+										Array KeyFrames = 
+										[
+										],
+										Array Children = 
+										[
+											{
+												TrackType Type = Component,
+												string Name = "Transform",
+												string Path = "Transform",
+												bool Disabled = false,
+												uint PropertyTypeId = 0,
+												string PropertyTypeName = "",
+												Array KeyFrames = 
+												[
+												],
+												Array Children = 
+												[
+													{
+														TrackType Type = Property,
+														string Name = "Rotation",
+														string Path = "Transform.Rotation",
+														bool Disabled = false,
+														uint PropertyTypeId = 10,
+														string PropertyTypeName = "Quat",
+														Array KeyFrames = 
+														[
+														],
+														Array Children = 
+														[
+															{
+																TrackType Type = SubProperty,
+																string Name = "X",
+																string Path = "Transform.Rotation.X",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Y",
+																string Path = "Transform.Rotation.Y",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = -0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+															{
+																TrackType Type = SubProperty,
+																string Name = "Z",
+																string Path = "Transform.Rotation.Z",
+																bool Disabled = false,
+																uint PropertyTypeId = 3,
+																string PropertyTypeName = "",
+																Array KeyFrames = 
+																[
+																	{
+																		float key = 0,
+																		Object value = 
+																		{
+																			float Time = 0,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 0.666667,
+																		Object value = 
+																		{
+																			float Time = 0.666667,
+																			float Value = 10,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																	{
+																		float key = 1.33333,
+																		Object value = 
+																		{
+																			float Time = 1.33333,
+																			float Value = 0,
+																			Vec2 TangentIn = [-0.05, 0],
+																			Vec2 TangentOut = [0.05, 0],
+																			uint EditorFlags = 0,
+																		},
+																	},
+																],
+																Array Children = 
+																[
+																],
+															},
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		],
+	},
+},

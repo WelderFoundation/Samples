@@ -1,0 +1,30 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	HeightMapTextureWeights 
+	{
+	}
+	HeightMapAlbedoValue 
+	{
+		var AlbedoValue0 = Real4{0.207843155, 0.349019617, 0.121568635, 1}
+		var AlbedoValue1 = Real4{0.277503401, 0.439999998, 0.178199977, 1}
+		var AlbedoValue2 = Real4{0.458823562, 0.294117659, 0.101960793, 1}
+		var AlbedoValue3 = Real4{1, 1, 1, 1}
+		var GammaCorrect = true
+	}
+	GeoPolygonNormals 
+	{
+	}
+	HeightMapDynamicAlbedo 
+	{
+		var TopColor = Real4{0.207843155, 0.349019617, 0.121568635, 1}
+		var SideColor = Real4{0.350000024, 0.214759976, 0.0560000241, 1}
+		var GammaCorrect = true
+		var Pow = 1.54999983
+	}
+}

@@ -1,0 +1,18 @@
+DataContent = 
+{
+	RichAnimationBuilder = 
+	{
+		string Name = "BiteDinoJump",
+		uint64 ResourceId = 544c4b7cf80d2e84,
+		string PreviewArchetype = "",
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Dino",
+			"BiteDinoSprite",
+			"Bite",
+		],
+	},
+},

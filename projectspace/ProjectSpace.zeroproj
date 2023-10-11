@@ -1,0 +1,39 @@
+[Version:1]
+Cog 
+{
+	var Name = ""
+	ProjectSettings 
+	{
+		var ProjectName = "ProjectSpace"
+		var ProjectOwner = ""
+		var DefaultLevel = "Level"
+		var ProjectSpace = "Space"
+		var AutoTakeProjectScreenshot = true
+		var Guid = 0x57a1ad6dd71f34cc
+	}
+	EditorSettings 
+	{
+		var ViewCube = true
+		var ViewCubeSize = 0.100000001
+		var AutoUpdateContentChanges = true
+	}
+	ProjectDescription 
+	{
+		var ShortDescription = ""
+		var LongDescription = ""
+		var Tags = ""
+	}
+	LauncherProjectInfo 
+	{
+		var Tags = ""
+		var Application = "WelderEditor"
+		var Branch = "dev"
+		var MajorVersion = 0
+		var MinorVersion = 0
+		var PatchVersion = 25
+		var RevisionId = 2147
+		var ShortChangeSet = "c4aaf2420c83"
+		var MsSinceEpoch = 1695431581255
+		var PackageExtension = "zip"
+	}
+}

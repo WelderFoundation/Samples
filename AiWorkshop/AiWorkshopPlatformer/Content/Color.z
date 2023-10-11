@@ -1,0 +1,73 @@
+[RunInEditor]
+class ColorParent : ZilchComponent
+{
+  [Property][Slider(0, 255, 1)]
+  var ColorHueShift : Real
+  {
+    get { return this.HueShift; }
+    set 
+    {
+      this.HueShift = value;
+      var colorEvent = SetColorEvent();
+      colorEvent.HueShift = value;
+      if (this.Owner != null)
+        this.Owner.DispatchDown(Events.SetColorEvent, colorEvent);
+    }
+  }
+  
+  var HueShift : Real = 0.0;
+  
+  sends SetColorEvent : ZilchEvent;
+  
+  function Initialize(init : CogInitializer)
+  {
+    
+  }
+}
+
+[RunInEditor]
+class ColorChildren : ZilchComponent
+{
+  [ShaderInput("HueShift")] var HueShift = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.SetColorEvent, this.OnColorEvent);
+    
+    this.HueShift = this.Owner.FindRoot().ColorParent.HueShift;
+  }
+  
+  function OnColorEvent(event : SetColorEvent)
+  {
+    this.HueShift = event.HueShift;
+  }
+}
+
+class SetColorEvent : ZilchEvent
+{
+  var HueShift : Real;
+}
+
+[RunInEditor]
+class ColorHueModifier : ZilchComponent
+{
+  
+  [Property] var Material : Material;
+  
+  [Property][Slider(0, 255, 1)] var Hue : Real
+  {
+    get 
+    { 
+      if (this.Material != null && this.Material.HueShift != null)
+        return this.Material.HueShift.HueShift; 
+      else
+        return 0.0;
+    }
+    
+    set
+    {
+      if (this.Material != null && this.Material.HueShift != null)
+        this.Material.HueShift.HueShift = value;
+    }
+  }
+}

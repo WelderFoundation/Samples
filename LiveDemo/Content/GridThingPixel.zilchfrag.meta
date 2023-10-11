@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "GridThingPixel"
+		var ResourceId = 0x5aefe1274537af27
+	}
+}

@@ -1,0 +1,99 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "Tank_TankGun"
+				var ResourceId = 0x5aa3544729cc9dc0
+			}
+			Object
+			{
+				var Name = "Tank_TankTurretShaft"
+				var ResourceId = 0x5aa3544729cc9de3
+			}
+			Object
+			{
+				var Name = "Tank_polySurface2"
+				var ResourceId = 0x5aa3544729cc9ded
+			}
+			Object
+			{
+				var Name = "Tank_pCylinder39"
+				var ResourceId = 0x5aa3544729cc9dfa
+			}
+			Object
+			{
+				var Name = "Tank_polySurface4"
+				var ResourceId = 0x5aa3544729cc9e06
+			}
+			Object
+			{
+				var Name = "Tank_pCube9"
+				var ResourceId = 0x5aa3544729cc9e11
+			}
+			Object
+			{
+				var Name = "Tank_polySurface10"
+				var ResourceId = 0x5aa3544729cc9e1a
+			}
+			Object
+			{
+				var Name = "Tank_pCube11"
+				var ResourceId = 0x5aa3544729cc9e26
+			}
+			Object
+			{
+				var Name = "Tank_polySurface11"
+				var ResourceId = 0x5aa3544729cc9e2f
+			}
+			Object
+			{
+				var Name = "Tank_polySurface12"
+				var ResourceId = 0x5aa3544729cc9e37
+			}
+			Object
+			{
+				var Name = "Tank_TankTread"
+				var ResourceId = 0x5aa3544729cc9e46
+			}
+			Object
+			{
+				var Name = "Tank_pCube13"
+				var ResourceId = 0x5aa3544729cc9e4e
+			}
+			Object
+			{
+				var Name = "Tank_TankTurretGeneratedMeshNode0"
+				var ResourceId = 0x5aa3544729cc9e58
+			}
+			Object
+			{
+				var Name = "Tank_TankTurretGeneratedMeshNode1"
+				var ResourceId = 0x5aa3544729cc9e60
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5567a7f28749ec47
+	}
+}

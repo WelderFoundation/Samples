@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "SplineJoint"
+		var ResourceId = 0x5b5c73c073f0f248
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

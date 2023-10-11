@@ -1,0 +1,27 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"56dc0b2bbc86c4cb:AlphaBlend"
+	}
+	ColorValue 
+	{
+		var Color = Real4{1, 0, 0, 0.394999981}
+	}
+	FuzzyTriangleCuttoff 
+	{
+		var CutoffColor = Real4{0.325490206, 0.596078455, 0.345098108, 1}
+		var GridSize = Real2{0, 0}
+		var Cutoff = 0
+	}
+	SolidWireFrameGeo 
+	{
+	}
+	SolidWireFramePixel 
+	{
+		var Active = false
+		var Pixels = 6
+		var EdgeColor = Real4{0, 0, 0, 0.63499999}
+	}
+}

@@ -1,0 +1,16 @@
+enum CollectableType {Points, Health}
+
+class Collectable : ZilchComponent
+{
+  [Property] var Value : Integer = 1;
+  [Property] var Type : CollectableType = CollectableType.Points;
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

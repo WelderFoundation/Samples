@@ -1,0 +1,22 @@
+class PlayerController : ZilchComponent
+{
+  // We must have a paddle Component
+  [Dependency] var Paddle : Paddle;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    // We want to run our player logic every time the engine updates logic
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  //************************************************************************************************
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    if(Zero.Keyboard.KeyIsDown(Keys.Up))
+      this.Paddle.MoveUp(event.Dt);
+    if(Zero.Keyboard.KeyIsDown(Keys.Down))
+      this.Paddle.MoveDown(event.Dt);
+  }
+}

@@ -1,0 +1,78 @@
+class Square : ZilchComponent
+{
+  [Property] var RightWall : Real = 13.0;
+  [Property] var LeftWall : Real = -13.0;
+  [Property] var UpperWall : Real = 10.0;
+  [Property] var LowerWall : Real = -10.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    
+  }
+  
+  function StopAtWall()
+  {
+    var position = this.Owner.Transform.Translation;
+    
+    if(position.X > this.RightWall)
+    {
+      var pos = position;
+      pos.X = this.RightWall;
+      this.Owner.Transform.Translation = pos;
+    }
+    
+    if(position.X < this.LeftWall)
+    {
+      var pos = position;
+      pos.X = this.LeftWall;
+      this.Owner.Transform.Translation = pos;
+    }
+    
+    if(position.Y > this.UpperWall)
+    {
+      var pos = position;
+      pos.Y = this.UpperWall;
+      this.Owner.Transform.Translation = pos;
+    }
+    
+    if(position.Y < this.LowerWall)
+    {
+      var pos = position;
+      pos.Y = this.LowerWall;
+      this.Owner.Transform.Translation = pos;
+    }
+  }
+  
+  function Loop()
+  {
+    var position = this.Owner.Transform.Translation;
+    
+    if(position.X > this.RightWall)
+    {
+      var pos = position;
+      pos.X = this.LeftWall;
+      this.Owner.Transform.Translation = pos;
+    }
+    
+    if(position.X < this.LeftWall)
+    {
+      var pos = position;
+      pos.X = this.RightWall;
+      this.Owner.Transform.Translation = pos;
+    }
+    
+    if(position.Y > this.UpperWall)
+    {
+      var pos = position;
+      pos.Y = this.LowerWall;
+      this.Owner.Transform.Translation = pos;
+    }
+    
+    if(position.Y < this.LowerWall)
+    {
+      var pos = position;
+      pos.Y = this.UpperWall;
+      this.Owner.Transform.Translation = pos;
+    }
+  }
+}

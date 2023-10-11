@@ -1,0 +1,57 @@
+[Version:1]
+Cog 
+{
+	var Name = "ParticleObject"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5a8c705bfba4f1ac:Stipple"
+		var Mesh = "4de0354322b345ae:Cube"
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
+	ParticleObject 
+	{
+		var Time = 0
+		var Lifetime = 0
+	}
+	StippleInputs 
+	{
+		var Color = Real4{0.5, 0.5, 0.5, 1}
+		var AlbedoValue = Real4{0.5, 0.5, 0.5, 1}
+		var MetallicValue = 0.5
+		var RoughnessValue = 0.5
+		var SpecularValue = 0.5
+		var StippleDensity = 0.5
+		var StippleScale = 2
+	}
+}

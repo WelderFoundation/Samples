@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "AutoComputeOrbitVelocity"
+		var ResourceId = 0x587946d50e10876d
+	}
+}

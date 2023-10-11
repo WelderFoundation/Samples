@@ -1,0 +1,12 @@
+[Pixel]
+struct ColorScalar
+{
+  [Input] var ColorScalar : Real4 = Real4(1);
+  [FragmentInput][Output] var Color : Real4;
+  [StageInput("Color")] var ColorStage : Real4;
+  
+  function Main()
+  {
+    this.Color *= this.ColorScalar;
+  }
+}

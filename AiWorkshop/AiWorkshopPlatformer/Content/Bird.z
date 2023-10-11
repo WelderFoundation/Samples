@@ -1,0 +1,48 @@
+class Bird : ZilchComponent
+{
+  // How fast we move
+  [Property] var Speed : Real = 2.0;
+  
+  // The object we're dropping
+  [Property] var ObjectToDrop : CogPath;
+  
+  // Easy access to the players position
+  var PlayerPosition : Real3
+  {
+    get
+    {
+      return this.Space.FindObjectByName("Player").Transform.Translation;
+    }
+  }
+  
+  // Easy access to our position
+  var OurPosition : Real3
+  {
+    get { return this.Owner.Transform.Translation; }
+  }
+  
+  function MoveInDirection(direction : Real3, dt : Real)
+  {
+    // Move in that direction
+    this.Owner.Transform.Translation += Math.Normalize(direction) * this.Speed * dt;
+  }
+  
+  function DropObject()
+  {
+    if (this.ObjectToDrop == null)
+      return;
+      
+      
+    var dropObj = this.ObjectToDrop.Cog;
+    if(dropObj != null)
+    {
+      // Detach it from ourself
+      dropObj.Detach();
+      
+      // Set it to dynamic so that it falls
+      dropObj.RigidBody.DynamicState = RigidBodyDynamicState.Dynamic;
+    }
+    
+    this.ObjectToDrop = null;
+  }
+}

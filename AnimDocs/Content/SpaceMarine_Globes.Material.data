@@ -1,0 +1,32 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "59afdf1d60f82454:Albedo_SpaceMarine_Globes"
+	}
+	NormalMap 
+	{
+		var NormalMap = "5827b28df61127a4:ZeroNormal"
+		var Bumpiness = 0.5
+		var RedLeft = false
+		var GreenDown = false
+	}
+	MetallicMap 
+	{
+		var MetallicMap = "58269ef7734c0e55:Grey"
+	}
+	RoughnessMap 
+	{
+		var RoughnessMap = "59afdf1d60ff7efb:Roughness_SpaceMarine_Globes"
+	}
+	SpecularMap 
+	{
+		var SpecularMap = "59afdf1d60ffd64e:Specular_SpaceMarine_Globes"
+	}
+}

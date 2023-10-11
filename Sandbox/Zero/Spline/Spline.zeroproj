@@ -1,0 +1,47 @@
+[Version:1]
+Cog 
+{
+	var Name = ""
+	ProjectSettings 
+	{
+		var ProjectName = "Spline"
+		var ProjectOwner = ""
+		var DefaultLevel = "Level"
+		var ProjectSpace = "Space"
+		var AutoTakeProjectScreenshot = true
+		var Guid = 0x6307980036274292
+	}
+	WindowLaunchSettings 
+	{
+		var LaunchFullscreen = true
+		var WindowedResolution = Integer2{1280, 720}
+	}
+	FrameRateSettings 
+	{
+		var VerticalSync = false
+		var LimitFrameRate = true
+		var FrameRate = 60
+	}
+	AudioSettings 
+	{
+		var SystemVolume = 2
+		var MixType = AudioMixTypes.AutoDetect
+		var MinVolumeThreshold = 0.0149999997
+		var Latency = AudioLatency.Low
+		var UseRandomSeed = true
+		var Seed = 0
+	}
+	LauncherProjectInfo 
+	{
+		var Tags = ""
+		var Application = "WelderEditor"
+		var Branch = "dev"
+		var MajorVersion = 0
+		var MinorVersion = 0
+		var PatchVersion = 25
+		var RevisionId = 2147
+		var ShortChangeSet = "c4aaf2420c83"
+		var MsSinceEpoch = 1695431581255
+		var PackageExtension = "zip"
+	}
+}

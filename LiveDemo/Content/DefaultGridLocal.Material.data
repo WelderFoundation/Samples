@@ -1,0 +1,32 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	TriplanarAutoMapping2 
+	{
+		var InWorld = false
+		var TextureX = "5aefa528788df16b:GridAlbedo"
+		var TextureY = "5aefa528788df16b:GridAlbedo"
+		var TextureZ = "5aefa528788df16b:GridAlbedo"
+		var Tightness = 10
+		var LocalOffset = Real3{0, 0, 0}
+		var UvOffsetX = Real2{0, 0}
+		var UvOffsetY = Real2{0, 0}
+		var UvOffsetZ = Real2{0, 0}
+		var UvScaleX = Real2{3, 3}
+		var UvScaleY = Real2{3, 3}
+		var UvScaleZ = Real2{3, 3}
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 0.18675226
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 0.844784796
+	}
+}

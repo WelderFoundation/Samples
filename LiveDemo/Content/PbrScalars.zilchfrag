@@ -1,0 +1,15 @@
+[Pixel]
+struct PbrScalars
+{
+  [Input] var MetallicScalar = 1.0;
+  [Input] var RoughnessScalar = 1.0;
+  
+  [FragmentInput][StageInput][Output] var Metallic : Real;
+  [FragmentInput][StageInput][Output] var Roughness : Real;
+  
+  function Main()
+  {
+    this.Metallic *= this.MetallicScalar;
+    this.Roughness *= this.RoughnessScalar;
+  }
+}

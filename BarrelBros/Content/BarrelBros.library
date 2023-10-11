@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "BarrelBros"
+	var LibraryId = 0x594e09cc920cb83d
+	var SourceControlType = ""
+	var ReadOnly = false
+}

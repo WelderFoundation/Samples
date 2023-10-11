@@ -1,0 +1,216 @@
+[Version:1]
+Cog 
+{
+	var Name = "trainWagon"
+	Transform 
+	{
+		var Translation = Real3{14.6161032, -1.14894676, -38.1332169}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 1, 0, 4.37113883e-08}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5a95f672d9a0ea5c]
+		{
+			var Name = "trainWagonGeneratedMeshNode0"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5a95f671d9833b58:trainWagon_trainWagonGeneratedMeshNode0"
+			}
+		}
+		Cog [Id:0x5a95f672d9a0ea5e]
+		{
+			var Name = "trainWagonGeneratedMeshNode1"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5a95f671d9833b73:trainWagon_trainWagonGeneratedMeshNode1"
+			}
+		}
+		Cog [Id:0x5a95f672d9a0ea5f]
+		{
+			var Name = "trainWagonGeneratedMeshNode2"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5a95f671d9833b7a:trainWagon_trainWagonGeneratedMeshNode2"
+			}
+		}
+		Cog [Id:0x5a95f672d9a0ea61]
+		{
+			var Name = "trainWagonGeneratedMeshNode3"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5a95f671d9833b81:trainWagon_trainWagonGeneratedMeshNode3"
+			}
+		}
+		Cog [Id:0x5a95f672d9a0ea62]
+		{
+			var Name = "wheel6"
+			Transform 
+			{
+				var Translation = Real3{1.61380005, -8.45989873e-19, 0.0868953764}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5a95f672d9a0ea64]
+				{
+					var Name = "wheel6GeneratedMeshNode4"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5a95f671d9833b89:trainWagon_wheel6GeneratedMeshNode4"
+					}
+				}
+				Cog [Id:0x5a95f672d9a0ea65]
+				{
+					var Name = "wheel6GeneratedMeshNode5"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5a95f671d9833b8f:trainWagon_wheel6GeneratedMeshNode5"
+					}
+				}
+			}
+		}
+		Cog [Id:0x5a95f672d9a0ea67]
+		{
+			var Name = "wheel7"
+			Transform 
+			{
+				var Translation = Real3{-1.0862, -8.45989873e-19, 0.0868953764}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5a95f672d9a0ea68]
+				{
+					var Name = "wheel7GeneratedMeshNode6"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5a95f671d9833b93:trainWagon_wheel7GeneratedMeshNode6"
+					}
+				}
+				Cog [Id:0x5a95f672d9a0ea6a]
+				{
+					var Name = "wheel7GeneratedMeshNode7"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5a95f671d9833b9a:trainWagon_wheel7GeneratedMeshNode7"
+					}
+				}
+			}
+		}
+	}
+}

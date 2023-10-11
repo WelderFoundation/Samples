@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManClimbDown_Stomach"
+				var ResourceId = 0x59af21f67b042a0f
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_Chest"
+				var ResourceId = 0x59af21f67b042a1a
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_Head"
+				var ResourceId = 0x59af21f67b042a1e
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_LArm"
+				var ResourceId = 0x59af21f67b042a23
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_LArm01"
+				var ResourceId = 0x59af21f67b042a27
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_RArm"
+				var ResourceId = 0x59af21f67b042a2c
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_RArm01"
+				var ResourceId = 0x59af21f67b042a2f
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_LLeg"
+				var ResourceId = 0x59af21f67b042a34
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_LLeg01"
+				var ResourceId = 0x59af21f67b042a37
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_RLeg"
+				var ResourceId = 0x59af21f67b042a3a
+			}
+			Object
+			{
+				var Name = "BoxManClimbDown_RLeg01"
+				var ResourceId = 0x59af21f67b042a40
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManClimbDown"
+				var ResourceId = 0x59af21f67b042a46
+			}
+		}
+	}
+}

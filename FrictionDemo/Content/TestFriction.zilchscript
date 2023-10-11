@@ -1,0 +1,116 @@
+class TestFriction : ZilchComponent
+{
+  [Property]
+  var AppliedForce : Real = 0.0;
+  [Property]
+  var Gravity : Real = 9.8;
+  [Property]
+  var Mass : Real = 1.0;
+  [Property]
+  var MuS : Real = 1.0;
+  [Property]
+  var MuK : Real = 0.8;
+  
+  var VectorScale : Real = 0.1;
+  
+  var StaticSpline : HierarchySpline;
+  var KineticSpline : HierarchySpline;
+  var Sample : Transform;
+  var Cube : Cog;
+  var AppliedForceStart : Transform;
+  var GravityForceStart : Transform;
+  var Spawn : Transform;
+  var Forces : SpriteText;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.FrameUpdate, this.OnLogicUpdate);
+    Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    
+    this.StaticSpline = this.Space.FindObjectByName("StaticSpline").HierarchySpline;
+    this.KineticSpline = this.Space.FindObjectByName("KineticSpline").HierarchySpline;
+    this.Sample = this.Space.FindObjectByName("Sample").Transform;
+    this.Cube = this.Space.FindObjectByName("Cube");
+    this.AppliedForceStart = this.Space.FindObjectByName("AppliedForceStart").Transform;
+    this.GravityForceStart = this.Space.FindObjectByName("GravityForceStart").Transform;
+    this.Spawn = this.Space.FindObjectByName("Spawn").Transform;
+    this.Forces = this.Space.FindObjectByName("Forces").SpriteText;
+    
+    if (Zero.Editor != null)
+    {
+      Zero.Editor.Selection.SelectOnly(this.LevelSettings);
+      Zero.Editor.Selection.FinalSelectionChanged();
+    }
+  }
+
+  function OnKeyDown(event : KeyboardEvent)
+  {
+      if (event.Key == Keys.Space)
+    {
+      this.Cube.Transform.WorldTranslation = this.Spawn.WorldTranslation;
+      this.AppliedForce = 0.0;
+      this.Gravity = 9.8;
+      this.Mass = 1.0;
+      this.MuS = 1.0;
+      this.MuK = 0.8;
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.AppliedForce = Math.Max(this.AppliedForce, 0);
+    
+    var gravityForce = this.Mass * this.Gravity;
+    
+    var normalForce = gravityForce;
+    
+    var slidingForceNeeded = this.MuS * normalForce;
+    
+    var frictionForce = 0.0;
+    
+    this.GravityForceStart.LocalTranslation = Real3(0, gravityForce * this.VectorScale, 0);
+    this.AppliedForceStart.LocalTranslation = Real3(-this.AppliedForce * this.VectorScale, 0, 0);
+    
+    if (this.AppliedForce < slidingForceNeeded)
+    {
+      var t = Math.Saturate(this.AppliedForce / slidingForceNeeded);
+      frictionForce = -this.AppliedForce;
+      this.Sample.WorldTranslation = this.StaticSpline.Spline.SampleDistance(t * this.StaticSpline.Spline.TotalDistance).WorldPoint;
+    }
+    else
+    {
+      var t = Math.Saturate((this.AppliedForce - slidingForceNeeded) / slidingForceNeeded);
+      frictionForce = -this.MuK * normalForce;
+      this.Sample.WorldTranslation = this.KineticSpline.Spline.SampleDistance(t * this.KineticSpline.Spline.TotalDistance).WorldPoint;
+    }
+    
+    var sumOfForce = this.AppliedForce + frictionForce;
+    
+    var acceleration = sumOfForce / this.Mass;
+    
+    this.Cube.Transform.WorldTranslation += Real3(acceleration, 0, 0) * event.Dt;
+    
+    var portalParticlesLeftExplosion = this.Space.FindObjectByName("PortalParticlesLeftExplosion");
+    var portalParticlesRightExplosion = this.Space.FindObjectByName("PortalParticlesRightExplosion");
+    
+    if (this.Cube.Transform.WorldTranslation.X > this.Space.FindObjectByName("PortalRight").Transform.WorldTranslation.X)
+    {
+      this.Cube.Transform.WorldTranslation = Real3(this.Space.FindObjectByName("PortalLeft").Transform.WorldTranslation.X, this.Cube.Transform.WorldTranslation.YZ);
+      
+      portalParticlesLeftExplosion.SphericalParticleEmitter.Active = true;
+      portalParticlesLeftExplosion.SphericalParticleEmitter.ResetCount();
+      portalParticlesRightExplosion.SphericalParticleEmitter.Active = true;
+      portalParticlesRightExplosion.SphericalParticleEmitter.ResetCount();
+    }
+    
+    if (frictionForce == 0)
+      frictionForce = 0;
+    
+    //   Normal =
+    //  Applied =
+    // Friction =
+    //    Force =
+    //    Accel =
+    this.Forces.Text = "  Normal = `gravityForce`\nFriction = `frictionForce`\n Applied = `this.AppliedForce`\n   Force = `sumOfForce`\n   Accel = `acceleration`";
+  }
+}

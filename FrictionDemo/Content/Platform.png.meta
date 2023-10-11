@@ -1,0 +1,27 @@
+[Version:1]
+ImageContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+		}
+	}
+	SpriteSourceBuilder 
+	{
+		var Name = "Platform"
+		var ResourceId = 0x59a57700a76e9bb9
+		var AtlasId = 0x5274cf95e4a661fd
+		var FrameSizeX = 407
+		var FrameSizeY = 57
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 203
+		var OriginY = 28
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Tiled
+	}
+}

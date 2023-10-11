@@ -1,0 +1,39 @@
+class ParticleMovementRampup : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var ParticleEmitterShared : ParticleEmitterShared;
+  
+  [Property] var MinSpeed = 1.0;
+  [Property] var MaxSpeed = 5.0;
+  [Property] var MinEmitRate = 0.0;
+  [Property] var MaxEmitRate = 100.0;
+  [Display] var CurrentSpeed : Real
+  {
+    get{return this.LastSpeed; }
+  }
+  
+  var LastPos : Real3;
+  var LastSpeed : Real;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.LastPos = this.Transform.WorldTranslation;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var currentPos = this.Transform.WorldTranslation;
+    
+    var speed = Math.Distance(this.LastPos, currentPos);
+    this.LastSpeed = speed;
+    
+    var t = (speed - this.MinSpeed) / (this.MaxSpeed);
+    t = Math.Saturate(t);
+    
+    var emitRate = Math.Lerp(this.MinEmitRate, this.MaxEmitRate, t);
+    this.ParticleEmitterShared.EmitRate = emitRate;
+    
+    this.LastPos = currentPos;
+  }
+}

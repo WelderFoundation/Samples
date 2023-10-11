@@ -1,0 +1,84 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxMan_Stomach"
+				var ResourceId = 0x59af21e17ebd8413
+			}
+			Object
+			{
+				var Name = "BoxMan_Chest"
+				var ResourceId = 0x59af21e17ebd841f
+			}
+			Object
+			{
+				var Name = "BoxMan_Head"
+				var ResourceId = 0x59af21e17ebd8422
+			}
+			Object
+			{
+				var Name = "BoxMan_LArm"
+				var ResourceId = 0x59af21e17ebd8426
+			}
+			Object
+			{
+				var Name = "BoxMan_LArm01"
+				var ResourceId = 0x59af21e17ebd842b
+			}
+			Object
+			{
+				var Name = "BoxMan_RArm"
+				var ResourceId = 0x59af21e17ebd842f
+			}
+			Object
+			{
+				var Name = "BoxMan_RArm01"
+				var ResourceId = 0x59af21e17ebd8433
+			}
+			Object
+			{
+				var Name = "BoxMan_LLeg"
+				var ResourceId = 0x59af21e17ebd8438
+			}
+			Object
+			{
+				var Name = "BoxMan_LLeg01"
+				var ResourceId = 0x59af21e17ebd843b
+			}
+			Object
+			{
+				var Name = "BoxMan_RLeg"
+				var ResourceId = 0x59af21e17ebd843f
+			}
+			Object
+			{
+				var Name = "BoxMan_RLeg01"
+				var ResourceId = 0x59af21e17ebd8444
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x59af21e17ea19b3f
+	}
+}

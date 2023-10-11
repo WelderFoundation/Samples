@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManCrawlToStand_Stomach"
+				var ResourceId = 0x59af21f77ae022fc
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_Chest"
+				var ResourceId = 0x59af21f77ae0230a
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_Head"
+				var ResourceId = 0x59af21f77ae0230f
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_LArm"
+				var ResourceId = 0x59af21f77ae02314
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_LArm01"
+				var ResourceId = 0x59af21f77ae02319
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_RArm"
+				var ResourceId = 0x59af21f77ae0231d
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_RArm01"
+				var ResourceId = 0x59af21f77ae02321
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_LLeg"
+				var ResourceId = 0x59af21f77ae02326
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_LLeg01"
+				var ResourceId = 0x59af21f77ae0232a
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_RLeg"
+				var ResourceId = 0x59af21f77ae0232e
+			}
+			Object
+			{
+				var Name = "BoxManCrawlToStand_RLeg01"
+				var ResourceId = 0x59af21f77ae02333
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManCrawlToStand"
+				var ResourceId = 0x59af21f77ae02339
+			}
+		}
+	}
+}

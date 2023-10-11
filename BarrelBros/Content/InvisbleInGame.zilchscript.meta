@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "InvisbleInGame"
+		var ResourceId = 0x59456274a9be77ac
+	}
+}

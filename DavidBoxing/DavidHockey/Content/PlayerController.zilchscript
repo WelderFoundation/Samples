@@ -1,0 +1,39 @@
+class PlayerController : ZilchComponent
+{
+  var Gamepad : Gamepad = null;
+  var MyLastFramePosition : Real3 = Real3(0,0,0);
+  var MyVelocity : Real3 = Real3(0,0,0);
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    this.Gamepad = Zero.Gamepads.GetGamePad(0);
+  }
+
+  function OnKeyDown(event : KeyboardEvent)
+  {
+    
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    Console.WriteLine(this.Owner.Transform.Translation - this.MyLastFramePosition);
+    this.Owner.Transform.Translation = Math.Lerp(this.Owner.Transform.Translation, Real3(this.Gamepad.LeftStick * 10,0), 0.05);
+    var direction = -Math.ATan2(this.MyVelocity.X, this.MyVelocity.Y);
+    Console.WriteLine(this.MyVelocity);
+    this.Owner.Transform.SetEulerAnglesXYZ(0,0,direction + Math.Pi/2);
+    this.MyVelocity = this.Owner.Transform.Translation - this.MyLastFramePosition;
+    this.MyLastFramePosition = this.Owner.Transform.Translation;
+    
+    /*
+    var stickspeed = this.Gamepad.RightStickDelta.X * this.Gamepad.RightStickDelta.X + this.Gamepad.RightStickDelta.Y * this.Gamepad.RightStickDelta.Y;
+    
+    if(stickspeed > 0.5)
+    {
+      this.Owner.RigidBody.Velocity =+ Real3(this.Gamepad.RightStickDelta * 10,0);
+      Console.WriteLine(stickspeed);
+    }
+    */
+  }
+}

@@ -1,0 +1,48 @@
+[Version:1]
+Cog 
+{
+	var Name = "ExplosionDebri2"
+	Transform 
+	{
+		var Translation = Real3{5.48542023, 4.55144978, 1.52807164}
+		var Scale = Real3{0.324913293, 0.281082183, 0.610043228}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5b4035c4a1ff598b:Vase"
+		var Mesh = "5b76b56fb5473b7d:Rock0"
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	StippleInputs 
+	{
+		var AlbedoValue = Real4{0.5, 0.5, 0.5, 1}
+		var StippleDensity = 1
+		var StippleScale = 1
+	}
+	ConvexMeshCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "5b769ca47e63f045:Debri"
+		var Offset = Real3{0, 0, 0}
+		var ConvexMesh = "5b76b56fb5473b89:Rock0"
+	}
+}

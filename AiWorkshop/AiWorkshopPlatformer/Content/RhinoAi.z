@@ -1,0 +1,92 @@
+class RhinoAi : ZilchComponent
+{
+  // All logic is done through the rhino
+  [Dependency] var Rhino : Rhino;
+  
+  // How many seconds before we switch directions when wandering
+  [Property] var TimeBetweenSwitch : Real = 3.0;
+  
+  // Used to keep track of which direction we're wandering in
+  var Left : Boolean = true;
+  
+  // How long it has been since we've switched directions
+  var TimeSinceSwitch : Real = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want our logic to run every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    // Used to jump over gaps when we hit the jump object
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+    
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    // Don't do anything if we're dead or attacking
+    if(this.Rhino.Dead || this.Rhino.Attacking)
+      return;
+    
+    var playerPos = this.Rhino.PlayerPosition;
+    var ourPos = this.Rhino.OurPosition;
+    
+    // Is the player to the left of us?
+    var playerIsLeft = (playerPos.X < ourPos.X);
+    
+    // The distance to the player
+    var distance = Math.Distance(playerPos, ourPos);
+    
+    // Is the player alive?
+    var playerAlive = !this.Rhino.PlayerIsDead;
+    
+    // If we're really close to the player, attack
+    // Check on ground so we don't attack while jumping
+    if(distance < 3 && this.Rhino.OnGround && playerAlive)
+    {
+        this.Rhino.Attack();
+    }
+    // If the player is close(ish) and still alive, charge them
+    else if(distance < 10.0 && playerAlive)
+    {
+      // Charge in whichever direction they are in
+      if(playerIsLeft)
+        this.Rhino.ChargeLeft();
+      else
+        this.Rhino.ChargeRight();
+    }
+    else
+    {
+      // Update our wander timer
+      this.TimeSinceSwitch += event.Dt;
+      
+      // Swap directions
+      if(this.TimeSinceSwitch >= this.TimeBetweenSwitch)
+      {
+        this.TimeSinceSwitch = 0;
+        this.Left = !this.Left;
+      }
+      
+      // Walk in the wander direction
+      if(this.Left)
+        this.Rhino.WalkLeft();
+      else
+        this.Rhino.WalkRight();
+    }
+  }
+    
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    // If we hit the jump point, we want to jump
+    if(event.OtherObject.Name == "JumpPoint" && this.Rhino.OnGround)
+    {
+      // But only if we're charging
+      if(this.Rhino.Charging)
+        this.Rhino.Jump();
+      // If we aren't charging, we likely won't make the jump, so just switch directions
+      else
+        this.Left = !this.Left;
+    }
+  }
+}

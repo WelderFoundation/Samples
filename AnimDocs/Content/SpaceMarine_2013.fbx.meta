@@ -1,0 +1,69 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = true
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "SpaceMarine_2013_head"
+				var ResourceId = 0x59ae31d4f3d9eda2
+			}
+			Object
+			{
+				var Name = "SpaceMarine_2013_eyes"
+				var ResourceId = 0x59ae31d4f3d9edb0
+			}
+			Object
+			{
+				var Name = "SpaceMarine_2013_Armor"
+				var ResourceId = 0x59ae31d4f3d9edb5
+			}
+			Object
+			{
+				var Name = "SpaceMarine_2013_underArmor1"
+				var ResourceId = 0x59ae31d4f3d9edba
+			}
+			Object
+			{
+				var Name = "SpaceMarine_2013_globes"
+				var ResourceId = 0x59ae31d4f3d9edbf
+			}
+		}
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x59ae31d4f3c7dd1c
+	}
+}

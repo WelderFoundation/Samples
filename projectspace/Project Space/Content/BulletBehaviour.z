@@ -1,0 +1,33 @@
+class BulletBehaviour : ZilchComponent
+{
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    }
+
+    function OnCollisionStarted(event : CollisionEvent)
+    {
+        var otherObject = event.OtherObject;
+        
+        if(otherObject.Name != "Player1" && otherObject.Name != "Player" && otherObject.Name != this.Owner.Name)
+        {
+            if(this.Owner.ArchetypeName == "PlayerBulletGhost")
+            {
+                if(otherObject.Name != "Shield")
+                {
+                    this.Owner.Destroy();
+                }
+            }
+            else
+            {
+                this.Owner.Destroy();
+            }
+        }
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        
+    }
+}

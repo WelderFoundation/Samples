@@ -1,0 +1,34 @@
+class SplineExtensions
+{
+  [Extension(typeid(Spline))]
+  function FindClosestPoint(point : Real3) : SplineSampleData
+  {
+    var bakedPoints = this.BakedPoints;    
+    var count = bakedPoints.Count;
+    if(count < 2)
+      return SplineSampleData();
+      
+    var closest = SplineSampleData();
+    var closestDistance = Real.PositiveMax;
+    
+    // Brute force
+    for(var i = 0; i < count - 1; ++i)
+    {
+      var p0 = bakedPoints[i].Position;
+      var p1 = bakedPoints[i + 1].Position;
+      
+      var pointOnLine = Intersection.ClosestPointOnSegmentToPoint(p0, p1, point);
+      var distance = Math.DistanceSq(pointOnLine, point);
+      
+      if(distance < closestDistance)
+      {
+        closest.Point = pointOnLine;
+        closest.Tangent = (p1 - p0);
+        closestDistance = distance;
+      }
+    }
+    
+    closest.Tangent = Math.Normalize(closest.Tangent);
+    return closest;
+  }
+}

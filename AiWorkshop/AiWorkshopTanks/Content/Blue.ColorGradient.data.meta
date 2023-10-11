@@ -1,0 +1,18 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "Blue",
+		uint64 ResourceId = 550694708fb1863a,
+		string LoaderType = "ColorGradient",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Explosion",
+		],
+	},
+},

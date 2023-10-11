@@ -1,0 +1,35 @@
+[Pixel]
+struct HeightMapDynamicAlbedo
+{
+  [Input] var TopColor : Real4 = Real4(1.0);
+  [Input] var SideColor : Real4 = Real4(1.0);
+  [Input] var GammaCorrect : Boolean = true;
+  [Input] var Pow = 1.0;
+  
+  [FragmentInput][StageInput] var ViewNormal : Real3;
+  [AppBuiltInInput] var ViewToWorld : Real4x4;
+  //[FragmentInput][StageInput] var Uv : Real2;
+  //[FragmentInput] var HeightMapTextureWeights : Real4;
+  
+  [Output] var Albedo : Real3;
+  
+  function GammaCorrectColor(color : Real3) : Real3
+  {
+    var power = Math.Lerp(Real3(1.0), Real3(2.2), this.GammaCorrect as Real);
+    return Math.Pow(color, power);
+  }
+  
+  function Main()
+  {
+    var worldNormal = Math.MultiplyNormal(this.ViewToWorld, this.ViewNormal);
+    
+    var t = Math.Dot(worldNormal, Real3.YAxis);
+    t = Math.Pow(t, this.Pow);
+    t = Math.Saturate(t);
+    this.Albedo = this.GammaCorrectColor(Math.Lerp(this.SideColor, this.TopColor, t).XYZ);
+    //this.Albedo += this.GammaCorrectColor(this.AlbedoValue0.XYZ) * this.HeightMapTextureWeights.X;
+    //this.Albedo += this.GammaCorrectColor(this.AlbedoValue1.XYZ) * this.HeightMapTextureWeights.Y;
+    //this.Albedo += this.GammaCorrectColor(this.AlbedoValue2.XYZ) * this.HeightMapTextureWeights.Z;
+    //this.Albedo += this.GammaCorrectColor(this.AlbedoValue3.XYZ) * this.HeightMapTextureWeights.W;
+  }
+}

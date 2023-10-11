@@ -1,0 +1,85 @@
+[RunInEditor]
+class ThickSplineRenderer : ZilchComponent
+{
+  [Dependency] var SplineHelper : SplineHelper;
+  
+  [Property] var Active : Boolean = true;
+  [Property] var DebugDrawQuads : Boolean = false;
+  [ShaderInput][Property] var Scroll : Real2 = Real2(1);
+  
+  var Mesh : Mesh = Mesh.CreateRuntime();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.FrameUpdate, this.OnFrameUpdate);
+    
+    this.Owner.Model.Mesh = this.Mesh;
+    this.Mesh.Vertices.AddAttribute(VertexSemantic.Position, VertexElementType.Real, 3);
+    this.Mesh.Vertices.AddAttribute(VertexSemantic.Uv, VertexElementType.Real, 2);
+    //this.Mesh.Vertices.AddAttribute(VertexSemantic.Normal, VertexElementType.Real, 3);
+    
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+    Zero.Connect(this.Owner, Events.SplineModified, this.OnSplineModified);
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    this.Rebuild();
+  }
+  
+  function AddQuadToMesh(tl : Real3, bl : Real3, br : Real3, tr : Real3, d0 : Real, d1 : Real)
+  {
+    var count = this.Mesh.Vertices.VertexCount;
+    this.Mesh.Vertices.AddReal(tl);
+    this.Mesh.Vertices.AddReal(Real2(d0, 0));
+    //this.Mesh.Vertices.AddReal(Real3.ZAxis);
+    this.Mesh.Vertices.AddReal(bl);
+    this.Mesh.Vertices.AddReal(Real2(d0, 1));
+    //this.Mesh.Vertices.AddReal(Real3.ZAxis);
+    this.Mesh.Vertices.AddReal(br);
+    this.Mesh.Vertices.AddReal(Real2(d1, 1));
+    //this.Mesh.Vertices.AddReal(Real3.ZAxis);
+    this.Mesh.Vertices.AddReal(tr);
+    this.Mesh.Vertices.AddReal(Real2(d1, 0));
+    //this.Mesh.Vertices.AddReal(Real3.ZAxis);
+    
+    
+    this.Mesh.Indices.Add(count);
+    this.Mesh.Indices.Add(count + 1);
+    this.Mesh.Indices.Add(count + 2);
+    
+    this.Mesh.Indices.Add(count);
+    this.Mesh.Indices.Add(count + 2);
+    this.Mesh.Indices.Add(count + 3);
+  }
+  
+  function DebugDrawQuad(tl : Real3, bl : Real3, br : Real3, tr : Real3, d0 : Real, d1 : Real)
+  {
+    DebugDraw.Add(DebugTriangle(tl, bl, br));
+    DebugDraw.Add(DebugTriangle(tl, br, tr));
+  }
+
+  function OnSplineModified(event : SplineEvent)
+  {
+    this.Rebuild();
+  }
+  
+  function Rebuild()
+  {
+    this.Mesh.Indices.Clear();
+    this.Mesh.Vertices.ClearData();
+    this.SplineHelper.ComputeSplineQuads(this.AddQuadToMesh);
+    this.Mesh.Upload();
+  }
+
+  function OnFrameUpdate(event : UpdateEvent)
+  {
+    if(!this.Active)
+      return;
+    
+    if(!this.DebugDrawQuads)
+      return;
+    this.SplineHelper.ComputeSplineQuads(this.DebugDrawQuad);
+    
+  }
+}

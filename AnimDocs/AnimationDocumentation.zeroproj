@@ -1,0 +1,38 @@
+[Version:1]
+Cog 
+{
+	var Name = ""
+	ProjectSettings 
+	{
+		var ProjectName = "AnimationDocumentation"
+		var ProjectOwner = ""
+		var DefaultLevel = "Level"
+		var ProjectSpace = "Space"
+		var AutoTakeProjectScreenshot = true
+		var Guid = 0x2155561334866070
+	}
+	WindowLaunchSettings 
+	{
+		var LaunchFullscreen = true
+		var WindowedResolution = Integer2{1280, 720}
+	}
+	FrameRateSettings 
+	{
+		var VerticalSync = false
+		var LimitFrameRate = true
+		var FrameRate = 60
+	}
+	LauncherProjectInfo 
+	{
+		var Tags = "Animation, Documentation"
+		var Application = "WelderEditor"
+		var Branch = "dev"
+		var MajorVersion = 0
+		var MinorVersion = 0
+		var PatchVersion = 25
+		var RevisionId = 2147
+		var ShortChangeSet = "c4aaf2420c83"
+		var MsSinceEpoch = 1695431581255
+		var PackageExtension = "zip"
+	}
+}

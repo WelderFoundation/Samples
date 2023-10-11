@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "SmallRock0"
+		var ResourceId = 0x5aad8648b3f20176
+		var FrameSizeX = 84
+		var FrameSizeY = 51
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 42
+		var OriginY = 25
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

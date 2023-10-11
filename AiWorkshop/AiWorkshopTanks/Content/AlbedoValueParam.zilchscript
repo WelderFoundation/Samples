@@ -1,0 +1,4 @@
+class AlbedoValueParam : ZilchComponent
+{
+  [Property][ShaderInput("AlbedoValue")] var AlbedoValue = Real4(0.5, 0.5, 0.5, 1);
+}

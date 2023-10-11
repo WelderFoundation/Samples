@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Trap"
+		var ResourceId = 0x5b00bfddd04f5d4c
+		var LoaderType = "CollisionGroup"
+		var Version = 0
+	}
+}

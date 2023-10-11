@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "PopupHudDisplay"
+		var ResourceId = 0x587e494f9ce4b046
+	}
+}

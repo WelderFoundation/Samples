@@ -1,0 +1,19 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "Asteroid2",
+		uint64 ResourceId = 524e0209b31d973a,
+		uint64 AtlasId = 0000000000000000,
+		uint FrameSizeX = 0,
+		uint FrameSizeY = 0,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 122,
+		float OriginY = 105,
+		float PixelsPerUnit = 210,
+		bool Smoothing = true,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+	},
+},

@@ -1,0 +1,46 @@
+struct StipplingUtilities
+{
+  [Static]
+  var IndexMatrix8x8 : FixedArray[Integer, 64] = FixedArray[Integer, 64]()
+  {
+     0, 48, 12, 60,  3, 51, 15, 63,
+    32, 16, 44, 28, 35, 19, 47, 31,
+     8, 56,  4, 52, 11, 59,  7, 55,
+    40, 24, 36, 20, 43, 27, 39, 23,
+     2, 50, 14, 62,  1, 49, 13, 61,
+    34, 18, 46, 30, 33, 17, 45, 29,
+    10, 58,  6, 54,  9, 57,  5, 53,
+    42, 26, 38, 22, 41, 25, 37, 21,
+  };
+}
+
+
+[Pixel]
+struct Stippling
+{
+  [AppBuiltInInput] var ViewportSize : Real2;
+  [AppBuiltInInput] var ViewToPerspective : Real4x4;
+  
+  [PropertyInput][Slider(0, 1, 0.015625)] var StippleDensity : Real = 0.5;
+  [PropertyInput][Slider(1, 16, 1)] var StippleScale : Real = 1;
+  
+  [FragmentInput][StageInput] var ViewPosition : Real3;
+  
+  
+  function Main()
+  {
+    var ndc = Math.Multiply(this.ViewToPerspective, Real4(this.ViewPosition, 1));
+    ndc.XY /= ndc.W;
+    ndc.XY = (ndc.XY / 2) + Real2(0.5);
+    
+    var pixelPos = ndc.XY * this.ViewportSize;
+    var pixel = pixelPos as Integer2;
+    //var index = (pixel / this.StippleScale) as Integer2 % 8;
+    var p = (pixel / this.StippleScale) as Integer2;
+    var index = Integer2(p.X % 8, p.Y % 8);
+    var matrixValue = StipplingUtilities.IndexMatrix8x8[index.X + index.Y * 8] as Real / 64.0;
+    
+    if (this.StippleDensity <= matrixValue)
+      ShaderIntrinsics.Kill();
+  }
+}

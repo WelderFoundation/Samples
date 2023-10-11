@@ -1,0 +1,81 @@
+class ObstacleAI : ZilchComponent
+{
+  [Dependency]
+  var Paddle : Paddle;
+  
+  var LeftBoundary : Real = -8.5;
+  var RightBoundary : Real = 8.5;
+  
+  [Property]
+  var Speed : Integer = 1;
+  
+  [Property]
+  var RotationSpeed : Integer = 1;
+  
+  [Property]
+  var ScaleSpeed : Integer = 1;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  //************************************************************************************************
+  function MoveLeft(dt : Real)
+  {
+    this.Owner.Transform.Translation -= Real3(this.Speed * dt, 0, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.X < this.LeftBoundary)
+      this.Owner.Transform.Translation = Real3(this.LeftBoundary, pos.Y, pos.Z);
+  }
+  
+  //************************************************************************************************
+  function MoveRight(dt : Real)
+  {
+    this.Owner.Transform.Translation += Real3(this.Speed * dt, 0, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.X > this.RightBoundary)
+      this.Owner.Transform.Translation = Real3(this.RightBoundary, pos.Y, pos.Z);
+  }
+  
+  //************************************************************************************************
+  function Rotate(dt : Real)
+  {
+    this.Owner.Transform.RotateLocal(Quaternion(0,0,this.RotationSpeed * dt,1));
+  }
+  
+  //************************************************************************************************
+  function ScaleUp(dt : Real)
+  {
+    // Clamp Scale so we cant collide with the boundary
+    if(this.Owner.Transform.Scale.Y < 1.9)
+      this.Owner.Transform.Scale += Real3(0,this.ScaleSpeed * dt, 0);
+  }
+  
+  //************************************************************************************************
+  function ScaleDown(dt : Real)
+  {
+    // Clamp scale
+    if(this.Owner.Transform.Scale.Y > 0)
+      this.Owner.Transform.Scale -= Real3(0,this.ScaleSpeed * dt, 0);
+  }
+  
+  //************************************************************************************************
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Find the ball object
+    var ball = this.Space.FindObjectByName("Ball").Ball;
+    
+    var ballVelocity = ball.Velocity;
+    var ballPosition = ball.Position;
+    var ourPosition = this.Paddle.Position;
+    
+    //------------------------------------------------------- Student Code Below
+    
+  }
+}

@@ -1,0 +1,18 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+	}
+	Lambert 
+	{
+	}
+	ModulateModelColor 
+	{
+	}
+	ColorDiffuse 
+	{
+		var DiffuseColor = Real4{1, 1, 1, 1}
+	}
+}

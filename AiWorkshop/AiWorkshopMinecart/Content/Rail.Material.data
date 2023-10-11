@@ -1,0 +1,29 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"580269d9a1d6b870:ShadowCasters"
+		"581cffd64d449122:Opaque"
+	}
+	AlbedoValue 
+	{
+		var AlbedoValue = Real4{0.314999998, 0.314999998, 0.314999998, 1}
+		var GammaCorrect = true
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 0.472322613
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 0.218584046
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+	GeoPolygonNormals 
+	{
+	}
+}

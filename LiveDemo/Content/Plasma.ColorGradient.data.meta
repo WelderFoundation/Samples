@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Plasma"
+		var ResourceId = 0x5b4ee1ba1ed49187
+		var LoaderType = "ColorGradient"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

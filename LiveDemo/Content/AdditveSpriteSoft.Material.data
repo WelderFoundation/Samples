@@ -1,0 +1,20 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"5961eaa40f1649f6:ZSort"
+		"582fad0ca055e4df:AdditiveBlend"
+	}
+	SpriteSourceColor 
+	{
+	}
+	GeometryInput 
+	{
+		var GeometryBuffer0 = "null"
+		var GeometryBuffer1 = "null"
+	}
+	SoftSprite 
+	{
+	}
+}

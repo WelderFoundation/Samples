@@ -1,0 +1,12 @@
+[Pixel]
+struct ColorPow
+{
+  [Input] var Pow = 2.0;
+  [FragmentInput][StageInput][Output] var Color : Real4;
+  
+  function Main()
+  {
+    //this.Color.XYZ = Math.Pow(this.Color.XYZ, Real3(this.Pow));
+    this.Color = Math.Pow(this.Color, Real4(this.Pow));
+  }
+}

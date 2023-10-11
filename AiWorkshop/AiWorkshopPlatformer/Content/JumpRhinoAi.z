@@ -1,0 +1,52 @@
+class JumpRhinoAi : ZilchComponent
+{
+  // All logic is done through the rhino
+  [Dependency] var Rhino : Rhino;
+  
+  [Property]
+  var WanderRange : Real = 2;
+  
+  var StartingPosition : Real3 = Real3(0);
+  
+  var WanderingRight : Boolean = true;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want our logic to run every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    // We want to be notified about collisions with objects
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    
+    // Store our starting position
+    this.StartingPosition = this.Owner.Transform.Translation;
+  }
+    
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    if (this.Rhino.Dead)
+      return;
+    
+    if (this.Owner.Transform.Translation.X - this.StartingPosition.X >= this.WanderRange && this.WanderingRight == true)
+      this.WanderingRight = false;
+    else if (this.Owner.Transform.Translation.X - this.StartingPosition.X <= -this.WanderRange && this.WanderingRight == false)
+      this.WanderingRight = true;
+    
+    // Walk in the wander direction
+    if (this.WanderingRight)
+      this.Rhino.ChargeRight();
+    else
+      this.Rhino.ChargeLeft();
+  }
+  
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if (this.Rhino.Dead)
+      return;
+      
+    // If we hit the jump point, we want to jump
+    if (event.OtherObject.Name == "JumpPoint" && this.Rhino.OnGround)
+      this.Rhino.Jump();
+  }
+}

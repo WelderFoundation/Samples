@@ -1,0 +1,26 @@
+// Shader input attribute definitions
+// [BuiltInInput]  Input comes from predefined data given by the graphics engine
+// [StageInput]    Input comes from the previous hardware stage (mesh -> vertex -> geometry -> pixel)
+// [FragmentInput] Input comes from a previous fragment in the same stage
+// [PropertyInput] Input comes from this fragment
+// [Input]         Input auto resolves from any of the previous in the order
+//                 [FragmentInput][StageInput][BuiltInInput][PropertyInput]
+//
+// Pixel fragment Example:
+// [FragmentInput][StageInput] var ViewNormal : Real3;
+// Input will come from a previous pixel fragment that outputs ViewNormal
+// otherwise, input will come from the vertex shader
+
+[Pixel]
+struct HueShift
+{
+  [Input][Slider(0, 255, 1)] var HueShift = 0.0;
+  [FragmentInput][StageInput][Output] var Color : Real4;
+  
+  function Main()
+  {
+    var hsva = Color.ToHsva(this.Color);
+    hsva.X += this.HueShift / 255.0;
+    this.Color = Color.FromHsva(hsva);
+  }
+}

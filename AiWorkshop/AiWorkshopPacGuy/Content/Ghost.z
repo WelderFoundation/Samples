@@ -1,0 +1,208 @@
+class Ghost : ZilchComponent
+{
+  // We rely on the Character
+  [Dependency] var Character : Character;
+  
+  // The color of the ghost
+  [Property] var GhostColor : Real4 = Real4(1);
+  
+  // When frozen, the ghost will switch to this color
+  [Property] var FrozenColor : Real4 = Real4(1);
+  
+  // When the ghost is almost un-frozen, it will flash to this color
+  [Property] var FrozenFlashColor : Real4 = Real4(1);
+  
+  // After the player eats this many dots, we we be spawned
+  [Property] var DotLimit : Integer = 20;
+  
+  // How many dots the player has eaten while we were the priority ghost (next to be spawned)
+  var DotCounter : Integer = 0;
+  
+  // Are we in the ghost house
+  var InGhostHouse : Boolean = true;
+  
+  // Are we frozen
+  var IsFrozen : Boolean = false;
+  
+  // Easy access to the players position
+  var PlayerPosition : Real3
+  {
+    get
+    {
+      var player =this.Space.FindObjectByName("PacGuy");
+      if(player != null)
+        return player.Transform.Translation;
+      return Real3(0);
+    }
+  }
+  
+  // Easy access to our position
+  var OurPosition : Real3
+  {
+    get { return this.Owner.Transform.Translation; }
+  }
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Initialize to the ghost color
+    this.Character.Color = this.GhostColor;
+    
+    //this.Owner.Light.Color = this.GhostColor;
+    
+    // We want to respond to colliding with the player
+    Zero.Connect(this.Character.GetCollisionObject(), Events.CollisionStarted, this.OnCollisionStarted);
+    
+    // When the player picks up a frozen dot, we need to flash colors and become vulnerable
+    Zero.Connect(this.Space, Events.FrozenDotPickedUp, this.OnFrozenDotPickedUp);
+  }
+  
+  function Spawned()
+  {
+    // Make ourselves visibile again if we were just eaten
+    this.Owner.Model.Visible = true;
+    
+    // Always start moving to the left
+    this.MoveInDirection(Direction.Left);
+    
+    // We're no longer in the ghost house
+    this.InGhostHouse = false;
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    // Don't do anything if we're in the ghost house (or moving towards it)
+    if(this.InGhostHouse)
+      return;
+    
+    // Check if we collided with pac guy
+    if(event.OtherObject.FindRoot().Name == "PacGuy")
+    {
+      // If we're frozen, we should be destroyed
+      if(this.IsFrozen)
+      {
+        var ghostHouse = this.Space.FindObjectByName("GhostHouse");
+        ghostHouse.GhostHouse.GhostDied(this.Owner);
+      }
+      // Otherwise, we should destroy pac guy
+      else
+      {
+        event.OtherObject.FindRoot().Destroy();
+      }
+    }
+  }
+
+  function OnFrozenDotPickedUp(event : Event)
+  {
+    // Ignore being frozen when we're in the ghost house
+    if(this.InGhostHouse)
+      return;
+    
+    // Cancel actions from a previous frozen animation
+    this.Owner.Actions.Cancel();
+    
+    // Don't slow down again if we're already frozen
+    if(!this.IsFrozen)
+      this.Character.Speed *= 0.5;
+    
+    // We're now considered frozen
+    this.IsFrozen = true;
+    
+    // Turn to the frozen color
+    this.SetFrozenColor();
+    
+    // Wait 5 seconds before we start flashing
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, 5.0);
+    Action.Call(seq, this.FlashColor);
+  }
+  
+  // Forward movement functions to the character
+  function AtIntersection() : Boolean
+  {
+    return this.Character.AtIntersection();
+  }
+  
+  function MoveInDirection(direction : Direction)
+  {
+    this.Character.MoveInDirection(direction);
+  }
+  
+  function GetOppositeOfMoving() : Direction
+  {
+    return this.Character.GetOppositeOfMoving();
+  }
+  
+  function CanMoveInDirection(direction : Direction) : Boolean
+  {
+    return this.Character.CanMoveInDirection(direction);
+  }
+  
+  function GetRandomDirection() : Direction
+  {
+    // Return the first available direction
+    loop
+    {
+      // Random direction
+      var randomDirection = this.LevelSettings.RandomContext.RangeExclusiveMax(0, 4);
+      
+      // If we can move in that direction
+      if(this.CanMoveInDirection(randomDirection as Direction))
+        return randomDirection as Direction;
+    }
+    
+    // This should never be hit
+    return Direction.Left;
+  }
+  
+  function FlashColor()
+  {
+    // Flash from the frozen to highlight colors
+    var t = 0.2;
+    
+    var seq = Action.Sequence(this.Owner.Actions);
+    var flashCount = 5;
+    for(var i = 0; i < flashCount; ++i)
+    {
+      Action.Call(seq, this.SetHighlightColor);
+      Action.Delay(seq, t);
+      Action.Call(seq, this.SetFrozenColor);
+      Action.Delay(seq, t);
+    }
+    
+    Action.Call(seq, this.SetHighlightColor);
+    Action.Delay(seq, t);
+    
+    // No longer frozen
+    Action.Call(seq, this.FrozenEnd);
+  }
+  
+  function SetFrozenColor()
+  {
+    this.AnimateToColor(this.FrozenColor, 0.2);
+  }
+  
+  function SetHighlightColor()
+  {
+    this.AnimateToColor(this.FrozenFlashColor, 0.2);
+  }
+  
+  function FrozenEnd()
+  {
+    // Back to our original color
+    this.AnimateToColor(this.GhostColor, 0.2);
+    
+    // No longer frozen
+    this.IsFrozen = false;
+    
+    this.Character.Speed /= 0.5;
+  }
+  
+  function AnimateToColor(color : Real4, time : Real)
+  {
+    var seq = Action.Group(this.Owner.Actions);
+    Action.Property(seq, @this.Character.Color, color, time, Ease.QuadOut);
+    
+    var lightCog = this.Owner.FindChildByName("Light");
+    Action.Property(seq, @lightCog.PointLight.LightColor, color, time, Ease.QuadOut);
+  }
+}

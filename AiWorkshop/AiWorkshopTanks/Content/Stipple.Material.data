@@ -1,0 +1,30 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+	}
+	AlbedoValue 
+	{
+		var AlbedoValue = Real4{1, 1, 1, 1}
+		var GammaCorrect = true
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 0
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 0
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+	VisibilityStippling 
+	{
+		var StippleDensity = 0.5
+		var StippleScale = 1
+	}
+}

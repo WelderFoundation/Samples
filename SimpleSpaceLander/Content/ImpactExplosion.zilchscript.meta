@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ImpactExplosion"
+		var ResourceId = 0x587a53c4d66d8661
+	}
+}

@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "Minecart"
+	var LibraryId = 0x5a99fb51d9897776
+	var SourceControlType = ""
+	var ReadOnly = false
+}

@@ -1,0 +1,28 @@
+class BatAi : ZilchComponent
+{
+  [Dependency] var SplineAttachment : SplineAttachment;
+  [Property] var Direction = 1.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    this.Direction *= -1.0;
+    this.SwapDirection();
+  }
+
+  function SwapDirection()
+  {
+    this.Direction *= -1.0;
+    this.Owner.FindChildByName("Bat").Transform.SetEulerAnglesXYZ(0, Math.Pi * 0.5 * this.Direction, 0);
+    
+    this.SplineAttachment.SplineJoint.MotorDirection = this.Direction;
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, 3.0);
+    Action.Call(seq, this.SwapDirection);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

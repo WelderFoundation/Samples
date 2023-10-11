@@ -1,0 +1,19 @@
+class Damage : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    //Attempts to destroy objects it collides with
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+  
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    Zero.Engine.DebugBreak();
+    // If we hit an object that can die
+    if(event.OtherObject.Death != null)
+    {
+      //Then the object dies
+      event.OtherObject.Death.KillObject();
+    }
+  }
+}

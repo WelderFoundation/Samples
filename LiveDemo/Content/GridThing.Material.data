@@ -1,0 +1,34 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	GridThingGeo 
+	{
+		var HeightTexture = "null"
+		var Width = 0.09375
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+	GridThingPixel 
+	{
+		var Texture = "5aefe11c39f84b86:SquareInnerGlow"
+		var BaseColor = Real4{0.0299999714, 0.0299999714, 0.0299999714, 1}
+		var TopColor = Real4{0.169999599, 1, 0, 1}
+		var TopHeight = 0.458895117
+		var Exponent = 13.6770086
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 1
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 1
+	}
+}

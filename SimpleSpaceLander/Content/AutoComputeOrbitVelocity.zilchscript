@@ -1,0 +1,32 @@
+[RunInEditor]
+class AutoComputeOrbitVelocity : ZilchComponent
+{
+  [Dependency] var PlanetGravity : PlanetGravity;
+  [Property] var CounterClockwise : Boolean = true;
+  [Property] var Target : CogPath = CogPath();
+  
+  [Property] function Update()
+  {
+    var targetCog = this.Target.Cog;
+    if(targetCog == null)
+      return;
+      
+    var g = this.LevelSettings.GravityManager.GravityCoef;
+    var planetPos = targetCog.Transform.WorldTranslation;
+    var planet = targetCog.PlanetGravity;
+    var mass0 = planet.Mass;
+    var mass1 = this.PlanetGravity.Mass;
+    var satelitePos = this.Owner.Transform.WorldTranslation;
+    var velocity = MathHelpers.ComputeOrbitVelocity(g, mass0, mass1, planetPos, satelitePos, this.CounterClockwise);
+    this.Owner.RigidBody.Velocity = velocity;
+  }
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

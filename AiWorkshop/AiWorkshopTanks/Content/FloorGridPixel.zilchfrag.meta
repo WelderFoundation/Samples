@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "FloorGridPixel"
+		var ResourceId = 0x5b4f5592ddb90890
+	}
+}

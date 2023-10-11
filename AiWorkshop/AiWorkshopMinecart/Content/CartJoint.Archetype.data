@@ -1,0 +1,54 @@
+[Version:1]
+Cog 
+{
+	var Name = "CartJoint"
+	ObjectLink 
+	{
+		var ObjectAPath = CogPath
+		{
+			var Path = ":/Cart"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var ObjectBPath = CogPath
+		{
+			var Path = ":/SplineConnection"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var LocalPointA = Real3{0, 0, 0}
+		var LocalPointB = Real3{0, 0, 0}
+	}
+	PrismaticJoint 
+	{
+		var Active = false
+		var SendsEvents = true
+		var AutoSnaps = false
+		var CollideConnected = false
+		var MaxImpulse = 0
+		var LocalPointA = Real3{0, 0, 0}
+		var LocalPointB = Real3{0, 0, 0}
+		var LocalAngleA = Quaternion{0, 0, 0, 1}
+		var LocalAngleB = Quaternion{0, 0, 0, 1}
+		var LocalAxisA = Real3{1, 0, 0}
+		var LocalAxisB = Real3{1, 0, 0}
+	}
+}

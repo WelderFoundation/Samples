@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Water"
+		var ResourceId = 0x5ae3a2a1a7749327
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

@@ -1,0 +1,26 @@
+[RunInEditor]
+class BaseDecorator : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  
+  [Property] var ObjectToPlace : Archetype = Archetype.SM_BigLeafFlower_01;
+  [Property][Slider(0, 1, 0.01)] var Density = 0.3;
+  [Property] var MaxCount = 10;
+  function Initialize(init : CogInitializer)
+  {
+    
+  }
+  
+  function DebugDraw()
+  {
+    var box = DebugObb(this.Transform.WorldTranslation, this.Transform.WorldScale * 0.5);
+    box.Color = Colors.Coral;
+    DebugDraw.Add(box);
+    
+    // Draw filled
+    box.Filled = true;
+    box.Color *= Real4(1, 1, 1, 0.2);
+    DebugDraw.Add(box);
+  }
+}
+

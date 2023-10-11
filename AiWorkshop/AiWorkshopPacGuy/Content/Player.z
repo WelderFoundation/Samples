@@ -1,0 +1,64 @@
+class Player : ZilchComponent
+{
+  // We rely on the Character
+  [Dependency] var Character : Character;
+  
+  // We will send this event when we pick up a blue dot
+  sends FrozenDotPickedUp : ZilchEvent;
+  
+  // Sent when a normal dot is picked up
+  sends DotPickedUp : ZilchEvent;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We need to respond to collisions with the dots
+    Zero.Connect(this.Character.GetCollisionObject(), Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    // If we hit a freeze dot
+    if(event.OtherObject.Name == "FreezeDot")
+  {
+      // Create an explosion at the dot
+      var explosion = Archetype.BlueExplosion;
+      this.Space.CreateAtPosition(explosion, event.OtherObject.Transform.WorldTranslation);
+      
+      // Send the event to the space to notify ghosts that they are frozen
+      var e = new ZilchEvent();
+      this.Space.DispatchEvent(Events.FrozenDotPickedUp, e);
+      
+      // Destroy the dot
+      event.OtherObject.Destroy();
+    }
+    else if(event.OtherObject.Name == "Dot")
+    {
+      // Send the event to the space to notify ghosts that we ate a dot
+      var e = new ZilchEvent();
+      this.Space.DispatchEvent(Events.DotPickedUp, e);
+      
+      // Destroy the dot
+      event.OtherObject.Destroy();
+    }
+  }
+  
+  function AtIntersection() : Boolean
+  {
+    return this.Character.AtIntersection();
+  }
+  
+  function MoveInDirection(direction : Direction)
+  {
+    this.Character.MoveInDirection(direction);
+  }
+  
+  function GetOppositeOfMoving() : Direction
+  {
+    return this.Character.GetOppositeOfMoving();
+  }
+  
+  function CanMoveInDirection(direction : Direction) : Boolean
+  {
+    return this.Character.CanMoveInDirection(direction);
+  }
+}

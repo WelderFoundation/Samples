@@ -1,0 +1,43 @@
+//--------------------------------------------------------------------------------------- Jump Joint
+class JumpJoint : ZilchComponent
+{
+  [Dependency]  var ObjectLink : ObjectLink;
+  [Dependency]  var CustomJoint : CustomJoint;
+  
+  var XPosition : Real;
+  
+  var Active = true;
+  var AxisConstraint : CustomConstraintInfo;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.ComputeCustomJointInfo, this.OnComputeCustomJointInfo);
+    
+    this.AxisConstraint = this.CustomJoint.CreateConstraint();
+    this.AxisConstraint.Baumgarte = 70;
+    //this.AxisConstraint.SolvePosition = true;
+  }
+  
+  //************************************************************************************************
+  function OnComputeCustomJointInfo(event : CustomJointEvent)
+  {
+    this.AxisConstraint.Active = this.Active;
+    
+    if(this.Active == false)
+      return;
+    
+    var worldPos = Real3(this.XPosition, 0, 0);
+    //DebugDraw.Add(DebugLine(worldPos + Real3(0, -100, 0), worldPos + Real3(0, 100, 0)) {Color = Colors.Red} );
+    this.CustomJoint.ConstrainLinearPosition2d(this.AxisConstraint, null, this.ObjectLink.ObjectB, worldPos, Real3(), Real3.XAxis);
+    //this.AxisConstraint.SetJacobian(-Real3.XAxis, Real3(), Real3.XAxis, Real3());
+    //this.AxisConstraint.Error = this.XPosition - this.ObjectLink.ObjectB.Transform.WorldTranslation.X;
+    //this.AxisConstraint.Error *= -1;
+    //this.AxisConstraint.Error *= -1;
+    
+    //this.CustomJoint.MaxImpulse = 15;
+    //this.AxisConstraint.
+    //this.AxisConstraint.ComputeSpring(0.1, 0);
+    //Console.WriteLine(this.AxisConstraint.Error);
+  }
+}

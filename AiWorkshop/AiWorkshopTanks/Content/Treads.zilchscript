@@ -1,0 +1,73 @@
+class Treads : ZilchComponent
+{
+  [Property]
+  var TreadCount : Integer = 20;
+  
+  [Property]
+  var TreadSpacing : Real = 1.5;
+  
+  var CurrentSpeed : Real = 0.0;
+  
+  var Treads : Array[Cog] = new Array[Cog]();
+  
+  var TreadPos : Real = 0.0;
+  
+  var WheelBack : Cog = null;
+  var WheelFront : Cog = null;
+  var WheelTop : Cog = null;
+  
+  var TreadLinks : Cog = null;
+  var TreadSpline : Spline = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.WheelBack = this.Owner.FindChildByName("PivotBack");
+    this.WheelFront = this.Owner.FindChildByName("PivotFront");
+    this.WheelTop = this.Owner.FindChildByName("PivotTop");
+    
+    this.TreadLinks = this.Owner.FindChildByName("Pieces");
+    this.TreadSpline = this.Space.FindObjectByName("TreadsPath").HierarchySpline.Spline;
+    
+    this.FindTreads();
+    
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function FindTreads()
+  {
+    foreach(var pivot in this.TreadLinks.Children)
+      this.Treads.Add(pivot);
+    
+      // Set their initial positions
+    this.UpdateTreads();
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.TreadPos += this.CurrentSpeed * event.Dt;
+    this.UpdateTreads();
+    this.UpdateWheels();
+  }
+  
+  function UpdateTreads()
+  {
+    for(var i = 0; i < this.TreadCount; ++i)
+    {
+      var tread = this.Treads.Get(i);
+      
+      var sample = this.TreadSpline.SampleDistance(i as Real * this.TreadSpacing + this.TreadPos);
+      tread.Transform.Translation = sample.Point / tread.Transform.WorldScale;
+      
+      var tangent = sample.WorldTangent;
+      var angle = Math.ATan2(tangent.Y, tangent.X);
+      tread.Transform.SetEulerAnglesXYZ(0, 0, angle);
+    }
+  }
+  
+  function UpdateWheels()
+  {
+    this.WheelBack.Transform.SetEulerAnglesXYZ(0, 0, -this.TreadPos * 6);
+    this.WheelFront.Transform.SetEulerAnglesXYZ(0, 0, -this.TreadPos * 7);
+    this.WheelTop.Transform.SetEulerAnglesXYZ(0, 0, -this.TreadPos * 6.5);
+  }
+}

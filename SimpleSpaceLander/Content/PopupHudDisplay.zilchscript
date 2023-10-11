@@ -1,0 +1,88 @@
+class PopupDisplay
+{
+  var TargetCog : Cog;
+  var DisplayCog : Cog;
+}
+
+class PopupHudDisplay : ZilchComponent
+{
+  [Property] var DisplayOffscreenTargets : Boolean = false;
+  
+  var Popups : Array[PopupDisplay] = Array[PopupDisplay]();
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    if(this.DisplayOffscreenTargets)
+      this.CreatePopups();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(Zero.Keyboard.KeyIsPressed(Keys.H))
+      this.ToggleDisplay();
+    this.DisplayHud();
+  }
+  
+  function ToggleDisplay()
+  {
+    this.DisplayOffscreenTargets = !this.DisplayOffscreenTargets;
+    if(!this.DisplayOffscreenTargets)
+    {
+      foreach(var popup in this.Popups)
+      {
+        popup.DisplayCog.Destroy();
+      }
+      this.Popups.Clear();
+      return;
+    }
+    
+    this.CreatePopups();
+  }
+  
+  function CreatePopups()
+  {
+    var toSend = PopupCameraQueryEvent();
+    this.Space.DispatchEvent(Events.PopupCameraQuery, toSend);
+    
+    foreach(var result in toSend.Results)
+    {
+      var popup = PopupDisplay();
+      popup.TargetCog = result;
+      popup.DisplayCog = this.Space.Create(Archetype.PopupPreview);
+      var sprite = popup.DisplayCog.Sprite;
+      sprite.Material = sprite.Material.RuntimeClone();
+      this.Popups.Add(popup);
+    }
+  }
+  
+  function DisplayHud()
+  {
+    var selfPos = this.Owner.Transform.WorldTranslation;
+    var toSend = PopupCameraQueryEvent();
+    foreach(var popup in this.Popups)
+    {
+      var targetCog = popup.TargetCog;
+      var targetPos = targetCog.Transform.WorldTranslation;
+      var offset = targetPos - selfPos;
+      offset.Z = 0;
+      
+      var displaySprite = popup.DisplayCog.Sprite;
+      if(displaySprite != null)
+      {
+        var resultTexture = targetCog.CameraViewport.FinalTexture;
+        displaySprite.Owner.PopupOverride.Texture = resultTexture;
+        displaySprite.Visible = !targetCog.PopupCamera.IsVisibleToGameCamera;
+      }
+      
+      offset = Math.Normalize(offset);
+      popup.DisplayCog.Transform.WorldTranslation = selfPos + offset * 5 + Real3(0, 0, 1);
+    }
+  }
+}

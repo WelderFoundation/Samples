@@ -1,0 +1,20 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "HomingProjectile",
+		uint64 ResourceId = 555c9c582df2e42e,
+		string LoaderType = "Cog",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Archetype",
+			"Cog",
+			"Projectile",
+		],
+	},
+},

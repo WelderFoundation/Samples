@@ -1,0 +1,165 @@
+[Pixel]
+struct TriplanarAutoMapping2
+{
+    [Input] var InWorld = true;
+    
+    // The texture we sample for each side
+    [Input]
+    var TextureX : SampledImage2d;
+    [Input]
+    var TextureY : SampledImage2d;
+    [Input]
+    var TextureZ : SampledImage2d;
+    
+    // How blurred are the edges 
+    [Input][Range(1, 75, 0.1)]
+    var Tightness : Real = 10.0;
+    
+    [Input] var LocalOffset : Real3;
+    
+    [Input]
+    var UvOffsetX : Real2 = Real2(0, 0);
+    [Input]
+    var UvOffsetY : Real2 = Real2(0, 0);
+    [Input]
+    var UvOffsetZ : Real2 = Real2(0, 0);
+    
+    [Input]
+    var UvScaleX : Real2 = Real2(1, 1);
+    [Input]
+    var UvScaleY : Real2 = Real2(1, 1);
+    [Input]
+    var UvScaleZ : Real2 = Real2(1, 1);
+    
+    [AppBuiltInInput] var LocalToWorld : Real4x4;
+    
+    // Uv coordinates from the mesh
+    [FragmentInput][StageInput] var Uv : Real2;
+    
+    // Normal in view space
+    [FragmentInput][StageInput] var ViewNormal : Real3;
+    
+    // Position in view space
+    [FragmentInput][StageInput] var ViewPosition : Real3;
+    
+    [AppBuiltInInput] var ViewToWorld : Real4x4;
+    [AppBuiltInInput] var LocalToView : Real4x4;
+    
+    // The diffuse color of the object
+    [Output]
+    var Albedo : Real3;
+    
+    function Sq(value : Real) : Real
+    {
+        return value * value;
+    }
+    
+    function PassThru(value : Real) : Real
+    {
+        return value;
+    }
+    
+    function Main()
+    {
+        //rotateInverse[0, 1] = this.World[0, 1] / scaleY;
+        //rotateInverse[1, 1] = this.World[1, 1] / scaleY;
+        //rotateInverse[2, 1] = this.World[2, 1] / scaleY;
+        //
+        //rotateInverse[0, 2] = this.World[0, 2] / scaleZ;
+        //rotateInverse[1, 2] = this.World[1, 2] / scaleZ;
+        //rotateInverse[2, 2] = this.World[2, 2] / scaleZ;
+        
+        //this.UvScaleX.X
+        
+        // We apply texturing via world coordinates
+        // We may want anther variation in the future that uses local coordinates, but world scale
+        // In order to do this technique, we need the position and normal in world space (both are in View)
+        var offsetView = Math.MultiplyNormal(this.LocalToView, this.LocalOffset);
+        var worldPosition = Math.MultiplyPoint(this.ViewToWorld, this.ViewPosition + offsetView);
+        var worldNormal = Math.MultiplyNormal(this.ViewToWorld, this.ViewNormal);
+        
+        if (!this.InWorld)
+        {
+            var basisX = Math.Normalize(Math.MultiplyNormal(this.LocalToWorld, Real3(1, 0, 0)));
+            var basisY = Math.Normalize(Math.MultiplyNormal(this.LocalToWorld, Real3(0, 1, 0)));
+            var basisZ = Math.Normalize(Math.MultiplyNormal(this.LocalToWorld, Real3(0, 0, 1)));
+            
+            var rotateInverse = Real3x3(
+                basisX.X, basisX.Y, basisX.Z,
+                basisY.X, basisY.Y, basisY.Z,
+                basisZ.X, basisZ.Y, basisZ.Z);
+            
+            var baseWorldPosition = Real3(this.LocalToWorld.M03, this.LocalToWorld.M13, this.LocalToWorld.M23);
+            
+            worldPosition -= baseWorldPosition;
+            worldPosition = Math.Multiply(rotateInverse, worldPosition);
+            worldNormal = Math.Multiply(rotateInverse, worldNormal);
+        }
+        
+        // Say we sample a texture only on the X plane (also known as the ZY plane)
+        // We will then use the normal's .X component and mulitply it by that sample
+        // This is the core of the triplanar technique
+        // In order to do that and not get negative colors, we need to abs the normal
+        var absWorldNormal = Math.Abs(worldNormal);
+        
+        // A neat trick on top of using the normal is to pow the normal, which has the effect of
+        // 'tightening up' the blurred seams between the different samples on each axis
+        // We want to make sure to normalize it afterwards, because pow will make it non normalized
+        var powWorldNormal = Math.Pow(absWorldNormal, Real3(this.Tightness));
+        powWorldNormal = Math.Normalize(powWorldNormal);
+        
+        // Because this is an 'auto-mapping' technique, we use the world
+        // positions to get the texture coordinates for each of the planes
+        // Some techniques require the model to have 3 sets of UVs on it
+        // Another is to use the local coordinates of the model (but with world scale to avoid stretching)
+        var uvX = worldPosition.ZY;
+        var uvY = worldPosition.XZ;
+        var uvZ = worldPosition.XY;
+        
+        // This part is completely unnessesary (more of a human element)
+        // In general if we have a camera view where Y above us then we 
+        // ideally want every side of a cube to look exactly like the texture
+        // in a photo viewer (this also prevents mirror looking seams)
+        // Also when looking up and down at the cube, we want to make sure
+        // the textures are not flipped in any way (rotated is OK!)
+        uvX.Y = -uvX.Y;
+        uvZ.Y = -uvZ.Y;
+        uvX.X *= -Math.Sign(worldNormal.X);
+        uvY.X *= Math.Sign(worldNormal.Y);
+        uvZ.X *= Math.Sign(worldNormal.Z);
+        
+        // Apply the sample offset and uv scales
+        uvX = uvX * this.UvScaleX + this.UvOffsetX;
+        uvY = uvY * this.UvScaleY + this.UvOffsetY;
+        uvZ = uvZ * this.UvScaleZ + this.UvOffsetZ;
+        
+        // Sample the same texture 3 different times (for each axis)
+        var sampleX = this.TextureX.Sample(uvX);
+        var sampleY = this.TextureY.Sample(uvY);
+        var sampleZ = this.TextureZ.Sample(uvZ);
+        
+        // Finally add all the samples for the 3 different axes together
+        // scaling them by the components of the normal
+        var finalColor =
+            sampleX * powWorldNormal.X +
+            sampleY * powWorldNormal.Y + 
+            sampleZ * powWorldNormal.Z;
+        
+        // Even though a normal is normalized, this DOES NOT mean that
+        // adding up all the X, Y, and Z will result in 1
+        // Eg (1, 0, 0) will, but (0.707, 0.707, 0) will not
+        // So in order to avoid color blowout, we need to get the total color weight
+        var totalWeight = powWorldNormal.X + powWorldNormal.Y + powWorldNormal.Z;
+        
+        // Divide out by the total weight to avoid color blowout
+        finalColor /= totalWeight;
+        
+        // The surface color is just the weighted combination of the 3 texture samples
+        this.Albedo = finalColor.XYZ;
+        
+        // For debugging
+        //this.SurfaceColor = Real4(this.Normal, 1);
+        //this.SurfaceColor = Real4(powWorldNormal, 1);
+        //this.SurfaceColor = this.TestTexture.Sample(this.Uv);
+    }
+}

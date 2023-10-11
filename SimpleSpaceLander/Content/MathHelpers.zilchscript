@@ -1,0 +1,36 @@
+class MathHelpers
+{
+  [Static] function ComputeOrbitSpeed(g : Real, mass0 : Real, mass1 : Real, radius : Real) : Real
+  {
+    var numerator = g * mass0 * mass0;
+    var denominator = radius * (mass0 + mass1);
+    var orbitSpeed = Math.Sqrt(numerator / denominator);
+    Console.WriteLine(orbitSpeed);
+    return orbitSpeed;
+  }
+  
+  [Static] function ComputeOrbitVelocity(g : Real, mass0 : Real, mass1 : Real, planetPos : Real2, satelitePos : Real2, counterClockwise : Boolean) : Real2
+  {
+    var radiusVec = satelitePos - planetPos;
+    var radius = Math.Length(radiusVec);
+    var normRadiusVec = radiusVec / radius;
+    var orbitSpeed = MathHelpers.ComputeOrbitSpeed(g, mass0, mass1, radius);
+    
+    var tangentDir = Real2();
+    if(counterClockwise)
+      tangentDir = Real2(-normRadiusVec.Y, normRadiusVec.X);
+    else
+      tangentDir = Real2(normRadiusVec.Y, -normRadiusVec.X);
+    
+    return tangentDir * orbitSpeed;
+  }
+  
+  [Static] function ComputeOrbitVelocity(g : Real, mass0 : Real, mass1 : Real, planetPos : Real3, satelitePos : Real3, counterClockwise : Boolean) : Real3
+  {
+    planetPos.Z = 0;
+    satelitePos.Z = 0;
+    
+    var velocity2D = MathHelpers.ComputeOrbitVelocity(g, mass0, mass1, planetPos.XY, satelitePos.XY, counterClockwise);
+    return Real3(velocity2D, 0);
+  }
+}

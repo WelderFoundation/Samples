@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManIdleBreathing_Stomach"
+				var ResourceId = 0x59af21f47aadcbb2
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_Chest"
+				var ResourceId = 0x59af21f47aadcbbf
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_Head"
+				var ResourceId = 0x59af21f47aadcbc2
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_LArm"
+				var ResourceId = 0x59af21f47aadcbc7
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_LArm01"
+				var ResourceId = 0x59af21f47aadcbcc
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_RArm"
+				var ResourceId = 0x59af21f47aadcbd1
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_RArm01"
+				var ResourceId = 0x59af21f47aadcbd4
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_LLeg"
+				var ResourceId = 0x59af21f47aadcbda
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_LLeg01"
+				var ResourceId = 0x59af21f47aadcbdd
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_RLeg"
+				var ResourceId = 0x59af21f47aadcbe1
+			}
+			Object
+			{
+				var Name = "BoxManIdleBreathing_RLeg01"
+				var ResourceId = 0x59af21f47aadcbe6
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManIdleBreathing"
+				var ResourceId = 0x59af21f47aadcbed
+			}
+		}
+	}
+}

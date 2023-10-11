@@ -1,0 +1,10 @@
+[Pixel]
+struct GammaToLinearColor
+{
+  [FragmentInput][StageInput][Output] var Color : Real4;
+  
+  function Main()
+  {
+    this.Color.XYZ = Utility.GammaToLinear(this.Color.XYZ);
+  }
+}

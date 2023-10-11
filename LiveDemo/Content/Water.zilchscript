@@ -1,0 +1,157 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///
+/// Authors: Joshua Claeys
+/// Copyright 2018, DigiPen Institute of Technology
+///
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//-------------------------------------------------------------------------------------------- Water
+[RunInEditor]
+class Water : ZilchComponent
+{
+  [Dependency] var Model : Model;
+  
+  //************************************************************************************************
+  [Property] var GridSize : Real
+  {
+    get { return this.GridSizeInternal; }
+    set
+    {
+      this.GridSizeInternal = value;
+      if(this.Owner != null)
+        this.InitializeMesh();
+    }
+  }
+  
+  //************************************************************************************************
+  [Property] var CellSize : Real
+  {
+    get { return this.CellSizeInternal; }
+    set
+    {
+      this.CellSizeInternal = value;
+      if(this.Owner != null)
+        this.InitializeMesh();
+    }
+  }
+  
+  //************************************************************************************************
+  [Property] var PrimitiveType : PrimitiveType
+  {
+    get { return this.PrimitiveTypeInternal; }
+    set
+    {
+      this.PrimitiveTypeInternal = value;
+      if(this.Owner != null)
+        this.InitializeMesh();
+    }
+  }
+  
+  var GridSizeInternal = 50.0;
+  var CellSizeInternal = 1.0;
+  var PrimitiveTypeInternal : PrimitiveType = PrimitiveType.Triangles;
+  
+  var Mesh : Mesh = Mesh.CreateRuntime();
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    this.Model.Mesh = this.Mesh;
+    this.InitializeMesh();
+  }
+  
+  //************************************************************************************************
+  function InitializeMesh()
+  {
+    this.Mesh.PrimitiveType = this.PrimitiveType;
+    
+    var vertices = this.Mesh.Vertices;
+    vertices.ClearAttributes();
+    vertices.ClearData();
+    
+    vertices.AddAttribute(VertexSemantic.Position, VertexElementType.Real, 3);
+    vertices.AddAttribute(VertexSemantic.Uv, VertexElementType.Real, 2);
+    
+    var aabb = Aabb();
+    
+    var dimensions = (this.GridSize / this.CellSize) as Integer;
+    var centerOffset = Real3(1, 0, 1) * -(this.GridSize * 0.5) + Real3(0.5, 0, 0.5) * this.CellSize;
+    
+    // Vertices
+    for(var x = 0; x < dimensions; ++x)
+    {
+      for(var z = 0; z < dimensions; ++z)
+      {
+        var pos = Real3(x, 0, z) * this.CellSize;
+        pos += centerOffset;
+        
+        vertices.AddReal(pos);
+        
+        var uv = Real2(x, z) / (dimensions - 1);
+        vertices.AddReal(uv);
+        
+        aabb.Expand(pos);
+      }
+    }
+    
+    // Indices
+    var indices = this.Mesh.Indices;
+    indices.Clear();
+    
+    // Triangles
+    if(this.PrimitiveType == PrimitiveType.Triangles)
+    {
+      for(var x = 0; x < dimensions -1; ++x)
+      {
+        for(var z = 0; z < dimensions -1; ++z)
+        {
+          var i = x + (z * dimensions);
+          
+          // Triangles
+          indices.Add(i);
+          indices.Add(i + 1);
+          indices.Add(i + dimensions);
+          
+          indices.Add(i + 1);
+          indices.Add(i + dimensions + 1);
+          indices.Add(i + dimensions);
+        }
+      }
+    }
+    // Lines
+    else if(this.PrimitiveType == PrimitiveType.Lines)
+    {
+      for(var x = 0; x < dimensions; ++x)
+      {
+        for(var z = 0; z < dimensions; ++z)
+        {
+          var i = x + (z * dimensions);
+          
+          // Lines
+          if(x < dimensions - 1)
+          {
+            indices.Add(i);
+            indices.Add(i + 1);
+          }
+          
+          if(z < dimensions - 1)
+          {
+            indices.Add(i);
+            indices.Add(i + dimensions);
+          }
+          
+          if(x < dimensions -1 && z < dimensions - 1)
+          {
+            indices.Add(i + 1);
+            indices.Add(i + dimensions);
+          }
+        }
+      }
+    }
+    
+    this.Model.OverrideBoundingBox = true;
+    this.Model.LocalAabbCenter = aabb.Center;
+    this.Model.LocalAabbHalfExtents = aabb.HalfExtents;
+    this.Mesh.Upload();
+  }
+}

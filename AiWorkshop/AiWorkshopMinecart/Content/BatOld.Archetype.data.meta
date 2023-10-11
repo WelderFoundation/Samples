@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "BatOld"
+		var ResourceId = 0x5b1094205e95c742
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

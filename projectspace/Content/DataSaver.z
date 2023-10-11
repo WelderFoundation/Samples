@@ -1,0 +1,8 @@
+class DataSaver : ZilchComponent
+{
+    [Serialized]
+    var Weapon1 : Array[Boolean] = Array[Boolean]();
+    
+    [Serialized]
+    var Int : Real = 0;
+}

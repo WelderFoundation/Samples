@@ -1,0 +1,288 @@
+[Version:1]
+Cog 
+{
+	var Name = "SpaceMarine_2013"
+	Transform 
+	{
+		var Translation = Real3{-0.618456304, 0.5, 0.603883743}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	AnimationGraph 
+	{
+		var Active = true
+		var PlayMode = AnimationPlayMode.PlayOnce
+		var TimeScale = 1
+		var Animation = "4f8ebbde619389d0:DefaultAnimation"
+		var DebugPreviewId = 1316636312507033760
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x59ae31d5f3b8e9f0]
+		{
+			var Name = "headRotationPivot"
+			Transform 
+			{
+				var Translation = Real3{0, 7.46416616, -0.316273451}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x59ae31d5f3b8e9f4]
+				{
+					var Name = "headRotationPivotInverse"
+					Transform 
+					{
+						var Translation = Real3{0, -7.46416616, 0.316273451}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x59ae31d5f3b8e9f6]
+						{
+							var Name = "headScalingPivot"
+							Transform 
+							{
+								var Translation = Real3{0, 7.46416616, -0.316273451}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x59ae31d5f3b8e9f7]
+								{
+									var Name = "headScalingPivotInverse"
+									Transform 
+									{
+										var Translation = Real3{0, -7.46416616, 0.316273451}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x59ae31d5f3b8e9f9]
+										{
+											var Name = "head"
+											Transform 
+											{
+												var Translation = Real3{0, 0, 0}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "59ae32520afd5679:SpaceMarine_2013_Head"
+												var Mesh = "59ae31d4f3d9eda2:SpaceMarine_2013_head"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x59ae31d5f3b8e9fa]
+		{
+			var Name = "eyesRotationPivot"
+			Transform 
+			{
+				var Translation = Real3{7.4505806e-09, 7.60809422, -0.667363226}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x59ae31d5f3b8e9fb]
+				{
+					var Name = "eyesRotationPivotInverse"
+					Transform 
+					{
+						var Translation = Real3{-7.4505806e-09, -7.60809422, 0.667363226}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x59ae31d5f3b8e9fd]
+						{
+							var Name = "eyesScalingPivot"
+							Transform 
+							{
+								var Translation = Real3{7.4505806e-09, 7.60809422, -0.667363226}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x59ae31d5f3b8e9fe]
+								{
+									var Name = "eyesScalingPivotInverse"
+									Transform 
+									{
+										var Translation = Real3{-7.4505806e-09, -7.60809422, 0.667363226}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x59ae31d5f3b8e9ff]
+										{
+											var Name = "eyes"
+											Transform 
+											{
+												var Translation = Real3{0, 0, 0}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "59ae2c208dde28f6:Space_Marine_Eyes"
+												var Mesh = "59ae31d4f3d9edb0:SpaceMarine_2013_eyes"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x59ae31d5f3b8ea01]
+		{
+			var Name = "ArmorRotationPivot"
+			Transform 
+			{
+				var Translation = Real3{0, 4.12928677, -0.0713673234}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x59ae31d5f3b8ea02]
+				{
+					var Name = "ArmorRotationPivotInverse"
+					Transform 
+					{
+						var Translation = Real3{0, -4.12928677, 0.0713673234}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x59ae31d5f3b8ea03]
+						{
+							var Name = "ArmorScalingPivot"
+							Transform 
+							{
+								var Translation = Real3{0, 4.12928677, -0.0713673234}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x59ae31d5f3b8ea05]
+								{
+									var Name = "ArmorScalingPivotInverse"
+									Transform 
+									{
+										var Translation = Real3{0, -4.12928677, 0.0713673234}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x59ae31d5f3b8ea06]
+										{
+											var Name = "Armor"
+											Transform 
+											{
+												var Translation = Real3{0, 0, 0}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "59afddcc03c572dd:SpaceMarineArmor"
+												var Mesh = "59ae31d4f3d9edb5:SpaceMarine_2013_Armor"
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x59ae31d5f3b8ea07]
+		{
+			var Name = "underArmor1"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "59afdedb3958d510:SpaceMarine_UnderArmor"
+				var Mesh = "59ae31d4f3d9edba:SpaceMarine_2013_underArmor1"
+			}
+		}
+		Cog [Id:0x59ae31d5f3b8ea09]
+		{
+			var Name = "globes"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "59afdfe5731135dc:SpaceMarine_Globes"
+				var Mesh = "59ae31d4f3d9edbf:SpaceMarine_2013_globes"
+			}
+		}
+	}
+}

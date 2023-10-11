@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Forest"
+		var ResourceId = 0x592c47790268b9a7
+		var LoaderType = "Level"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

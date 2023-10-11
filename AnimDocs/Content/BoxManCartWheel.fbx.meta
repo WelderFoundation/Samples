@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManCartWheel_Stomach"
+				var ResourceId = 0x59af21f67b0e09b3
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_Chest"
+				var ResourceId = 0x59af21f67b0e09be
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_Head"
+				var ResourceId = 0x59af21f67b0e09c2
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_LArm"
+				var ResourceId = 0x59af21f67b0e09c7
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_LArm01"
+				var ResourceId = 0x59af21f67b0e09cb
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_RArm"
+				var ResourceId = 0x59af21f67b0e09d0
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_RArm01"
+				var ResourceId = 0x59af21f67b0e09d3
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_LLeg"
+				var ResourceId = 0x59af21f67b0e09d7
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_LLeg01"
+				var ResourceId = 0x59af21f67b0e09db
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_RLeg"
+				var ResourceId = 0x59af21f67b0e09de
+			}
+			Object
+			{
+				var Name = "BoxManCartWheel_RLeg01"
+				var ResourceId = 0x59af21f67b0e09e3
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManCartWheel"
+				var ResourceId = 0x59af21f67b0e09e9
+			}
+		}
+	}
+}

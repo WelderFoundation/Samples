@@ -1,0 +1,22 @@
+class SaveButton : ZilchComponent
+{
+    var DataCog : Cog = null;
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Owner, Events.MouseDown, this.OnMouseDown);
+        this.DataCog = Zero.ObjectStore.RestoreOrArchetype("Data", Archetype.SavedData, this.Space);
+        Console.WriteLine(this.DataCog.DataSaver.Weapon1);
+    }
+
+    function OnMouseDown(event : ViewportMouseEvent)
+    {
+        if(this.Owner.Name == "SaveButton")
+        {
+            var weapon1Array = this.Space.FindObjectByName("CheckboxPenetrating").CheckBoxBehaviour.Weapon1;
+            this.DataCog.DataSaver.Weapon1 = weapon1Array;
+            this.DataCog.DataSaver.Int = 1;
+            Zero.ObjectStore.Store("Data", this.DataCog);
+            Console.WriteLine(this.DataCog.DataSaver.Weapon1);
+        }
+    }
+}

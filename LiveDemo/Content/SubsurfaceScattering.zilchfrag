@@ -1,0 +1,26 @@
+[Pixel]
+struct SubsurfaceScattering
+{
+  [Input] var LightPosWorld = Real3(1,1,1);
+  [Input] var LightColor = Real4(1);
+  [Input][Slider(0, 1, 0.01)] var SubsurfaceDistortion = 0.5;
+  
+  [FragmentInput][StageInput] var ViewPosition : Real3;
+  [FragmentInput][StageInput] var ViewNormal : Real3;
+  
+  [AppBuiltInInput] var WorldToView : Real4x4;
+  
+  [Output] var Albedo : Real3;
+  
+  function Main()
+  {
+    var lightPosView = Math.MultiplyPoint(this.WorldToView, this.LightPosWorld);
+    var toLightView = Math.Normalize(lightPosView - this.ViewPosition);
+    var frontLight = Math.Dot(toLightView, this.ViewNormal);
+    
+    var viewDirection = Real3(0,0,1);
+    var backLight = Math.Dot(viewDirection, -1.0 * Math.Normalize(toLightView + this.ViewNormal * this.SubsurfaceDistortion));
+    
+    this.Albedo = this.LightColor.XYZ * backLight;
+  }
+}

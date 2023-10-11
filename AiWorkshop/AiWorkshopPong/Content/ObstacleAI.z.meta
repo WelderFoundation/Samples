@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "ObstacleAI",
+		uint64 ResourceId = 55611d68738f04f3,
+	},
+},

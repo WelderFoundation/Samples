@@ -1,0 +1,54 @@
+class ShipHudUiManager : ZilchComponent
+{
+  [Property] var VelocityXCogPath : CogPath = CogPath();
+  [Property] var VelocityYCogPath : CogPath = CogPath();
+  [Property] var VelocityArrow : CogPath = CogPath();
+  var PlayerCogPath : CogPath = CogPath();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function SetPlayerCog(playerCog : Cog)
+  {
+    this.PlayerCogPath.Cog = playerCog;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var xSpriteText = this.VelocityXCogPath.Cog.SpriteText;
+    var ySpriteText = this.VelocityYCogPath.Cog.SpriteText;
+    
+    var playerCog = this.PlayerCogPath.Cog;
+    if(playerCog == null)
+    {
+      xSpriteText.Visible = false;
+      ySpriteText.Visible = false;
+      return;
+    }
+    
+    
+    var velocity = playerCog.RigidBody.Velocity.XY;
+    xSpriteText.Visible = true;
+    ySpriteText.Visible = true;
+    xSpriteText.Text = String.FormatC("x: %.2f", velocity.X);
+    ySpriteText.Text = String.FormatC("y: %.2f", velocity.Y);
+    this.DrawArrow(velocity);
+    
+  }
+  
+  function DrawArrow(velocity : Real2)
+  {
+    var pos = this.VelocityArrow.Cog.Transform.WorldTranslation;
+    var circleRadius = 0.5;
+    
+    var t = Math.SmoothStep(0, 20, Math.Length(velocity));
+    t = Math.Clamp(t, 0, 1);
+    var arrowLength = Math.Normalize(velocity) * Math.Lerp(0, circleRadius, t);
+    var direction = Real3(arrowLength, 0);
+    
+    DebugDraw.Add(DebugCircle(pos, Real3.ZAxis, circleRadius));
+    DebugDraw.Add(DebugLine(pos, pos + direction) {HeadSize = 0.05});
+  }
+}

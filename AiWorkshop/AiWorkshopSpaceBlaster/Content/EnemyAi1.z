@@ -1,0 +1,21 @@
+class EnemyAi1 : ZilchComponent
+{
+  // We rely on the Ship Component
+  [Dependency] var Ship : Ship;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to run our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    // Move straight down
+    this.Ship.MoveInDirection(Real3(0,-1,0), event.Dt);
+    
+    // Fires a projectile if the fire timer is up
+    this.Ship.Fire();
+  }
+}

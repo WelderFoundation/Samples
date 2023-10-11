@@ -1,0 +1,61 @@
+[Version:1]
+Cog 
+{
+	var Name = "SMLittleTree01"
+	var LinkId = 1
+	Transform 
+	{
+		var Translation = Real3{-7.45059872, 1.65453434, 1.63287473}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x592495b0793e956b]
+		{
+			var Name = "SMLittleTree01GeneratedMeshNode1"
+			var LinkId = 2
+			Transform 
+			{
+				var Translation = Real3{0, 0.288010716, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5924959c7091e634:TreeTrunk"
+				var Mesh = "5924e28131480bf3:SM_LittleTree_01.SMLittleTree01GeneratedMeshNode1"
+			}
+		}
+		Cog [Id:0x592495b0793e95fb]
+		{
+			var Name = "SMLittleTree01GeneratedMeshNode0"
+			var LinkId = 3
+			Transform 
+			{
+				var Translation = Real3{0, 0.288010716, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5924958a74e00d54:TreeLeaves"
+				var Mesh = "5924e28131480bd4:SM_LittleTree_01.SMLittleTree01GeneratedMeshNode0"
+			}
+		}
+	}
+}

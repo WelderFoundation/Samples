@@ -1,0 +1,69 @@
+//------------------------------------------------------------------------------
+class ObjectHitOnDeathEvent : ZilchEvent
+{
+  var HitObject : Cog = null;
+  
+  constructor(hitObject : Cog) : base()
+  {
+    this.HitObject = hitObject;
+  }
+}
+
+//------------------------------------------------------------------------------
+class ObjectCreatedOnDeathEvent : ZilchEvent
+{
+  var DeadObject : Cog = null;
+  var HitObject : Cog = null;
+  
+  constructor(deadObject : Cog, hitObject : Cog) : base()
+  {
+    this.DeadObject = deadObject;
+    this.HitObject = hitObject;
+  }
+}
+
+//------------------------------------------------------------------------------
+class CreateOnDeath : ZilchComponent
+{
+  sends ObjectCreatedOnDeath : ObjectCreatedOnDeathEvent;
+  
+  // The archetype to create when we're destroyed.
+  [Property] var ArchetypeToCreate : Archetype = null;
+  
+  // The object hit when this.Owner "died".
+  var HitObject : Cog = null;
+  var Created = false;
+  
+  /****************************************************************************/
+  function Initialize(init : CogInitializer)
+  {
+    // Listen for an event on ourself that says we died.
+    Zero.Connect(this.Owner, Events.Death, this.OnDeath);
+    
+    // Listen for another object that caused this.Owner's death.
+    Zero.Connect(this.Owner, Events.ObjectHitOnDeath, this.OnObjectHitOnDeath);
+  }
+  
+  /****************************************************************************/
+  function OnDeath(event : ZilchEvent)
+  {
+    if(this.Space.MarkedForDestruction || this.Created)
+      return;
+    
+    this.Created = true;
+    
+    // Create an object at our position.
+    var pos = this.Owner.Transform.WorldTranslation;
+    var obj = this.Space.CreateAtPosition(this.ArchetypeToCreate, pos);
+    
+    obj.DispatchEvent(Events.ObjectCreatedOnDeath, ObjectCreatedOnDeathEvent(this.Owner, this.HitObject));
+  }
+  
+  /****************************************************************************/
+  function OnObjectHitOnDeath(event : ObjectHitOnDeathEvent)
+  {
+    this.HitObject = event.HitObject;
+    
+    this.OnDeath(ZilchEvent());
+  }
+}

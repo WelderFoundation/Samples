@@ -1,0 +1,115 @@
+class TankEnemyAi : ZilchComponent
+{
+  // We rely on the Tank Component
+  [Dependency] var Tank : Tank = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to run our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    // Sensor distances
+    var leftSensor = this.Tank.GetLeftSensor().GetNormalizedDistance();
+    var centerSensor = this.Tank.GetCenterSensor().GetNormalizedDistance();
+    var rightSensor = this.Tank.GetRightSensor().GetNormalizedDistance();
+    
+    // Search for an enemy
+    var enemy = this.FindEnemy();
+    
+    // If we found the enemy, we want to turn towards them and shoot
+    if(enemy != null)
+    {
+      // Get the direction we need to turn to face the enemy
+      var turnDirection = this.Tank.GetTurnDirectionToEnemy(enemy);
+      
+      // Turn towards the enemy
+      this.Tank.Turn(turnDirection);
+      
+      // Fire at them
+      this.Tank.AttempFire();
+      
+      // We can move forward towards them, or not
+      //this.Tank.Move((1.0 - centerSensor * 0.6) * 0.3);
+      
+      // Shooting enemies is our highest priority, so we don't want to
+      // run any other logic after this
+      return;
+    }
+    
+    // We don't have an enemy in our sights, so if we're being shot at, spin around
+    // to try and find an enemy
+    // Only do this if the enemy that last hit us is still alive
+    if(this.Tank.TimeSinceLastDamage < 2.0 && this.Tank.LastEnemyThatDamagedUs != null)
+    {
+      // Turn to find what hit us
+      this.Tank.Turn(1.0);
+      
+      // Move just a little bit so maybe we can avoid some shots
+      this.Tank.Move(0.5);
+      return;
+    }
+    
+    // Always move forward, but slow down when our center sensor gets close to something
+    // Up to you if you want them to try math like this (you can just pass in 1.0 for simplicity)
+    this.Tank.Move(1.0 - centerSensor * 0.6);
+    
+    // If there's nothing close in front of us, just turn away from whichever side is closer
+    if(centerSensor < 0.15)
+    {
+      if(leftSensor > rightSensor)
+        this.Tank.Turn(leftSensor);
+      else
+        this.Tank.Turn(-rightSensor);
+    }
+    // If we're moving too close to something in front of us, lets just prioritize left first
+    // The reason we just pick a side is because we don't want to wobble back and forth 
+    // when the left and right sensors alternate being closer
+    else if(centerSensor < 0.7)
+    {
+      if(leftSensor > rightSensor)
+        this.Tank.Turn(1);
+      else
+        this.Tank.Turn(-1);
+    }
+    // If we're critically close to something, turn full in one direction
+    else
+    {
+      this.Tank.Move(-1);
+      this.Tank.Turn(-2);
+    }
+  }
+  
+  function FindEnemy() : Cog
+  {
+    // We want to store which enemy was the best target
+    var bestTarget : Cog = null;
+    
+    // Walk through all of our tanks enemies
+    foreach (var enemy in this.Tank.Enemies)
+    {
+      // Check if the enemy is in range
+      if(this.Tank.EnemyIsInRange(enemy))
+      {
+        // Check to see if it's visible
+        if(this.Tank.EnemyIsVisible(enemy))
+        {
+          // It's visible and in range, so it's a valid target
+          bestTarget = enemy;
+          
+          // If the enemy can see us, it's likely shooting at us,
+          // so lets stop at this guy and focus on him instead of
+          // some other tank that is driving away from us
+          if(this.Tank.EnemyCanSeeMe(enemy))
+            break;
+        }
+      }
+    }
+    
+    // Return our target
+    return bestTarget;
+  }
+}

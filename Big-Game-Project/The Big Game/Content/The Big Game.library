@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "The Big Game",
+	uint64 LibraryId = 5ae58b9dadc48316,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

@@ -1,0 +1,19 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "enemy_golden2",
+		uint64 ResourceId = 524aa9b477d0cf10,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 661,
+		uint FrameSizeY = 794,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 330,
+		float OriginY = 397,
+		float PixelsPerUnit = 210,
+		bool Smoothing = true,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+	},
+},

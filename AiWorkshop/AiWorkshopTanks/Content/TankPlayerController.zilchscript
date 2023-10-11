@@ -1,0 +1,31 @@
+class TankPlayerController : ZilchComponent
+{
+  // We rely on the Tank Component
+  [Dependency] var Tank : Tank;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to run our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    // Move forward / backward
+    if(Zero.Keyboard.KeyIsDown(Keys.W))
+      this.Tank.Move(1);
+    else if(Zero.Keyboard.KeyIsDown(Keys.S))
+      this.Tank.Move(-1);
+    
+    // Turn left / right
+    if(Zero.Keyboard.KeyIsDown(Keys.A))
+      this.Tank.Turn(-1);
+    else if(Zero.Keyboard.KeyIsDown(Keys.D))
+      this.Tank.Turn(1);
+    
+    // Fire
+    if(Zero.Keyboard.KeyIsDown(Keys.Space))
+        this.Tank.AttempFire();
+  }
+}

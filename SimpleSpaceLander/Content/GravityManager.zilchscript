@@ -1,0 +1,62 @@
+class GravityManager : ZilchComponent
+{
+  [Property] var GravityCoef : Real = 1;
+  
+  var Planets : Array[Cog] = Array[Cog]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function ApplyGravityForce(cog0 : Cog, cog1 : Cog)
+  {
+    var planet0 = cog0.PlanetGravity;
+    var planet1 = cog1.PlanetGravity;
+    
+    var body0 = cog0.RigidBody;
+    var body1 = cog1.RigidBody;
+    if(body0 == null || body1 == null)
+      return;
+    
+    var pos0 = body0.WorldCenterOfMass;
+    var pos1 = body1.WorldCenterOfMass;
+    var r = pos1 - pos0;
+    var forceMagnitude = this.GravityCoef * planet0.Mass * planet1.Mass;
+    forceMagnitude /= Math.LengthSq(r);
+    
+    var dir0To1 = Math.Normalize(r);
+    
+    
+    
+    //Console.WriteLine(cog0, cog1, forceMagnitude);
+    if(body0 != null)
+      body0.Force += dir0To1 * forceMagnitude;
+    if(body1 != null)
+      body1.Force -= dir0To1 * forceMagnitude;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var planets = this.Planets.Copy();
+    this.Planets.Clear();
+    foreach(var planet in planets)
+    {
+      if(planet != null)
+        this.Planets.Add(planet);
+    }
+    
+    for(var i = 0; i < this.Planets.Count; ++i)
+    {
+      for(var j = i + 1; j < this.Planets.Count; ++j)
+      {
+        this.ApplyGravityForce(this.Planets[i], this.Planets[j]);
+      }
+    }
+  }
+  
+  function Add(planet : PlanetGravity)
+  {
+    this.Planets.Add(planet.Owner);
+  }
+}

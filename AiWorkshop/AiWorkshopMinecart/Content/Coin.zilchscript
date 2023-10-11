@@ -1,0 +1,35 @@
+class Coin : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(this.Owner.MarkedForDestruction)
+      return;
+      
+    var otherCollisionGroup = event.OtherObject.Collider.CollisionGroup;
+    if(otherCollisionGroup != CollisionGroup.Character && otherCollisionGroup != CollisionGroup.Cart)
+      return;
+      
+    ++this.LevelSettings.Race.CoinCount;
+    this.Owner.Destroy();
+    
+    var objectVelocity = event.OtherObject.Collider.ActiveBody.Velocity;
+    var particles = this.Space.CreateAtPosition(Archetype.CoinExplosion, this.Transform.WorldTranslation);
+    //particles.LinearParticleAnimator.Force = objectVelocity * 1.5;
+    //particles.LinearParticleAnimator.RandomForce = Math.Cross(objectVelocity, Real3.ZAxis) * 2.5;
+    particles.DynamicParticleAttractor.Target = event.OtherObject;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Spin the coin
+    this.Transform.RotateAnglesWorld(Real3(0,0.07,0));
+  }
+}

@@ -1,0 +1,37 @@
+class Team : ZilchComponent
+{
+  // The object that what when the ball collides with, this player will get a point
+  [Property]
+  var ScoreArea : CogPath = null;
+  
+  // This players current score
+  var Score : Integer = 0;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    // We want to know when the ball collided with this player
+    Zero.Connect(this.ScoreArea.Cog, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+  
+  //************************************************************************************************
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    // Move the ball back to the center of the level
+    var ball = event.OtherObject;
+    
+    if(ball.Ball == null)
+        return;
+    
+    ball.Transform.Translation = Real3(0);
+    
+    // Reset the balls speed
+    ball.Ball.ResetSpeed();
+    
+    // Increment our score
+    this.Score += 1;
+    
+    // Update our score text
+    this.Owner.SpriteText.Text = "`this.Score`";
+  }
+}

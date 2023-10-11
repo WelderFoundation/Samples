@@ -1,0 +1,21 @@
+BinaryContent = 
+{
+	BinaryBuilder = 
+	{
+		string Name = "WallBlock",
+		uint64 ResourceId = 5433bc6fbfd9a373,
+		string LoaderType = "TilePaletteSource",
+		uint Version = 0,
+		string FilterTag = "",
+		string ResourceOwner = "",
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Terrain",
+			"Wall",
+			"DinoPlatform",
+		],
+	},
+},

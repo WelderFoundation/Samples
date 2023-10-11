@@ -1,0 +1,50 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 0.100000001
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "CruiseShip_CruiseShipGeneratedMeshNode0"
+				var ResourceId = 0x5aaa70fed00e6d65
+			}
+			Object
+			{
+				var Name = "CruiseShip_CruiseShipGeneratedMeshNode1"
+				var ResourceId = 0x5aaa70fed00e6d81
+			}
+			Object
+			{
+				var Name = "CruiseShip_CruiseShipGeneratedMeshNode2"
+				var ResourceId = 0x5aaa70fed00e6d8a
+			}
+			Object
+			{
+				var Name = "CruiseShip_CruiseShipGeneratedMeshNode3"
+				var ResourceId = 0x5aaa70fed00e6d95
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5aaa70fed035b850
+	}
+}

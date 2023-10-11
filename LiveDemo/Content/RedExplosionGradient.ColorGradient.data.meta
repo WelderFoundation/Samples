@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "RedExplosionGradient",
+		uint64 ResourceId = 5245c0adfc0f723a,
+		string LoaderType = "ColorGradient",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

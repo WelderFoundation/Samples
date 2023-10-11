@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManIdlePostDance_Stomach"
+				var ResourceId = 0x59af21f17b78e816
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_Chest"
+				var ResourceId = 0x59af21f17b78e822
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_Head"
+				var ResourceId = 0x59af21f17b78e826
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_LArm"
+				var ResourceId = 0x59af21f17b78e82a
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_LArm01"
+				var ResourceId = 0x59af21f17b78e82e
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_RArm"
+				var ResourceId = 0x59af21f17b78e833
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_RArm01"
+				var ResourceId = 0x59af21f17b78e837
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_LLeg"
+				var ResourceId = 0x59af21f17b78e83b
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_LLeg01"
+				var ResourceId = 0x59af21f17b78e83f
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_RLeg"
+				var ResourceId = 0x59af21f17b78e842
+			}
+			Object
+			{
+				var Name = "BoxManIdlePostDance_RLeg01"
+				var ResourceId = 0x59af21f17b78e847
+			}
+		}
+	}
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManIdlePostDance"
+				var ResourceId = 0x59af21f17b78e84d
+			}
+		}
+	}
+}

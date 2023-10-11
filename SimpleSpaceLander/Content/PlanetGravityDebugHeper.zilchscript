@@ -1,0 +1,42 @@
+class PlanetGravityDebugHeper : ZilchComponent
+{
+  [Property] var Target : CogPath = CogPath();
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.GetGravityForce(this.Owner, this.Target.Cog);
+  }
+  
+  function GetGravityForce(cog0 : Cog, cog1 : Cog)
+  {
+    var planet0 = cog0.PlanetGravity;
+    var planet1 = cog1.PlanetGravity;
+    
+    var body0 = cog0.RigidBody;
+    var body1 = cog1.RigidBody;
+    if(body0 == null || body1 == null)
+      return;
+    
+    var pos0 = body0.WorldCenterOfMass;
+    var pos1 = body1.WorldCenterOfMass;
+    var r = pos1 - pos0;
+    var rSq = Math.LengthSq(r);
+    var forceMagnitude = this.LevelSettings.GravityManager.GravityCoef * planet0.Mass * planet1.Mass;
+    forceMagnitude /= rSq;
+    
+    var dir0To1 = Math.Normalize(r);
+    
+    
+    var force0 = dir0To1 * forceMagnitude;
+    var force1 = -dir0To1 * forceMagnitude;
+    var dt = 1 / 60.0;
+    var impulse0 = dt * force0 / planet0.Mass;
+    var velocity0 = body0.Velocity + impulse0;
+    //Console.WriteLine(rSq, force0, impulse0, velocity0);
+    
+  }
+}

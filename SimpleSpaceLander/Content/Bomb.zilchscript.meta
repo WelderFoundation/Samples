@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "Bomb"
+		var ResourceId = 0x587a43c4eb745f79
+	}
+}

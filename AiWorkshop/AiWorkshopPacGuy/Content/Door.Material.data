@@ -1,0 +1,17 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+	}
+	Phong 
+	{
+		var SpecularExponent = 40
+		var SpecularScalar = 1
+	}
+	ColorDiffuse 
+	{
+		var DiffuseColor = Real4{0.913726, 0.368627, 1, 1}
+	}
+}

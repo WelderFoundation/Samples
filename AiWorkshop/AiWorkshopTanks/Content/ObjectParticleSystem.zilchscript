@@ -1,0 +1,118 @@
+//------------------------------------------------------------------------------
+class ParticleObject : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var Model : Model;
+  
+  [Property] var Time : Real;
+  [Property] var Lifetime : Real;
+}
+
+//------------------------------------------------------------------------------
+class ObjectParticleSystem : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  
+  [Property] var EmittedObject : Archetype;
+  
+  [Property] var ColorGlowFactor : Real = 1.0;
+  [Property] var EmitCount : Real;
+  [Property] var EmitRate : Real;
+  [Property] var Size : Real;
+  [Property] var SizeVariance : Real;
+  [Property] var Lifetime : Real;
+  [Property] var LifetimeVariance : Real;
+  [Property] var RandomVelocity : Real3;
+  [Property] var EmitterSize : Real3;
+  
+  [Property] var TimeGradient : ColorGradient;
+  
+  var Random : Random = Random();
+  var Particles : Array[Cog] = Array[Cog]();
+  
+  /****************************************************************************/
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.UpdateColor, this.OnUpdateColor);
+    
+    this.Emit();
+  }
+  
+  /****************************************************************************/
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.UpdateParticles(event.Dt);
+  }
+  
+  /****************************************************************************/
+  function OnUpdateColor(event : UpdateColorEvent)
+  {
+    // Update color, but retain the local glow factor [ie, don't copy from the other manager].
+    var manager = this.Owner.FindRoot().ObjectColor;
+    manager.PrimaryInternal = event.Color.EffectColor;
+    manager.EffectColor = event.Color.EffectColor;
+    manager.EffectGradient = event.Color.EffectGradient;
+    
+    var color = manager.EffectColor;
+    foreach(var object in this.Particles.All)
+      object.StippleInputs.AlbedoValue = color;
+  }
+  
+  /****************************************************************************/
+  function Emit()
+  {
+    if(this.Space.MarkedForDestruction)
+      return;
+    var startPosition = this.Transform.WorldTranslation;
+    var color = this.Owner.FindRoot().ObjectColor;
+
+    for(var p = 0; p < this.EmitCount; ++p)
+    {
+      var object = this.Space.Create(this.EmittedObject);
+      object.AttachTo(this.Owner);
+      
+      object.StippleInputs.AlbedoValue = color.Primary * this.ColorGlowFactor;
+      
+      var particle = object.ParticleObject;
+      particle.Time = 0;
+      particle.Lifetime = this.Random.Variance(this.Lifetime, this.LifetimeVariance);
+      
+      var transform = object.Transform;
+      transform.WorldScale = Real3(this.Random.Variance(this.Size, this.SizeVariance));
+      var position = startPosition + this.Random.UnitReal3() * this.EmitterSize;
+      transform.WorldTranslation = position;
+      
+      var vx = 2 * (this.Random.Real() - 0.5) * this.RandomVelocity.X;
+      var vy = 2 * (this.Random.Real() - 0.5) * this.RandomVelocity.Y;
+      var vz = 2 * (this.Random.Real() - 0.5) * this.RandomVelocity.Z;
+      object.RigidBody.Velocity = Real3(vx, vy, vz);
+      
+      this.Particles.Add(object);
+    }
+  }
+  
+  /****************************************************************************/
+  function UpdateParticles(dt : Real)
+  {
+    var deadParticleCount = 0;
+    foreach(var object in this.Particles.All)
+    {
+      if(object == null)
+        continue;
+      var particle = object.ParticleObject;
+      particle.Time += dt;
+      
+      if(particle.Time >= particle.Lifetime)
+      {
+        ++deadParticleCount;
+        particle.Time = particle.Lifetime;
+      }
+      
+      object.StippleInputs.StippleDensity = this.TimeGradient.Sample(particle.Time / particle.Lifetime).W;
+    }
+    
+    if(deadParticleCount >= this.EmitCount)
+      this.Owner.Destroy();
+  }
+}

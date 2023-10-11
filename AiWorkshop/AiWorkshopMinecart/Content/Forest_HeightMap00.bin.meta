@@ -1,0 +1,13 @@
+[Version:1]
+BinaryContent 
+{
+	BinaryBuilder 
+	{
+		var Name = "Forest_HeightMap00"
+		var ResourceId = 0x5aaa4ecb7901ef30
+		var LoaderType = "HeightMapSource"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = "592c47790268b9a7:Forest"
+	}
+}

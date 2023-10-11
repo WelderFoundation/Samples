@@ -1,0 +1,16 @@
+[Version:1]
+TextContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Tank"
+		}
+	}
+	ZilchScriptBuilder 
+	{
+		var Name = "CameraFollower"
+		var ResourceId = 0x550692bf5fe44792
+	}
+}

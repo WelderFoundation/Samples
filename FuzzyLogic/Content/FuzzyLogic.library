@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "FuzzyLogic"
+	var LibraryId = 0x5a9382cb2f11fb22
+	var SourceControlType = ""
+	var ReadOnly = false
+}

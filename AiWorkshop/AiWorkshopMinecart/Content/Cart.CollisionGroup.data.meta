@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Cart"
+		var ResourceId = 0x5b7b4fe291f1d3f3
+		var LoaderType = "CollisionGroup"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

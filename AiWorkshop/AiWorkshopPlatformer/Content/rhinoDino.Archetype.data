@@ -1,0 +1,939 @@
+[Version:1]
+Cog 
+{
+	var Name = "Rhino"
+	Transform 
+	{
+		var Translation = Real3{50.8566017, -0.308542013, 0}
+		var Scale = Real3{0.5, 0.5, 0.5}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	AnimationGraph 
+	{
+		var Active = true
+		var PlayMode = AnimationPlayMode.PlayOnce
+		var TimeScale = 1
+		var Animation = "4f8ebbde619389d0:DefaultAnimation"
+		var DebugPreviewId = 3
+	}
+	SimpleAnimation 
+	{
+		var Animation = "545366a36030d9f0:RhinoDinoIdle"
+		var PlayMode = AnimationPlayMode.Loop
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 2, 0}
+		var HalfSize = Real3{2, 2, 0.5}
+	}
+	AnimationFlip 
+	{
+		var Active = true
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.Mode2D
+	}
+	SweptController 
+	{
+		var WorldUp = Real3{0, 1, 0}
+		var LockZAxis = false
+		var ForwardEvents = false
+		var Gravity = 10
+		var JumpSpeed = 7
+		var JumpCancelFactor = 0.5
+		var MaxMoveSpeed = 10
+		var MaxFallSpeed = 50
+		var GroundAcceleration = 50
+		var AirAcceleration = 10
+		var GroundDeceleration = 50
+		var AirDeceleration = 10
+		var MaxGroundSlope = 45
+		var MaxCeilingSlope = 45
+		var GroundSnapDistance = 0.100000001
+		var ControllerVelocity = Real3{0, 0, 0}
+		var Grounded = true
+		var Jumping = false
+		var GroundTraction = 1
+		var AirTraction = 1
+	}
+	AnimationController 
+	{
+		var CurrentState = AnimationState.Idle
+		var Idle = "545366a36030d9f0:RhinoDinoIdle"
+		var Walk = "545317c04871ec4e:RhinoDinoWalk"
+		var Run = "5452240148551465:RhinoDinoCharge"
+		var Jump = "4f8ebbde619389d0:DefaultAnimation"
+		var Fall = "4f8ebbde619389d0:DefaultAnimation"
+		var AttackAnim = "5452041cf29ffd4b:RhinoDinoAttack"
+		var DieAnim = "5450fd252ccee22c:RhinoDinoDead"
+	}
+	Character 
+	{
+		var WalkSpeed = 1.39999998
+		var RunSpeed = 6
+		var Flip = true
+	}
+	Rhino 
+	{
+	}
+	RhinoAi 
+	{
+		var TimeBetweenSwitch = 3
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b605e8bdcdf02d4]
+		{
+			var Name = "FrontLeg1R"
+			Transform 
+			{
+				var Translation = Real3{-1.13, 2.25, -0.5}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "54535bb94563d960:RhinoDinoFrontAltLegUpper"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b605e8bdcdf02db]
+				{
+					var Name = "FrontLeg2PivotR"
+					Transform 
+					{
+						var Translation = Real3{-0.183669999, -0.668687999, 0.5}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf02dd]
+						{
+							var Name = "FrontLeg3PivotR"
+							Transform 
+							{
+								var Translation = Real3{0.482064992, -0.856486976, 0}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605e8bdcdf02df]
+								{
+									var Name = "FrontLeg3R"
+									Transform 
+									{
+										var Translation = Real3{-0.379281998, -0.0280696005, -1}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "54535bb94563be31:RhinoDinoFrontAltFeet"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605e8bdcdf02e2]
+						{
+							var Name = "FrontLeg2R"
+							Transform 
+							{
+								var Translation = Real3{0.258507997, -0.27787599, -0.699999988}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb94563cfe5:RhinoDinoFrontAltLegLower"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x5b605e8bdcdf02e4]
+		{
+			var Name = "FrontLeg1L"
+			Transform 
+			{
+				var Translation = Real3{-0.600000024, 2.19499993, 2}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "54535bb94563f81e:RhinoDinoFrontLegUpper"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b605e8bdcdf02e7]
+				{
+					var Name = "FrontLeg2PivotL"
+					Transform 
+					{
+						var Translation = Real3{-0.184422001, -0.695680976, -2}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf02e9]
+						{
+							var Name = "FrontLeg3PivotL"
+							Transform 
+							{
+								var Translation = Real3{0.501644015, -0.917927027, 0}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605e8bdcdf02eb]
+								{
+									var Name = "FrontLeg3L"
+									Transform 
+									{
+										var Translation = Real3{-0.419155002, -0.0241285991, 1.5}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "54535bb94563e39a:RhinoDinoFrontFeet"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605e8bdcdf02ed]
+						{
+							var Name = "FrontLeg2L"
+							Transform 
+							{
+								var Translation = Real3{0.266553998, -0.305382013, 1.79999995}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb94563edc9:RhinoDinoFrontLegLower"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x5b605e8bdcdf02f0]
+		{
+			var Name = "HindLeg1R"
+			Transform 
+			{
+				var Translation = Real3{0.600000024, 1.95000005, -1}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "54535bb945642375:RhinoDinoHindAltLegUpper"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b605e8bdcdf02f2]
+				{
+					var Name = "HindLeg2PivotR"
+					Transform 
+					{
+						var Translation = Real3{0.446352005, -0.431740999, 1}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf02f4]
+						{
+							var Name = "HindLeg3PivotR"
+							Transform 
+							{
+								var Translation = Real3{0.212065995, -0.637077987, 0}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605e8bdcdf02f6]
+								{
+									var Name = "HindLeg3R"
+									Transform 
+									{
+										var Translation = Real3{-0.0391115993, -0.184496, -1.5}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "54535bb945640eee:RhinoDinoHindAltFeet"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605e8bdcdf02f8]
+						{
+							var Name = "HindLeg2R"
+							Transform 
+							{
+								var Translation = Real3{0.0723022968, -0.111713, -1.29999995}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb94564194c:RhinoDinoHindAltLegLower"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x5b605e8bdcdf02fb]
+		{
+			var Name = "HindLeg1L"
+			Transform 
+			{
+				var Translation = Real3{1.35000002, 1.95000005, 2.5}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "54535bb9456441ae:RhinoDinoHindLegUpper"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b605e8bdcdf02fd]
+				{
+					var Name = "HindLeg2PivotL"
+					Transform 
+					{
+						var Translation = Real3{0.463842988, -0.52670902, -2.5}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf02ff]
+						{
+							var Name = "HindLeg3PivotL"
+							Transform 
+							{
+								var Translation = Real3{0.208453998, -0.685836017, 0}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605e8bdcdf0301]
+								{
+									var Name = "HindLeg3L"
+									Transform 
+									{
+										var Translation = Real3{-0.0336528011, -0.165233999, 2}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "54535bb945642d1b:RhinoDinoHindFeet"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605e8bdcdf0303]
+						{
+							var Name = "HindLeg2L"
+							Transform 
+							{
+								var Translation = Real3{0.080518201, -0.100579999, 2.29999995}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb9456437ad:RhinoDinoHindLegLower"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x5b605e8bdcdf0306]
+		{
+			var Name = "Body"
+			Transform 
+			{
+				var Translation = Real3{0, 2.40714002, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "54535bb94563af3d:RhinoDinoBody"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b605e8bdcdf0308]
+				{
+					var Name = "NeckPivot"
+					Transform 
+					{
+						var Translation = Real3{-1.74918997, 0.140206993, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf030a]
+						{
+							var Name = "HeadPivot"
+							Transform 
+							{
+								var Translation = Real3{-0.312615991, -0.128043994, 1}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605e8bdcdf030d]
+								{
+									var Name = "Head"
+									Transform 
+									{
+										var Translation = Real3{-0.856580019, 0.145365998, 7.15256022e-07}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "54535bb94564051d:RhinoDinoHead"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b6c42e88709264f]
+										{
+											var Name = "DamageRegion"
+											Transform 
+											{
+												var Translation = Real3{0, 0, 0}
+												var Scale = Real3{2.21887994, 2.52929997, 2}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Model 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "583afb5e7bf75e18:ZeroMaterial"
+												var Mesh = "4de0354322b345ae:Cube"
+											}
+											RigidBody 
+											{
+												var Velocity = Real3{0, 0, 0}
+												var AngularVelocity = Real3{0, 0, 0}
+												var DynamicState = RigidBodyDynamicState.Kinematic
+												var AllowSleep = true
+												var Asleep = false
+												var RotationLocked = false
+												var Mode2D = Mode2DStates.Mode2D
+											}
+											BoxCollider 
+											{
+												var Ghost = true
+												var SendsEvents = true
+												var Material = "5b6c56085f9899a9:Massless"
+												var CollisionGroup = "4e740859314e5515:DefaultGroup"
+												var Offset = Real3{0, 0, 0}
+												var HalfSize = Real3{0.5, 0.5, 0.5}
+											}
+											KillOnHit 
+											{
+												var Active = true
+												var VelocityThreshold = 0
+											}
+										}
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605e8bdcdf0310]
+						{
+							var Name = "Neck"
+							Transform 
+							{
+								var Translation = Real3{-0.146190003, -0.108190998, 0.5}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb945644c3f:RhinoDinoNeck"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b605e8bdcdf0312]
+				{
+					var Name = "ArmorPivot1"
+					Transform 
+					{
+						var Translation = Real3{-1.31475997, -0.426970005, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf0315]
+						{
+							var Name = "Armor1"
+							Transform 
+							{
+								var Translation = Real3{0.722791016, 1.50084996, 0.400000006}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 7.45058015e-09, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb9456398a4:RhinoDinoArmorFront"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b605e8bdcdf0317]
+				{
+					var Name = "ArmorPivot2"
+					Transform 
+					{
+						var Translation = Real3{-0.107400998, 0.188409001, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf0319]
+						{
+							var Name = "Armor2"
+							Transform 
+							{
+								var Translation = Real3{0.852389991, -0.0514506996, 0.300000012}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb94563a53f:RhinoDinoArmorMid"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b605e8bdcdf031c]
+				{
+					var Name = "ArmorPivot3"
+					Transform 
+					{
+						var Translation = Real3{1.29825997, -0.169055998, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf031e]
+						{
+							var Name = "Armor3"
+							Transform 
+							{
+								var Translation = Real3{0.324083, -0.238536, 0.200000003}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb945638d45:RhinoDinoArmorBack"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b605e8bdcdf0320]
+				{
+					var Name = "TailPivot1"
+					Transform 
+					{
+						var Translation = Real3{2.09099007, 0.145405993, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605e8bdcdf0322]
+						{
+							var Name = "TailPivot2"
+							Transform 
+							{
+								var Translation = Real3{0.470748007, -1.01995003, 0}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605e8bdcdf0325]
+								{
+									var Name = "Tail2"
+									Transform 
+									{
+										var Translation = Real3{0.355531991, -0.379648, 0.100000001}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "54535bb94564594b:RhinoDinoTailLower"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605e8bdcdf0327]
+						{
+							var Name = "Tail1"
+							Transform 
+							{
+								var Translation = Real3{0.251020998, -0.488225996, -0.100000001}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "54535bb9456463c5:RhinoDinoTailUpper"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+							Hierarchy 
+							{
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

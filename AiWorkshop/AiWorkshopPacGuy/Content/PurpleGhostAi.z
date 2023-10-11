@@ -1,0 +1,27 @@
+class PurpleGhostAi : ZilchComponent
+{
+  // All movement should be done through the Ghost
+  [Dependency] var Ghost : Ghost;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to update our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Don't move if we're in the house
+    if(this.Ghost.InGhostHouse)
+      return;
+    
+    //------------------------------------------------------- Student Code Below
+    // We only have to make a choice when we're at an intersection
+    if(this.Ghost.AtIntersection())
+    {
+      // Randomly pick the first available direction
+      var randomDirection = this.Ghost.GetRandomDirection();
+      this.Ghost.MoveInDirection(randomDirection);
+    }
+  }
+}

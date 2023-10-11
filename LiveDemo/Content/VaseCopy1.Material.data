@@ -1,0 +1,27 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	AlbedoValue 
+	{
+		var AlbedoValue = Real4{0.518296063, 0.285600007, 0.680000007, 1}
+		var GammaCorrect = true
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 1.05664432
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 0.142812014
+	}
+	Stippling 
+	{
+		var StippleDensity = 1
+		var StippleScale = 1
+	}
+}

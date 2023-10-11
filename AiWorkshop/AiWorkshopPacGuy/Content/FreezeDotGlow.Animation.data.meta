@@ -1,0 +1,9 @@
+DataContent = 
+{
+	RichAnimationBuilder = 
+	{
+		string Name = "FreezeDotGlow",
+		uint64 ResourceId = 5539dc00d4f1dca3,
+		string PreviewArchetype = "",
+	},
+},

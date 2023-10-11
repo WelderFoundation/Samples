@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Juncus"
+		var ResourceId = 0x592c42a7cfc2dadd
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

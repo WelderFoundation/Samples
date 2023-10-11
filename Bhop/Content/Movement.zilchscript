@@ -1,0 +1,113 @@
+class Movement : ZilchComponent
+{
+  var DeltaTime : Real = 0;
+  var Friction : Real = 20;
+  var GroundAccelerate : Real = 2;
+  var MaxVelocityGround : Real = 0.75;
+  var AirAccelerate : Real = 2;
+  var MaxVelocityAir : Real = 0.5;
+  var Velocity : Real3 = Real3();
+  var ToBeGrounded : Boolean = false;
+  var Grounded : Boolean = false;
+  var JumpAccel : Real = 0.2;
+  var GravityAccel : Real = 1;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionPersisted, this.Colliding);
+    Zero.Connect(this.Owner, Events.CollisionEnded, this.LeftGround);
+  }
+  function LeftGround(event : CollisionEvent)
+  {
+    this.Grounded = false;
+    this.ToBeGrounded = false;
+  }
+  function Colliding(event : CollisionEvent)
+  {
+    foreach(var item in event.ContactPoints)
+    {
+      this.Velocity=Math.ProjectOnPlane(this.Velocity,item.WorldNormalTowardsOther);
+      this.Owner.Transform.Translation-=item.Penetration*item.WorldNormalTowardsOther;
+      if(item.LocalPoint.Y<0)
+      {
+      var isGround = false;
+        if(0.1>Math.Length(item.WorldNormalTowardsOther-Real3(0,-1,0))){
+          isGround = true;
+          this.ToBeGrounded = true;
+          this.Velocity = Real3(this.Velocity.X, Math.Max(this.Velocity.Y,0), this.Velocity.Z);
+        }
+        Console.WriteLine(isGround);
+      }
+    }
+  }
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(!this.Grounded||!this.ToBeGrounded)this.Velocity = this.Gravity(Real3(0,-1,0), this.Velocity);
+    var accel = Real3(0,0,0);
+    this.DeltaTime = event.Dt;
+    if(Zero.Keyboard.KeyIsDown(Keys.W))
+      accel+=this.Owner.Orientation.WorldForward;
+    if(Zero.Keyboard.KeyIsDown(Keys.A))
+      accel-=this.Owner.Orientation.WorldRight;
+    if(Zero.Keyboard.KeyIsDown(Keys.S))
+      accel-=this.Owner.Orientation.WorldForward;
+    if(Zero.Keyboard.KeyIsDown(Keys.D))
+      accel+=this.Owner.Orientation.WorldRight;
+    if(this.Grounded){
+      this.Velocity = this.MoveGround(Math.Normalize(accel), this.Velocity);
+    }else{
+      this.Velocity = this.MoveAir(Math.Normalize(accel), this.Velocity);
+    }
+    //Console.WriteLine(Math.Length(this.Velocity));
+    if(Zero.Keyboard.KeyIsDown(Keys.Space)&&this.Grounded)
+    {
+      this.Velocity += Real3(0,this.JumpAccel,0);
+    }
+    Console.WriteLine(Math.Length(this.Velocity));
+    this.Owner.Transform.Translation+=this.Velocity;
+    this.Grounded = this.ToBeGrounded;
+  }
+  function Accelerate(accelDir : Real3,prevVelocity : Real3,accelerate : Real ,max_velocity : Real) : Real3
+  {
+    var projVel = Math.Dot(prevVelocity, accelDir); // Real projection of Current velocity onto accelDir.
+    var accelVel = accelerate * this.DeltaTime; // Accelerated velocity in direction of movment
+
+
+    // If necessary, truncate the accelerated velocity so the Real projection does not exceed max_velocity
+    if(projVel + accelVel > max_velocity)
+        accelVel = max_velocity - projVel;
+
+    return prevVelocity + accelDir * accelVel;
+  }
+
+  function MoveGround(accelDir : Real3, prevVelocity : Real3) : Real3
+  {
+    // Apply Friction
+    var speed = Math.Length(prevVelocity);
+    if (speed != 0) // To avoid divide by zero errors
+    {
+        var drop = speed * this.Friction * this.DeltaTime;
+        prevVelocity *= Math.Max(speed - drop, 0) / speed; // Scale the velocity based on friction.
+    }
+
+    // GroundAccelerate and this.MaxVelocityGround are server-defined movement variables
+    return this.Accelerate(accelDir, prevVelocity, this.GroundAccelerate, this.MaxVelocityGround);
+  }
+
+  function MoveAir(accelDir : Real3,prevVelocity : Real3) : Real3
+  {
+    // AirAccelerate and max_velocity_air are server-defined movement variables
+    return this.Accelerate(accelDir, prevVelocity, this.AirAccelerate, this.MaxVelocityAir);
+  }
+  function MoveJump(accelDir : Real3,prevVelocity : Real3) : Real3
+  {
+    // AirAccelerate and max_velocity_air are server-defined movement variables
+    this.DeltaTime = 1;
+    return this.Accelerate(accelDir, prevVelocity, this.JumpAccel, 9999.0);
+  }
+  function Gravity(accelDir : Real3,prevVelocity : Real3) : Real3
+  {
+    // AirAccelerate and max_velocity_air are server-defined movement variables
+    return this.Accelerate(accelDir, prevVelocity, this.GravityAccel, this.MaxVelocityAir);
+  }
+}

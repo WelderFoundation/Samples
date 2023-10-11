@@ -1,0 +1,26 @@
+[Version:1]
+Cog 
+{
+	var Name = "Debri"
+	Transform 
+	{
+		var Translation = Real3{-8.34080601, 2.64171243, 7.94926977}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	ObjectParticleSystem 
+	{
+		var EmittedObject = "5b76c612bd9cab4b:VaseDebri"
+		var Color = Real4{0.286274523, 0.309803933, 0.313725501, 1}
+		var ColorGlowFactor = 6
+		var EmitCount = 55
+		var EmitRate = 555
+		var Size = 1
+		var SizeVariance = 0.100000001
+		var Lifetime = 2
+		var LifetimeVariance = 0.5
+		var RandomVelocity = Real3{15, 4, 15}
+		var EmitterSize = Real3{0, 0, 0}
+		var TimeGradient = "591ab9ca354f58d9:FadeOut"
+	}
+}

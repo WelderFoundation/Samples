@@ -1,0 +1,17 @@
+class HUDScoreCounter : ZilchComponent
+{
+   [Property]
+    var ScoreTextPath : CogPath = null;
+    
+    [Property]
+    var ScoreTextOffset : Real3 = Real3();
+    
+    function Initialize(init : CogInitializer)
+    {
+    }
+    
+      function ChangeCoinText(scoreCount : Real)
+    {
+        this.ScoreTextPath.Cog.SpriteText.Text = "`scoreCount`";
+    }
+}

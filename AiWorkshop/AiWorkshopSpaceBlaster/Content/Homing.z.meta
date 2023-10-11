@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "Homing",
+		uint64 ResourceId = 555c9d72f7ace0d8,
+	},
+},

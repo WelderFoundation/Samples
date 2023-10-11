@@ -1,0 +1,115 @@
+class GhostHouse : ZilchComponent
+{
+  [Property] var RedGhost : CogPath = new CogPath();
+  [Property] var PurpleGhost : CogPath = new CogPath();
+  [Property] var BlueGhost : CogPath = new CogPath();
+  [Property] var OrangeGhost : CogPath = new CogPath();
+  
+  [Property] var CenterSpot : CogPath = new CogPath();
+  [Property] var SpawnPoint : CogPath = new CogPath();
+  
+  // The ghost that gets the dot pickup counter
+  var PreferredGhost : Cog = null;
+  
+  // Used so we can easily traverse over the ghosts
+  var Ghosts : Array[Cog] = new Array[Cog]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Add the ghosts into an array 
+    this.Ghosts.Add(this.RedGhost.Cog);
+    this.Ghosts.Add(this.PurpleGhost.Cog);
+    this.Ghosts.Add(this.BlueGhost.Cog);
+    this.Ghosts.Add(this.OrangeGhost.Cog);
+    
+    // The red ghost is spawned by default, no need to animate the spawn
+    this.SpawnGhost(this.RedGhost.Cog, false);
+            
+    // When the player picks up a dot, we need to update our dot counter to know when to leave the house
+    Zero.Connect(this.Space, Events.DotPickedUp, this.OnDotPickedUp);
+  }
+
+  function OnDotPickedUp(event : ZilchEvent)
+  {
+    if(this.PreferredGhost != null)
+    {
+      var ghost = this.PreferredGhost.Ghost;
+      
+      // Increment its dot counter
+      ghost.DotCounter += 1;
+      
+      // If we've surpassed the dot limit, spawn the ghost
+      if(ghost.DotCounter >= ghost.DotLimit)
+        this.SpawnGhost(this.PreferredGhost, true);
+    }
+  }
+
+  function SpawnGhost(ghost : Cog, animate : Boolean)
+  {
+    if(animate)
+    {
+      // Animate to the center, then outside the door
+      var center = this.CenterSpot.Cog.Transform.WorldTranslation;
+      var spawnPoint = this.SpawnPoint.Cog.Transform.WorldTranslation;
+      var seq = Action.Sequence(this.Owner.Actions);
+      Action.Property(seq, @ghost.Transform.Translation, center, 0.6, Ease.Linear);
+      Action.Property(seq, @ghost.Transform.Translation, spawnPoint, 0.6, Ease.QuadOut);
+      
+      // Let the ghost know that it spawned
+      Action.Call(seq, ghost.Ghost.Spawned);
+    }
+    else
+    {
+      ghost.Ghost.Spawned();
+    }
+    
+    // Find the next preferred ghost
+    this.PreferredGhost = this.FindNextPreferredGhost();
+  }
+  
+  function GhostDied(ghost : Cog)
+  {
+    // Make the model invisible so we can see the eyes
+    ghost.Model.Visible = false;
+    
+    // It's now considered in the house
+    ghost.Ghost.InGhostHouse = true;
+    
+    // Cancel any flash animation
+    ghost.Actions.Cancel();
+    
+    // It's no longer frozen
+    ghost.Ghost.FrozenEnd();
+    
+    // Animate to the center of the ghost house
+    // It should spawn immediately, so move it to the spawn point and tell it that it spawned
+    var center = this.CenterSpot.Cog.Transform.WorldTranslation;
+    var spawnPoint = this.SpawnPoint.Cog.Transform.WorldTranslation;
+    
+    // Constant speed back to the center
+    var distanceToCenter = Math.Length((ghost.Transform.WorldTranslation - center));
+    var time = distanceToCenter * 0.1;
+    
+    // Queue the actions
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Property(seq, @ghost.Transform.Translation, center, time, Ease.Linear);
+    Action.Property(seq, @ghost.Transform.Translation, spawnPoint, 0.6, Ease.QuadOut);
+    
+    // Let the ghost know that it spawned
+    Action.Call(seq, ghost.Ghost.Spawned);
+  }
+
+  function FindNextPreferredGhost() : Cog
+  {
+    foreach (var ghostCog in this.Ghosts)
+    {
+      if(ghostCog.Ghost.InGhostHouse)
+      {
+        if(ghostCog.Ghost.DotCounter < ghostCog.Ghost.DotLimit)
+          return ghostCog;
+      }
+    }
+    
+    return null;
+  }
+}

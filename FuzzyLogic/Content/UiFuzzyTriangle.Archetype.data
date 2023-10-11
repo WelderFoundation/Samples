@@ -1,0 +1,1566 @@
+[Version:1]
+Cog 
+{
+	var Name = "Number"
+	Transform 
+	{
+		var Translation = Real3{1177, -354, 0.00500011444}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Area 
+	{
+		var Size = Real2{809, 622}
+		var Origin = Location.BottomLeft
+	}
+	UiWidget 
+	{
+		var Active = true
+		var Visible = true
+		var Interactive = true
+		var InLayout = true
+		var OnTop = false
+		var ClipChildren = false
+		var CanTakeFocus = false
+		var LocalColor = Real4{1, 1, 1, 1}
+		var HierarchyColor = Real4{1, 1, 1, 1}
+		var SizePolicyX = UiSizePolicy.Flex
+		var SizePolicyY = UiSizePolicy.Flex
+		var FlexSize = Real2{1, 1}
+		var AbsoluteMinSize = Real2{1, 1}
+		var VerticalAlignment = UiVerticalAlignment.Top
+		var HorizontalAlignment = UiHorizontalAlignment.Left
+		var MarginLeft = 0
+		var MarginTop = 0
+		var MarginRight = 0
+		var MarginBottom = 0
+		var DockMode = UiDockMode.Left
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5a93de142ec22660:FuzzyGraphTriangle"
+		var Mesh = "4de0354322b345ae:Cube"
+	}
+	UiFuzzyNumberTriangle 
+	{
+		var A = 0
+		var B = 0
+		var C = 0
+		var Color = Real4{1, 1, 1, 0.699999988}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5a893dc67ad8a522]
+		{
+			var Name = "NameGroup"
+			Transform 
+			{
+				var Translation = Real3{2, -2, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Area 
+			{
+				var Size = Real2{252, 21}
+				var Origin = Location.TopLeft
+			}
+			UiWidget 
+			{
+				var Active = true
+				var Visible = true
+				var Interactive = true
+				var InLayout = true
+				var OnTop = true
+				var ClipChildren = false
+				var CanTakeFocus = false
+				var LocalColor = Real4{0, 0, 0, 0.580000043}
+				var HierarchyColor = Real4{1, 1, 1, 1}
+				var SizePolicyX = UiSizePolicy.Fixed
+				var SizePolicyY = UiSizePolicy.Fixed
+				var FlexSize = Real2{1, 1}
+				var AbsoluteMinSize = Real2{1, 1}
+				var VerticalAlignment = UiVerticalAlignment.Top
+				var HorizontalAlignment = UiHorizontalAlignment.Left
+				var MarginLeft = 0
+				var MarginTop = 0
+				var MarginRight = 0
+				var MarginBottom = 0
+				var DockMode = UiDockMode.Left
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5a893d99884bd0d6]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{2, 2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a89386803bf593c]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{2, 1, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a893862027675f0]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{2, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a8938600215fa9a]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{2, -1, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a8938660dbf4f95]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{2, 2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a8938670d792c20]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{1, 2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a8938650d07ab90]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{0, 2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a89387b0ca5261d]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{-1, 2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a8938790c5fe113]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{-2, 2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a89387d0f681199]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{-2, 1, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a8938710e8e9c9d]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{-2, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a8938770e287c87]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{-2, -1, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a89380a09b1fbdb]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{-2, -2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a893808093834dc]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{-1, -2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a89380f088e96db]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{0, -2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a89380d082e5cf0]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{1, -2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a8938020bf185e3]
+				{
+					var Name = "Shadow"
+					Transform 
+					{
+						var Translation = Real3{2, -2, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{0, 0, 0, 0.200000003}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{0, 0, 0, 0.200000003}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+				Cog [Id:0x5a893e32aab90472]
+				{
+					var Name = "Name"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{252, 21}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{1, 1, 1, 1}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					SpriteText 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{1, 1, 1, 1}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var Text = "Sprite Text..."
+						var Font = "587b2f7646ba23d5:NotoSans-Bold"
+						var FontSize = 12
+						var PixelsPerUnit = 1
+						var TextAlign = TextAlign.Left
+					}
+					Hierarchy 
+					{
+					}
+				}
+			}
+		}
+		Cog [Id:0x5a8f5165d4ca54f8]
+		{
+			var Name = "ControlPointA"
+			Transform 
+			{
+				var Translation = Real3{42, 76, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Area 
+			{
+				var Size = Real2{8, 8}
+				var Origin = Location.TopLeft
+			}
+			UiWidget 
+			{
+				var Active = false
+				var Visible = true
+				var Interactive = true
+				var InLayout = true
+				var OnTop = true
+				var ClipChildren = false
+				var CanTakeFocus = false
+				var LocalColor = Real4{0, 0, 0, 1}
+				var HierarchyColor = Real4{1, 1, 1, 1}
+				var SizePolicyX = UiSizePolicy.Fixed
+				var SizePolicyY = UiSizePolicy.Fixed
+				var FlexSize = Real2{1, 1}
+				var AbsoluteMinSize = Real2{1, 1}
+				var VerticalAlignment = UiVerticalAlignment.Top
+				var HorizontalAlignment = UiHorizontalAlignment.Left
+				var MarginLeft = 0
+				var MarginTop = 0
+				var MarginRight = 0
+				var MarginBottom = 0
+				var DockMode = UiDockMode.Left
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{0, 0, 0, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "5274db4c2e7c11f9:Circle"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5a8f5133ddc06294]
+				{
+					var Name = "Center"
+					Transform 
+					{
+						var Translation = Real3{1, -1, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{6, 6}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{1, 1, 1, 1}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					Sprite 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{1, 1, 1, 1}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var SpriteSource = "5274db4c2e7c11f9:Circle"
+						var FlipX = false
+						var FlipY = false
+						var AnimationActive = true
+						var AnimationSpeed = 1
+						var StartFrame = 0
+					}
+					Hierarchy 
+					{
+					}
+				}
+			}
+		}
+		Cog [Id:0x5a8f506ea5d11415]
+		{
+			var Name = "ControlPointB"
+			Transform 
+			{
+				var Translation = Real3{42, 76, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Area 
+			{
+				var Size = Real2{8, 8}
+				var Origin = Location.TopLeft
+			}
+			UiWidget 
+			{
+				var Active = false
+				var Visible = true
+				var Interactive = true
+				var InLayout = true
+				var OnTop = true
+				var ClipChildren = false
+				var CanTakeFocus = false
+				var LocalColor = Real4{0, 0, 0, 1}
+				var HierarchyColor = Real4{1, 1, 1, 1}
+				var SizePolicyX = UiSizePolicy.Fixed
+				var SizePolicyY = UiSizePolicy.Fixed
+				var FlexSize = Real2{1, 1}
+				var AbsoluteMinSize = Real2{1, 1}
+				var VerticalAlignment = UiVerticalAlignment.Top
+				var HorizontalAlignment = UiHorizontalAlignment.Left
+				var MarginLeft = 0
+				var MarginTop = 0
+				var MarginRight = 0
+				var MarginBottom = 0
+				var DockMode = UiDockMode.Left
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{0, 0, 0, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "5274db4c2e7c11f9:Circle"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5a8f5133ddc06294]
+				{
+					var Name = "Center"
+					Transform 
+					{
+						var Translation = Real3{1, -1, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{6, 6}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{1, 1, 1, 1}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					Sprite 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{1, 1, 1, 1}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var SpriteSource = "5274db4c2e7c11f9:Circle"
+						var FlipX = false
+						var FlipY = false
+						var AnimationActive = true
+						var AnimationSpeed = 1
+						var StartFrame = 0
+					}
+					Hierarchy 
+					{
+					}
+				}
+			}
+		}
+		Cog [Id:0x5a8f506da5b11154]
+		{
+			var Name = "ControlPointC"
+			Transform 
+			{
+				var Translation = Real3{42, 76, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Area 
+			{
+				var Size = Real2{8, 8}
+				var Origin = Location.TopLeft
+			}
+			UiWidget 
+			{
+				var Active = false
+				var Visible = true
+				var Interactive = true
+				var InLayout = true
+				var OnTop = true
+				var ClipChildren = false
+				var CanTakeFocus = false
+				var LocalColor = Real4{0, 0, 0, 1}
+				var HierarchyColor = Real4{1, 1, 1, 1}
+				var SizePolicyX = UiSizePolicy.Fixed
+				var SizePolicyY = UiSizePolicy.Fixed
+				var FlexSize = Real2{1, 1}
+				var AbsoluteMinSize = Real2{1, 1}
+				var VerticalAlignment = UiVerticalAlignment.Top
+				var HorizontalAlignment = UiHorizontalAlignment.Left
+				var MarginLeft = 0
+				var MarginTop = 0
+				var MarginRight = 0
+				var MarginBottom = 0
+				var DockMode = UiDockMode.Left
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{0, 0, 0, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "5274db4c2e7c11f9:Circle"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			MouseCapture 
+			{
+			}
+			UiHighlight 
+			{
+				var Active = true
+				var MouseMode = UiHighlightMouseMode.EnterHierarchy
+				var MouseOverCog = CogPath
+				{
+					var Path = "."
+					var ErrorOnResolveToNull = false
+					var ErrorOnPathCantCompute = false
+					var ErrorOnDirectLinkFail = false
+					var UpdateCogOnPathChange = true
+					var UpdatePathOnCogChange = true
+					var UpdateCogOnInitialize = true
+					var ResolvedNullErrorOccurred = false
+					var Cog = 4294967293
+					var PathPreference0 = CogPathPreference.CogRelative
+					var PathPreference1 = CogPathPreference.SpaceRelative
+					var PathPreference2 = CogPathPreference.Absolute
+				}
+				var HighlightCog = CogPath
+				{
+					var Path = "."
+					var ErrorOnResolveToNull = false
+					var ErrorOnPathCantCompute = false
+					var ErrorOnDirectLinkFail = false
+					var UpdateCogOnPathChange = true
+					var UpdatePathOnCogChange = true
+					var UpdateCogOnInitialize = true
+					var ResolvedNullErrorOccurred = false
+					var Cog = 4294967293
+					var PathPreference0 = CogPathPreference.CogRelative
+					var PathPreference1 = CogPathPreference.SpaceRelative
+					var PathPreference2 = CogPathPreference.Absolute
+				}
+				var ColorMode = UiHighlightColorMode.Local
+				var MouseHoverColor = Real4{1, 1, 1, 1}
+				var MouseDownColor = Real4{1, 1, 1, 1}
+				var AnimateTime = 0.100000001
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5a8f5133ddc06294]
+				{
+					var Name = "Center"
+					Transform 
+					{
+						var Translation = Real3{1, -1, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Area 
+					{
+						var Size = Real2{6, 6}
+						var Origin = Location.TopLeft
+					}
+					UiWidget 
+					{
+						var Active = true
+						var Visible = true
+						var Interactive = true
+						var InLayout = true
+						var OnTop = false
+						var ClipChildren = false
+						var CanTakeFocus = false
+						var LocalColor = Real4{1, 1, 1, 1}
+						var HierarchyColor = Real4{1, 1, 1, 1}
+						var SizePolicyX = UiSizePolicy.Fixed
+						var SizePolicyY = UiSizePolicy.Fixed
+						var FlexSize = Real2{1, 1}
+						var AbsoluteMinSize = Real2{1, 1}
+						var VerticalAlignment = UiVerticalAlignment.Top
+						var HorizontalAlignment = UiHorizontalAlignment.Left
+						var MarginLeft = 0
+						var MarginTop = 0
+						var MarginRight = 0
+						var MarginBottom = 0
+						var DockMode = UiDockMode.Left
+					}
+					Sprite 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{1, 1, 1, 1}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var SpriteSource = "5274db4c2e7c11f9:Circle"
+						var FlipX = false
+						var FlipY = false
+						var AnimationActive = true
+						var AnimationSpeed = 1
+						var StartFrame = 0
+					}
+					Hierarchy 
+					{
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "WanderRhinoDino"
+		var ResourceId = 0x57753fbdc3b908e5
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

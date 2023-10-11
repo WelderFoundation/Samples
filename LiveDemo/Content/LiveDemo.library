@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "LiveDemo"
+	var LibraryId = 0x3ae3a28d9edea315
+	var SourceControlType = ""
+	var ReadOnly = false
+}

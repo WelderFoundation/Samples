@@ -1,0 +1,60 @@
+class HudHealthUpdater : ZilchComponent
+{
+  // We need to read from the health component
+  [Dependency] var Health : Health;
+  
+  // A path to the health bar in the hud
+  [Property] var HealthBar : CogPath = new CogPath();
+  
+  // How many health bars there are in the Ui
+  var HealthBarCount : Integer = 15;
+  
+  // Used to only animate the bars that change state
+  var LastVisible : Integer = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+      // Update the ui every frame
+      Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Confirm the cog path is valid
+    if(this.HealthBar.Cog != null)
+    {
+      // Calculate how many bars should be visible
+      var health = this.Owner.Health;
+      var healthPercent = health.CurrentHealth / health.MaxHealth;
+      var visible = Math.Floor(healthPercent * this.HealthBarCount) as Integer;
+      
+      // Walk through each child and fade out 
+      var currChild = 0;
+      foreach (var child in this.HealthBar.Cog.Children)
+      {
+        if(currChild < visible)
+        {
+          if(currChild > this.LastVisible)
+          {
+            var seq = Action.Sequence(child.Actions);
+            var color = Real4(1,1,1,1);
+            // Used to offset the fading of multiple health bars when health changes a lot all at once
+            var fadeTime = (this.LastVisible - currChild) * 0.15;
+            Action.Property(seq, @child.Sprite.VertexColor, color, fadeTime, Ease.QuadOut);
+          }
+        }
+        else if(currChild <= this.LastVisible)
+        {
+          child.Actions.Cancel();
+          var seq = Action.Sequence(child.Actions);
+          var color = Real4(1,1,1,0);
+          var fadeTime = (this.LastVisible - currChild) * 0.15;
+          Action.Property(seq, @child.Sprite.VertexColor, color, fadeTime, Ease.QuadOut);
+        }
+        currChild += 1;
+      }
+      
+      this.LastVisible = visible;
+    }
+  }
+}

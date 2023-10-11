@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "CartTrack"
+		var ResourceId = 0x5b7b4d510b14dfb7
+		var LoaderType = "CollisionGroup"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

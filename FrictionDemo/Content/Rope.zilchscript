@@ -1,0 +1,144 @@
+///////////////////////////////////////////////////////////////////////////////
+///
+/// Authors: Joshua Claeys
+/// Copyright 2017, DigiPen Institute of Technology
+///
+///////////////////////////////////////////////////////////////////////////////
+[RunInEditor]
+class Rope : ZilchComponent
+{
+  // Dependencies
+  [Dependency] var Transform : Transform;
+  [Dependency] var Model : Model;
+  
+  [Property] var HierarchySpline = CogPath(".");
+  
+  // Changes the color on the ColorValue fragment.
+  [Property][ShaderInput("ColorValue")] var Color = Real4(1);
+  [ShaderInput("ColorScalar")] var ColorScalar : Real4
+  {
+    get{return this.Color; }
+  }
+  
+  // Width of the rope
+  [Property][ShaderInput("RopeGeo")] var Width = 0.05;
+  
+  // The mesh generated from the spline. 
+  var Mesh : Mesh = Mesh.CreateRuntime();
+  
+  //***************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.HierarchySpline, Events.CogPathCogChanged, this.OnCogPathCogChanged);
+    
+    var splineCog = this.HierarchySpline.Cog;
+    if(splineCog != null)
+      Zero.Connect(splineCog, Events.SplineModified, this.OnSplineModified);
+    
+    this.Mesh.PrimitiveType = PrimitiveType.Lines;
+    this.Mesh.Vertices.AddAttribute(VertexSemantic.Position, VertexElementType.Real, 3);
+    this.Mesh.Vertices.AddAttribute(VertexSemantic.Tangent, VertexElementType.Real, 3);
+    this.Mesh.Vertices.AddAttribute(VertexSemantic.Uv, VertexElementType.Real, 2);
+    
+    // We want the model to use this mesh for rendering
+    this.Model.Mesh = this.Mesh;
+    
+    // Create the initial mesh
+    this.UpdateMesh();
+  }
+  
+  //***************************************************************************
+  function OnCogPathCogChanged(event : CogPathEvent)
+  {
+    var splineCog = this.HierarchySpline.Cog;
+    if(splineCog != null)
+      Zero.Connect(splineCog, Events.SplineModified, this.OnSplineModified);
+      
+    this.UpdateMesh();
+  }
+  
+  //***************************************************************************
+  function OnSplineModified(event : SplineEvent)
+  {
+    this.UpdateMesh();
+  }
+  
+  //***************************************************************************
+  function UpdateMesh()
+  {
+    this.Mesh.Vertices.ClearData();
+    
+    var splineCog = this.HierarchySpline.Cog;
+    if(splineCog == null)
+      return;
+    
+    var hierarchySpline = splineCog.HierarchySpline;
+    var bakedPoints = hierarchySpline.Spline.BakedPoints;
+    
+    // We need at least two points
+    if(bakedPoints.Count < 2)
+      return;
+    
+    var transform = this.Owner.Transform;
+    var lastPos = this.Transform.TransformPointInverse(bakedPoints.Get(0).WorldPosition);
+    var nextPos = this.Transform.TransformPointInverse(bakedPoints.Get(1).WorldPosition);
+    var firstTangent = Math.Normalize(nextPos - lastPos);
+    var lastTangent = firstTangent;
+    
+    var min = lastPos;
+    var max = lastPos;
+    
+    // How far we've traveled, used for calculating Uv's
+    var distance = 0.0;
+    
+    timeout(1)
+    {
+      for(var i = 1; i < bakedPoints.Count; ++i)
+      {
+        var pos = this.Transform.TransformPointInverse(bakedPoints[i].WorldPosition);
+        
+        var currentTangent = lastTangent;
+        
+        // If the spline is closed, we want to use the tangent from the first
+        // point for it to be continuous
+        if(hierarchySpline.Closed)
+          currentTangent = firstTangent;
+          
+        // We can only calculate a tangent if we aren't at the end
+        if(i < bakedPoints.Count - 1)
+        {
+          nextPos = this.Transform.TransformPointInverse(bakedPoints[i + 1].WorldPosition);
+          currentTangent = Math.Normalize(nextPos - pos);
+        }
+        
+        this.Mesh.Vertices.AddReal(lastPos);
+        this.Mesh.Vertices.AddReal(lastTangent);
+        this.Mesh.Vertices.AddReal(Real2(distance, 0));
+        
+        distance += Math.Distance(lastPos, pos);
+        
+        this.Mesh.Vertices.AddReal(pos);
+        this.Mesh.Vertices.AddReal(currentTangent);
+        this.Mesh.Vertices.AddReal(Real2(distance, 0));
+        
+        // Update aabb
+        min = Math.Min(min, pos);
+        max = Math.Max(max, pos);
+        
+        lastPos = pos;
+        lastTangent = currentTangent;
+      }
+    }
+    
+    min -= Real3(this.Width);
+    max += Real3(this.Width);
+    
+    // This must be set for the local aabb to be used
+    this.Model.OverrideBoundingBox = true;
+    this.Model.LocalAabbCenter = (min + max) * 0.5;
+    this.Model.LocalAabbHalfExtents = (max - min) * 0.5;
+    
+    // We're done modifying the mesh
+    this.Mesh.Upload();
+  }
+}

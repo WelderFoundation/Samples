@@ -1,0 +1,13 @@
+[Version:1]
+Cog 
+{
+	var Name = "name"
+	CogFuzzySet 
+	{
+		var Min = 0
+		var Max = 1
+	}
+	Hierarchy 
+	{
+	}
+}

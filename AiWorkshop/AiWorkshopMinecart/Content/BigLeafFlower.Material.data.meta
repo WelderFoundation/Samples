@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "BigLeafFlower"
+		var ResourceId = 0x592c432be40edd57
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

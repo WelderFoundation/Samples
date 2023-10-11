@@ -1,0 +1,11 @@
+DataContent = 
+{
+	DataBuilder = 
+	{
+		string Name = "PlasmaFire",
+		uint64 ResourceId = 524d254cb9227905,
+		string LoaderType = "Animation",
+		uint Version = 0,
+		bool ShowInEditor = true,
+	},
+},

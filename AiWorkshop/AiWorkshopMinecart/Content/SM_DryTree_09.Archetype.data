@@ -1,0 +1,23 @@
+[Version:1]
+Cog 
+{
+	var Name = "SMDryTree09"
+	Transform 
+	{
+		var Translation = Real3{1.24164295, 6.48795414, 12.5125694}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5924959c7091e634:TreeTrunk"
+		var Mesh = "5aaa4c2a08254ffb:SM_DryTree_09"
+	}
+}

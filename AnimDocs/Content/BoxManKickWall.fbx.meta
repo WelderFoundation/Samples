@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManKickWall_Stomach"
+				var ResourceId = 0x59af21f17b549d0d
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_Chest"
+				var ResourceId = 0x59af21f17b549d19
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_Head"
+				var ResourceId = 0x59af21f17b549d1c
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_LArm"
+				var ResourceId = 0x59af21f17b549d21
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_LArm01"
+				var ResourceId = 0x59af21f17b549d25
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_RArm"
+				var ResourceId = 0x59af21f17b549d2a
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_RArm01"
+				var ResourceId = 0x59af21f17b549d2d
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_LLeg"
+				var ResourceId = 0x59af21f17b549d31
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_LLeg01"
+				var ResourceId = 0x59af21f17b549d35
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_RLeg"
+				var ResourceId = 0x59af21f17b549d38
+			}
+			Object
+			{
+				var Name = "BoxManKickWall_RLeg01"
+				var ResourceId = 0x59af21f17b549d3e
+			}
+		}
+	}
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManKickWall"
+				var ResourceId = 0x59af21f17b549d44
+			}
+		}
+	}
+}

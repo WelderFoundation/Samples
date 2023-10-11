@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "ProjectSpace",
+	uint64 LibraryId = 57a1ad61c995fc4d,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

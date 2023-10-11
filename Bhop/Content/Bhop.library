@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "Bhop"
+	var LibraryId = 0x5ab786da10b655de
+	var SourceControlType = ""
+	var ReadOnly = false
+}

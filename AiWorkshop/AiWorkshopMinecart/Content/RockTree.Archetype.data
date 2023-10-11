@@ -1,0 +1,14 @@
+[Version:1]
+Cog [InheritId:"592c47972ff1953d:SM_TallRock_02"]
+{
+	Transform 
+	{
+		var Translation = Real3{-17.5286369, 9.53841305, 21.966711}
+		var Rotation = Quaternion{0, 0, 0, 1}
+		var Scale = Real3{1, 1, 1}
+	}
+	Model 
+	{
+		var Material = "5924958a74e00d54:TreeLeaves"
+	}
+}

@@ -1,0 +1,46 @@
+class DestructibleWall : ZilchComponent
+{
+  [Property] var RegenTime : Real = 3.0;
+  [Property] var RegenObject : Archetype = null;
+  
+  var PositionAtDeath : Real3;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.Death, this.OnDeath);
+  }
+
+  function OnDeath(event : ZilchEvent)
+  {
+    this.Owner.Model.Visible = false;
+    this.Owner.BoxCollider.Ghost = true;
+    this.Owner.BoxCollider.SendsEvents = false;
+    //this.Owner.RemoveComponentByName("BoxCollider");
+    
+    this.PositionAtDeath = this.Owner.Transform.WorldTranslation;
+    
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, this.RegenTime);
+    Action.Call(seq, this.Regenerate);
+  }
+  
+  function Regenerate()
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    var wallRegen = this.Space.CreateAtPosition(this.RegenObject, this.PositionAtDeath);
+    wallRegen.AttachTo(this.Owner);
+    
+    Action.Delay(seq, 1.0);
+    Action.Call(seq, this.Regenerated);
+  }
+  
+  function Regenerated()
+  {
+    //this.Owner.AddComponentByName("BoxCollider");
+    this.Owner.BoxCollider.Ghost = false;
+    this.Owner.BoxCollider.SendsEvents = true;
+    this.Owner.Model.Visible = true;
+    
+    this.Owner.Health.CurrentHealth = this.Owner.Health.MaxHealth;
+  }
+}

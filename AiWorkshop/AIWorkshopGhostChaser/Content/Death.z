@@ -1,0 +1,26 @@
+class Death : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    
+  }
+  
+  function KillObject()
+  {
+    var explosion = this.Owner.FindChildByName("ExplosionEffect");
+    
+    if(explosion != null)
+    {
+      //Saves the explosion position
+      var currentPosition = this.Owner.Transform.Translation;
+      
+      //Trigger Explosion effect
+      explosion.SphericalParticleEmitter.Active = true;
+      explosion.Detach();
+      
+      //Explode in the correct Position
+      explosion.Transform.Translation = currentPosition;
+    }
+    this.Owner.Sprite.Visible = false;
+  }
+}

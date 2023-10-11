@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "AiWorkshopShooter",
+	uint64 LibraryId = 5555a7644f7dac2b,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

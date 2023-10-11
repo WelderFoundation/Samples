@@ -1,0 +1,187 @@
+[Version:1]
+Cog 
+{
+	var Name = "CoinExplosion"
+	Transform 
+	{
+		var Translation = Real3{0.791229725, 2.53112721, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	SpriteParticleSystem 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = true
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{10, 10, 1}
+		var GroupSortValue = 0
+		var Material = "582c50d330d372c3:AdditiveSprite"
+		var BoundingBoxSize = 2
+		var ChildSystem = false
+		var SystemSpace = SystemSpace.WorldSpace
+		var WarmUpTime = 0
+		var PreviewInEditor = false
+		var VertexColor = Real4{15, 11.53125, 1.12500072, 1}
+		var GeometryMode = SpriteParticleGeometryMode.Beam
+		var SpriteSource = "59a4f6f4a01bac09:SoftCircle"
+		var ParticleAnimation = SpriteParticleAnimationMode.Single
+		var ParticleSort = SpriteParticleSortMode.None
+		var BeamBaseScale = 1
+		var BeamVelocityScale = 1
+	}
+	SphericalParticleEmitter 
+	{
+		var Active = true
+		var EmitCount = 30
+		var EmitDelay = 0
+		var EmitRate = 50000
+		var EmitVariance = 0
+		var EmitRateSoftStartTime = 0
+		var Size = 0.0299999993
+		var SizeVariance = 0.00999999978
+		var Lifetime = 0.600000024
+		var LifetimeVariance = 0.200000003
+		var Spin = 0
+		var SpinVariance = 50
+		var RandomSpin = true
+		var Fill = 1
+		var EmitterVelocityPercent = 0
+		var StartVelocity = Real3{0, 0, 0}
+		var RandomVelocity = Real3{7, 7, 7}
+		var TangentVelocity = Real3{0, 0, 0}
+		var EmitterSize = Real3{0, 0, 0}
+		var FastMovingEmitter = false
+	}
+	LinearParticleAnimator 
+	{
+		var Force = Real3{0, 0, 0}
+		var RandomForce = Real3{0, 0, 0}
+		var Torque = 0
+		var Growth = 0
+		var Dampening = 4
+		var Twist = Real3{0, 0, 0}
+	}
+	ParticleColorAnimator 
+	{
+		var TimeGradient = "591abd225f232eaa:FadeInOut"
+		var VelocityGradient = "null"
+		var MaxParticleSpeed = 5
+	}
+	SelectionIcon 
+	{
+		var Visible = true
+		var VisibilityEvents = true
+		var Material = "56581e2bb81777be:DebugDrawOnTop"
+		var SpriteSource = "59937d65f2659971:ParticleIcon"
+		var ViewScale = 1
+		var OverrideSelections = true
+	}
+	ParticleWander 
+	{
+		var WanderAngle = 1.66629922
+		var WanderAngleVariance = 1
+		var WanderStrength = 2.29513836
+	}
+	ParticleAttractor 
+	{
+		var PositionSpace = SystemSpace.WorldSpace
+		var AttractPosition = Real3{0, 0, 0}
+		var Strength = 70
+		var MinDistance = 0
+		var MaxDistance = 10
+	}
+	DynamicParticleAttractor 
+	{
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b00e80a29af67a6]
+		{
+			var Name = "CoinExplosion"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			SpriteParticleSystem 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = true
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{10, 10, 1}
+				var GroupSortValue = 0
+				var Material = "582c50d330d372c3:AdditiveSprite"
+				var BoundingBoxSize = 2
+				var ChildSystem = false
+				var SystemSpace = SystemSpace.WorldSpace
+				var WarmUpTime = 0
+				var PreviewInEditor = false
+				var VertexColor = Real4{15, 11.53125, 1.12500072, 1}
+				var GeometryMode = SpriteParticleGeometryMode.Beam
+				var SpriteSource = "59a4f6f4a01bac09:SoftCircle"
+				var ParticleAnimation = SpriteParticleAnimationMode.Single
+				var ParticleSort = SpriteParticleSortMode.None
+				var BeamBaseScale = 1
+				var BeamVelocityScale = 1
+			}
+			SphericalParticleEmitter 
+			{
+				var Active = true
+				var EmitCount = 100
+				var EmitDelay = 0
+				var EmitRate = 50000
+				var EmitVariance = 0
+				var EmitRateSoftStartTime = 0
+				var Size = 0.0500000007
+				var SizeVariance = 0.0199999996
+				var Lifetime = 0.600000024
+				var LifetimeVariance = 0.200000003
+				var Spin = 0
+				var SpinVariance = 50
+				var RandomSpin = true
+				var Fill = 1
+				var EmitterVelocityPercent = 0
+				var StartVelocity = Real3{0, 0, 0}
+				var RandomVelocity = Real3{7, 7, 7}
+				var TangentVelocity = Real3{0, 0, 0}
+				var EmitterSize = Real3{0, 0, 0}
+				var FastMovingEmitter = false
+			}
+			LinearParticleAnimator 
+			{
+				var Force = Real3{0, 0, 0}
+				var RandomForce = Real3{0, 0, 0}
+				var Torque = 0
+				var Growth = 0
+				var Dampening = 4
+				var Twist = Real3{0, 0, 5}
+			}
+			ParticleColorAnimator 
+			{
+				var TimeGradient = "591abd225f232eaa:FadeInOut"
+				var VelocityGradient = "null"
+				var MaxParticleSpeed = 5
+			}
+			SelectionIcon 
+			{
+				var Visible = true
+				var VisibilityEvents = true
+				var Material = "56581e2bb81777be:DebugDrawOnTop"
+				var SpriteSource = "59937d65f2659971:ParticleIcon"
+				var ViewScale = 1
+				var OverrideSelections = true
+			}
+			ParticleWander 
+			{
+				var WanderAngle = 1.66629922
+				var WanderAngleVariance = 1
+				var WanderStrength = 2.29513836
+			}
+		}
+	}
+}

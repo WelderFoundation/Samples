@@ -1,0 +1,35 @@
+[Version:1]
+Cog 
+{
+	var Name = "SMTallRock02"
+	Transform 
+	{
+		var Translation = Real3{29.3387051, 0.297469616, 1.16006088}
+		var Scale = Real3{2.79023433, 1.17451847, 2.59470415}
+		var Rotation = Quaternion{-0.14975208, 0.797533453, -0.541108549, -0.220717713}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "592c40f45df9bcc0:Rock"
+		var Mesh = "5aaa4c10094d1586:SM_TallRock_02"
+	}
+	ConvexMeshCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var ConvexMesh = "5b7fb264f73b195b:SM_TallRock_02"
+	}
+	EjectRider 
+	{
+	}
+}

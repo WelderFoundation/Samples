@@ -1,0 +1,32 @@
+[Version:1]
+Cog 
+{
+	var Name = "FuzzySystem"
+	CogFuzzySystem 
+	{
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5a93825b3157f9eb]
+		{
+			var Name = "Inputs"
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5a9383f20c390f18]
+		{
+			var Name = "Outputs"
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5a93978213a3b3b1]
+		{
+			var Name = "Rules"
+			Hierarchy 
+			{
+			}
+		}
+	}
+}

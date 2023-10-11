@@ -1,0 +1,74 @@
+class Turret : ZilchComponent
+{
+  sends UpdateAlbedoValue : UpdateAlbedoValueEvent;
+  
+  [Dependency] var AnimationGraph : AnimationGraph;
+  [Dependency] var SimpleAnimation : SimpleAnimation;
+  
+  [Property]
+  var Projectile : Archetype = null;
+  
+  [Property]
+  var ProjectileSpeed : Real = 20.0;
+  
+  [Property]
+  var FireSpeed : Real = 1.0;
+  
+  [Property]
+  var Particles : Archetype = null;
+  
+  [Property]
+  var FireAnimation : Animation = null;
+  
+  [Property]
+  var SpawnPos : CogPath = null;
+  
+  var TimeSinceLastFire : Real = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function AttempFire(projectileColor : Real4, glowFactor : Real) : Boolean
+  {
+    if(this.Space.MarkedForDestruction)
+      return false;
+    
+    if(this.TimeSinceLastFire >= this.FireSpeed)
+    {
+      // It's disabled by default, so activate it
+      this.AnimationGraph.Active = true;
+      
+      // Play the fire animation
+      this.SimpleAnimation.PlaySingle(this.FireAnimation, AnimationPlayMode.PlayOnce);
+  
+      var spawnPos = this.SpawnPos.Cog.Transform.WorldTranslation;
+      var spawnDir = this.SpawnPos.Cog.Orientation.WorldForward;
+      
+      var projectile = this.Space.CreateAtPosition(this.Projectile, spawnPos);
+      projectile.DispatchEvent(Events.UpdateAlbedoValue, UpdateAlbedoValueEvent(glowFactor, projectileColor));
+      projectile.DamageOnCollide.OriginRoot = this.Owner.FindRoot();
+      
+      this.Space.PhysicsSpace.AddHierarchyPairFilter(this.Owner.FindRoot(), projectile);
+      var velocity = spawnDir * this.ProjectileSpeed;
+      velocity.Y = 0.0;
+      
+      projectile.RigidBody.Velocity = velocity;
+      
+      var particles = this.Space.CreateAtPosition(this.Particles, spawnPos);
+      particles.Orientation.LookAtDirection(spawnDir);
+      
+      this.TimeSinceLastFire = 0.0;
+      
+      return true;
+    }
+    
+    return false;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.TimeSinceLastFire += event.Dt;
+  }
+}

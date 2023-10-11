@@ -1,0 +1,26 @@
+[Version:1]
+ImageContent 
+{
+	TextureInfo 
+	{
+		var FileType = "png"
+		var LoadFormat = "RGBA8"
+		var Dimensions = "128 x 112"
+		var Size = "0.072 MB"
+	}
+	TextureBuilder 
+	{
+		var Name = "EightBitSquarecroppedshadow32sorted"
+		var ResourceId = 0x5ffb5703051817d9
+		var Type = TextureType.Texture2D
+		var Compression = TextureCompression.None
+		var AddressingX = TextureAddressing.Clamp
+		var AddressingY = TextureAddressing.Clamp
+		var Filtering = TextureFiltering.Nearest
+		var Anisotropy = TextureAnisotropy.x16
+		var MipMapping = TextureMipMapping.PreGenerated
+		var HalfScaleCount = 0
+		var PremultipliedAlpha = false
+		var GammaCorrection = false
+	}
+}

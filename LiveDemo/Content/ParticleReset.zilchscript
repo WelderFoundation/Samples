@@ -1,0 +1,99 @@
+[RunInEditor]
+class ParticleReset : ZilchComponent
+{
+  [Property] var ResetInGame = true;
+  [Property] var TimeToReset = 3.0;
+  [Property] var StartDelay = 0.0;
+  
+  var Time = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    this.Disable();
+    
+    if(this.Space.IsEditorMode)
+    {
+      Zero.Connect(this.Space, Events.FrameUpdate, this.OnFrameUpdate);
+    }
+    else if(this.StartDelay > 0.0)
+    {
+      var seq = Action.Sequence(this.Owner.Actions);
+      Action.Delay(seq, this.StartDelay);
+      Action.Call(seq, this.LogicReset);
+    }
+    else
+    {
+      this.LogicReset();
+    }
+  }
+  
+  function IsInSelection() : Boolean
+  {
+    var selection = Zero.Editor.Selection;
+    foreach(var obj in selection)
+    {
+      var cog = obj as Cog;
+      if(cog != null && (cog == this.Owner || cog.IsDescendantOf(this.Owner)))
+        return true;
+    }
+    
+    return true;
+  }
+
+  function OnFrameUpdate(event : UpdateEvent)
+  {
+    if(this.IsInSelection() == false)
+      return;
+    
+    this.Time += event.Dt;
+    if(this.Time >= this.TimeToReset)
+    {
+      this.Reset();
+      this.Time -= this.TimeToReset;
+    }
+  }
+
+  function LogicReset()
+  {
+    this.Reset();
+    
+    if(this.ResetInGame)
+    {
+      var seq = Action.Sequence(this.Owner.Actions);
+      Action.Delay(seq, this.TimeToReset);
+      Action.Call(seq, this.LogicReset);
+    }
+  }
+
+  function Reset()
+  {
+    foreach(var child in this.Owner.Children)
+    {
+      var particleEmitter = child.ParticleEmitterShared;
+      if(particleEmitter != null)
+      {
+        particleEmitter.Active = true;
+        particleEmitter.ResetCount();
+      }
+      
+      var objectSystem = child.ObjectParticleSystem;
+      if(objectSystem != null)
+        objectSystem.Emit();
+    }
+  }
+  
+  function Disable()
+  {
+    foreach(var child in this.Owner.Children)
+    {
+      var particleEmitter = child.ParticleEmitterShared;
+      if(particleEmitter != null)
+        particleEmitter.Active = false;
+    }
+  }
+}

@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "ColorPow"
+		var ResourceId = 0x5b76facd30edfae3
+	}
+}

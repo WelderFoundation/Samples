@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManCrawlBack_Stomach"
+				var ResourceId = 0x59af21f77ae9de86
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_Chest"
+				var ResourceId = 0x59af21f77ae9de92
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_Head"
+				var ResourceId = 0x59af21f77ae9de96
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_LArm"
+				var ResourceId = 0x59af21f77ae9de9b
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_LArm01"
+				var ResourceId = 0x59af21f77ae9de9f
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_RArm"
+				var ResourceId = 0x59af21f77ae9dea4
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_RArm01"
+				var ResourceId = 0x59af21f77ae9dea7
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_LLeg"
+				var ResourceId = 0x59af21f77ae9deac
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_LLeg01"
+				var ResourceId = 0x59af21f77ae9deaf
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_RLeg"
+				var ResourceId = 0x59af21f77ae9deb3
+			}
+			Object
+			{
+				var Name = "BoxManCrawlBack_RLeg01"
+				var ResourceId = 0x59af21f77ae9deb8
+			}
+		}
+	}
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManCrawlBack"
+				var ResourceId = 0x59af21f77ae9debe
+			}
+		}
+	}
+}

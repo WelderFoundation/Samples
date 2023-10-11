@@ -1,0 +1,17 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "MultiFocusCamera2D"
+		var ResourceId = 0x5610d415f73b7f42
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Camera"
+			"Sample2DCameras[1.0]"
+		}
+	}
+}

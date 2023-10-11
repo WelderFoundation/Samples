@@ -1,0 +1,11 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"5aef910d7916f761:GridDisplacer"
+	}
+	SpriteSourceColor 
+	{
+	}
+}

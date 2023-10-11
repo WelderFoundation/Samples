@@ -1,0 +1,110 @@
+//--------------------------------------------------------------------------------------- Floor Grid
+class FloorGrid : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var Collider : Collider;
+  [Dependency] var Model : Model;
+  
+  [Property] var Renderer = CogPath(":/Renderer");
+  
+  [Property] var TilesPerUnit  = 1.0;
+  [Property] var DefaultGlow = Real4(1);
+  [Property] var InterpolateIn = 0.3;
+  [Property] var InterpolateOut = 0.1;
+  
+  // Final texture being sampled in the grid shader
+  [ShaderInput("FloorGridPixel")] var GridColorTexture : Texture = Texture.CreateRuntime();
+  
+  // The color of where objects currently are
+  [ShaderInput("FloorGridPixel")] var CurrentGridColor : Texture = Texture.CreateRuntime();
+  
+  [Display][ShaderInput("FloorGridPixel")] var GridDimensions : Integer2
+  {
+    get
+    {
+      var scale = this.Transform.Scale;
+      return (scale.XZ * this.TilesPerUnit) as Integer2;
+    }
+  }
+  
+  var Mesh : Mesh = Mesh.CreateRuntime();
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Renderer.Cog, Events.RenderTasksUpdate, this.OnRenderTasksUpdate);
+    this.InitializeTextures();
+  }
+  
+  //************************************************************************************************
+  function InitializeTextures()
+  {
+    var dimensions = this.GridDimensions;
+    var texData = TextureData(TextureFormat.RGB32f, dimensions.X, dimensions.Y);
+    this.GridColorTexture.Upload(texData);
+    this.CurrentGridColor.Upload(texData);
+  }
+  
+  //************************************************************************************************
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var scale = this.Transform.Scale;
+    var dimensions = this.GridDimensions;
+    
+    // Texture is cleared to Real4(0) for each value.
+    var texData = TextureData(TextureFormat.RGB32f, dimensions.X, dimensions.Y);
+    
+    var ghostRegion = this.Owner.FindChildByName("GhostRegion");
+    foreach(var contact in ghostRegion.Collider.Contacts)
+    {
+      foreach(var contactPoint in contact.ContactPoints)
+      {
+        var worldPoint = contactPoint.WorldPoint;
+        var localPoint = this.Owner.Transform.TransformPointInverse(worldPoint);
+        
+        // Move into the "local" / lower left corner of the grid
+        localPoint += Real3(0.5, 0, 0.5);
+        localPoint *= scale;
+        
+        var x = (localPoint.X * this.TilesPerUnit) as Integer;
+        var y = (localPoint.Z * this.TilesPerUnit) as Integer;
+        
+        var color = this.DefaultGlow;
+        
+        var hitRoot = contact.OtherObject.FindRoot();
+        if(hitRoot.ObjectColor != null)
+          color = hitRoot.ObjectColor.EffectColor;
+          
+        if(x < dimensions.X && y < dimensions.Y && x * y < texData.PixelCount)
+          texData.Set(x, y, color * 2.0);
+        }
+    }
+    
+    // Upload the final texture
+    this.CurrentGridColor.Upload(texData);
+  }
+  
+  //************************************************************************************************
+  function OnRenderTasksUpdate(event : RenderTasksEvent)
+  {
+    var interpolated = event.GetRenderTarget(this.GridDimensions, TextureFormat.RGB32f);
+    
+    var postInterpolate = FloorGridPost();
+    postInterpolate.PreviousFrame = this.GridColorTexture;
+    postInterpolate.Control = this.CurrentGridColor;
+    postInterpolate.InterpolateIn = this.InterpolateIn;
+    postInterpolate.InterpolateOut = this.InterpolateOut;
+    
+    var postSettings = RenderSettings();
+    postSettings.ColorTarget = interpolated;
+    event.AddRenderTaskPostProcess(postSettings, postInterpolate);
+    
+    // Copy
+    var final = event.GetRenderTarget(this.GridColorTexture);
+    var postCopy = CopyTarget();
+    postCopy.Texture = interpolated.Texture;
+    postSettings.ColorTarget = final;
+    event.AddRenderTaskPostProcess(postSettings, postCopy);
+  }
+}

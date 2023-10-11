@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "Thruster"
+		var ResourceId = 0x587e299e0bfa2f64
+	}
+}

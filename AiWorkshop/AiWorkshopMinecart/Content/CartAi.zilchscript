@@ -1,0 +1,79 @@
+class CartAi : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var Cart : Cart;
+  
+  var HitTrap = false;
+  var TrapTimer = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.TrapHit, this.OnTrapHit);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var ourPos = this.Transform.WorldTranslation;
+    
+    // Rough estimate of the height of the cart
+    var cartHeight = 1.2;
+    
+    // Rough estimate of the height of the rider
+    var riderHeight = 0.7;
+    
+    var ourTotalHeight = cartHeight + riderHeight;
+    
+    //------------------------------------------------------- Student Code Below
+    // Brake to avoid a trap if we hit a trip wire
+    if(this.HitTrap)
+    {
+      this.Cart.Brake(1.0);
+      this.TrapTimer += event.Dt;
+    }
+    
+    // Stop braking after 1.5 seconds
+    if(this.TrapTimer > 1.5)
+      this.HitTrap = false;
+    
+    var upcomingObjects = this.Cart.GetUpcomingObjects();
+    foreach(var object in upcomingObjects)
+    {
+      var obstaclePos = object.Transform.WorldTranslation;
+      var obstacleBottom = obstaclePos.Y - object.Transform.WorldScale.Y * 0.5;
+      
+      var distanceX = (obstaclePos.X - ourPos.X);
+      var distanceY = (obstacleBottom - ourPos.Y);
+      
+      // Jump over gaps
+      if(object.JumpRegion != null)
+      {
+        if(distanceX < 0.5)
+          this.Cart.JumpCart(1.0);
+      }
+      // Jump to collect coins
+      else if(object.Coin != null)
+      {
+        if(distanceX < 5 && distanceY > ourTotalHeight)
+          this.Cart.JumpCart(1.0);
+      }
+      // Jump over obstacles
+      else if(object.Obstacle != null)
+      {
+        if(distanceX < 8.0 && distanceY > cartHeight && distanceY < ourTotalHeight)
+          this.Cart.JumpRider(1.0);
+        else if(distanceX < 5 && distanceY <= cartHeight)
+        {
+          this.Cart.JumpCart(1.0);
+        }
+      }
+    }
+  }
+  
+  function OnTrapHit(event : ZilchEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    this.HitTrap = true;
+    this.TrapTimer = 0;
+  }
+}

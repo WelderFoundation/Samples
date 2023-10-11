@@ -1,0 +1,388 @@
+[Version:1]
+RichAnimation 
+{
+	var SampleTolerance = 0.0500000007
+	var Duration = 0.566666663
+	var Root = Object
+	{
+		var Type = TrackType.Object
+		var Name = "Root"
+		var Path = ""
+		var Disabled = false
+		var PropertyTypeName = "void"
+		var KeyFrames = Array
+		{
+		}
+		var Children = Array
+		{
+			Object
+			{
+				var Type = TrackType.Object
+				var Name = "/"
+				var Path = "/"
+				var Disabled = false
+				var PropertyTypeName = "Void"
+				var KeyFrames = Array
+				{
+				}
+				var Children = Array
+				{
+					Object
+					{
+						var Type = TrackType.Object
+						var Name = "MutantRightShoulder"
+						var Path = "/MutantRightShoulder"
+						var Disabled = false
+						var PropertyTypeName = "Void"
+						var KeyFrames = Array
+						{
+						}
+						var Children = Array
+						{
+							Object
+							{
+								var Type = TrackType.Object
+								var Name = "MutantRightArm"
+								var Path = "/MutantRightShoulder/MutantRightArm"
+								var Disabled = false
+								var PropertyTypeName = "Void"
+								var KeyFrames = Array
+								{
+								}
+								var Children = Array
+								{
+									Object
+									{
+										var Type = TrackType.Object
+										var Name = "MutantRightForeArm"
+										var Path = "/MutantRightShoulder/MutantRightArm/MutantRightForeArm"
+										var Disabled = false
+										var PropertyTypeName = "Void"
+										var KeyFrames = Array
+										{
+										}
+										var Children = Array
+										{
+											Object
+											{
+												var Type = TrackType.Component
+												var Name = "Transform"
+												var Path = "Transform"
+												var Disabled = false
+												var PropertyTypeName = "Void"
+												var KeyFrames = Array
+												{
+												}
+												var Children = Array
+												{
+													Object
+													{
+														var Type = TrackType.Property
+														var Name = "Rotation"
+														var Path = "Transform.Rotation"
+														var Disabled = false
+														var PropertyTypeName = "Quaternion"
+														var KeyFrames = Array
+														{
+														}
+														var Children = Array
+														{
+															Object
+															{
+																var Type = TrackType.SubProperty
+																var Name = "X"
+																var Path = "Transform.Rotation.X"
+																var Disabled = false
+																var PropertyTypeName = "Real"
+																var KeyFrames = Array
+																{
+																	Object
+																	{
+																		var key = 0
+																		var value = Object
+																		{
+																			var Time = 0
+																			var Value = -44.3483353
+																			var TangentIn = Real2{-0.0500000007, 0}
+																			var TangentOut = Real2{0.0500000007, 0}
+																			var EditorFlags = 0
+																		}
+																	}
+																	Object
+																	{
+																		var key = 0.566666663
+																		var value = Object
+																		{
+																			var Time = 0.566666663
+																			var Value = -36.1725693
+																			var TangentIn = Real2{-0.0500000007, 0}
+																			var TangentOut = Real2{0.0500000007, 0}
+																			var EditorFlags = 0
+																		}
+																	}
+																}
+																var Children = Array
+																{
+																}
+															}
+															Object
+															{
+																var Type = TrackType.SubProperty
+																var Name = "Y"
+																var Path = "Transform.Rotation.Y"
+																var Disabled = false
+																var PropertyTypeName = "Real"
+																var KeyFrames = Array
+																{
+																	Object
+																	{
+																		var key = 0
+																		var value = Object
+																		{
+																			var Time = 0
+																			var Value = 54.0711594
+																			var TangentIn = Real2{-0.0500000007, 0}
+																			var TangentOut = Real2{0.0500000007, 0}
+																			var EditorFlags = 0
+																		}
+																	}
+																	Object
+																	{
+																		var key = 0.566666663
+																		var value = Object
+																		{
+																			var Time = 0.566666663
+																			var Value = 50.0254059
+																			var TangentIn = Real2{-0.0500000007, 0}
+																			var TangentOut = Real2{0.0500000007, 0}
+																			var EditorFlags = 0
+																		}
+																	}
+																}
+																var Children = Array
+																{
+																}
+															}
+															Object
+															{
+																var Type = TrackType.SubProperty
+																var Name = "Z"
+																var Path = "Transform.Rotation.Z"
+																var Disabled = false
+																var PropertyTypeName = "Real"
+																var KeyFrames = Array
+																{
+																	Object
+																	{
+																		var key = 0
+																		var value = Object
+																		{
+																			var Time = 0
+																			var Value = 6.73349285
+																			var TangentIn = Real2{-0.0500000007, 0}
+																			var TangentOut = Real2{0.0500000007, 0}
+																			var EditorFlags = 0
+																		}
+																	}
+																	Object
+																	{
+																		var key = 0.566666663
+																		var value = Object
+																		{
+																			var Time = 0.566666663
+																			var Value = 21.5814304
+																			var TangentIn = Real2{-0.0500000007, 0}
+																			var TangentOut = Real2{0.0500000007, 0}
+																			var EditorFlags = 0
+																		}
+																	}
+																}
+																var Children = Array
+																{
+																}
+															}
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					Object
+					{
+						var Type = TrackType.Object
+						var Name = "MutantLeftShoulder"
+						var Path = "/MutantLeftShoulder"
+						var Disabled = false
+						var PropertyTypeName = "Void"
+						var KeyFrames = Array
+						{
+						}
+						var Children = Array
+						{
+							Object
+							{
+								var Type = TrackType.Object
+								var Name = "MutantLeftArm"
+								var Path = "/MutantLeftShoulder/MutantLeftArm"
+								var Disabled = false
+								var PropertyTypeName = "Void"
+								var KeyFrames = Array
+								{
+								}
+								var Children = Array
+								{
+									Object
+									{
+										var Type = TrackType.Component
+										var Name = "Transform"
+										var Path = "Transform"
+										var Disabled = false
+										var PropertyTypeName = "Void"
+										var KeyFrames = Array
+										{
+										}
+										var Children = Array
+										{
+											Object
+											{
+												var Type = TrackType.Property
+												var Name = "Rotation"
+												var Path = "Transform.Rotation"
+												var Disabled = false
+												var PropertyTypeName = "Quaternion"
+												var KeyFrames = Array
+												{
+												}
+												var Children = Array
+												{
+													Object
+													{
+														var Type = TrackType.SubProperty
+														var Name = "X"
+														var Path = "Transform.Rotation.X"
+														var Disabled = false
+														var PropertyTypeName = "Real"
+														var KeyFrames = Array
+														{
+															Object
+															{
+																var key = 0
+																var value = Object
+																{
+																	var Time = 0
+																	var Value = -30.8850536
+																	var TangentIn = Real2{-0.0500000007, 0}
+																	var TangentOut = Real2{0.0500000007, 0}
+																	var EditorFlags = 0
+																}
+															}
+															Object
+															{
+																var key = 0.566666663
+																var value = Object
+																{
+																	var Time = 0.566666663
+																	var Value = -44.1326485
+																	var TangentIn = Real2{-0.0500000007, 0}
+																	var TangentOut = Real2{0.0500000007, 0}
+																	var EditorFlags = 0
+																}
+															}
+														}
+														var Children = Array
+														{
+														}
+													}
+													Object
+													{
+														var Type = TrackType.SubProperty
+														var Name = "Y"
+														var Path = "Transform.Rotation.Y"
+														var Disabled = false
+														var PropertyTypeName = "Real"
+														var KeyFrames = Array
+														{
+															Object
+															{
+																var key = 0
+																var value = Object
+																{
+																	var Time = 0
+																	var Value = -63.4065781
+																	var TangentIn = Real2{-0.0500000007, 0}
+																	var TangentOut = Real2{0.0500000007, 0}
+																	var EditorFlags = 0
+																}
+															}
+															Object
+															{
+																var key = 0.566666663
+																var value = Object
+																{
+																	var Time = 0.566666663
+																	var Value = -67.7656708
+																	var TangentIn = Real2{-0.0500000007, 0}
+																	var TangentOut = Real2{0.0500000007, 0}
+																	var EditorFlags = 0
+																}
+															}
+														}
+														var Children = Array
+														{
+														}
+													}
+													Object
+													{
+														var Type = TrackType.SubProperty
+														var Name = "Z"
+														var Path = "Transform.Rotation.Z"
+														var Disabled = false
+														var PropertyTypeName = "Real"
+														var KeyFrames = Array
+														{
+															Object
+															{
+																var key = 0
+																var value = Object
+																{
+																	var Time = 0
+																	var Value = -44.432209
+																	var TangentIn = Real2{-0.0500000007, 0}
+																	var TangentOut = Real2{0.0500000007, 0}
+																	var EditorFlags = 0
+																}
+															}
+															Object
+															{
+																var key = 0.566666663
+																var value = Object
+																{
+																	var Time = 0.566666663
+																	var Value = -32.3513336
+																	var TangentIn = Real2{-0.0500000007, 0}
+																	var TangentOut = Real2{0.0500000007, 0}
+																	var EditorFlags = 0
+																}
+															}
+														}
+														var Children = Array
+														{
+														}
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

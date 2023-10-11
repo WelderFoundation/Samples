@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "ColorScalar"
+		var ResourceId = 0x59b05dd368e0f9ec
+	}
+}

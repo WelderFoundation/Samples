@@ -1,0 +1,115 @@
+//------------------------------------------------------------------------------
+class UpdateAlbedoValueEvent : ZilchEvent
+{
+  var GlowFactor : Real = 1.0;
+  var Color : Real4 = Real4(1);
+  
+  constructor(glowFactor : Real, color : Real4) : base()
+  {
+    this.GlowFactor = glowFactor;
+    this.Color = color;
+  }
+}
+
+//------------------------------------------------------------------------------
+class UpdateColorEvent : ZilchEvent
+{
+  var Color : ObjectColor = null;
+  
+  constructor(color : ObjectColor) : base()
+  {
+    this.Color = color;
+  }
+}
+
+//------------------------------------------------------------------------------
+[RunInEditor]
+class ObjectColor : ZilchComponent
+{
+  sends UpdateColor : UpdateColorEvent;
+  
+  [Property] var Primary : Real4
+  {
+    get
+    {
+      return this.PrimaryInternal;
+    }
+    set
+    {
+      this.PrimaryInternal = value;
+      
+      // Owner will be null on Initialize.
+      if(this.Owner != null)
+        this.UpdateChildColors(this.Owner, this);
+    }
+  }
+  
+  [Property] var EffectColor : Real4;
+  [Property] var EffectGradient : ColorGradient = ColorGradient.DefaultColorGradient;
+  
+  var PrimaryInternal : Real4 = Real4(1,1,1,1);
+  
+  /****************************************************************************/
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+    Zero.Connect(this.Owner, Events.ObjectCreatedOnDeath, this.OnObjectCreatedOnDeath);
+  }
+  
+  /****************************************************************************/
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    this.UpdateChildColors(this.Owner, this);
+  }
+  
+  /****************************************************************************/
+  function OnObjectCreatedOnDeath(event : ObjectCreatedOnDeathEvent)
+  {
+    var manager : ObjectColor = null;
+    
+    // First see if a collision caused 'this.Owner' to be created.
+    var hitObject = event.HitObject;
+    if(hitObject != null)
+    {
+      manager = hitObject.ObjectColor;
+      
+      if(manager == null)
+      {
+        // Try to find and AlbedoValue on something.
+        var color = hitObject.ManagedColor;
+        var albedo = hitObject.AlbedoValueParam;
+        
+        if(color != null)
+        {
+          this.PrimaryInternal = color.AlbedoValue;
+          manager = this;
+        }
+        else if(albedo != null)
+        {
+          this.PrimaryInternal = albedo.AlbedoValue;
+          manager = this;
+        }
+      }
+    }
+    
+    // If it wasn't a collision, assume the dying object created 'this.Onwer'.
+    if(manager == null)
+      manager = event.DeadObject.ObjectColor;
+    
+    // A color wasn't available.
+    //  NOTE: More conditions to search for a proper color could be added.
+    if(manager == null)
+      return;
+    
+    this.UpdateChildColors(this.Owner, manager);
+  }
+  
+  /****************************************************************************/
+  function UpdateChildColors(cog : Cog, color : ObjectColor)
+  {
+    cog.DispatchEvent(Events.UpdateColor, UpdateColorEvent(color));
+    
+    foreach(var child in cog.Children)
+      this.UpdateChildColors(child, color);
+  }
+}

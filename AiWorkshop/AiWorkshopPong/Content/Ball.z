@@ -1,0 +1,66 @@
+class Ball : ZilchComponent
+{
+  [Dependency]
+  var RigidBody : RigidBody;
+  
+  // The speed the ball moves at
+  [Property]
+  var Speed : Real = 2.0;
+  
+  var InitialSpeed : Real = 0.0;
+  
+  // Helper function for simple access to the position
+  var Position : Real3
+  {
+    get { return this.Owner.Transform.Translation; }
+    set { this.Owner.Transform.Translation = value; }
+  }
+  
+  // Helper function for simple access to the velocity
+  var Velocity : Real3
+  {
+    get { return this.Owner.RigidBody.Velocity; }
+    set { this.Owner.RigidBody.Velocity = value; }
+  }
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    // Store our initial speed
+    this.InitialSpeed = this.Speed;
+    
+    // We want to update the speed on logic update
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    // When the ball collides with a paddle, make it move slightly faster
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+  
+  //************************************************************************************************
+  function ResetSpeed()
+  {
+    // Set our current speed to our initial speed
+    this.Speed = this.InitialSpeed;
+  }
+  
+  //************************************************************************************************
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Get our current (normalized) velocity direction and
+    // then scale it to have our desired speed
+    var rigidBody = this.Owner.RigidBody;
+    var vel = Math.Normalize(rigidBody.Velocity);
+    rigidBody.Velocity = vel * this.Speed;
+  }
+  
+  //************************************************************************************************
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    // If we hit a paddle
+    if(event.OtherObject.Paddle != null)
+    {
+      // Increase our speed
+      this.Speed *= 1.1;
+    }
+  }
+}

@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_Stomach"
+				var ResourceId = 0x59af21f47ab5f2c7
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_Chest"
+				var ResourceId = 0x59af21f47ab5f2d3
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_Head"
+				var ResourceId = 0x59af21f47ab5f2d7
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_LArm"
+				var ResourceId = 0x59af21f47ab5f2db
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_LArm01"
+				var ResourceId = 0x59af21f47ab5f2df
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_RArm"
+				var ResourceId = 0x59af21f47ab5f2e4
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_RArm01"
+				var ResourceId = 0x59af21f47ab5f2e8
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_LLeg"
+				var ResourceId = 0x59af21f47ab5f2ec
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_LLeg01"
+				var ResourceId = 0x59af21f47ab5f2f0
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_RLeg"
+				var ResourceId = 0x59af21f47ab5f2f3
+			}
+			Object
+			{
+				var Name = "BoxManIdleHeadStand_RLeg01"
+				var ResourceId = 0x59af21f47ab5f2f8
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManIdleHeadStand"
+				var ResourceId = 0x59af21f47ab5f2ff
+			}
+		}
+	}
+}

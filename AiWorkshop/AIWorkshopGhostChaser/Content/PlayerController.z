@@ -1,0 +1,53 @@
+class PlayerController : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var Square : Square;
+  [Property] var Speed : Integer = 1;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to run our player logic every time the engine updates logic
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  // These are functions
+  function MoveRight(dt : Real)
+  {
+    // Need to add Real3(1,0,0)
+    this.Transform.Translation += Real3(1, 0, 0) * this.Speed * dt;
+  }
+  
+  function MoveLeft(dt : Real)
+  {
+    // Need to add Real3(-1,0,0)
+    //------------------------------------------------------- Student Code Below
+    this.Transform.Translation += Real3(-1, 0, 0) * this.Speed * dt;
+  }
+  
+  function MoveUp(dt : Real)
+  {
+    // Need to add Real3(0,1,0)
+    //------------------------------------------------------- Student Code Below
+    this.Transform.Translation += Real3(0, 1, 0) * this.Speed * dt;
+  }
+  
+  function MoveDown(dt : Real)
+  {
+    // Need to add Real3(0,-1,0)
+    //------------------------------------------------------- Student Code Below
+    this.Transform.Translation += Real3(0, -1, 0) * this.Speed * dt;
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    if(Zero.Keyboard.KeyIsDown(Keys.Left))
+      this.MoveLeft(event.Dt);
+    if(Zero.Keyboard.KeyIsDown(Keys.Right))
+      this.MoveRight(event.Dt);
+    if(Zero.Keyboard.KeyIsDown(Keys.Up))
+      this.MoveUp(event.Dt);
+    if(Zero.Keyboard.KeyIsDown(Keys.Down))
+      this.MoveDown(event.Dt);
+  }
+}

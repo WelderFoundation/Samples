@@ -1,0 +1,75 @@
+[Version:1]
+Cog 
+{
+	var Name = "WanderingBat"
+	Transform 
+	{
+		var Translation = Real3{-2.79002094, 1.70260954, -9.53674316e-07}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = true
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	SphereCollider 
+	{
+		var Ghost = true
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var Radius = 0.5
+	}
+	Orientation 
+	{
+		var GlobalUp = Real3{0, 1, 0}
+		var LocalOrientationBasis = Quaternion{0, 0, 0, 1}
+		var DefaultBases = OrientationBases.ForwardNegativeZUpY
+	}
+	SplineAttachment 
+	{
+		var DistanceToDetach = 0.600000024
+		var MotorActive = true
+	}
+	BatAi 
+	{
+		var Direction = 1
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b0099499202d89d][InheritId:"5b109412522ea8f0:Bat"]
+		{
+			var Name = "Bat"
+			Transform 
+			{
+				var Translation = Real3{0, -2.16478801, 0}
+				var Rotation = Quaternion{0, -0.707106888, 0, -0.707106769}
+				var Scale = Real3{1.14999998, 1.14999998, 1.14999998}
+			}
+			SimpleAnimation 
+			{
+				var Animation = "5b10951f8eb4edde:BatFlyForward"
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b1094e66d0fad11]
+				{
+					SphereCollider 
+					{
+						var CollisionGroup = "5b009a33e18014b2:Enemy"
+					}
+					RigidBody [LocallyRemoved]
+					{
+					}
+				}
+			}
+		}
+	}
+}

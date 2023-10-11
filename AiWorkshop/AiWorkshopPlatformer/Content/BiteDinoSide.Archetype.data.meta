@@ -1,0 +1,20 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "BiteDinoSide"
+		var ResourceId = 0x544d93b203251d2b
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Dino"
+			"BiteDinoSprite"
+			"Bite"
+		}
+	}
+}

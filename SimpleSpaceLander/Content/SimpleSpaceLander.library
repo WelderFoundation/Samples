@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "SimpleSpaceLander"
+	var LibraryId = 0x587e61ca61f817e5
+	var SourceControlType = ""
+	var ReadOnly = false
+}

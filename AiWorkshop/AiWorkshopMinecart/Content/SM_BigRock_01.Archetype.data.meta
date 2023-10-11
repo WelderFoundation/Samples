@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "SM_BigRock_01"
+		var ResourceId = 0x592c47972fe4b3c9
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

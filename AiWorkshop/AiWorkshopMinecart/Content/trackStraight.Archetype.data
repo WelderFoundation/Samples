@@ -1,0 +1,67 @@
+[Version:1]
+Cog 
+{
+	var Name = "trackStraight"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0.119999997, 0}
+		var HalfSize = Real3{1.5, 0.119999997, 0.899999976}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5a95f735f37cbf41]
+		{
+			var Name = "trackStraightGeneratedMeshNode0"
+			Transform 
+			{
+				var Translation = Real3{1.51337457, 0, -1.53878319}
+				var Scale = Real3{0.980000019, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5a95f71ef8447fd9:Wood"
+				var Mesh = "5a95f735f37e4942:trackStraight_trackStraightGeneratedMeshNode0"
+			}
+		}
+		Cog [Id:0x5a95f735f37cbf43]
+		{
+			var Name = "trackStraightGeneratedMeshNode1"
+			Transform 
+			{
+				var Translation = Real3{1.51337457, 0, -1.53878319}
+				var Scale = Real3{0.980000019, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5a95f706fd05db54:Rail"
+				var Mesh = "5a95f735f37e4957:trackStraight_trackStraightGeneratedMeshNode1"
+			}
+		}
+	}
+}

@@ -1,0 +1,80 @@
+[Version:1]
+Cog 
+{
+	var Name = "TurretProjectile"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{0.134307995, 0.0402924009, 0.0402924009}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = false
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5567a53dc7d65950:AlbedoValue"
+		var Mesh = "4de0354322b376ae:Sphere"
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	EllipsoidCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var Radii = Real3{1, 0.600000024, 0.600000024}
+	}
+	IgnoreSpaceEffects 
+	{
+		var IgnoreDrag = true
+		var IgnoreFlow = false
+		var IgnoreForce = false
+		var IgnoreGravity = true
+		var IgnorePointForce = false
+		var IgnorePointGravity = false
+		var IgnoreThrust = false
+		var IgnoreVortex = false
+		var IgnoreWind = false
+		var IgnoreTorque = false
+		var IgnoreBuoyancy = false
+		var IgnoreCustom = false
+	}
+	Orientation 
+	{
+		var GlobalUp = Real3{0, 1, 0}
+		var LocalOrientationBasis = Quaternion{0, -0.707106769, 0, 0.707106769}
+		var DefaultBases = OrientationBases.ForwardXUpY
+	}
+	OrientTowardsVelocity2D 
+	{
+		var DegreeOffset = 0
+	}
+	DamageOnCollide 
+	{
+		var Damage = 5
+		var SendsDeathEvent = true
+		var DieOnCollide = true
+	}
+	CreateOnDeath 
+	{
+		var ArchetypeToCreate = "55667fd005d890ee:ObjectExplosion"
+	}
+	ManagedColor 
+	{
+	}
+}

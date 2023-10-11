@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Floor"
+		var ResourceId = 0x555b72442f10ae35
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

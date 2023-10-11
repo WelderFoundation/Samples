@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "WaveMath"
+		var ResourceId = 0x5ae34c1334dbe2d4
+	}
+}

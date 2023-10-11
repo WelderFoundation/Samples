@@ -1,0 +1,90 @@
+[Version:1]
+Cog 
+{
+	var Name = "Enemy2"
+	Transform 
+	{
+		var Translation = Real3{2.36637759, 2.86186981, -0.769805908}
+		var Scale = Real3{0.5, 0.5, 0.5}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Sprite 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var SpriteSource = "524e0209b31d02b9:enemy2"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = true
+		var AnimationSpeed = 1
+		var StartFrame = 0
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.Mode2D
+	}
+	SphereCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "524aa1bdfe39bd0e:Enemy"
+		var Offset = Real3{0, 0, 0}
+		var Radius = 1.73391998
+	}
+	CreateOnDeath 
+	{
+		var ArchetypeToCreate = "5245c0b5ff67c38d:RedPlasmaExplosion"
+		var InheritVelocity = false
+	}
+	DragEffect 
+	{
+		var Active = true
+		var WakeUpOnChange = false
+		var DebugDrawEffect = true
+		var LinearDamping = 0.200000003
+		var AngularDamping = 0.100000001
+		var LinearDrag = 0
+		var AngularDrag = 0
+	}
+	Health 
+	{
+		var MaxHealth = 200
+		var DestroyAtZeroHealth = true
+		var DamageScalar = 1
+	}
+	Orientation 
+	{
+		var GlobalUp = Real3{0, 0, 1}
+		var LocalOrientationBasis = Quaternion{3.09086197e-08, 0.707106769, 0.707106769, 3.09086197e-08}
+		var DefaultBases = OrientationBases.Custom
+	}
+	Ship 
+	{
+		var Speed = 4
+		var Projectile = "5245faddd40ddded:RedProjectile"
+		var ProjectileSpeed = 25
+		var TimeBetweenShots = 2
+		var HomingProjectile = "null"
+	}
+	EnemyAi2 
+	{
+	}
+	Hierarchy 
+	{
+	}
+}

@@ -1,0 +1,126 @@
+[Version:1]
+Cog 
+{
+	var Name = "TreadsPath"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	HierarchySpline 
+	{
+		var Closed = true
+		var SplineType = SplineType.BSpline
+		var Error = 0.00999999978
+		var DebugDrawSpline = true
+		var SplineColor = Real4{0.949999809, 0, 1, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ab4e19555ff2de0]
+		{
+			var Name = "ControlPoint"
+			Transform 
+			{
+				var Translation = Real3{-0.139769018, 0.551023722, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-2.23517418e-08, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ab4e19555ff2ef0]
+		{
+			var Name = "ControlPoint"
+			Transform 
+			{
+				var Translation = Real3{0.250452369, 0.424248457, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-2.23517418e-08, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ab4e19555ff2fd4]
+		{
+			var Name = "ControlPoint"
+			Transform 
+			{
+				var Translation = Real3{0.753673315, 0.263026267, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-2.23517418e-08, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ab4e19555ff30b3]
+		{
+			var Name = "ControlPoint"
+			Transform 
+			{
+				var Translation = Real3{0.615607858, -0.00406956067, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-2.23517418e-08, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ab4e19555ff31a7]
+		{
+			var Name = "ControlPoint"
+			Transform 
+			{
+				var Translation = Real3{0.110409915, 0.0677879453, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-2.23517418e-08, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ab4e19555ff328a]
+		{
+			var Name = "ControlPoint"
+			Transform 
+			{
+				var Translation = Real3{-0.433883965, -0.0167168304, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-2.23517418e-08, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ab5aa5b3310dbc5]
+		{
+			var Name = "ControlPoint"
+			Transform 
+			{
+				var Translation = Real3{-0.623530269, 0.188221753, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-2.23517418e-08, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ab4e19555ff336b]
+		{
+			var Name = "ControlPoint"
+			Transform 
+			{
+				var Translation = Real3{-0.367917478, 0.446090072, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-2.23517418e-08, 0, 0, 1}
+			}
+			Hierarchy 
+			{
+			}
+		}
+	}
+}

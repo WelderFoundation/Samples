@@ -1,0 +1,60 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "trainLocomotive_trainLocomotiveGeneratedMeshNode0"
+				var ResourceId = 0x5a95f6c9e704aee8
+			}
+			Object
+			{
+				var Name = "trainLocomotive_trainLocomotiveGeneratedMeshNode1"
+				var ResourceId = 0x5a95f6c9e704aef9
+			}
+			Object
+			{
+				var Name = "trainLocomotive_wheelGeneratedMeshNode2"
+				var ResourceId = 0x5a95f6c9e704aeff
+			}
+			Object
+			{
+				var Name = "trainLocomotive_wheelGeneratedMeshNode3"
+				var ResourceId = 0x5a95f6c9e704af04
+			}
+			Object
+			{
+				var Name = "trainLocomotive_wheel1GeneratedMeshNode4"
+				var ResourceId = 0x5a95f6c9e704af09
+			}
+			Object
+			{
+				var Name = "trainLocomotive_wheel1GeneratedMeshNode5"
+				var ResourceId = 0x5a95f6c9e704af0f
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5a95f6c9e70d191c
+	}
+}

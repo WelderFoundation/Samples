@@ -1,0 +1,81 @@
+enum TeamFlag { Player, Enemy }
+
+class Homing : ZilchComponent
+{
+  // Flag to shoot at players or enemies
+  var ShootAt : TeamFlag = TeamFlag.Player;
+  
+  [Property] var TurnSpeed : Real = 1.0;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.ShootAt == TeamFlag.Player)
+    {
+      // Shoot at player
+      var player = this.Space.FindObjectByName("Player");
+      
+      if(player != null)
+      {
+        var position = player.Transform.Translation;
+        var currentDir = this.Owner.RigidBody.Velocity;
+        var mag = Math.Length(currentDir);
+        currentDir = Math.Normalize(currentDir);
+        
+        // Turn direction toward player
+        var direction = position - this.Owner.Transform.Translation;
+        direction = Math.Normalize(direction);
+        
+        var turn = direction - currentDir;
+        turn = Math.Normalize(turn);
+        currentDir += turn * event.Dt * this.TurnSpeed;
+        currentDir = Math.Normalize(currentDir);
+        
+        this.Owner.RigidBody.Velocity = currentDir * mag;
+        
+        //this.Owner.Transform.Rotation = Quaternion(0,0,Math.Angle2D(currentDir),0);
+      }
+    }
+    else
+    {
+      // Shoot at Enemy
+      var closestEnemy : Cog = null;
+      var distance = 10000.0;
+      var ourPosition = this.Owner.Transform.Translation;
+      
+      foreach(var enemy in this.Space.FindAllObjectsByName("Enemy"))
+      {
+        var dir = enemy.Transform.Translation - ourPosition;
+        if(Math.Length(dir) < distance)
+        {
+          closestEnemy = enemy;
+          distance = Math.Length(dir);
+        }
+      }
+      
+      if(closestEnemy != null)
+      {
+        var position = closestEnemy.Transform.Translation;
+        var currentDir = this.Owner.RigidBody.Velocity;
+        var mag = Math.Length(currentDir);
+        currentDir = Math.Normalize(currentDir);
+        
+        // Turn direction toward player
+        var direction = position - this.Owner.Transform.Translation;
+        direction = Math.Normalize(direction);
+        
+        var turn = direction - currentDir;
+        turn = Math.Normalize(turn);
+        currentDir += turn * event.Dt * this.TurnSpeed;
+        currentDir = Math.Normalize(currentDir);
+        
+        this.Owner.RigidBody.Velocity = currentDir * mag;
+      }
+    }
+  }
+}

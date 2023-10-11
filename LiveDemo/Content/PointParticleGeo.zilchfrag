@@ -1,0 +1,92 @@
+struct PointParticleGeoInput
+{
+  [Input] var ViewPosition : Real3;
+  [Input] var Uv : Real2;
+  [Input] var Color : Real4;
+  [Input] var UvAux : Real2;
+}
+
+struct PointParticleGeoOutput
+{
+  [Output] var PerspectivePosition : Real4;
+  [Output] var Uv : Real2;
+  [Output] var ParticleSpeed : Real;
+  [Output] var ParticleLifeT : Real;
+}
+
+[Geometry(maxVertices : 6)]
+struct PointParticleGeo
+{
+  [AppBuiltInInput] var ViewToPerspective : Real4x4;
+  //[PropertyInput] var Width : Real = 0.1;
+
+  function Main(input : PointInput[PointParticleGeoInput], output : TriangleOutput[PointParticleGeoOutput])
+  {
+    var width = input[0].Uv.X;
+    var rotation = input[0].Uv.Y;
+    var speed = input[0].UvAux.X;
+    var lifeT = input[0].UvAux.Y;
+    
+    var cosAngle = Math.Cos(rotation);
+    var sinAngle = Math.Sin(rotation);
+    
+    var right = Real3(cosAngle, sinAngle, 0) * width;
+    var up = Real3(-sinAngle, cosAngle, 0) * width;
+    
+    // Create corners of a view aligned quad
+    var corners = FixedArray[Real3, 4]();
+    corners[0] = input[0].ViewPosition - right + up;//Real3(-width,  width, 0); // TopLeft
+    corners[1] = input[0].ViewPosition - right - up;//Real3(-width, -width, 0); // BottomLeft
+    corners[2] = input[0].ViewPosition + right - up;//Real3( width, -width, 0); // BottomRight
+    corners[3] = input[0].ViewPosition + right + up;//Real3( width,  width, 0); // TopRight
+
+    // Output vertex position and uv
+    var vertices = FixedArray[PointParticleGeoOutput, 4]();
+
+    vertices[0].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(corners[0], 1.0));
+    vertices[1].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(corners[1], 1.0));
+    vertices[2].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(corners[2], 1.0));
+    vertices[3].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(corners[3], 1.0));
+
+    vertices[0].Uv = Real2(0, 0);
+    vertices[1].Uv = Real2(0, 1);
+    vertices[2].Uv = Real2(1, 1);
+    vertices[3].Uv = Real2(1, 0);
+    
+    vertices[0].ParticleSpeed = speed;
+    vertices[1].ParticleSpeed = speed;
+    vertices[2].ParticleSpeed = speed;
+    vertices[3].ParticleSpeed = speed;
+
+    vertices[0].ParticleLifeT = lifeT;
+    vertices[1].ParticleLifeT = lifeT;
+    vertices[2].ParticleLifeT = lifeT;
+    vertices[3].ParticleLifeT = lifeT;
+
+    // First triangle
+    output.Append(vertices[0], 0);
+    output.Append(vertices[1], 0);
+    output.Append(vertices[2], 0);
+    output.Restart();
+
+    // Second triangle
+    output.Append(vertices[2], 0);
+    output.Append(vertices[3], 0);
+    output.Append(vertices[0], 0);
+    output.Restart();
+  }
+}
+
+[Pixel]
+struct PointParticlePixel
+{
+  [FragmentInput][StageInput] var Uv : Real2;
+  [Input] var Texture : SampledImage2d;
+
+  [FragmentInput][StageInput][Output] var Color : Real4;
+
+  function Main()
+  {
+    this.Color *= this.Texture.Sample(this.Uv);
+  }
+}

@@ -1,0 +1,75 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 0.0299999993
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = true
+		var SmoothingAngleDegreesThreshold = 20
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = true
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "Bat_PolygonalOneEyedBat"
+				var ResourceId = 0x63c1765ad5336ec0
+			}
+			Object
+			{
+				var Name = "Bat_RigLArm3Gizmo"
+				var ResourceId = 0x63c1765ad5336ec9
+			}
+			Object
+			{
+				var Name = "Bat_RigLArm2Gizmo"
+				var ResourceId = 0x63c1765ad5336ece
+			}
+			Object
+			{
+				var Name = "Bat_RigLArm1Gizmo"
+				var ResourceId = 0x63c1765ad5336ed5
+			}
+			Object
+			{
+				var Name = "Bat_RigRArm1Gizmo"
+				var ResourceId = 0x63c1765ad5336edd
+			}
+			Object
+			{
+				var Name = "Bat_RigRArm2Gizmo"
+				var ResourceId = 0x63c1765ad5336ee6
+			}
+			Object
+			{
+				var Name = "Bat_RigRArm3Gizmo"
+				var ResourceId = 0x63c1765ad5336eeb
+			}
+			Object
+			{
+				var Name = "Bat_RigMainGizmo"
+				var ResourceId = 0x63c1765ad5336ef4
+			}
+			Object
+			{
+				var Name = "Bat_RigEyeballGizmo"
+				var ResourceId = 0x63c1765ad5336ef9
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5b109412522ea8f0
+	}
+}

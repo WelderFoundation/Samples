@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "RopeGeo"
+		var ResourceId = 0x59b22e30fcffb924
+	}
+}

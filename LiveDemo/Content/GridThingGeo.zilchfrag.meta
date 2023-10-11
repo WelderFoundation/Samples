@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "GridThingGeo"
+		var ResourceId = 0x5aefe9498cd44717
+	}
+}

@@ -1,0 +1,142 @@
+enum FacingDirection {Left, Right}
+enum MovementState {Idle, Walking, Running}
+
+class Character : ZilchComponent
+{
+  // Dependencies
+  [Dependency] var SweptController : SweptController;
+  [Dependency] var AnimationController : AnimationController;
+  [Dependency] var AnimationFlip : AnimationFlip;
+  
+  // Speeds
+  [Property] var WalkSpeed : Real = 4.0;
+  [Property] var RunSpeed : Real = 6.0;
+  
+  // Which direction the character is authored facing
+  [Property] var Flip : Boolean = false;
+  
+  // The current state
+  var FacingDirection : FacingDirection = FacingDirection.Left;
+  var MovementState : MovementState = MovementState.Idle;
+      
+  // Whether or not we're dead
+  var Dead : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (this.Owner.Transform.WorldTranslation.Y < -2.0)
+      this.Die();
+    
+    // No need to do anything if we're dead
+    if(this.Dead)
+    {
+      this.Owner.RigidBody.Velocity = Real3(0, this.Owner.RigidBody.Velocity.Y, 0);
+      return;
+    }
+    
+    // Set our current speed
+    this.SweptController.MaxMoveSpeed = this.WalkSpeed;
+    if(this.MovementState == MovementState.Running)
+      this.SweptController.MaxMoveSpeed = this.RunSpeed;
+    
+    // Update our facing direction
+    var direction = Real3(0);
+    if(this.MovementState != MovementState.Idle)
+    {
+      if(this.FacingDirection == FacingDirection.Left)
+      {
+        direction.X = -1;
+        this.AnimationFlip.Active = !this.Flip;
+      }
+      else if(this.FacingDirection == FacingDirection.Right)
+      {
+        direction.X = 1;
+        this.AnimationFlip.Active = this.Flip;
+      }
+    }
+        
+    // Move in the calculated direction
+    this.SweptController.Update(direction, event.Dt);
+    
+    // Update animations
+    this.UpdateAnimationState(direction);
+    
+    this.MovementState = MovementState.Idle;
+  }
+    
+  function UpdateAnimationState(direction : Real3)
+  {
+    // If we aren't on the ground, we're jumping (or falling, but same as jumping for now)
+    if(this.Owner.SweptController.Grounded)
+    {
+      // If we aren't moving, we're idle
+      if(direction.X != 0)
+      {
+        // Walk or Run
+        if(this.MovementState == MovementState.Running)
+        {
+          this.AnimationController.SetState(AnimationState.Run);
+        }
+        else
+        {
+          this.AnimationController.SetState(AnimationState.Walk);
+        }
+      }
+      else
+      {
+        this.AnimationController.SetState(AnimationState.Idle);
+      }
+    }
+    else
+    {
+      this.AnimationController.SetState(AnimationState.Jump);
+    }
+  }
+  
+  function Die()
+  {
+    // Play the die animation
+    this.AnimationController.Die();
+    
+    // We're now dead
+    this.Dead = true;
+    
+    // Make ourself dynamic so we fall
+    this.Owner.RigidBody.DynamicState = RigidBodyDynamicState.Dynamic;
+  }
+    
+  function WalkLeft()
+  {
+    this.MovementState = MovementState.Walking;
+    this.FacingDirection = FacingDirection.Left;
+  }
+  
+  function WalkRight()
+  {
+    this.MovementState = MovementState.Walking;
+    this.FacingDirection = FacingDirection.Right;
+  }
+  
+  function RunLeft()
+  {
+    this.MovementState = MovementState.Running;
+    this.FacingDirection = FacingDirection.Left;
+  }
+  
+  function RunRight()
+  {
+    this.MovementState = MovementState.Running;
+    this.FacingDirection = FacingDirection.Right;
+  }
+  
+  function Jump()
+  {
+    this.SweptController.Jump();
+  }
+    
+}

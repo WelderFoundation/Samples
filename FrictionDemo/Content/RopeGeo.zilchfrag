@@ -1,0 +1,99 @@
+///////////////////////////////////////////////////////////////////////////////
+///
+/// Authors: Joshua Claeys
+/// Copyright 2017, DigiPen Institute of Technology
+///
+///////////////////////////////////////////////////////////////////////////////
+
+//----------------------------------------------------------------------- Input
+struct GeoRopeInput
+{
+  [Input] var ViewPosition : Real3;
+  [Input] var ViewTangent : Real3;
+  [Input] var Uv : Real2;
+}
+
+//---------------------------------------------------------------------- Output
+struct GeoRopeOutput
+{
+  [Output] var PerspectivePosition : Real4;
+  [Output] var ViewPosition : Real3;
+  [Output] var ViewNormal : Real3;
+  [Output] var ViewTangent : Real3;
+  [Output] var ViewBitangent : Real3;
+  [Output] var Uv : Real2;
+}
+
+//-------------------------------------------------------------------- Rope Geo
+[Geometry(maxVertices : 6)]
+struct RopeGeo
+{
+  [PropertyInput] var Width : Real = 0.1;
+  [PropertyInput] var UvScalar = Real2(1);
+  [PropertyInput] var UvScrollSpeed : Real = 0.0;
+  
+  [AppBuiltInInput] var FrameTime : Real;
+  [AppBuiltInInput] var ViewToPerspective : Real4x4;
+
+  //***************************************************************************
+  function Main(input : LineInput[GeoRopeInput], output : TriangleOutput[GeoRopeOutput])
+  {
+    var pos0 = input[0].ViewPosition;
+    var pos1 = input[1].ViewPosition;
+    var tangent0 = input[0].ViewTangent;
+    var tangent1 = input[1].ViewTangent;
+    var distance0 = input[0].Uv.X;
+    var distance1 = input[1].Uv.X;
+    
+    // We're in view space, so the quad will always be facing the camera
+    var back = Real3(0,0,-1);
+    var right0 = Math.Cross(back, tangent0);
+    var right1 = Math.Cross(back, tangent1);
+    
+    // Section of a rope:
+    //
+    //         0-------3
+    //         | \     |
+    // o-------|   \   |----------o--------o
+    //         |     \ |
+    //         1-------2
+    var corners = FixedArray[Real3, 4]();
+    corners[0] = pos0 - right0 * this.Width; // TopLeft
+    corners[1] = pos0 + right0 * this.Width; // BottomLeft
+    corners[2] = pos1 + right1 * this.Width; // BottomRight
+    corners[3] = pos1 - right1 * this.Width; // TopRight
+    
+    var isLowerLeftBackface  = (Math.Cross(corners[2] - corners[1], corners[0] - corners[1]).Z < 0.0) as Real;
+    var isUpperRightBackface = (Math.Cross(corners[3] - corners[0], corners[3] - corners[2]).Z < 0.0) as Real;
+    
+    corners[1] = Math.Lerp(corners[1], corners[0], isLowerLeftBackface);
+    corners[3] = Math.Lerp(corners[3], corners[0], isUpperRightBackface);
+    
+    var vertices = FixedArray[GeoRopeOutput, 4]();
+    vertices[0].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(corners[0], 1.0));
+    vertices[1].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(corners[1], 1.0));
+    vertices[2].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(corners[2], 1.0));
+    vertices[3].PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(corners[3], 1.0));
+    
+    // Generate Uv's
+    distance0 = (distance0 * this.UvScalar.X) + (this.FrameTime * -this.UvScrollSpeed);
+    distance1 = (distance1 * this.UvScalar.X) + (this.FrameTime * -this.UvScrollSpeed);
+    
+    vertices[0].Uv = Real2(distance0, 0);
+    vertices[1].Uv = Real2(distance0, this.UvScalar.Y);
+    vertices[2].Uv = Real2(distance1, this.UvScalar.Y);
+    vertices[3].Uv = Real2(distance1, 0);
+
+    // First triangle
+    output.Append(vertices[0], 0);
+    output.Append(vertices[1], 0);
+    output.Append(vertices[2], 0);
+    output.Restart();
+
+    // Second triangle
+    output.Append(vertices[2], 0);
+    output.Append(vertices[3], 0);
+    output.Append(vertices[0], 0);
+    output.Restart();
+  }
+}

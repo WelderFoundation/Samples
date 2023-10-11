@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "VertexColor"
+		var ResourceId = 0x59249b39fd2872ff
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

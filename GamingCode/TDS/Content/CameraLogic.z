@@ -1,0 +1,20 @@
+       class CameraLogic : ZilchComponent
+  {
+      var TargetObject : Cog = null;
+
+      function Initialize(init : CogInitializer)
+      {
+          this.TargetObject = this.Space.FindObjectByName("Player");
+          Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+      }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+{
+    
+    var newCameraPos = this.TargetObject.Transform.LocalTranslation;
+
+    newCameraPos.Z = this.Owner.Transform.LocalTranslation.Z;
+    
+    this.Owner.Transform.LocalTranslation = newCameraPos;
+}
+}

@@ -1,0 +1,24 @@
+class PlayerController : ZilchComponent
+{
+  // All movement should be done through the player
+  [Dependency] var Player : Player;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want our logic to run every update
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    if(Zero.Keyboard.KeyIsPressed(Keys.A))
+      this.Player.MoveInDirection(Direction.Left);
+    if(Zero.Keyboard.KeyIsPressed(Keys.W))
+      this.Player.MoveInDirection(Direction.Up);
+    if(Zero.Keyboard.KeyIsPressed(Keys.D))
+      this.Player.MoveInDirection(Direction.Right);
+    if(Zero.Keyboard.KeyIsPressed(Keys.S))
+      this.Player.MoveInDirection(Direction.Down);
+  }
+}

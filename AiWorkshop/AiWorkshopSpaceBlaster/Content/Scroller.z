@@ -1,0 +1,20 @@
+class Scroller : ZilchComponent
+{
+  // The direction the object scrolls in
+  [Property] var Direction : Real3 = Real3(0,-1,0);
+  
+  // The speed at which the object moves
+  [Property] var Speed : Real = 1.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Update the position every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Update position
+    this.Owner.Transform.Translation += this.Direction * this.Speed * event.Dt;
+  }
+}

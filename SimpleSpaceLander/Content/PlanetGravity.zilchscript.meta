@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "PlanetGravity"
+		var ResourceId = 0x587e7fc915d54f04
+	}
+}

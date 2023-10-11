@@ -1,0 +1,83 @@
+[Version:1]
+Cog 
+{
+	var Name = "Enemy1"
+	Transform 
+	{
+		var Translation = Real3{16.4971619, -3.10015678, -0.769809723}
+		var Scale = Real3{0.600000024, 0.600000024, 0.600000024}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Sprite 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var SpriteSource = "524aa9f463a3dd21:enemy_new"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = true
+		var AnimationSpeed = 1
+		var StartFrame = 0
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.Mode2D
+	}
+	CapsuleCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "524aa1bdfe39bd0e:Enemy"
+		var Offset = Real3{0, 0, 0}
+		var Radius = 1
+		var Height = 1.5
+		var Direction = AxisDirection.Y
+		var ScalingMode = CapsuleScalingMode.PreserveHeight
+	}
+	CreateOnDeath 
+	{
+		var ArchetypeToCreate = "5558fc5231b56d92:YellowPlasmaExplosion"
+		var InheritVelocity = false
+	}
+	Health 
+	{
+		var MaxHealth = 200
+		var DestroyAtZeroHealth = true
+		var DamageScalar = 1
+	}
+	Orientation 
+	{
+		var GlobalUp = Real3{0, 0, 1}
+		var LocalOrientationBasis = Quaternion{-3.09086197e-08, 0.707106769, 0.707106769, -3.09086197e-08}
+		var DefaultBases = OrientationBases.Custom
+	}
+	Ship 
+	{
+		var Speed = 4
+		var Projectile = "5245faddd40ddded:RedProjectile"
+		var ProjectileSpeed = 25
+		var TimeBetweenShots = 3
+		var HomingProjectile = "555c9c582df2e42e:HomingProjectile"
+	}
+	EnemyAi1 
+	{
+	}
+	Hierarchy 
+	{
+	}
+}

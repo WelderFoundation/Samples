@@ -1,0 +1,16 @@
+[Version:1]
+TextContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Tank"
+		}
+	}
+	ZilchScriptBuilder 
+	{
+		var Name = "AlbedoGlow"
+		var ResourceId = 0x5a84551f7639a56d
+	}
+}

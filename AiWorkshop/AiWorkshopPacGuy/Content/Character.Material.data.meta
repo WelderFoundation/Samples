@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Character"
+		var ResourceId = 0x555b72e3dd9d5569
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

@@ -1,0 +1,79 @@
+class SplineCollision : ZilchComponent
+{
+  [Dependency] var SplineHelper : SplineHelper;
+  
+  [Property] var Thickness : Real = 0.5;
+  
+  var Mesh : PhysicsMesh = PhysicsMesh.CreateRuntime();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+    Zero.Connect(this.Owner, Events.SplineModified, this.OnSplineModified);
+    
+  }
+  
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    this.Owner.MeshCollider.PhysicsMesh = this.Mesh;
+    this.RebuildGeometry();
+  }
+  
+  function OnSplineModified(event : SplineEvent)
+  {
+    this.RebuildGeometry();
+  }
+  
+  function CreateBox(tl : Real3, bl : Real3, br : Real3, tr : Real3, d0 : Real, d1 : Real)
+  {
+    var z0 = -this.Thickness / 2;
+    var z1 = this.Thickness / 2;
+    
+    // 0
+    var ltb = Real3(tl.XY, z0);
+    // 1
+    var ltf = Real3(tl.XY, z1);
+    // 2
+    var ldb = Real3(bl.XY, z0);
+    // 3
+    var ldf = Real3(bl.XY, z1);
+    // 4
+    var rtb = Real3(tr.XY, z0);
+    // 5
+    var rtf = Real3(tr.XY, z1);
+    // 6
+    var rdb = Real3(br.XY, z0);
+    // 7
+    var rdf = Real3(br.XY, z1);
+    
+    var i = this.Mesh.Vertices.Count;
+    this.Mesh.Vertices
+    {
+      ltb, ltf, ldb, ldf, rtb, rtf, rdb, rdf
+    };
+    
+    this.Mesh.Indices
+    {
+      // Top
+      i + 0, i + 1, i + 5,
+      i + 0, i + 5, i + 4,
+      // Bot
+      i + 3, i + 2, i + 6,
+      i + 3, i + 6, i + 7,
+      // Front
+      i + 1, i + 3, i + 7,
+      i + 1, i + 7, i + 5,
+      // Back
+      i + 4, i + 6, i + 2,
+      i + 4, i + 2, i + 0,
+    };
+  }
+
+  function RebuildGeometry()
+  {
+    this.Mesh.Vertices.Clear();
+    this.Mesh.Indices.Clear();
+    
+    this.SplineHelper.ComputeSplineQuads(this.CreateBox);
+  }
+}

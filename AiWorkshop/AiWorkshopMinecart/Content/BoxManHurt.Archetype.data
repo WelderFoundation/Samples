@@ -1,0 +1,670 @@
+[Version:1]
+Cog 
+{
+	var Name = "BoxMan"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	AnimationGraph 
+	{
+		var Active = true
+		var PlayMode = AnimationPlayMode.PlayOnce
+		var TimeScale = 1
+		var Animation = "4f8ebbde619389d0:DefaultAnimation"
+		var DebugPreviewId = 0
+	}
+	SimpleAnimation 
+	{
+		var Animation = "5b00942d4cdfa5eb:LoseAnimation"
+		var PlayMode = AnimationPlayMode.Pingpong
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b7f7ca84e142887]
+		{
+			var Name = "Stomach"
+			Transform 
+			{
+				var Translation = Real3{0.0103559494, 0.624830782, 2.72960037e-08}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-0.704118967, 0.0649351701, -0.0649351478, 0.704118907}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5b7f522082e2c9d6:BoxMan"
+				var Mesh = "5b7f51fd6794cedc:BoxMan_Stomach"
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b7f7ca84e14288c]
+				{
+					var Name = "Chest"
+					Transform 
+					{
+						var Translation = Real3{1.79638033e-16, -1.30423645e-08, 0.104357243}
+						var Scale = Real3{1, 1.00000012, 1}
+						var Rotation = Quaternion{0.248260215, 0, 0, 0.968693376}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b7f522082e2c9d6:BoxMan"
+						var Mesh = "5b7f51fd6794ceea:BoxMan_Chest"
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b7f7ca84e14288e]
+						{
+							var Name = "Head"
+							Transform 
+							{
+								var Translation = Real3{-6.0171103e-18, -2.05425721e-08, 0.473108649}
+								var Scale = Real3{0.99999994, 1, 0.99999994}
+								var Rotation = Quaternion{0.0529482551, -0.0468666628, 0.1431676, 0.987169266}
+							}
+							Model 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = true
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "5b7f522082e2c9d6:BoxMan"
+								var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+							}
+							AnimationGraph 
+							{
+								var Active = true
+								var PlayMode = AnimationPlayMode.PlayOnce
+								var TimeScale = 1
+								var Animation = "4f8ebbde619389d0:DefaultAnimation"
+								var DebugPreviewId = 0
+							}
+							SimpleAnimation 
+							{
+								var Animation = "5b00948d592c9a11:LoseHeadshake"
+								var PlayMode = AnimationPlayMode.Pingpong
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b11252dbc6d6fc6]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{-2.13569729e-06, 1.07102096e-07, 0.214894667}
+										var Scale = Real3{1.0382303, 1.03823006, 0.0684196055}
+										var Rotation = Quaternion{-1.49011594e-08, 0, -3.72528985e-09, 1}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+								Cog [Id:0x5b1125c7c4ca7be4]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{-0.000548008247, -0.00288083334, 0.246735513}
+										var Scale = Real3{1.0382303, 1.03823006, 0.0684196055}
+										var Rotation = Quaternion{-1.44663579e-08, 0.0976137966, -8.07117839e-09, 0.995224357}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+								Cog [Id:0x5b1125afd6f7775f]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{-0.000548008247, -0.00288083334, 0.246735513}
+										var Scale = Real3{1.0382303, 1.03823006, 0.0684196055}
+										var Rotation = Quaternion{0.0675263479, -9.19403575e-17, -1.38355238e-09, 0.997717559}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+								Cog [Id:0x5b1125cabb6059b1]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{-2.48271681e-06, -3.06637958e-07, 0.274039775}
+										var Scale = Real3{1.0382303, 1.03823006, 0.0684196055}
+										var Rotation = Quaternion{-1.49011594e-08, 0, -3.72528985e-09, 1}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+								Cog [Id:0x5b11264add4ffe49]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{-0.00153687713, -0.00809321366, 0.255726516}
+										var Scale = Real3{1.0382303, 1.03822994, 0.0230914876}
+										var Rotation = Quaternion{-1.49011594e-08, 0, -3.72528985e-09, 1}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+								Cog [Id:0x5b1125d3c65ee1bd]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{0.00492390525, 0.0552579202, 0.285904378}
+										var Scale = Real3{1.1495682, 0.15151529, 0.0684196055}
+										var Rotation = Quaternion{-1.30090188e-08, 3.75993636e-09, -0.252325058, 0.967642546}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+								Cog [Id:0x5b112646dee964cc]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{-0.00101892138, -0.0944212303, 0.285904348}
+										var Scale = Real3{1.04453313, 0.0881075785, 0.068419598}
+										var Rotation = Quaternion{-1.50399977e-08, 9.39685574e-09, -0.128847167, 0.991664469}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+								Cog [Id:0x5b1125e7c24cd434]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{-0.000526655, -0.0616133288, 0.2824063}
+										var Scale = Real3{1.16962874, 0.13705115, 0.0684196055}
+										var Rotation = Quaternion{0, 0, 0.252069354, 0.967709184}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+								Cog [Id:0x5b1125f4ceadf338]
+								{
+									var Name = "Bandage"
+									Transform 
+									{
+										var Translation = Real3{0.000969096087, 0.0447954834, 0.282406271}
+										var Scale = Real3{1.04395664, 0.121842608, 0.0684196055}
+										var Rotation = Quaternion{7.85812215e-09, -2.04688755e-09, 0.0862391293, 0.996274531}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794ceed:BoxMan_Head"
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b7f7ca84e14288f]
+						{
+							var Name = "LArm"
+							Transform 
+							{
+								var Translation = Real3{0.337380826, -1.78689277e-08, 0.408793211}
+								var Scale = Real3{1, 0.99999994, 0.99999994}
+								var Rotation = Quaternion{-0.249603629, 0.0844960958, -0.0215248968, 0.964414418}
+							}
+							Model 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = true
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "5b7f522082e2c9d6:BoxMan"
+								var Mesh = "5b7f51fd6794cef2:BoxMan_LArm"
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b7f7ca84e142891]
+								{
+									var Name = "LArm01"
+									Transform 
+									{
+										var Translation = Real3{0, 1.31050015e-08, -0.299807608}
+										var Scale = Real3{1, 0.99999994, 0.99999994}
+										var Rotation = Quaternion{-0.102376811, 0.617251217, 0.0617530718, 0.777628779}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b7f522082e2c9d6:BoxMan"
+										var Mesh = "5b7f51fd6794cef6:BoxMan_LArm01"
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b11255dacc03c25]
+										{
+											var Name = "LArm01"
+											Transform 
+											{
+												var Translation = Real3{7.94156222e-07, -1.34576112e-07, -0.209598348}
+												var Scale = Real3{1.05172908, 1.05172956, 0.104938902}
+												var Rotation = Quaternion{1.4901179e-08, 8.05593956e-08, -2.04890949e-08, 1}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "5b11256aaf1dfdc0:Bandage"
+												var Mesh = "5b7f51fd6794cef6:BoxMan_LArm01"
+											}
+										}
+										Cog [Id:0x5b11256eae37a1d5]
+										{
+											var Name = "LArm01"
+											Transform 
+											{
+												var Translation = Real3{7.15255737e-07, -1.1920929e-07, -0.162570953}
+												var Scale = Real3{1.09836113, 1.05172956, 0.104938902}
+												var Rotation = Quaternion{3.41855575e-08, 0.155987397, -2.02382893e-08, 0.987759054}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "5b11256aaf1dfdc0:Bandage"
+												var Mesh = "5b7f51fd6794cef6:BoxMan_LArm01"
+											}
+										}
+										Cog [Id:0x5b112509b7e69828]
+										{
+											var Name = "LArm01"
+											Transform 
+											{
+												var Translation = Real3{0.0011782879, 5.7509169e-07, -0.0774602368}
+												var Scale = Real3{1.09836113, 1.05172956, 0.104938902}
+												var Rotation = Quaternion{3.41855575e-08, 0.155987397, -2.02382893e-08, 0.987759054}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "5b11256aaf1dfdc0:Bandage"
+												var Mesh = "5b7f51fd6794cef6:BoxMan_LArm01"
+											}
+										}
+										Cog [Id:0x5b11256ca9f8666c]
+										{
+											var Name = "LArm01"
+											Transform 
+											{
+												var Translation = Real3{6.34303433e-07, -1.21071935e-07, -0.115016289}
+												var Scale = Real3{1.05172908, 1.05172956, 0.104938902}
+												var Rotation = Quaternion{1.4901179e-08, 8.05593956e-08, -2.04890949e-08, 1}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "5b11256aaf1dfdc0:Bandage"
+												var Mesh = "5b7f51fd6794cef6:BoxMan_LArm01"
+											}
+										}
+										Cog [Id:0x5b112509b7e69dd0]
+										{
+											var Name = "LArm01"
+											Transform 
+											{
+												var Translation = Real3{0.00117820688, 5.73229045e-07, -0.02990558}
+												var Scale = Real3{1.05172908, 1.05172956, 0.104938902}
+												var Rotation = Quaternion{1.4901179e-08, 8.05593956e-08, -2.04890949e-08, 1}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "5b11256aaf1dfdc0:Bandage"
+												var Mesh = "5b7f51fd6794cef6:BoxMan_LArm01"
+											}
+										}
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b7f7ca84e142892]
+						{
+							var Name = "RArm"
+							Transform 
+							{
+								var Translation = Real3{-0.337995768, -1.78689277e-08, 0.408793211}
+								var Scale = Real3{1, 0.99999994, 0.99999994}
+								var Rotation = Quaternion{-0.292607933, 0.0133487415, 0.0268953145, 0.955761015}
+							}
+							Model 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = true
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "5b7f522082e2c9d6:BoxMan"
+								var Mesh = "5b7f51fd6794cefa:BoxMan_RArm"
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b7f7ca84e142894]
+								{
+									var Name = "RArm01"
+									Transform 
+									{
+										var Translation = Real3{0, 1.31050015e-08, -0.299807608}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{-0.156678244, -0.0689354241, 0.0455900505, 0.984185636}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b7f522082e2c9d6:BoxMan"
+										var Mesh = "5b7f51fd6794cefe:BoxMan_RArm01"
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b0096d6b99805d0]
+										{
+											var Name = "Cane"
+											Transform 
+											{
+												var Translation = Real3{-0.0194571912, -0.0301330686, -0.282034874}
+												var Scale = Real3{0.298941225, 0.298941284, 1.91124189}
+												var Rotation = Quaternion{0.225176796, 0.00534467306, 0.00344521459, 0.974297225}
+											}
+											Model 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = true
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "5a95f71ef8447fd9:Wood"
+												var Mesh = "5b7f51fd6794cefe:BoxMan_RArm01"
+											}
+											Hierarchy 
+											{
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b7f7ca84e142895]
+				{
+					var Name = "LLeg"
+					Transform 
+					{
+						var Translation = Real3{0.130405426, -1.08523581e-08, 0.0289518833}
+						var Scale = Real3{1, 1.00000012, 1}
+						var Rotation = Quaternion{-0.0921449438, -0.0924920738, 0.0086016776, 0.991403401}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b7f522082e2c9d6:BoxMan"
+						var Mesh = "5b7f51fd6794cf02:BoxMan_LLeg"
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b7f7ca84e142896]
+						{
+							var Name = "LLeg01"
+							Transform 
+							{
+								var Translation = Real3{0, 1.31050095e-08, -0.299807578}
+								var Scale = Real3{1, 0.99999994, 0.99999994}
+								var Rotation = Quaternion{0.130526215, 0, 0, 0.991444886}
+							}
+							Model 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = true
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "5b7f522082e2c9d6:BoxMan"
+								var Mesh = "5b7f51fd6794cf06:BoxMan_LLeg01"
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b7f7ca84e142898]
+				{
+					var Name = "RLeg"
+					Transform 
+					{
+						var Translation = Real3{-0.129999995, -5.615584e-09, 0.0289518833}
+						var Scale = Real3{1, 1.00000012, 1}
+						var Rotation = Quaternion{-0.091898635, -0.0136961099, -0.099073872, 0.990732789}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b7f522082e2c9d6:BoxMan"
+						var Mesh = "5b7f51fd6794cf0a:BoxMan_RLeg"
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b7f7ca84e142899]
+						{
+							var Name = "RLeg01"
+							Transform 
+							{
+								var Translation = Real3{0, 1.31050086e-08, -0.299807578}
+								var Scale = Real3{1, 1, 1}
+								var Rotation = Quaternion{0.650749564, 4.49814799e-08, -7.66991748e-10, 0.759292424}
+							}
+							Model 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = true
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "5b7f522082e2c9d6:BoxMan"
+								var Mesh = "5b7f51fd6794cf0f:BoxMan_RLeg01"
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b11262ae9a5ff4b]
+								{
+									var Name = "Cast"
+									Transform 
+									{
+										var Translation = Real3{-1.44529622e-07, 7.63684511e-08, 0.015978897}
+										var Scale = Real3{1.06507957, 1.06507957, 1.06507957}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Model 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = true
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "5b11256aaf1dfdc0:Bandage"
+										var Mesh = "5b7f51fd6794cf0f:BoxMan_RLeg01"
+									}
+									Hierarchy 
+									{
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,46 @@
+class InterpolationLever : ZilchComponent
+{
+  [Property] var Active : Boolean = false;
+  [Property] var Speed : Real = 2;
+  [Property] var Ease : Ease = Ease.Linear;
+  
+  [Property] var InterpolateTranslation : Boolean = false;
+  [Property] var InterpolateRotation : Boolean = false;
+  [Property] var InterpolateScale : Boolean = false;
+  
+  [Property] var Target : CogPath = CogPath();
+  [Property] var StartCog : CogPath = CogPath("Start");
+  [Property] var EndCog : CogPath = CogPath("End");
+  
+  var ActiveAction : ActionSet = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.Interact, this.OnInteract);
+  }
+
+  function OnInteract(event : ZilchEvent)
+  {
+    this.Active = !this.Active;
+    if(this.ActiveAction != null)
+      this.ActiveAction.Cancel();
+      
+    var transforms = Array[Transform]()
+    {
+     this.StartCog.Cog.Transform,
+     this.EndCog.Cog.Transform,
+    };
+    var index = this.Active as Integer;
+    
+    var targetCog = this.Target.Cog;
+    var targetTransform = targetCog.Transform;
+    
+    this.ActiveAction = Action.Group(this.Owner.Actions);
+    if(this.InterpolateTranslation)
+      Actions.PropertySpeed(this.ActiveAction, @targetTransform.WorldTranslation, transforms[index].WorldTranslation, this.Speed, this.Ease);
+    if(this.InterpolateRotation)
+      Actions.PropertySpeed(this.ActiveAction, @targetTransform.WorldRotation, transforms[index].WorldRotation, this.Speed, this.Ease);
+    if(this.InterpolateScale)
+      Actions.PropertySpeed(this.ActiveAction, @targetTransform.WorldScale, transforms[index].WorldScale, this.Speed, this.Ease);
+  }
+}

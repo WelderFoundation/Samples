@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "PlayerController"
+		var ResourceId = 0x5cd62fcd75a2ded5
+	}
+}

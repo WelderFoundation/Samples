@@ -1,0 +1,38 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"580269d9a1d6b870:ShadowCasters"
+		"58f4ed78bda39ec5:OpaqueDoubleSided"
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "592c4297c3085ed2:T_Juncus_01"
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 0
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 1
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+	AlphaDiscard 
+	{
+		var Texture = "592c4297c3085ed2:T_Juncus_01"
+		var Threshold = 0.79943943
+	}
+	PlantWind 
+	{
+		var WindTexture = "592c789bf803f628:WindSample"
+		var WindSpeed = 23.3355999
+	}
+	FlipBackfaceNormals 
+	{
+	}
+}

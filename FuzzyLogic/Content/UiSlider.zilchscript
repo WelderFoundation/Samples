@@ -1,0 +1,83 @@
+///////////////////////////////////////////////////////////////////////////////
+/// 
+/// Authors: 
+/// Copyright 2017, DigiPen Institute of Technology
+///
+///////////////////////////////////////////////////////////////////////////////
+class UiSliderEvent : ZilchEvent
+{
+  var SliderPercentage : Real;
+}
+
+//------------------------------------------------------------------- Ui Slider
+class UiSlider : ZilchComponent
+{
+  [Dependency] var UiWidget : UiWidget;
+  [Property][Slider(0,1,0.01)] var Percent = 0.6;
+  [Property] var Handle = CogPath("Handle");
+  [Property] var Fill = CogPath();
+  
+  sends UiSliderChanged : UiSliderEvent;
+  
+  //***************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.UiPreUpdate, this.OnUiPostUpdate);
+    Zero.Connect(this.Owner, Events.LeftMouseDown, this.OnLeftMouseDown);
+    Zero.Connect(this.Handle.Cog, Events.MouseDragMove, this.OnMouseDragMove);
+  }
+
+  //***************************************************************************
+  function OnUiPostUpdate(event : UiTransformUpdateEvent)
+  {
+    var width = this.UiWidget.Size.X;
+    
+    // Move the handle
+    var handle = this.Handle.UiWidget;
+    var handleRegion = width - handle.Size.X;
+    handle.MarginLeft = this.Percent * handleRegion;
+    
+    // Move the fill
+    var fill = this.Fill.UiWidget;
+    if(fill != null)
+      fill.MarginRight = (1.0 - this.Percent) * width;
+  }
+  
+  //***************************************************************************
+  function OnLeftMouseDown(event : ViewportMouseEvent)
+  {
+    event.HandledEvent = true;
+    this.Handle.MouseCapture.Capture(event);
+    this.MoveHandleToMouse(event);
+  }
+  
+  //***************************************************************************
+  function OnMouseDragMove(event : ViewportMouseEvent)
+  {
+    this.MoveHandleToMouse(event);
+  }
+  
+  //***************************************************************************
+  function MoveHandleToMouse(event : ViewportMouseEvent)
+  {
+    // Bring the mouse position into local space
+    var mouseWorldPos = event.ToWorldZPlane(0);
+    var mousePosLocal = this.UiWidget.TransformPointInverse(mouseWorldPos.XY);
+    
+    var width = this.UiWidget.Size.X;
+    var percent = mousePosLocal.X / width;
+    
+    this.SetPercentage(percent, true);
+  }
+  
+  //***************************************************************************
+  function SetPercentage(percent : Real, sendsEvent : Boolean)
+  {
+    this.Percent = Math.Clamp(percent, 0, 1);
+    
+    // Send an event to for the changes
+    var eventToSend = UiSliderEvent();
+    eventToSend.SliderPercentage = this.Percent;
+    this.Owner.DispatchEvent(Events.UiSliderChanged, eventToSend);
+  }
+}

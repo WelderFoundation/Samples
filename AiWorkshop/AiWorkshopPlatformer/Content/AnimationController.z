@@ -1,0 +1,72 @@
+enum AnimationState {Idle, Walk, Run, Jump, Fall}
+
+class AnimationController : ZilchComponent
+{
+  [Dependency] var SimpleAnimation : SimpleAnimation;
+
+  [Property] var CurrentState : AnimationState = AnimationState.Idle;
+  [Property] var Idle : Animation;
+  [Property] var Walk : Animation;
+  [Property] var Run : Animation;
+  [Property] var Jump : Animation;
+  [Property] var Fall : Animation;
+  [Property] var AttackAnim : Animation;
+  [Property] var DieAnim : Animation;
+
+  var States : Array[Animation] = new Array[Animation]();
+
+  var Attacking : Boolean = false;
+  var Dying : Boolean = false;
+
+  function Initialize(init : CogInitializer)
+  {
+    this.States.Add(this.Idle);
+    this.States.Add(this.Walk);
+    this.States.Add(this.Run);
+    this.States.Add(this.Jump);
+    this.States.Add(this.Fall);
+    
+    Zero.Connect(this.Owner, Events.AnimationEnded, this.OnAnimationEnded);
+  }
+
+  function SetState(state : AnimationState)
+  {
+    if(this.Attacking || this.Dying)
+    {
+      return;
+    }
+    
+    if(this.CurrentState != state)
+    {
+      this.SimpleAnimation.CrossBlend(this.States[state], 0.1, AnimationPlayMode.Loop);
+      this.CurrentState = state;
+    }
+  }
+
+  function Attack()
+  {
+    if(!this.Attacking)
+    {
+      this.SimpleAnimation.PlaySingle(this.AttackAnim, AnimationPlayMode.PlayOnce);
+      this.Attacking = true;
+    }
+  }
+    
+  function Die()
+  {
+    if(!this.Dying)
+    {
+      this.SimpleAnimation.PlaySingle(this.DieAnim, AnimationPlayMode.PlayOnce);
+      this.Dying = true;
+    }
+  }
+  
+  function OnAnimationEnded(event : AnimationGraphEvent)
+  {
+    if(event.Animation == this.AttackAnim)
+    {
+      this.Attacking = false;
+      this.SimpleAnimation.PlaySingle(this.States[this.CurrentState], AnimationPlayMode.Loop);
+    }
+  }
+}

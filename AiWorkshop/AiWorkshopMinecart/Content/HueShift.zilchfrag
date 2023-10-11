@@ -1,0 +1,13 @@
+[Pixel]
+struct HueShift
+{
+  [Input][Slider(0, 1, 0.01)] var HueShift = 0.0;
+  [FragmentInput][StageInput][Output] var Albedo : Real3;
+  
+  function Main()
+  {
+    var hsva = Color.ToHsva(Real4(this.Albedo, 1));
+    hsva.X += this.HueShift;
+    this.Albedo = Color.FromHsva(hsva).XYZ;
+  }
+}

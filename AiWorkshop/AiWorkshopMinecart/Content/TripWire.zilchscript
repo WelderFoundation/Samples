@@ -1,0 +1,26 @@
+class TripWire : ZilchComponent
+{
+  [Property] var ObjectToMakeDynamic = CogPath();
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(this.ObjectToMakeDynamic.Cog != null)
+      this.MakeDynamic(this.ObjectToMakeDynamic.Cog);
+  }
+  
+  function MakeDynamic(cog : Cog)
+  {
+    var body = cog.RigidBody;
+    if(body != null)
+      body.DynamicState = RigidBodyDynamicState.Dynamic;
+      
+    foreach(var child in cog.Children)
+      this.MakeDynamic(child);
+  }
+}

@@ -1,0 +1,29 @@
+ImageContent = 
+{
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Bird",
+			"BirdDinoSprite",
+			"DinoBird",
+		],
+	},
+	SpriteSourceBuilder = 
+	{
+		string Name = "PunchLeft",
+		uint64 ResourceId = 5422606ee476f899,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 184,
+		uint FrameSizeY = 136,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 92,
+		float OriginY = 68,
+		float PixelsPerUnit = 64,
+		bool Smoothing = true,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+		SpriteFill Fill = Stretch,
+	},
+},

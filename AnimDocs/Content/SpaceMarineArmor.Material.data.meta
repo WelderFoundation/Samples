@@ -1,0 +1,20 @@
+[Version:1]
+DataContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"SpaceMarine"
+			"Armor"
+		}
+	}
+	DataBuilder 
+	{
+		var Name = "SpaceMarineArmor"
+		var ResourceId = 0x59afddcc03c572dd
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

@@ -1,0 +1,60 @@
+class PlayerInput : ZilchComponent
+
+{
+    [Property]
+    var Speed : Real = 0.2;
+    function Initialize(init : CogInitializer)
+    
+    {
+        
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if(Zero.Keyboard.KeyIsDown(Keys.W))
+        {
+            
+            
+            var temp = this.Owner.Transform.Translation;
+            temp.Y += this.Speed;
+            this.Owner.Transform.Translation = temp;
+            
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.D))
+        
+        {
+
+            var temp2 = this.Owner.Transform.Translation;
+            temp2.X +=this.Speed;
+            this.Owner.Transform.Translation =  temp2;
+            this.Owner.Sprite.FlipX = false; 
+            
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.S))
+        
+        {
+            
+            var temp3 = this.Owner.Transform.Translation;
+            temp3.Y -=this.Speed;
+            this.Owner.Transform.Translation = temp3;
+            
+        }
+        
+        if(Zero.Keyboard.KeyIsDown(Keys.A))
+        
+        {
+            
+           
+            var temp4 = this.Owner.Transform.Translation;
+            temp4.X -=this.Speed;
+            this.Owner.Transform.Translation = temp4;
+            this.Owner.Sprite.FlipX = true; 
+        }
+       
+    }
+    
+}

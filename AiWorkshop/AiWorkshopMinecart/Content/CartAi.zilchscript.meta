@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "CartAi"
+		var ResourceId = 0x5b2ac923d0f683ce
+	}
+}

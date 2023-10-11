@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "CustomRenderer"
+		var ResourceId = 0x587e4155fdc3917d
+	}
+}

@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_Stomach"
+				var ResourceId = 0x59af21f17b527200
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_Chest"
+				var ResourceId = 0x59af21f17b52720c
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_Head"
+				var ResourceId = 0x59af21f17b527210
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_LArm"
+				var ResourceId = 0x59af21f17b527214
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_LArm01"
+				var ResourceId = 0x59af21f17b527218
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_RArm"
+				var ResourceId = 0x59af21f17b52721c
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_RArm01"
+				var ResourceId = 0x59af21f17b527220
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_LLeg"
+				var ResourceId = 0x59af21f17b527224
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_LLeg01"
+				var ResourceId = 0x59af21f17b527228
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_RLeg"
+				var ResourceId = 0x59af21f17b52722b
+			}
+			Object
+			{
+				var Name = "BoxManMidAirDblJump_RLeg01"
+				var ResourceId = 0x59af21f17b527230
+			}
+		}
+	}
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManMidAirDblJump"
+				var ResourceId = 0x59af21f17b527236
+			}
+		}
+	}
+}

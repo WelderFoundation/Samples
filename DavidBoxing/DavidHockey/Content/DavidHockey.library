@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "DavidHockey"
+	var LibraryId = 0x5cd4fbc852ba5057
+	var SourceControlType = ""
+	var ReadOnly = false
+}

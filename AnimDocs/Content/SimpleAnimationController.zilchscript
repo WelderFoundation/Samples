@@ -1,0 +1,61 @@
+class CharacterAnimationController : ZilchComponent
+{
+  [Dependency] var AnimationGraph : AnimationGraph;
+  [Dependency] var SimpleAnimation : SimpleAnimation;
+  
+  [Property]
+  var IdleAnimation : Animation = null;
+  
+  [Property]
+  var RunAnimation : Animation = null;
+  
+  [Property]
+  var JumpAnimation : Animation = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.JumpEvent, this.OnJumpEvent);
+    Zero.Connect(this.Owner, Events.MovementEvent, this.OnMovementEvent);
+  }
+
+
+
+  function OnJumpEvent(event : JumpEvent)
+  {
+    if(this.SimpleAnimation.Animation != this.JumpAnimation)
+    {
+      //Console.WriteLine("JumpAnim");
+      this.SimpleAnimation.PlayMode = AnimationPlayMode.PlayOnce;
+      this.SimpleAnimation.Animation = this.JumpAnimation;
+    }
+  }
+
+  function OnMovementEvent(event : MovementEvent)
+  {
+    if(!this.Owner.Parent.SweptController.Grounded)
+        return;
+    
+    if(Math.Length(event.MoveDir) > 0.1)
+    {
+      //Console.WriteLine("Run Anim");
+      //this.Owner.SimpleAnimation.Animation = this.RunAnimation;
+      if(this.SimpleAnimation.Animation != this.RunAnimation)
+      {
+        //Console.WriteLine("RunAnim");
+        this.SimpleAnimation.PlayMode = AnimationPlayMode.Loop;
+        this.SimpleAnimation.Animation = this.RunAnimation;
+      }
+      //this.Owner.Orientation.LookAtDirectionWithUp(event.MoveDir, Real3(0,1,0));
+    }
+    else
+    {
+      //Console.WriteLine("Idle Anim");
+      if(this.SimpleAnimation.Animation != this.IdleAnimation)
+      {
+        //Console.WriteLine("IdleAnim");
+        this.SimpleAnimation.PlayMode = AnimationPlayMode.Loop;
+        this.SimpleAnimation.Animation = this.IdleAnimation;
+      }
+    }
+  }
+}

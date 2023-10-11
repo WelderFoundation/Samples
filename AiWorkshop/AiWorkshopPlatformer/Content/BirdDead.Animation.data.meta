@@ -1,0 +1,17 @@
+DataContent = 
+{
+	RichAnimationBuilder = 
+	{
+		string Name = "BirdDead",
+		uint64 ResourceId = 5420f79c31ce2b97,
+		string PreviewArchetype = "",
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Bird",
+			"BirdDinoSprite",
+		],
+	},
+},

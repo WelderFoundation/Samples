@@ -1,0 +1,134 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+///
+/// Authors: Joshua Claeys
+/// Copyright 2018, DigiPen Institute of Technology
+///
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//------------------------------------------------------------------------------------- Water Vertex
+[Vertex]
+struct WaterVertex
+{
+  // Crest-to-crest distance between waves in world space.
+  [Input] var WaveLength = 1.0;
+  
+  // Frequency
+  var WaveFrequency : Real { get { return 2.0 / this.WaveLength; } }
+  
+  // Height from the water plane to the wave crest.
+  [Input] var WaveAmplitude = 1.0;
+  
+  // The distance the crest moves per second.
+  [Input] var WaveSpeed = 1.0;
+  var WavePhaseConstant : Real { get { return this.WaveSpeed * 2.0 / this.WaveLength; } }
+  
+  // The direction horizontal to the water plane in which the crest of the wave travels.
+  [Input] var WaveDirection = Real2(1, 0);
+  
+  [Input][Slider(0, 1, 0.001)] var WaveSteepness = 1.0;
+  
+  //[Input] var WaveExponent = 2.0;
+  
+  [AppBuiltInInput] var FrameTime : Real;
+  [AppBuiltInInput] var ViewToPerspective : Real4x4;
+
+  [FragmentInput][StageInput][Output] var ViewPosition : Real3;
+  [FragmentInput][StageInput] var ViewNormal : Real3;
+  
+  [AppBuiltInInput] var WorldToView : Real4x4;
+  [AppBuiltInInput] var ViewToWorld : Real4x4;
+
+  [Output] var PerspectivePosition : Real4;
+  [Output] var WaveHeight : Real;
+  [Output] var WaveMaxAmplitude : Real = 0.0;
+
+  //************************************************************************************************
+  function Main()
+  {
+    var worldPos = Math.MultiplyPoint(this.ViewToWorld, this.ViewPosition);
+    
+    //// Sample the wave
+    //var sampler = SimpleWave();
+    //sampler.WaveLength = this.WaveLength;
+    //sampler.WaveAmplitude = this.WaveAmplitude;
+    //sampler.WaveSpeed = this.WaveSpeed;
+    //sampler.WaveDirection = this.WaveDirection;
+    //sampler.WaveExponent = this.WaveExponent;
+    ////sampler.Circular = true;
+    //
+    //var waveHeight = sampler.SampleHeight(worldPos.XZ, this.FrameTime, Real2());
+    //var waveNormal = sampler.SampleNormal(worldPos.XZ, this.FrameTime, Real2());
+    
+    // Sample the wave
+    var sampler = GerstnerWave();
+    sampler.Wavelength = this.WaveLength;
+    sampler.Amplitude = this.WaveAmplitude;
+    sampler.Speed = this.WaveSpeed;
+    sampler.Direction = this.WaveDirection;
+    sampler.Steepness = this.WaveSteepness;
+    //sampler.Exponent = this.WaveExponent;
+    //sampler.Circular = true;
+    //sampler.Steepness = 140.0;
+    
+    var wavePos = sampler.Sample(worldPos.XZ, this.FrameTime, Real2());
+    this.WaveMaxAmplitude += sampler.Amplitude;
+    
+    sampler.Direction = Math.Normalize(Real2(-0.2, 0.85));
+    sampler.Wavelength = 0.3;
+    sampler.Amplitude = 0.3;
+    sampler.Speed = 0.1;
+    wavePos += sampler.Sample(worldPos.XZ, this.FrameTime);
+    this.WaveMaxAmplitude += sampler.Amplitude;
+    
+    sampler.Direction = Math.Normalize(Real2(-0.3, 0.25));
+    sampler.Wavelength *= 8.0;
+    sampler.Amplitude *= 7.0;
+    //sampler.Steepness = 190.0;
+    sampler.Speed = 3.0;
+    wavePos += sampler.Sample(worldPos.XZ, this.FrameTime);
+    this.WaveMaxAmplitude += sampler.Amplitude;
+    //
+    //sampler.Direction = Math.Normalize(Real2(0.2, -0.75));
+    //sampler.Wavelength = 0.3;
+    //sampler.Amplitude = 0.7;
+    //sampler.Speed = 0.2;
+    ////sampler.Steepness = 140.0;
+    //wavePos += sampler.Sample(worldPos.XZ, this.FrameTime);
+    //this.WaveMaxAmplitude += sampler.Amplitude;
+    
+    //sampler.Direction = Math.Normalize(Real2(0.2, -0.75));
+    //sampler.Wavelength = 0.28;
+    //sampler.Amplitude = 0.3;
+    //sampler.Speed = 0.14;
+    ////sampler.Steepness = 140.0;
+    //wavePos += sampler.Sample(worldPos.XZ, this.FrameTime);
+    //this.WaveMaxAmplitude += sampler.Amplitude;
+    //
+    //sampler.Direction = Math.Normalize(Real2(-0.8, 0.55));
+    //sampler.Wavelength = 0.23;
+    //sampler.Amplitude = 0.9;
+    //sampler.Speed = 0.24;
+    ////sampler.Steepness = 140.0;
+    //wavePos += sampler.Sample(worldPos.XZ, this.FrameTime);
+    //this.WaveMaxAmplitude += sampler.Amplitude;
+    //
+    //sampler.Direction = Math.Normalize(Real2(0.7, -0.35));
+    //sampler.Wavelength = 0.5;
+    //sampler.Amplitude = 1;
+    //sampler.Speed = 0.3;
+    ////sampler.Steepness = 140.0;
+    //wavePos += sampler.Sample(worldPos.XZ, this.FrameTime);
+    //this.WaveMaxAmplitude += sampler.Amplitude;
+    
+    wavePos /= 4.0;
+    this.WaveMaxAmplitude /= 2.0;
+    
+    wavePos.Y += worldPos.Y;
+    
+    var viewNormal = Math.MultiplyNormal(this.WorldToView, Real3(0,1,0));
+    //this.ViewPosition += viewNormal * waveHeight;
+    this.WaveHeight = wavePos.Y;
+    this.ViewPosition = Math.MultiplyPoint(this.WorldToView, wavePos);
+    this.PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(this.ViewPosition, 1.0));
+  }
+}

@@ -1,0 +1,11 @@
+[Version:1]
+Cog 
+{
+	var Name = "name"
+	CogFuzzyTriangle 
+	{
+		var A = 0
+		var B = 0
+		var C = 0
+	}
+}

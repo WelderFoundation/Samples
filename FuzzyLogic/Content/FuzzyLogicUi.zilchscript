@@ -1,0 +1,272 @@
+//---------------------------------------------------------------------------------- Ui Fuzzy System
+class UiFuzzySystem : ZilchComponent
+{
+  [Property] var FuzzySystemTarget = CogPath();
+  [Property] var Inputs = CogPath();
+  [Property] var Outputs = CogPath();
+  [Property] var Rules = CogPath();
+  
+  var CurrentSystem : FuzzySystem;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.UiPreUpdate, this.OnUiPreUpdate);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  //************************************************************************************************
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.CurrentSystem != null)
+      this.CurrentSystem.Execute();
+  }
+
+  //************************************************************************************************
+  function OnUiPreUpdate(event : UiTransformUpdateEvent)
+  {
+    var newSystem = this.FuzzySystemTarget.CogFuzzySystem.GetFuzzySystem();
+    if(newSystem != this.CurrentSystem)
+      this.Build(newSystem);
+  }
+  
+  //************************************************************************************************
+  function Build(system : FuzzySystem)
+  {
+    this.CurrentSystem = system;
+    
+    // Clear all inputs
+    foreach(var input in this.Inputs.Cog.Children)
+      input.Destroy();
+    foreach(var output in this.Outputs.Cog.Children)
+      output.Destroy();
+    foreach(var rule in this.Rules.Cog.Children)
+      rule.Destroy();
+    
+    // Inputs
+    foreach(var inputSet in system.InputArray.All)
+    {
+      var uiSet = this.Space.Create(Archetype.UiFuzzySet);
+      uiSet.AttachTo(this.Inputs.Cog);
+      
+      uiSet.UiFuzzySet.BuildFromSet(inputSet);
+    }
+    
+    // Outputs
+    foreach(var outputSet in system.OutputArray.All)
+    {
+      var uiSet = this.Space.Create(Archetype.UiFuzzySetOutput);
+      uiSet.AttachTo(this.Outputs.Cog);
+      
+      uiSet.UiFuzzySet.BuildFromSet(outputSet);
+    }
+    
+    // Rules
+    foreach(var rule in system.Rules)
+    {
+      if(rule.InvalidReason.IsNotEmpty)
+      {
+        // Create the rule text
+        var ruleCog = this.Space.Create(Archetype.UiFuzzyRuleError);
+        ruleCog.AttachTo(this.Rules.Cog);
+        
+        var beforeText = ruleCog.FindChildByName("BeforeErrorText");
+        beforeText.SpriteText.Text = rule.ErrorBeforeText;
+        beforeText.UiWidget.Size = Real2(500, 50);
+        beforeText.UiWidget.SizeToContents();
+        
+        var errorText = ruleCog.FindChildByName("ErrorToken");
+        errorText.SpriteText.Text = rule.ErrorText;
+        errorText.UiWidget.Size = Real2(500, 50);
+        errorText.UiWidget.SizeToContents();
+        
+        var afterText = ruleCog.FindChildByName("AfterErrorText");
+        afterText.SpriteText.Text = rule.ErrorAfterText;
+        afterText.UiWidget.Size = Real2(500, 50);
+        afterText.UiWidget.SizeToContents();
+        
+        // Create a new cog to show the error
+        var errorCog = this.Space.Create(Archetype.UiFuzzyRuleErrorDescription);
+        errorCog.AttachTo(this.Rules.Cog);
+        errorCog.FindChildByName("Text").SpriteText.Text = rule.InvalidReason;
+      }
+      else
+      {
+        var ruleCog = this.Space.Create(Archetype.UiFuzzyRule);
+        ruleCog.AttachTo(this.Rules.Cog);
+      
+        ruleCog.SpriteText.Text = rule.Text;
+      }
+    }
+  }
+}
+
+//------------------------------------------------------------------------------------- Ui Fuzzy Set
+class UiFuzzySet : ZilchComponent
+{
+  [Dependency] var UiWidget : UiWidget;
+  
+  [Property] var Name = CogPath();
+  [Property] var Numbers = CogPath();
+  [Property] var Min = CogPath();
+  [Property] var Max = CogPath();
+  [Property] var Slider = CogPath();
+  
+  var FuzzySet : FuzzySet;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.LeftClick, this.OnLeftClick);
+    Zero.Connect(this.Space, Events.FrameUpdate, this.OnFrameUpdate);
+  }
+
+  //************************************************************************************************
+  function OnFrameUpdate(event : UpdateEvent)
+  {
+    var fuzzyInput = this.FuzzySet as FuzzyInput;
+    if(fuzzyInput != null)
+    {
+      var percent = this.Slider.UiSlider.Percent;
+      fuzzyInput.InputValue = percent;//Math.Lerp(this.FuzzySet.Min, this.FuzzySet.Max, percent);
+    }
+  }
+
+  //************************************************************************************************
+  function OnLeftClick(event : ViewportMouseEvent)
+  {
+    var selection = Zero.Editor.Selection;
+    selection.SelectOnly(this);
+    selection.FinalSelectionChanged();
+  }
+  
+  //************************************************************************************************
+  function BuildFromSet(fuzzySet : FuzzySet)
+  {
+    this.FuzzySet = fuzzySet;
+    this.Name.SpriteText.Text = fuzzySet.Name;
+    this.Min.SpriteText.Text = "`fuzzySet.Min`";
+    this.Max.SpriteText.Text = "`fuzzySet.Max`";
+    
+    var colorIndex = 0;
+    foreach(var number in fuzzySet.Numbers.Values)
+    {
+      var numberCog = this.Space.Create(Archetype.UiFuzzyTriangle);
+      numberCog.AttachTo(this.Numbers.Cog);
+      
+      var triangle = numberCog.UiFuzzyNumberTriangle;
+      triangle.FuzzyNumber = number;
+      triangle.A = number.A;
+      triangle.B = number.B;
+      triangle.C = number.C;
+      
+      var paletteColor = this.LevelSettings.ColorPalette.GetColor(colorIndex).XYZ;
+      
+      var color = triangle.Color;
+      color.XYZ = paletteColor;
+      triangle.Color = color;
+      
+      triangle.SetNumberText(number.Name, Real4(paletteColor * 1.2, 1));
+      ++colorIndex;
+    }
+  }
+}
+
+//------------------------------------------------------------------------- Ui Fuzzy Number Triangle
+class UiFuzzyNumberTriangle : ZilchComponent
+{
+  [Dependency] var UiWidget : UiWidget;
+  [Dependency] var Model : Model;
+  
+  [Property][Slider(0,1,0.01)] var A : Real;
+  [Property][Slider(0,1,0.01)] var B : Real;
+  [Property][Slider(0,1,0.01)] var C : Real;
+  [Display][Slider(0,1,0.01)][ShaderInput("FuzzyTriangleCuttoff")] var Cutoff : Real
+  {
+    get
+    {
+      if(this.FuzzyNumber != null)
+        return this.FuzzyNumber.ClampValue;
+      return 0;
+    }
+  }
+  
+  [Property][ShaderInput("ColorValue")] var Color = Real4(1);
+  [ShaderInput("FuzzyTriangleCuttoff")] var GridSize : Real2;
+  
+  var TriangleMesh : Mesh = Mesh.CreateRuntime();
+  var TextCog : Cog;
+  var TextPrimaryCog : Cog;
+  var ControlPointA : Cog;
+  var ControlPointB : Cog;
+  var ControlPointC : Cog;
+  var FuzzyNumber : FuzzyNumber;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.UiPostUpdate, this.OnUiPostUpdate);
+    
+    this.TextCog = this.Owner.FindChildByName("NameGroup");
+    this.TextPrimaryCog = this.Owner.FindChildByName("Name");
+    this.ControlPointA = this.Owner.FindChildByName("ControlPointA");
+    this.ControlPointB = this.Owner.FindChildByName("ControlPointB");
+    this.ControlPointC = this.Owner.FindChildByName("ControlPointC");
+    
+    // Triangle Mesh
+    this.TriangleMesh.PrimitiveType = PrimitiveType.Triangles;
+    var vertices = this.TriangleMesh.Vertices;
+    vertices.AddAttribute(VertexSemantic.Position, VertexElementType.Real, 3);
+    this.Model.Mesh = this.TriangleMesh;
+  }
+
+  //************************************************************************************************
+  function OnUiPostUpdate(event : UiTransformUpdateEvent)
+  {
+    var size = this.UiWidget.Size;
+    this.GridSize = size;
+    
+    // Triangles
+    var a = Real3(size.X * this.A, 0, 0);
+    var b = Real3(size.X * this.B, size.Y, 0);
+    var c = Real3(size.X * this.C, 0, 0);
+    
+    var vertices = this.TriangleMesh.Vertices;
+    vertices.ClearData();
+    vertices.AddReal(a);
+    vertices.AddReal(b);
+    vertices.AddReal(c);
+    this.TriangleMesh.Upload();
+    
+    var center = (a + b + c) / 3.0;
+    var textWidget = this.TextCog.UiWidget;
+    textWidget.LocalCenter = center.XY;
+    
+    this.ControlPointA.UiWidget.LocalCenter = a.XY;
+    this.ControlPointB.UiWidget.LocalCenter = b.XY;
+    this.ControlPointC.UiWidget.LocalCenter = c.XY;
+  }
+  
+  //************************************************************************************************
+  function SetNumberText(text : String, primaryColor : Real4)
+  {
+    var size = Real2();
+    foreach(var textObject in this.TextCog.Children)
+    {
+      textObject.SpriteText.Text = text;
+      
+      var textWidget = textObject.UiWidget;
+      textWidget.Size = Real2(500);
+      textWidget.SizeToContents();
+      size = textWidget.Size;
+    }
+    
+    this.TextCog.UiWidget.Size = size;
+    
+    this.TextPrimaryCog.UiWidget.LocalColor = primaryColor;
+    this.ControlPointA.FindChildByName("Center").UiWidget.LocalColor = primaryColor;
+    this.ControlPointB.FindChildByName("Center").UiWidget.LocalColor = primaryColor;
+    this.ControlPointC.FindChildByName("Center").UiWidget.LocalColor = primaryColor;
+    //textWidget.LocalColor = Real4(Real3(0.1),1);
+  }
+}

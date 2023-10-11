@@ -1,0 +1,21 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "SweptBoxMan3D"
+		var ResourceId = 0x59accc6f45407be3
+		var LoaderType = "Cog"
+		var Version = 0
+		var ShowInEditor = true
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Archetype"
+			"SampleCharacterControllers[1.0]"
+			"Cog"
+		}
+	}
+}

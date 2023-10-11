@@ -1,0 +1,65 @@
+[RunInEditor]
+class TextRenderer : ZilchComponent
+{
+  [Dependency]
+  var RenderScheduler : RenderScheduler;
+  
+  
+  [Property]
+  var Active : Boolean = true;
+  [Property]
+  var FontTexture : Texture;
+  [Property]
+  var CharSize : Integer2 = Integer2(8, 8);
+  [Property]
+  var Color0 : Real4 = Colors.Black;
+  [Property]
+  var Color1 : Real4 = Colors.White;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.PostProcessRenderUpdate, this.OnPostProcessRenderUpdate);
+  }
+  
+  
+  function OnPostProcessRenderUpdate(event : RenderScheduleEvent)
+  {
+    if (!this.Active || !Math.AllNonZero(this.CharSize)) return;
+    
+    var sceneBuffer = event.SceneBuffer;
+    var final = event.FinalTarget;
+    
+    var textify = TextifyW();
+    textify.FinalSize = event.Event.ViewportSize;
+    textify.SceneBuffer = sceneBuffer.Texture;
+    textify.FontTexture = this.FontTexture;
+    textify.CharSize = this.CharSize;
+    textify.CharCount = (this.FontTexture.Width / this.CharSize.X) *
+      (this.FontTexture.Height / this.CharSize.Y);
+    textify.Color0 = this.Color0;
+    textify.Color1 = this.Color1;
+    event.Event.AddRenderTaskPostProcess(final, textify);
+  }
+}
+
+
+enum ColorBitPattern
+{
+  RGB,
+  RGGB,
+  RRGGBB,
+  RRRGGGBB,
+  RRRGGGBBB,
+  RRRRGGGGBBBB,
+  RRRRRGGGGGBBBBB,
+  RRRRRGGGGGGBBBBB,
+  W,
+  WW,
+  WWW,
+  WWWW,
+  WWWWW,
+  WWWWWW,
+  WWWWWWW,
+  WWWWWWWW,
+}

@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "AiWorkshopSpaceBlaster"
+	var LibraryId = 0x5b76bd9c372a2c5c
+	var SourceControlType = ""
+	var ReadOnly = false
+}

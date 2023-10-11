@@ -1,0 +1,102 @@
+class OldSplineAttachment : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Property] var Splines = CogPath();
+  //[Property] var AttachPoint = CogPath();
+  //[Property] var Joint = CogPath();
+  
+  var AttachedSpline : Spline;
+  var IgnoreSpline : Spline;
+  
+  var Prismatic : PrismaticJoint;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    var jointCreator = JointCreator();
+    jointCreator.AttachToWorld = true;
+    this.Prismatic = jointCreator.Create(this.Owner, this.Owner, Archetype.CartJoint).PrismaticJoint;
+    this.Prismatic.Active = false;
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Try and find a new spline if we aren't attached to one
+    if(this.AttachedSpline == null)
+      this.AttachedSpline = this.FindNewSpline();
+  
+    // Update the logic for the currently attached spline
+    if(this.AttachedSpline != null)
+    {
+      //this.Joint.PrismaticJoint.Active = true;
+      this.Prismatic.Active = true;
+      this.UpdateOnSpline(event);
+    }
+  }
+  
+  function UpdateOnSpline(event : UpdateEvent)
+  {
+    var worldPos = this.Transform.WorldTranslation;
+    var closestPoint = this.AttachedSpline.FindClosestPoint(worldPos);
+    
+    this.Prismatic.WorldPointB = worldPos;
+    this.Prismatic.WorldAxis = closestPoint.Tangent;
+    
+    var distance = Math.Distance(worldPos, closestPoint.Point);
+    
+    if(Zero.Keyboard.KeyIsPressed(Keys.Space))
+    {
+      this.Owner.RigidBody.Velocity += Real3(0, 10, 0);
+      var seq = Action.Sequence(this.Owner.Actions);
+      Action.Delay(seq, 0.3);
+      Action.Call(seq, this.ResetCanAttach);
+      
+      this.IgnoreSpline = this.AttachedSpline;
+      this.AttachedSpline = null;
+      this.Prismatic.Active = false;
+    }
+    else if(Math.DistanceSq(worldPos, closestPoint.Point) > 0.5)
+    {
+      this.IgnoreSpline = this.AttachedSpline;
+      this.AttachedSpline = null;
+      this.Prismatic.Active = false;
+    }
+    
+    DebugDraw.Add(DebugSphere(closestPoint.Point, 0.2){Color = Real4(1,0,0,1)});
+    DebugDraw.Add(DebugLine(closestPoint.Point, closestPoint.Point + closestPoint.Tangent, 0.2){Color = Real4(1,0,0,1)});
+  }
+  
+  function FindNewSpline() : Spline
+  {
+    var worldPos = this.Transform.WorldTranslation;
+    
+    var closestSpline : Spline = null;
+    var closestDistance = Real.PositiveMax;
+    
+    foreach(var child in this.Splines.Cog.Children)
+    {
+      var spline = child.ScriptHierarchySpline.Spline;
+      
+      if(spline == this.IgnoreSpline)
+        continue;
+        
+      var closestPoint = spline.FindClosestPoint(worldPos);
+      
+      var distance = Math.DistanceSq(worldPos, closestPoint.Point);
+      if(distance < closestDistance)
+      {
+        closestSpline = spline;
+        closestDistance = distance;
+      }
+    }
+    
+    if(closestDistance < 0.1)
+      return closestSpline;
+    return null;
+  }
+  
+  function ResetCanAttach()
+  {
+    this.IgnoreSpline = null;
+  }
+}

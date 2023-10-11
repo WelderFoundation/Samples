@@ -1,0 +1,40 @@
+[Vertex]
+struct ParticleCloudVertex
+{
+  [AppBuiltInInput] var FrameTime : Real;
+  [AppBuiltInInput] var ViewToPerspective : Real4x4;
+
+  [Input] var DisplacerPos = Real3(0, 0, -5);
+  [Input] var Radius = 3.3;
+  //[Input] var HeightTexture : Sampler2d;
+  
+  [Input][Output] var ViewPosition : Real3;
+  [AppBuiltInInput] var ViewToWorld : Real4x4;
+
+  [Output] var PerspectivePosition : Real4;
+
+  function Main()
+  {
+    //var worldPos = Math.MultiplyPoint(this.ViewToWorld, this.ViewPosition);
+    //var size = Real3(12, 0, 12);
+    //worldPos -= size * 0.5;
+    //var uv = (worldPos.XZ + size.XZ * 0.5) / size.XZ;
+    //uv = (worldPos / Real3(12, 1, 12)).XZ;
+    ////uv = Real2(0.5);
+    //var waveSample = this.HeightTexture.Sample(uv);
+    ////if(waveSample.X < 1.0)
+    ////  this.ViewPosition = Real3(500,0,0);
+    //this.ViewPosition += Real3(0,1,0) * waveSample.X;
+    
+    var toDisplacer = (this.DisplacerPos - this.ViewPosition);
+    var distance = Math.Length(toDisplacer);
+    toDisplacer = Math.Normalize(toDisplacer);
+    
+    var t = Math.Max(this.Radius, distance);
+    this.ViewPosition = this.DisplacerPos - toDisplacer * t;
+    //if(distance < 3)
+    //  this.ViewPosition += Real3(0,3,0);
+    
+    this.PerspectivePosition = Math.Multiply(this.ViewToPerspective, Real4(this.ViewPosition, 1.0));
+  }
+}

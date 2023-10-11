@@ -1,0 +1,12 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"56dc0b2bbc86c4cb:AlphaBlend"
+	}
+	SpriteSourceColorOverride 
+	{
+		var SpriteSource = "5827acd640fecdcb:ZeroMetallic"
+	}
+}

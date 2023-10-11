@@ -1,0 +1,27 @@
+[Version:1]
+ImageContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+		}
+	}
+	SpriteSourceBuilder 
+	{
+		var Name = "graph"
+		var ResourceId = 0x59a56dcfe236d1ad
+		var AtlasId = 0x5274cf95e4a661fd
+		var FrameSizeX = 600
+		var FrameSizeY = 446
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 375
+		var OriginY = 278.5
+		var PixelsPerUnit = 77
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

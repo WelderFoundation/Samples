@@ -1,0 +1,33 @@
+[Pixel]
+struct GridThingPixel
+{
+  [Input] var Texture : SampledImage2d;
+  [Input] var BaseColor = Real4(1);
+  [Input] var TopColor = Real4(1);
+  [Input] var TopHeight = 2.0;
+  [Input] var Exponent = 6.0;
+  
+  [AppBuiltInInput] var ViewToWorld : Real4x4;
+  [FragmentInput][StageInput] var ViewPosition : Real3;
+  [FragmentInput][StageInput] var Uv : Real2;
+  [Output] var Albedo : Real3;
+  
+  function Main()
+  {
+    this.Albedo = Real3();
+    var alpha = this.Texture.Sample(this.Uv).W;
+    
+    var worldPos = Math.MultiplyPoint(this.ViewToWorld, this.ViewPosition);
+    var heightT = worldPos.Y / this.TopHeight;
+    heightT = Math.Pow(heightT, this.Exponent);
+    //heightT = Math.Clamp(heightT, 0, 1);
+    //heightT = 1.0 - heightT;
+    //heightT = Math.Clamp(heightT, 0, 1);
+    var color = Math.Lerp(this.BaseColor, this.TopColor, heightT).XYZ;
+    var colorMagnitude = Math.Length(color);
+    colorMagnitude = Math.Clamp(colorMagnitude, 0, 20);
+    color = Math.Normalize(color) * colorMagnitude;
+    this.Albedo = Math.Lerp(Real3(), color, alpha);
+    //this.Albedo = Real3(heightT, 0, 0);
+  }
+}

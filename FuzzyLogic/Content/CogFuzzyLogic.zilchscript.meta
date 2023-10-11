@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "CogFuzzyLogic"
+		var ResourceId = 0x5a9397751435c1d0
+	}
+}

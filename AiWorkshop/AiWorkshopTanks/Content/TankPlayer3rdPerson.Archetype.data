@@ -1,0 +1,95 @@
+[Version:1]
+Cog [InheritId:"5a845255fd356775:TankPlayer"]
+{
+	Transform 
+	{
+		var Translation = Real3{5.83730841, 0, 11.360651}
+		var Rotation = Quaternion{0, 0.707106829, 0, 0.707106769}
+		var Scale = Real3{1, 1, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b7e80710c20283f][LocallyAdded]
+		{
+			var Name = "CameraMount"
+			Transform 
+			{
+				var Translation = Real3{-2.5, 1.5, 4.76837158e-07}
+				var Scale = Real3{1, 0.99999994, 1.00000012}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			DetachOnRootDead 
+			{
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5aa37eaee93c98f3]
+				{
+					var Name = "GameCamera"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{-0.0677731782, -0.703851402, -0.0677731782, 0.703851402}
+					}
+					Camera 
+					{
+						var NearPlane = 0.5
+						var FarPlane = 500
+						var PerspectiveMode = PerspectiveMode.Perspective
+						var FieldOfView = 45
+						var Size = 20
+					}
+					CameraViewport 
+					{
+						var RenderInEditor = false
+						var RenderInGame = true
+						var RenderOrder = 0
+						var CameraPath = CogPath
+						{
+							var Path = "."
+							var ErrorOnResolveToNull = false
+							var ErrorOnPathCantCompute = false
+							var ErrorOnDirectLinkFail = false
+							var UpdateCogOnPathChange = true
+							var UpdatePathOnCogChange = true
+							var UpdateCogOnInitialize = true
+							var ResolvedNullErrorOccurred = false
+							var Cog = 4294967293
+							var PathPreference0 = CogPathPreference.CogRelative
+							var PathPreference1 = CogPathPreference.SpaceRelative
+							var PathPreference2 = CogPathPreference.Absolute
+						}
+						var RendererPath = CogPath
+						{
+							var Path = ":/Renderer"
+							var ErrorOnResolveToNull = false
+							var ErrorOnPathCantCompute = false
+							var ErrorOnDirectLinkFail = false
+							var UpdateCogOnPathChange = true
+							var UpdatePathOnCogChange = true
+							var UpdateCogOnInitialize = true
+							var ResolvedNullErrorOccurred = false
+							var Cog = 4294967293
+							var PathPreference0 = CogPathPreference.CogRelative
+							var PathPreference1 = CogPathPreference.SpaceRelative
+							var PathPreference2 = CogPathPreference.Absolute
+						}
+						var ResolutionOrAspect = Integer2{1920, 1080}
+						var RenderToViewport = true
+						var ForwardViewportEvents = true
+						var ViewportScaling = ViewportScaling.Fill
+						var MarginColor = Real4{0, 0, 0, 1}
+						var NormalizedSize = Real2{1, 1}
+						var NormalizedOffset = Real2{0, 0}
+					}
+					CameraShake 
+					{
+						var CurrentIntensity = 0
+						var Dissipation = 0.899999976
+					}
+				}
+			}
+		}
+	}
+}

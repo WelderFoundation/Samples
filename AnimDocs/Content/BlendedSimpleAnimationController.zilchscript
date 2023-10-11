@@ -1,0 +1,85 @@
+class BlendedSimpleAnimationController : ZilchComponent
+{
+  [Dependency] var AnimationGraph : AnimationGraph;
+  [Dependency] var SimpleAnimation : SimpleAnimation;
+  
+  var Root : Cog;
+  
+  [Property]
+  var IdleAnimation : Animation = null;
+  
+  [Property]
+  var RunAnimation : Animation = null;
+  
+  [Property]
+  var JumpAnimation : Animation = null;
+  
+  [Property]
+  var ToJumpTransitionDur : Real = 0.25;
+  
+  var Running : Boolean = false;
+  var Idleing : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Root = this.Owner.Parent;
+    Zero.Connect(this.Owner, Events.JumpEvent, this.OnJumpEvent);
+    Zero.Connect(this.Owner, Events.MovementEvent, this.OnMovementEvent);
+  }
+  
+  function OnJumpEvent(event : JumpEvent)
+  {
+    var sweptController = this.Root.SweptController;
+    if(sweptController.Grounded && !sweptController.Jumping)
+    {
+      this.Running = false;
+      this.Idleing = false;
+      this.SimpleAnimation.CrossBlend(Animation.BoxManJumpStart, 0.3, AnimationPlayMode.PlayOnce);
+      Zero.Connect(this.Owner, Events.AnimationEnded, this.OnAnimationEnded);
+    }
+  }
+
+  function OnAnimationEnded(event : AnimationGraphEvent)
+  {
+    Console.WriteLine("Animation ended: `event.Animation.Name`"); 
+    if(this.Root.SweptController.Jumping)
+    {
+      this.SimpleAnimation.CrossBlend(Animation.BoxManJumpAir, 0.3, AnimationPlayMode.PlayOnce);
+      Zero.Disconnect(this.Owner, Events.AnimationEnded, this);
+      Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var sweptController = this.Root.SweptController;
+    if(!sweptController.Grounded)
+    {
+      if(this.Root.RigidBody.Velocity.Y < 0.0)
+      {
+        this.SimpleAnimation.CrossBlend(Animation.BoxManJumpEnd, 0.3, AnimationPlayMode.PlayOnce);
+        Zero.Disconnect(this.Space, Events.LogicUpdate, this);
+      }
+    }
+  }
+
+  function OnMovementEvent(event : MovementEvent)
+  {
+    if(!this.Root.SweptController.Grounded)
+        return;
+      
+      var moveMagnitude = Math.Length(event.MoveDir);
+    if(moveMagnitude > 0.0 && !this.Running)
+    {
+      this.Running = true;
+      this.Idleing = false;
+      this.SimpleAnimation.CrossBlend(this.RunAnimation, 0.5, AnimationPlayMode.Loop);
+    }
+    else if(moveMagnitude == 0.0 && !this.Idleing)
+    {
+      this.Running = false;
+      this.Idleing = true;
+      this.SimpleAnimation.CrossBlend(this.IdleAnimation, 0.1, AnimationPlayMode.Loop);
+    }
+  }
+}

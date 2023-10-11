@@ -1,0 +1,7 @@
+[Pixel]
+struct PbrScalar
+{
+  function Main()
+  {
+  }
+}

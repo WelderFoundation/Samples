@@ -1,0 +1,24 @@
+class Explosion : ZilchComponent
+{
+  [Property] var Lifetime : Real = 1.0;
+  [Property] var ForceLifetime : Real = 0.1;
+  function Initialize(init : CogInitializer)
+  {
+    this.Owner.SphericalParticleEmitter.Lifetime = this.Lifetime;
+    
+    // Create one sequence to de-activate the force after so long
+    var forceSeq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(forceSeq, this.ForceLifetime);
+    Action.Call(forceSeq, this.Deactivate);
+    
+    // Create another sequence to destroy ourself (it's fine if this is shorter or longer than the force lifetime)
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, this.Lifetime);
+    //Action.Call(seq, this.Owner.Destroy);
+  }
+  
+  function Deactivate()
+  {
+    this.Owner.PointForceEffect.Active = false;
+  }
+}

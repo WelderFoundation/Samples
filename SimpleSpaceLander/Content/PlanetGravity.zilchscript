@@ -1,0 +1,23 @@
+class PlanetGravity : ZilchComponent
+{
+  [Property] var Mass : Real = 1;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    var massOverride = this.Owner.MassOverride;
+    if(massOverride != null)
+    {
+      massOverride.Mass = this.Mass;
+    }
+    this.LevelSettings.GravityManager.Add(this);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

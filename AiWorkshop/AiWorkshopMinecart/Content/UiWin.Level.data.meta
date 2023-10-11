@@ -1,0 +1,18 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "UiWin"
+		var ResourceId = 0x5b009ba4359bb519
+		var LoaderType = "Level"
+		var Version = 0
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Level"
+		}
+	}
+}

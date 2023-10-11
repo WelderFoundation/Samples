@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "TDS",
+	uint64 LibraryId = 561be5b549232ad9,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

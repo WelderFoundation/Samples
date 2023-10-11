@@ -1,0 +1,11 @@
+Inputs
+	Fuel
+	CasualtyLevel
+
+Missile Outputs
+	TargetAngle
+	Thrust
+
+if casualtylevel is high, AvoidAngle is low
+if casualtylevel is low, turningangle is high
+if fuel is low, turningangle is high

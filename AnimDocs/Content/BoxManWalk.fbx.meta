@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManWalk_Stomach"
+				var ResourceId = 0x59af21f67b3a1611
+			}
+			Object
+			{
+				var Name = "BoxManWalk_Chest"
+				var ResourceId = 0x59af21f67b3a161d
+			}
+			Object
+			{
+				var Name = "BoxManWalk_Head"
+				var ResourceId = 0x59af21f67b3a1621
+			}
+			Object
+			{
+				var Name = "BoxManWalk_LArm"
+				var ResourceId = 0x59af21f67b3a1625
+			}
+			Object
+			{
+				var Name = "BoxManWalk_LArm01"
+				var ResourceId = 0x59af21f67b3a1629
+			}
+			Object
+			{
+				var Name = "BoxManWalk_RArm"
+				var ResourceId = 0x59af21f67b3a162d
+			}
+			Object
+			{
+				var Name = "BoxManWalk_RArm01"
+				var ResourceId = 0x59af21f67b3a1630
+			}
+			Object
+			{
+				var Name = "BoxManWalk_LLeg"
+				var ResourceId = 0x59af21f67b3a1635
+			}
+			Object
+			{
+				var Name = "BoxManWalk_LLeg01"
+				var ResourceId = 0x59af21f67b3a1638
+			}
+			Object
+			{
+				var Name = "BoxManWalk_RLeg"
+				var ResourceId = 0x59af21f67b3a163c
+			}
+			Object
+			{
+				var Name = "BoxManWalk_RLeg01"
+				var ResourceId = 0x59af21f67b3a1641
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManWalk"
+				var ResourceId = 0x59af21f67b3a1647
+			}
+		}
+	}
+}

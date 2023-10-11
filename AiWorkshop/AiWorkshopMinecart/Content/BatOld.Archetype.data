@@ -1,0 +1,348 @@
+[Version:1]
+Cog 
+{
+	var Name = "Bat"
+	Transform 
+	{
+		var Translation = Real3{6.63228559, 2.78887844, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0.719484389, 0, 0.694508672}
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Kinematic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
+	Obstacle 
+	{
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b2ac4c525c86369]
+		{
+			var Name = "Head"
+			Transform 
+			{
+				var Translation = Real3{0, 0.129919529, 0}
+				var Scale = Real3{0.772011042, 0.939270318, 0.939270258}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5b2ace4117adeac2:BatBody"
+				var Mesh = "4de0354322b376ae:Sphere"
+			}
+		}
+		Cog [Id:0x5b2ace9f2783d632]
+		{
+			var Name = "Wing"
+			Transform 
+			{
+				var Translation = Real3{0.0713392869, 0.194763035, 0.388848066}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0.0446021408, -0.0205464605, -0.247818962, 0.967561007}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b2ace752ee7a553]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.177550793, 0.105826139, 0.169885635}
+						var Scale = Real3{0.10352163, 0.0616853833, 0.719274342}
+						var Rotation = Quaternion{-0.124674864, -0.125518113, 0.01590183, 0.984097838}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace4117adeac2:BatBody"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace752ee7a59b]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.26877737, 0.171586752, 0.84447515}
+						var Scale = Real3{0.10352163, 0.0616853833, 0.719274342}
+						var Rotation = Quaternion{0.0243907496, -0.0126371263, 0.0289979782, 0.999202013}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace4117adeac2:BatBody"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace752ee7a5d9]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.0811800957, 0.13145113, 0.847880244}
+						var Scale = Real3{0.350007296, 0.011338653, 0.719274342}
+						var Rotation = Quaternion{0.0215884168, -0.0169866569, -0.158884004, 0.986915052}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace371be4dad0:BatWing"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace752ee7a61e]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.0720963478, 0.11698842, 1.22313905}
+						var Scale = Real3{0.337363362, 0.011338654, 0.184840053}
+						var Rotation = Quaternion{0.0680465922, 0.278483063, -0.145189032, 0.946961999}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace371be4dad0:BatWing"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace752ee7a65f]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.00939226151, 0.0677559376, 0.244906902}
+						var Scale = Real3{0.355221987, 0.011338654, 0.719274342}
+						var Rotation = Quaternion{-0.117377594, -0.141783312, -0.163433731, 0.969231367}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace371be4dad0:BatWing"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace752ee7a69d]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.223694324, 0.149774551, 1.27884984}
+						var Scale = Real3{0.10352163, 0.0616853833, 0.250883609}
+						var Rotation = Quaternion{0.031957902, 0.2872926, 0.0203588735, 0.95709312}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace4117adeac2:BatBody"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+			}
+		}
+		Cog [Id:0x5b2ace6411f349cc]
+		{
+			var Name = "Wing"
+			Transform 
+			{
+				var Translation = Real3{0.0713392869, 0.194763035, -0.388848007}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{-0.125486374, 0.0276735686, -0.333040953, 0.934115231}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b2ace50136f7743]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.177549839, 0.132414103, -0.150089696}
+						var Scale = Real3{0.103521638, 0.0616853759, 0.719274282}
+						var Rotation = Quaternion{0.213490546, 0.121026054, -0.0377819501, 0.968683183}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace4117adeac2:BatBody"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace50136f7796]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.268776417, 0.308611631, -0.804570436}
+						var Scale = Real3{0.103521623, 0.0616853759, 0.719274282}
+						var Rotation = Quaternion{0.0587822311, 0.0160933603, -0.0272240639, 0.997769773}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace4117adeac2:BatBody"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace50136f77dd]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.081179142, 0.269589186, -0.81455797}
+						var Scale = Real3{0.350007296, 0.0113386512, 0.719274223}
+						var Rotation = Quaternion{0.0597646497, 0.0298832729, -0.156706557, 0.985382318}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace371be4dad0:BatWing"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace50136f7822]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.0720953941, 0.317260742, -1.18705857}
+						var Scale = Real3{0.337363213, 0.0113386512, 0.184840053}
+						var Rotation = Quaternion{0.0103544174, -0.26564163, -0.168171033, 0.949234366}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace371be4dad0:BatWing"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace50136f7866]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.00939130783, 0.107248068, -0.230365291}
+						var Scale = Real3{0.355221897, 0.0113386512, 0.719274163}
+						var Rotation = Quaternion{0.197327554, 0.15522176, -0.151380822, 0.956060648}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace371be4dad0:BatWing"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+				Cog [Id:0x5b2ace50136f78a9]
+				{
+					var Name = "WingPart"
+					Transform 
+					{
+						var Translation = Real3{-0.223693371, 0.358792067, -1.23659337}
+						var Scale = Real3{0.10352163, 0.0616853833, 0.250883609}
+						var Rotation = Quaternion{0.0278497897, -0.279955178, -0.0684782416, 0.957162559}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "5b2ace4117adeac2:BatBody"
+						var Mesh = "4de0354322b345ae:Cube"
+					}
+				}
+			}
+		}
+	}
+}

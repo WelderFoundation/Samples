@@ -1,0 +1,35 @@
+[Version:1]
+GeometryContent 
+{
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x592c47972fe23bb9
+	}
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 0.00999999978
+		var ChangeBasis = true
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.NegativeZ
+		var ZBasisTo = BasisType.PositiveY
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "SM_FlatRock_02"
+				var ResourceId = 0x5aaa4c1408b0bd01
+			}
+		}
+	}
+}

@@ -1,0 +1,52 @@
+class WanderRhinoAi : ZilchComponent
+{
+  // All logic is done through the rhino
+  [Dependency] var Rhino : Rhino;
+  
+  [Property]
+  var WanderRange : Real = 2;
+  
+  var StartingPosition : Real3 = Real3(0);
+  
+  var WanderingRight : Boolean = true;
+  
+  // How many seconds before we switch directions when wandering
+  [Property] var TimeBetweenSwitch : Real = 2.0;
+  
+  // How long it has been since we've switched directions
+  var TimeSinceSwitch : Real = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want our logic to run every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    // Store our starting position
+    this.StartingPosition = this.Owner.Transform.Translation;
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    
+    // Don't do anything if we're dead
+    if(this.Rhino.Dead)
+      return;
+        
+    // Update our wander timer
+    this.TimeSinceSwitch += event.Dt;
+    
+    // Swap directions
+    if(this.TimeSinceSwitch >= this.TimeBetweenSwitch)
+    {
+      this.TimeSinceSwitch = 0;
+      this.WanderingRight = !this.WanderingRight;
+    }
+    
+    // Walk in the wander direction
+    if(this.WanderingRight)
+      this.Rhino.WalkRight();
+    else
+      this.Rhino.WalkLeft();
+  }
+}

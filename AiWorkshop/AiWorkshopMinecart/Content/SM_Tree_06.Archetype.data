@@ -1,0 +1,88 @@
+[Version:1]
+Cog 
+{
+	var Name = "SM_Tree_06"
+	Transform 
+	{
+		var Translation = Real3{24.2415943, 8.24648857, -5.72094345}
+		var Scale = Real3{1.03208923, 1.03208923, 1.03208923}
+		var Rotation = Quaternion{0, -0.171481043, 0, 0.985187411}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x592c41157d38f5de]
+		{
+			var Name = "SMTree06GeneratedMeshNode0"
+			Transform 
+			{
+				var Translation = Real3{0, 0.778378904, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5924959c7091e634:TreeTrunk"
+				var Mesh = "5aaa4c11093da9f4:SM_Tree_06_SM_Tree_06GeneratedMeshNode0"
+			}
+			MeshCollider 
+			{
+				var Ghost = false
+				var SendsEvents = true
+				var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+				var CollisionGroup = "4e740859314e5515:DefaultGroup"
+				var Offset = Real3{0, 0, 0}
+				var PhysicsMesh = "5b11179f69659582:SM_Tree_06_SM_Tree_06GeneratedMeshNode0"
+				var DrawEdges = true
+				var DrawFaces = false
+				var DrawFaceNormals = false
+			}
+			EjectRider 
+			{
+			}
+		}
+		Cog [Id:0x592c41157d38fb21]
+		{
+			var Name = "SMTree06GeneratedMeshNode1"
+			Transform 
+			{
+				var Translation = Real3{0, 0.778378904, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5924958a74e00d54:TreeLeaves"
+				var Mesh = "5aaa4c11093daa02:SM_Tree_06_SM_Tree_06GeneratedMeshNode1"
+			}
+			MeshCollider 
+			{
+				var Ghost = false
+				var SendsEvents = true
+				var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+				var CollisionGroup = "4e740859314e5515:DefaultGroup"
+				var Offset = Real3{0, 0, 0}
+				var PhysicsMesh = "5b11179f6965958e:SM_Tree_06_SM_Tree_06GeneratedMeshNode1"
+				var DrawEdges = true
+				var DrawFaces = false
+				var DrawFaceNormals = false
+			}
+			EjectRider 
+			{
+			}
+		}
+	}
+}

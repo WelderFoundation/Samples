@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "HudHealthUpdater",
+		uint64 ResourceId = 5539f005e227fb0f,
+	},
+},

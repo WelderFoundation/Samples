@@ -1,0 +1,32 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+	}
+	PolygonNormalsGeo 
+	{
+	}
+	WaterVertex 
+	{
+		var WaveLength = 0.111527942
+		var WaveAmplitude = 0.422770113
+		var WaveSpeed = 0.223881185
+		var WaveDirection = Real2{1, 0}
+		var WaveSteepness = 1
+	}
+	WaterPixel 
+	{
+		var WaterPeak = Real4{0.00382500887, 0.074153997, 0.254999995, 1}
+		var WaterBase = Real4{0.0988000035, 0.502132058, 0.75999999, 1}
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 1
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 0.10269127
+	}
+}

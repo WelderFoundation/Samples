@@ -1,0 +1,86 @@
+[Version:1]
+Cog 
+{
+	var Name = "SplineJoint"
+	ObjectLink 
+	{
+		var ObjectAPath = CogPath
+		{
+			var Path = ":/WorldAnchor"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var ObjectBPath = CogPath
+		{
+			var Path = ".."
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var LocalPointA = Real3{0, 0, 0}
+		var LocalPointB = Real3{0, 0, 0}
+	}
+	CustomJoint 
+	{
+		var Active = true
+		var SendsEvents = true
+		var AutoSnaps = false
+		var CollideConnected = true
+		var MaxImpulse = 0
+	}
+	SplineJoint 
+	{
+		var Target = CogPath
+		{
+			var Path = ".."
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var Spline = CogPath
+		{
+			var Path = ":/Chunk/Tracks/Track0/Spline"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var MotorActive = false
+		var MotorDirection = 1
+		var MotorSpeed = 5
+		var LocalPosition = Real3{0, 0.0450000018, 0}
+		var DistanceToDetach = 0.600000024
+	}
+}

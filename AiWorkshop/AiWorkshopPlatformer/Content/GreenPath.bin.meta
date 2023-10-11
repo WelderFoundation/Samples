@@ -1,0 +1,21 @@
+BinaryContent = 
+{
+	BinaryBuilder = 
+	{
+		string Name = "GreenPath",
+		uint64 ResourceId = 5433b30040f7fd1b,
+		string LoaderType = "TilePaletteSource",
+		uint Version = 0,
+		string FilterTag = "",
+		string ResourceOwner = "",
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Path",
+			"Terrain",
+			"DinoPlatform",
+		],
+	},
+},

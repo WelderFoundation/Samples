@@ -1,0 +1,75 @@
+- Detecting jumps
+	- Gaps in the track
+	- Jump regions
+- Jumping
+	- Detecting gaps in the track
+		- Jump region
+	- Detecting enemies
+		- Maybe jump on enemies?
+
+- Random Generation
+	- Adapt to how well the Ai is doing0
+	
+	
+	
+	
+	
+class TrackSegmentData
+{
+	// Length for this chunk
+	var Length = 30.0;
+	
+	// 
+	var Heights = Array[Real]();
+}
+	
+function GenerateTrack(data : TrackSegmentData) : Real
+{
+	for(var i = 0; i < 10; ++i)
+		data.Heights.Add(Math.Sin(i / 10) + 2);
+	data.Length = 40;
+}
+
+
+Day 1
+	Write cart logic on custom levels
+		Jumping over obstacles
+			- Gaps
+				- Jump on timer
+			- Stationary obstacles / enemies
+				- Jump on timer
+			- Randomly places stationary obstacles / enemies
+				- Add detection for obstacles
+					- Ghost collider in front
+				- Add detection for gaps
+			- Moving enemies
+			- Flying enemies
+				
+Day 2
+	Braking
+		- Slow down to avoid traps
+			- Compressor
+			- Swinging mallet
+			- Maybe these are on a wire trip?
+	Jumping on enemies
+	Powerups
+		- Speed powerup
+			- Don't brake anymore for traps because we're moving fast enough to beat them
+			- Don't jump as high
+		- 
+		
+Day 3
+	Jump into random generated level (not student generated)
+		- Leave gaps in previous two days that don't work here
+			- Variable jump heights
+			- Take into account our speed
+Day 4
+	Playing with random generation
+		- Decorations
+	
+Day 5
+	
+
+	
+	
+	

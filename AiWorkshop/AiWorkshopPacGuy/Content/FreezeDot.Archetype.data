@@ -1,0 +1,55 @@
+[Version:1]
+Cog 
+{
+	var Name = "FreezeDot"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{0.300000012, 0.300000012, 0.300000012}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	SphereCollider 
+	{
+		var Ghost = true
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var Radius = 1
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "555b7e1173b1f5df:Collectible"
+		var Mesh = "4de0354322b376ae:Sphere"
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.Mode2D
+	}
+	AnimationGraph 
+	{
+		var Active = true
+		var PlayMode = AnimationPlayMode.PlayOnce
+		var TimeScale = 1
+		var Animation = "4f8ebbde619389d0:DefaultAnimation"
+		var DebugPreviewId = 3
+	}
+	SimpleAnimation 
+	{
+		var Animation = "5539dc00d4f1dca3:FreezeDotGlow"
+		var PlayMode = AnimationPlayMode.Loop
+	}
+}

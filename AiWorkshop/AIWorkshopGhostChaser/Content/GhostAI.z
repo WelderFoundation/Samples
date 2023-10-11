@@ -1,0 +1,21 @@
+class GhostAI : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Property] var Speed : Real = 1;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var player = this.Space.FindObjectByName("Player");
+    var playerPosition = player.Transform.Translation;
+    var myPosition = this.Owner.Transform.Translation;
+    
+    //------------------------------------------------------- Student Code Below
+    var toPlayer = Math.Normalize(playerPosition - myPosition);
+    this.Transform.WorldTranslation += toPlayer * this.Speed * event.Dt;
+  }
+}

@@ -1,0 +1,62 @@
+class HUDModeButtonSwitcher : ZilchComponent
+{
+    [Property]
+    var Mode1 : CogPath = null;
+    
+    [Property]
+    var Mode2 : CogPath = null;
+    
+    [Property]
+    var Mode3 : CogPath = null;
+    
+    [Serialized]
+    var CurrentMode : Real = 1;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        
+        
+        this.Mode1.Cog = this.Space.FindObjectByName("Mode1Button");
+        this.Mode2.Cog = this.Space.FindObjectByName("Mode2Button");
+        this.Mode3.Cog = this.Space.FindObjectByName("Mode3Button");
+        
+        
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (this.CurrentMode == 1)
+        {
+            this.Mode1.Cog.HUDModeButtonLogic.Active = 1;
+            this.Mode2.Cog.HUDModeButtonLogic.Active = 0;
+            this.Mode3.Cog.HUDModeButtonLogic.Active = 0;
+        }
+        
+        if (this.CurrentMode == 2)
+        {
+            this.Mode1.Cog.HUDModeButtonLogic.Active = 0;
+            this.Mode2.Cog.HUDModeButtonLogic.Active = 1;
+            this.Mode3.Cog.HUDModeButtonLogic.Active = 0;
+        }
+        
+        if (this.CurrentMode == 3)
+        {
+            this.Mode1.Cog.HUDModeButtonLogic.Active = 0;
+            this.Mode2.Cog.HUDModeButtonLogic.Active = 0;
+            this.Mode3.Cog.HUDModeButtonLogic.Active = 1;
+        }
+        
+        if (Zero.Keyboard.KeyIsPressed(Keys.Up) && this.CurrentMode <3)
+        {
+            this.CurrentMode += 1;
+            Console.WriteLine(this.CurrentMode);
+        }
+        
+        if (Zero.Keyboard.KeyIsPressed(Keys.Down) && this.CurrentMode >1)
+        {
+            this.CurrentMode -= 1;
+            Console.WriteLine(this.CurrentMode);
+        }
+    }
+}

@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "AdditiveSpriteCopy1"
+		var ResourceId = 0x5aad8006284e91e4
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

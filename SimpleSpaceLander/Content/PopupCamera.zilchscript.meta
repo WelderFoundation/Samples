@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "PopupCamera"
+		var ResourceId = 0x587e77df75c46c26
+	}
+}

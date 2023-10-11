@@ -1,0 +1,34 @@
+[Version:1]
+ImageContent 
+{
+	TextureBuilder 
+	{
+		var Name = "Albedo_SpaceMarine_armor"
+		var ResourceId = 0x59afdddb0d99e382
+		var Type = TextureType.Texture2D
+		var Compression = TextureCompression.BC1
+		var AddressingX = TextureAddressing.Repeat
+		var AddressingY = TextureAddressing.Repeat
+		var Filtering = TextureFiltering.Trilinear
+		var Anisotropy = TextureAnisotropy.x16
+		var MipMapping = TextureMipMapping.PreGenerated
+		var HalfScaleCount = 0
+		var PremultipliedAlpha = false
+		var GammaCorrection = true
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"SpaceMarine"
+			"Armor"
+		}
+	}
+	TextureInfo 
+	{
+		var FileType = "png"
+		var LoadFormat = "RGBA8"
+		var Dimensions = "1024 x 1024"
+		var Size = "0.666 MB"
+	}
+}

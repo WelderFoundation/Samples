@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "BirdAi",
+		uint64 ResourceId = 553d0e92bac40385,
+	},
+},

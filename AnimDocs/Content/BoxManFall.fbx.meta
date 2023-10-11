@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManFall"
+				var ResourceId = 0x59af21f77afbe8e8
+			}
+		}
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManFall_Stomach"
+				var ResourceId = 0x59af21f77afbe8b2
+			}
+			Object
+			{
+				var Name = "BoxManFall_Chest"
+				var ResourceId = 0x59af21f77afbe8bd
+			}
+			Object
+			{
+				var Name = "BoxManFall_Head"
+				var ResourceId = 0x59af21f77afbe8c1
+			}
+			Object
+			{
+				var Name = "BoxManFall_LArm"
+				var ResourceId = 0x59af21f77afbe8c5
+			}
+			Object
+			{
+				var Name = "BoxManFall_LArm01"
+				var ResourceId = 0x59af21f77afbe8c9
+			}
+			Object
+			{
+				var Name = "BoxManFall_RArm"
+				var ResourceId = 0x59af21f77afbe8cd
+			}
+			Object
+			{
+				var Name = "BoxManFall_RArm01"
+				var ResourceId = 0x59af21f77afbe8d1
+			}
+			Object
+			{
+				var Name = "BoxManFall_LLeg"
+				var ResourceId = 0x59af21f77afbe8d6
+			}
+			Object
+			{
+				var Name = "BoxManFall_LLeg01"
+				var ResourceId = 0x59af21f77afbe8d9
+			}
+			Object
+			{
+				var Name = "BoxManFall_RLeg"
+				var ResourceId = 0x59af21f77afbe8dc
+			}
+			Object
+			{
+				var Name = "BoxManFall_RLeg01"
+				var ResourceId = 0x59af21f77afbe8e2
+			}
+		}
+	}
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+}

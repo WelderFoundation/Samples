@@ -1,0 +1,18 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"56dc0b2bbc86c4cb:AlphaBlend"
+	}
+	RopeGeo 
+	{
+		var Width = 0.100000001
+		var UvScalar = 3.07100368
+		var UvScrollSpeed = 5
+	}
+	ColorValue 
+	{
+		var Color = Real4{1, 1, 1, 1}
+	}
+}

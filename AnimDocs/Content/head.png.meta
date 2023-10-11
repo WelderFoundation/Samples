@@ -1,0 +1,34 @@
+[Version:1]
+ImageContent 
+{
+	TextureBuilder 
+	{
+		var Name = "head"
+		var ResourceId = 0x59ae320e1215d1fb
+		var Type = TextureType.Texture2D
+		var Compression = TextureCompression.BC1
+		var AddressingX = TextureAddressing.Repeat
+		var AddressingY = TextureAddressing.Repeat
+		var Filtering = TextureFiltering.Trilinear
+		var Anisotropy = TextureAnisotropy.x16
+		var MipMapping = TextureMipMapping.PreGenerated
+		var HalfScaleCount = 0
+		var PremultipliedAlpha = false
+		var GammaCorrection = true
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Head"
+			"Space_Marine"
+		}
+	}
+	TextureInfo 
+	{
+		var FileType = "png"
+		var LoadFormat = "RGBA8"
+		var Dimensions = "1024 x 1024"
+		var Size = "0.666 MB"
+	}
+}

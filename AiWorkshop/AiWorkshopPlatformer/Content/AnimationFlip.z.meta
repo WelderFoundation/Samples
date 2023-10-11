@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "AnimationFlip",
+		uint64 ResourceId = 553c362661bf2d54,
+	},
+},

@@ -1,0 +1,27 @@
+[RunInEditor]
+class ObjectLinkSetter : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var ObjectLink : ObjectLink;
+  
+  function Initialize(init : CogInitializer)
+  {
+    if(this.Space.IsEditorMode)
+    {
+      Zero.Connect(this.Owner, Events.TransformUpdated, this.OnTransformUpdated);
+      this.Update();
+    }
+  }
+
+  function OnTransformUpdated(event : ObjectEvent)
+  {
+    this.Update();
+  }
+  
+  function Update()
+  {
+    var worldPos = this.Transform.WorldTranslation;
+    this.ObjectLink.WorldPointA = worldPos;
+    this.ObjectLink.WorldPointB = worldPos;
+  }
+}

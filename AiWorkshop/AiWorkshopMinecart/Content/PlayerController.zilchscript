@@ -1,0 +1,20 @@
+class PlayerController : ZilchComponent
+{
+  [Dependency] var Cart : Cart;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //this.Cart.Brake(1.0);
+    
+    if(Zero.Keyboard.KeyIsPressed(Keys.Space))
+      this.Cart.JumpCart(1.0);
+      
+    if(Zero.Keyboard.KeyIsPressed(Keys.E))
+      this.Cart.EjectRider(1.0);
+  }
+}

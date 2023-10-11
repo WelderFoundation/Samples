@@ -1,0 +1,63 @@
+class AnimationFlip : ZilchComponent
+{
+  [Property] var Active : Boolean = true;
+  
+  var OriginalPositions : HashMap[Cog, Real3] = new HashMap[Cog, Real3]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    this.StorePosition(this.Owner);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Active)
+    {
+      this.Owner.Transform.SetEulerAnglesXYZ(0, Math.ToRadians(180), 0);
+      this.FlipHierarchy(this.Owner, true);
+    }
+    else
+    {
+      this.Owner.Transform.SetEulerAnglesXYZ(0, 0, 0);
+      this.FlipHierarchy(this.Owner, false);
+    }
+  }
+  
+  function StorePosition(cog : Cog)
+  {
+    if (cog.Transform == null)
+      return;
+    
+    this.OriginalPositions[cog] = cog.Transform.Translation;
+    
+    foreach (var child in cog.Children)
+    {
+      this.StorePosition(child);
+    }
+  }
+  
+  function FlipHierarchy(cog : Cog, flip : Boolean)
+  {
+    if (cog.Transform == null)
+      return;
+    
+    // Don't flip the root
+    if(cog.Parent != null)
+    {
+      var pos = cog.Transform.Translation;
+      pos.Z = this.OriginalPositions.Get(cog).Z;
+      if(flip)
+      {
+        pos.Z *= -1.0;
+      }
+      cog.Transform.Translation = pos;
+    }
+    
+    foreach (var child in cog.Children)
+    {
+      this.FlipHierarchy(child, flip);
+    }
+  }
+}

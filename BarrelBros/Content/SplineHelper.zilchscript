@@ -1,0 +1,132 @@
+class SplineHelper : ZilchComponent
+{
+  [Dependency] var HierarchySpline : HierarchySpline;
+  
+  var QuickModeInternal : Boolean = true;
+  var ThicknessInternal : Real = 0.25;
+  var SpacingInternal : Real = 0.25;
+  
+  [Property] var QuickMode : Boolean
+  {
+    get { return this.QuickModeInternal; }
+    set
+    {
+      this.QuickModeInternal = value;
+      if(this.Owner != null)
+        this.Owner.DispatchEvent(Events.SplineModified, SplineEvent());
+    }
+  }
+  
+  [Property] var Thickness : Real
+  {
+    get { return this.ThicknessInternal; }
+    set
+    {
+      this.ThicknessInternal = value;
+      if(this.Owner != null)
+        this.Owner.DispatchEvent(Events.SplineModified, SplineEvent());
+    }
+  }
+  [Property] var Spacing : Real
+  {
+    get { return this.SpacingInternal; }
+    set
+    {
+      this.SpacingInternal = value;
+      if(this.Owner != null)
+        this.Owner.DispatchEvent(Events.SplineModified, SplineEvent());
+    }
+  }
+  
+  function ComputeSplineQuadsSampleDistance(callback : delegate (p0 : Real3, p1 : Real3, p2 : Real3, p3 : Real3, d0 : Real, d1 : Real))
+  {
+    var spline = this.HierarchySpline.Spline;
+    
+    var totalDistance = spline.TotalDistance;
+    var iterations = Math.Ceil(totalDistance / this.Spacing);
+    
+    
+    var worldToLocal = Math.Invert(this.Owner.Transform.WorldMatrix);
+    var prev = 0.0;
+    var prevDist = 0.0;
+    var prevPoint = spline.SampleDistance(prevDist);
+    var prevLocalPoint = this.Owner.Transform.TransformPointInverse(prevPoint.WorldPoint);
+    var prevLocalTangent = this.Owner.Transform.TransformNormalInverse(prevPoint.WorldTangent);
+    
+    for(var i = 1; i <= iterations; ++i)
+    {
+      var distance = i * this.Spacing;
+      var currDistance = Math.Min(distance, totalDistance);
+      
+      var currPoint = spline.SampleDistance(currDistance);
+      
+      var p1 = Math.MultiplyPoint(worldToLocal, currPoint.WorldPoint);
+      var p0 = prevLocalPoint;
+      
+      var tangent0 = prevLocalTangent;
+      var tangent1 = Math.MultiplyNormal(worldToLocal, currPoint.WorldTangent);
+      var currLocalTangent = tangent1;
+      var currLocalPoint = p1;
+      
+      var normal0 = Math.Normalize(Real3(tangent0.Y, -tangent0.X, 0)) * this.Thickness;
+      var normal1 = Math.Normalize(Real3(tangent1.Y, -tangent1.X, 0)) * this.Thickness;
+      
+      var tl = p0 - normal0;
+      var bl = p0 + normal0;
+      var br = p1 + normal1;
+      var tr = p1 - normal1;
+      callback(tl, bl, br, tr, prev, currDistance);
+      
+      prev = currDistance;
+      prevDist = currDistance;
+      prevLocalPoint = currLocalPoint;
+      prevLocalTangent = currLocalTangent;
+      
+    }
+  }
+  
+  // More Efficient
+  function ComputeSplineQuadsBaked(callback : delegate (p0 : Real3, p1 : Real3, p2 : Real3, p3 : Real3, d0 : Real, d1 : Real))
+  {
+    var worldToLocal = Math.Invert(this.Owner.Transform.WorldMatrix);
+    var spline = this.HierarchySpline.Spline;
+    if(spline == null || spline.BakedPoints.Count <= 1)
+      return;
+      
+    var prevPoint = spline.BakedPoints[0];
+    var prevLocalPoint = Math.MultiplyPoint(worldToLocal, prevPoint.WorldPosition);
+    var prevLocalTangent = Math.MultiplyPoint(worldToLocal, spline.BakedPoints[1].WorldPosition) - prevLocalPoint;
+    
+    var prevDistance = 0.0;
+    for(var i = 1; i < spline.BakedPoints.Count; ++i)
+    {
+      var currentPoint = spline.BakedPoints[i];
+      var currentLocalPoint = Math.MultiplyPoint(worldToLocal, currentPoint.WorldPosition);
+      var currentLocalTangent = currentLocalPoint - prevLocalPoint;
+      var currDistance = Math.Distance(currentLocalPoint, prevLocalPoint) + prevDistance;
+      
+      var p0 = prevLocalPoint;
+      var p1 = currentLocalPoint;
+      var normal0 = Math.Normalize(Real3(prevLocalTangent.Y, -prevLocalTangent.X, 0)) * this.Thickness;
+      var normal1 = Math.Normalize(Real3(currentLocalTangent.Y, -currentLocalTangent.X, 0)) * this.Thickness;
+      
+      var tl = p0 - normal0;
+      var bl = p0 + normal0;
+      var br = p1 + normal1;
+      var tr = p1 - normal1;
+      callback(tl, bl, br, tr, prevDistance, currDistance);
+      
+      prevLocalPoint = currentLocalPoint;
+      prevLocalTangent = currentLocalTangent;
+      prevDistance = currDistance;
+    }
+  }
+  
+  function ComputeSplineQuads(callback : delegate (p0 : Real3, p1 : Real3, p2 : Real3, p3 : Real3, d0 : Real, d1 : Real))
+  {
+    if(this.QuickMode)
+      this.ComputeSplineQuadsBaked(callback);
+    else
+      this.ComputeSplineQuadsSampleDistance(callback);
+  }
+}

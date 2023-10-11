@@ -1,0 +1,69 @@
+class FocusTargetEvent : ZilchEvent
+{
+  var Cog : Cog;
+  
+  constructor(cog : Cog) : base()
+  {
+    this.Cog = cog;
+  }
+}
+
+class CameraFocusTarget : ZilchComponent
+{
+  sends AddCameraTarget : FocusTargetEvent;
+  sends RemoveCameraTarget : FocusTargetEvent;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+    Zero.Connect(this.Owner, Events.CogDestroy, this.OnCogDestroy);
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    this.Space.DispatchEvent(Events.AddCameraTarget, FocusTargetEvent(this.Owner));
+  }
+  
+  function OnCogDestroy(event : ObjectEvent)
+  {
+    this.Space.DispatchEvent(Events.RemoveCameraTarget, FocusTargetEvent(this.Owner));
+  }
+}
+
+class SimpleFocusCamera : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  
+  var TargetCogs : Array[Cog] = Array[Cog]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Space, Events.AddCameraTarget, this.OnAddCameraTarget);
+    Zero.Connect(this.Space, Events.RemoveCameraTarget, this.OnRemoveCameraTarget);
+  }
+  
+  function OnAddCameraTarget(event : FocusTargetEvent)
+  {
+    this.TargetCogs.Add(event.Cog);
+  }
+  
+  function OnRemoveCameraTarget(event : FocusTargetEvent)
+  {
+    this.TargetCogs.RemoveFirst(event.Cog);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.TargetCogs.Count == 0)
+      return;
+      
+    var aabb = Aabb();
+    foreach(var cog in this.TargetCogs)
+      aabb = Aabb.Expand(aabb, cog.Transform.WorldTranslation);
+    
+    var pos = this.Transform.WorldTranslation;
+    pos.XY = aabb.Center.XY;
+    this.Transform.WorldTranslation = pos;
+  }
+}

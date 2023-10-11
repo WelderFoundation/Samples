@@ -1,0 +1,430 @@
+enum Team {None, Blue, Red}
+
+class Tank : ZilchComponent
+{
+  // Dependencies
+  [Dependency] var Transform : Transform;
+  [Dependency] var Orientation : Orientation;
+  [Dependency] var DynamicMotor : DynamicMotor;
+  
+  // How fast (meters / second) the tank accelerates
+  [Property] var Acceleration : Real = 2.0;
+  
+  // The maximum speed (meters / second) of the tank
+  [Property] var MaxSpeed : Real = 2.0;
+  
+  // How fast the tank turns
+  [Property] var TurnSpeed : Real = 0.2;
+  
+  // How far this tank can see its enemies
+  [Property] var Range : Real = 5.0;
+  
+  // The angle (in degrees) that this tank can see
+  [Property] var ViewAngle : Real = 110;
+  
+  // When the tank fires, the camera will shake with this intensity
+  // Mainly used for the player tank
+  [Property] var FireCamShakeIntensity : Real = 0.0;
+  
+  // Which team this tank is on. This will affect which tanks
+  // will get put into the Enemies array
+  [Property] var Team : Team = Team.None;
+  
+  // Debug drawing
+  [Property] var DebugDrawSensors : Boolean = false;
+  [Property] var DebugDrawRange : Boolean = false;
+  
+  // Every frame this will be updated with all live enemy tanks
+  var Enemies : Array[Cog] = new Array[Cog]();
+  
+  // Objects that need to be updated (only for visuals)
+  var LeftTread : Cog = null;
+  var RightTread : Cog = null;
+  var Graphical : Cog = null;
+  
+  // Used to change the color of the debug draw for the range indicators
+  var FoundEnemy : Boolean = false;
+  
+  // Rotational acceleration
+  var CurrAccelRotation : Real = 0.0;
+  
+  // How long it has been since we were last damaged
+  var TimeSinceLastDamage : Real = Real.PositiveMax;
+  
+  // The last enemy that shot us
+  var LastEnemyThatDamagedUs : Cog = null;
+  
+  // Our current speed
+  var CurrentSpeed : Real = 0.0;
+  
+  // Our old speed, used to rotate the object to show acceleration
+  var OldSpeed : Real = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Find our objects that need to be updated. These should
+    // really be done with CogPaths as properties on the tank, but
+    // I wanted to hide it from the students as they won't use it
+    this.LeftTread = this.Owner.FindChildByName("TreadsLeft");
+    this.RightTread = this.Owner.FindChildByName("TreadsRight");
+    this.Graphical = this.Owner.FindChildByName("Graphical");
+    
+    // We need to update the graphical objects every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    // When we take damage, we need to update the GettingShotAt flag
+    Zero.Connect(this.Owner, Events.ApplyDamage, this.OnTakeDamage);
+    
+    // Add this tank to the tank manager
+    if(this.LevelSettings.TankManager != null)
+      this.LevelSettings.TankManager.AddTank(this.Owner);
+  }
+  
+  function Destroyed()
+  {
+    // We need to remove ourself from the tank list
+    if(this.LevelSettings != null && this.LevelSettings.TankManager != null)
+      this.LevelSettings.TankManager.RemoveTank(this.Owner);
+  }
+  
+  //--------------------------------------------------------------- Public Functions
+  // 1 is full forward, -1 is full reverse.
+  function Move(direction : Real)
+  {
+    this.CurrentSpeed += this.Acceleration * direction;
+  }
+  
+  // 1 is full right, -1 is full left
+  function Turn(direction : Real)
+  {
+    this.Owner.RigidBody.AngularVelocity += Real3(0, -direction * this.TurnSpeed, 0);
+  }
+  
+  // Quick access to sensor
+  function GetLeftSensor() : Sensor
+  {
+    return this.Owner.FindChildByName("LeftSensor").Sensor;
+  }
+  
+  // Quick access to sensor
+  function GetCenterSensor() : Sensor
+  {
+    return this.Owner.FindChildByName("CenterSensor").Sensor;
+  }
+  
+  // Quick access to sensor
+  function GetRightSensor() : Sensor
+  {
+    return this.Owner.FindChildByName("RightSensor").Sensor;
+  }
+  
+  // Returns whether or not the given enemy is within our range
+  function EnemyIsInRange(enemy : Cog) : Boolean
+  {
+    var enemyPos = enemy.Transform.WorldTranslation;
+    var ourPos = this.Transform.WorldTranslation;
+    
+    // If the distance between us and the given enemy is less than
+    // our range, then the enemy is in range
+    var distance = Math.Distance(enemyPos, ourPos);
+    return (distance < this.Range);
+  }
+  
+  // Whether or not the given enemy is in front of us
+  function EnemyIsInFront(enemy : Cog) : Boolean
+  {
+    return this.AIsInFrontOfB(enemy, this.Owner);
+  }
+  
+  // Whether or not the given enemy is looking at us
+  function EnemyCanSeeMe(enemy : Cog) : Boolean
+  {
+    return this.AIsInFrontOfB(this.Owner, enemy);
+  }
+  
+  // Returns the direction 
+  function GetTurnDirectionToEnemy(enemy : Cog) : Real
+  {
+    var direction = this.GetAngleFromAToB(this.Owner, enemy);
+    direction = Math.ToDegrees(direction);
+    
+    // When the enemy is 15 degrees or greater from our facing direction,
+    // we want to be turning at full speed (this function will return 1 or -1)
+    // As the degrees lowers, we will turn slower
+    var turnMax = 15;
+    
+    return Math.Clamp(direction, -turnMax, turnMax) / turnMax;
+  }
+  
+  // Returns whether or not the given enemy is in front of us and
+  // whether or not it is not blocked by walls
+  function EnemyIsVisible(enemy : Cog) : Boolean
+  {
+    var pos = this.Owner.Transform.WorldTranslation;
+    var enemyPos = enemy.Transform.WorldTranslation;
+    
+    var line = DebugLine(pos, enemyPos);
+    line.Color = Real4(1,0,0,0.5);
+    
+    // If the enemy is not in front of us, they are not visible
+    if(this.EnemyIsInFront(enemy) == false)
+    {
+      if(this.DebugDrawRange)
+        DebugDraw.Add(line);
+      return false;
+    }
+    
+    // Cast a ray from ourself to the enemy position
+    var ray = Ray();
+    ray.Start = pos; 
+    ray.Direction = Math.Normalize(enemyPos - pos);
+    
+    var results = this.Space.PhysicsSpace.CastRay(ray, 5);
+    foreach (var result in results)
+    {
+      // Ignore ourself (tanks are built of a few different pieces)
+      if(result.ObjectHit.FindRoot() == this.Owner.FindRoot())
+        continue;
+      
+      if(result.ObjectHit != null)
+      {
+        // If we hit the enemy, it is visible
+        if(result.ObjectHit.FindRoot() == enemy || result.ObjectHit == enemy)
+        {
+          line.Color = Real4(0,1,0,0.5);
+          if(this.DebugDrawRange)
+            DebugDraw.Add(line);
+          
+          this.FoundEnemy = true;
+          return true;
+        }
+        else
+        {
+          // If we didn't hit the enemy, it's not visible
+          if(this.DebugDrawRange)
+            DebugDraw.Add(line);
+          
+          return false;
+        }
+      }
+    }
+    
+    if(this.DebugDrawRange)
+      DebugDraw.Add(line);
+    
+    // If the ray didn't hit anything, it's not in front of us (this is unlikely to ever happen)
+    return false;
+  }
+  
+  function AttempFire()
+  {
+    var cam = this.Space.FindObjectByName("GameCamera");
+    var cameraShake = cam.CameraShake;
+    
+    // Find all turrets in our hierarchy
+    foreach(var turret in this.Owner.FindAllChildrenByName("Turret"))
+    {
+      // Attempt to fire the turret.  Use the tanks color for the projectile color.  However,
+      // hard-code the projectile's glow to be intense, regardless of the tanks glow factor.
+      var fired = turret.Turret.AttempFire(this.Owner.ObjectColor.Primary, 6);
+      
+      // Shake the camera if it fired
+      if(fired && cameraShake != null)
+        cam.CameraShake.CurrentIntensity += this.FireCamShakeIntensity;
+    }
+  }
+  
+  //--------------------------------------------------------------- Internal Functions
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Update our damage timer
+    this.TimeSinceLastDamage += event.Dt;
+    
+    // Update the health color on the turret base
+    var turretBase = this.Owner.FindChildByName("TurretBase");
+    //turretBase.Model.Color = Math.Lerp(Real4(1,0,0,1), Real4(0,1,0,1), this.Owner.Health.GetHealthPercent()) * 2.0;
+    
+    // Update the debug draw on the sensors
+    this.Owner.FindChildByName("LeftSensor").Sensor.DebugDrawFlag = this.DebugDrawSensors;
+    this.Owner.FindChildByName("CenterSensor").Sensor.DebugDrawFlag = this.DebugDrawSensors;
+    this.Owner.FindChildByName("RightSensor").Sensor.DebugDrawFlag = this.DebugDrawSensors;
+    
+    // If we aren't on the ground, don't update the movement
+    if(this.OnGround())
+    {
+      // Clamp to the max speed
+      this.CurrentSpeed = Math.Clamp(this.CurrentSpeed, -this.MaxSpeed, this.MaxSpeed);
+      
+      // Move forward based on our current speed
+      var dir = this.Owner.Orientation.WorldForward * this.CurrentSpeed;
+      this.Owner.DynamicMotor.MoveInDirection(dir, Real3(0,1,0));
+      
+      // Dampen the speed and angular velocity
+      this.CurrentSpeed *= 0.95;
+      this.Owner.RigidBody.AngularVelocity *= 0.8;
+      
+      // When accelerating, rotate the front up a bit
+      var speedChange = this.CurrentSpeed - this.OldSpeed;
+      this.CurrAccelRotation = this.CurrAccelRotation * 0.9 + speedChange * 0.1;
+      this.Graphical.Transform.SetEulerAnglesXYZ(0,0,this.CurrAccelRotation * 0.8);
+      
+      // Store the old speed
+      this.OldSpeed = this.CurrentSpeed;
+
+      // Update tread speeds
+      this.UpdateTreadSpeed(this.LeftTread);
+      this.UpdateTreadSpeed(this.RightTread);
+    }
+    
+    // Update our enemy list
+    this.UpdateEnemies();
+    
+    // Update debug draw
+    if(this.DebugDrawRange)
+    {
+      var pos = this.Transform.WorldTranslation;
+      var forward = this.Orientation.WorldForward;
+      var up = Real3(0,1,0);
+      
+      // Red by default, and green if we found an enemy this frame
+      var color = Real4(1,0,0,0.3);
+      if(this.FoundEnemy)
+        color = Real4(0,1,0,0.3);
+      
+      // Draw a circle to represent our range
+      var circle = DebugCircle(pos, up, this.Range);
+      circle.Color = color;
+      DebugDraw.Add(circle);
+      
+      // Draw the two lines on the edge of the visible area
+      var viewAngle = Math.ToRadians(this.ViewAngle);
+      var left = pos + Math.RotateVector(forward, up, -viewAngle * 0.5) * this.Range;
+      var right = pos + Math.RotateVector(forward, up, viewAngle * 0.5) * this.Range;
+      
+      // Draw left
+      var line = DebugLine(pos, left);
+      line.Color = color;
+      DebugDraw.Add(line);
+      
+      // Draw right
+      line.End = right;
+      DebugDraw.Add(line);
+      
+      // Draw the range arc
+      var lastPos = left;
+      var resolution = 30;
+      var step = Math.ToRadians(this.ViewAngle) / resolution;
+      for(var i = 1; i <= resolution; ++i)
+      {
+        var angle = (i - resolution * 0.5) * step;
+        var currPos = pos + Math.RotateVector(forward, up, angle) * this.Range;
+        
+        // Draw a solid line
+        var line2 = DebugLine(lastPos, currPos);
+        line2.Color = color;
+        DebugDraw.Add(line2);
+        
+        // Draw a filled triangle
+        var tri = DebugTriangle(pos, lastPos, currPos);
+        tri.Color = color * Real4(1,1,1,0.3);
+        tri.Filled = true;
+        DebugDraw.Add(tri);
+        
+        lastPos = currPos;
+      }
+    }
+    
+    // Reset to be updated by the ai
+    this.FoundEnemy = false;
+  }
+  
+  // Whether or not the tank is on the ground
+  function OnGround() : Boolean
+  {
+    // This isn't exactly correct, but fine for now
+    foreach(var contact in this.Owner.Collider.Contacts)
+      return true;
+    
+    return false;
+  }
+  
+  // Returns true if the 'a' object is inside the view angle of object 'b'
+  function AIsInFrontOfB(a : Cog, b : Cog) : Boolean
+  {
+    var direction = this.GetAngleFromAToB(b, a);
+    
+    if(Math.Abs(direction) < Math.ToRadians(this.ViewAngle * 0.5))
+      return true;
+    
+    return false;
+  }
+  
+  // Returns the signed angle between the facing direction of
+  // object a to object b
+  function GetAngleFromAToB(a : Cog, b : Cog) : Real
+  {
+    var posA = a.Transform.WorldTranslation;
+    var posB = b.Transform.WorldTranslation;
+    
+    var toB = Math.Normalize(posB - posA);
+    var forwardA = a.Orientation.WorldForward;
+    
+    // Calculate the angle in radians
+    var angle = Math.ACos(Math.Dot(toB, forwardA));
+    
+    // If the enemy is to the left, flip the angle
+    if(Math.Cross(toB, forwardA).Y < 0.0)
+      angle *= -1.0;
+    
+    return angle;
+  }
+  
+  // Updates the Enemies list with all of this tanks enemies
+  function UpdateEnemies()
+  {
+    // Clear from the previous frame
+    this.Enemies.Clear();
+    
+    var manager = this.LevelSettings.TankManager;
+    if(manager == null)
+      return;
+    
+    foreach (var tank in manager.Tanks)
+    {
+      // Ignore ourself
+      if(tank == this.Owner)
+        continue;
+      
+      // If we aren't on a team, all tanks are our enemy
+      if(this.Team == Team.None)
+        this.Enemies.Add(tank);
+      // If it isn't on our team, then it's an enemy
+      else if(this.Team != tank.Tank.Team)
+        this.Enemies.Add(tank);
+    }
+  }
+  
+  function UpdateTreadSpeed(tread : Cog)
+  {
+    var worldTranslation = tread.Transform.WorldTranslation;
+    
+    // Bring into local spac
+    var localTranslation = this.Owner.Transform.TransformPointInverse(worldTranslation);
+    
+    var treadVelocity = this.Owner.RigidBody.GetPointVelocity(worldTranslation);
+    
+    var worldForward = this.Owner.Orientation.WorldForward;
+    var speed = Math.Dot(treadVelocity, worldForward);
+    
+    tread.Treads.CurrentSpeed = speed;
+  }
+  
+  function OnTakeDamage(event : DamageEvent2)
+  {
+    // Reset the timer
+    this.TimeSinceLastDamage = 0.0;
+    
+    if(event.OriginRoot != null)
+      this.LastEnemyThatDamagedUs = event.OriginRoot;
+  }
+}

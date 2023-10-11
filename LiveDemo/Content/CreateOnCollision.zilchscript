@@ -1,0 +1,39 @@
+class CreateOnCollision : ZilchComponent
+{
+  [Property] var ArchetypeToCreate : Archetype;
+  [Property] var OnlyNonStaticCollision = true;
+  [Property] var DestroySelf = true;
+  [Property] var Offset = Real3();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(this.OnlyNonStaticCollision == false)
+    {
+      this.Create(event.FirstPoint.WorldPoint);
+      return;
+    }
+    
+    var otherBody = event.OtherObject.Collider.ActiveBody;
+    if(otherBody == null)
+      return;
+    
+    if(otherBody.DynamicState != RigidBodyDynamicState.Static)
+      this.Create(event.FirstPoint.WorldPoint);
+  }
+  
+  function Create(worldPos : Real3)
+  {
+    if(this.Owner.MarkedForDestruction)
+      return;
+      
+    var obj = this.Space.CreateAtPosition(this.ArchetypeToCreate, worldPos + this.Offset);
+    
+    if(this.DestroySelf)
+      this.Owner.Destroy();
+  }
+}

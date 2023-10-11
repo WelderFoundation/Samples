@@ -1,0 +1,44 @@
+class ImpactExplosion : ZilchComponent
+{
+  [Property] var DestroyOnCollision : Boolean = true;
+  [Property] var Force : Real = 10;
+  [Property] var ExplosionArchetype : Archetype = Archetype.Explosion;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.IsGhost)
+      return;
+      
+    var point = event.FirstPoint;
+    var normal = point.WorldNormalTowardsOther;
+    var worldPoint = point.WorldPoint;
+    var relativeVelocity = point.RelativeVelocity;
+    var otherBody = event.OtherObject.RigidBody;
+    
+    
+    var impactForce = -normal * relativeVelocity;
+    var totalForce = normal * this.Force + impactForce;
+    
+    if(otherBody != null)
+      otherBody.ApplyForceAtPoint(totalForce, worldPoint);
+    this.Explode();
+  }
+
+  function Explode()
+  {
+    var explosionCog = this.Space.CreateAtPosition(this.ExplosionArchetype, this.Owner.Transform.WorldTranslation);
+    var effect = explosionCog.PointForceEffect;
+    if(effect != null)
+    {
+      effect.StrengthAtMin = -this.Force;
+      effect.StrengthAtMax = 0;
+    }
+      
+    this.Owner.Destroy();
+  }
+}

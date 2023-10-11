@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "ForestHeightMap"
+		var ResourceId = 0x5aaa4dd849babe2b
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

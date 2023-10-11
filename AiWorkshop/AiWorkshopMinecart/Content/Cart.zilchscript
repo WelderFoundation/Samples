@@ -1,0 +1,380 @@
+class Cart : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var RigidBody : RigidBody;
+  [Dependency] var Orientation : Orientation;
+  [Dependency] var SplineAttachment : SplineAttachment;
+  
+  [Property] var MaxSpeed = 5.0;
+  
+  var CurrentSpeed = 0.0;
+  
+  // Joints
+  var SplineJoint : SplineJoint;
+  var JumpJoint : JumpJoint;
+  var WeldJoint : WeldJoint;
+  var UprightJoint : UprightJoint;
+  
+  var RiderStomach : Cog;
+  var BrakeParticles : Cog;
+  var BoostParticles : Cog;
+  var ObstacleDetectRegion : Cog;
+  var RiderJumped = false;
+  var Ejected = false;
+  
+  sends TrapHit : ZilchEvent;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.SplineJoint = this.Owner.FindChildByName("SplineJoint").SplineJoint;
+    this.SplineJoint.MotorActive = true;
+    this.SplineJoint.MotorSpeed = this.MaxSpeed;
+    
+    this.JumpJoint = this.Owner.FindChildByName("JumpJoint").JumpJoint;
+    this.JumpJoint.Active = false;
+    
+    this.WeldJoint = this.Owner.FindChildByName("Weld").WeldJoint;
+    this.WeldJoint.Active = true;
+    
+    this.UprightJoint = this.Owner.FindChildByName("UprightJoint").UprightJoint;
+    
+    this.RiderStomach = this.Owner.FindChildByName("Stomach");
+    this.BrakeParticles = this.Owner.FindChildByName("BrakeParticles");
+    this.BoostParticles = this.Owner.FindChildByName("BoostParticles");
+    this.ObstacleDetectRegion = this.Owner.FindChildByName("ObstacleDetection");
+    
+    Zero.Connect(this.RiderStomach, Events.CollisionStarted, this.OnStomachCollisionStarted);
+    Zero.Connect(this.RiderStomach, Events.CollisionEnded, this.OnStomachCollisionEnded);
+    
+    // Connect to all child objects for collisions
+    this.ConnectCollisions(this.Owner);
+  }
+  
+  //************************************************************************************************
+  function JumpCart(strength : Real)
+  {
+    // Can't jump if boxman isn't in the cart
+    if(this.IsReleased())
+      return;
+    
+    if(this.SplineAttachment.AttachedSpline != null)
+    {
+      var velocity = this.RigidBody.Velocity;
+      velocity.Y = Math.Max(velocity.Y, 0);
+      velocity.Y += 15 * strength;
+      this.RigidBody.Velocity = velocity;
+      this.SplineAttachment.DetachFromSpline();
+      
+      this.Owner.GravityEffect.Active = true;
+      
+      this.UprightJoint.Active = true;
+      //this.RigidBody.AngularVelocity = Real3(0,0,15);
+    }
+  }
+  
+  //************************************************************************************************
+  function JumpRider(strength : Real)
+  {
+    // Can't jump if boxman isn't in the cart
+    if(this.IsReleased())
+      return;
+      
+    this.Release();
+    
+    // Jump the character up in the air if it isn't already (just a fun effect)
+    var stomachBody = this.RiderStomach.RigidBody;
+    
+    var up = this.Orientation.WorldUp;
+    
+    // This may be kind of silly, but it feels good to have the play always jump the same height
+    // regardless if it's going down hill or completely flat. However, if the cart is moving up,
+    // we want to add to the velocity to launch the rider higher
+    var velocity = stomachBody.Velocity;
+    //velocity -= up * Math.Dot(up, velocity);
+    velocity.Y = Math.Max(velocity.Y, 0);
+    //velocity += up * 80 * strength;
+    
+    velocity.Y = 0;
+    velocity.Y += 70 * strength;
+    stomachBody.Velocity = velocity;
+    //stomachBody.ApplyLinearVelocity(up * 50.0 * strength);
+      
+    // Spin the character
+    //stomachBody.ApplyAngularVelocity(Real3(0, 0, -500));
+    
+    this.RiderJumped = true;
+  }
+  
+  //************************************************************************************************
+  function EjectRider(forceScalar : Real, velocityCheck : Boolean)
+  {
+    this.JumpJoint.Active = false;
+    this.UprightJoint.Active = false;
+    // We only want the gravity effect when the player jumps
+    this.Owner.GravityEffect.Active = false;
+
+    this.Ejected = true;
+    
+    if(this.IsReleased())
+      return;
+      
+    this.Release();
+
+    // Jump the character up in the air if it isn't already (just a fun effect)
+    var stomachBody = this.Owner.FindChildByName("Stomach").RigidBody;
+    if(velocityCheck == false || stomachBody.Velocity.Y < 5.0)
+    {
+      var up = this.Orientation.WorldUp;
+      stomachBody.ApplyLinearVelocity(up * 80.0 * forceScalar);
+    }
+      
+    // Spin the character
+    stomachBody.ApplyAngularVelocity(Real3(0, 0, 500));
+  }
+  
+  
+  //************************************************************************************************
+  function IsRiderInAir() : Boolean
+  {
+    return this.IsReleased();
+  }
+  
+  //************************************************************************************************
+  function IsCartInAir() : Boolean
+  {
+    return (this.SplineAttachment.AttachedSpline == null);
+  }
+  
+  //************************************************************************************************
+  function EjectRider(forceScalar : Real)
+  {
+    this.EjectRider(forceScalar, true);
+  }
+  
+  //************************************************************************************************
+  // Strength should be a value between 0 and 1. 1 being full brake, and 0 being not braking at all.
+  function Boost(strength : Real)
+  {
+    // Can't boost if the rider or cart is in the air
+    if(this.IsRiderInAir() || this.IsCartInAir())
+      return;
+      
+    this.SetBoostInternal(strength);
+  }
+  
+  //************************************************************************************************
+  function SetBoostInternal(strength : Real)
+  {
+    var active = (strength > 0.001);
+    this.Owner.ForceEffect.Active = active;
+    
+    var currentStrength = this.Owner.ForceEffect.Strength;
+    if(currentStrength < strength)
+    {
+      currentStrength = Math.Lerp(currentStrength, strength * 30.0, 0.8);
+    }
+    else
+    {
+      currentStrength = strength;
+    }
+    this.Owner.ForceEffect.Strength = currentStrength;
+    
+    foreach(var child in this.BoostParticles.Children)
+    {
+      var emitRate = Real.Parse(child.Name.SubStringFromRuneIndices(5, child.Name.ComputeRuneCount()));
+      child.SphericalParticleEmitter.Active = active;
+      child.SphericalParticleEmitter.EmitRate = strength * emitRate;
+    }
+  }
+  
+  //************************************************************************************************
+  // Strength should be a value between 0 and 1. 1 being full brake, and 0 being not braking at all.
+  function Brake(strength : Real)
+  {
+    // Can't brake if the rider or cart is in the air
+    if(this.IsRiderInAir() || this.IsCartInAir())
+      return;
+    
+    this.SetBrakesInternal(strength);
+  }
+  
+  //************************************************************************************************
+  function SetBrakesInternal(strength : Real)
+  {
+    var active = (strength > 0.001);
+    this.Owner.DragEffect.Active = active;
+    
+    var currentDampening = this.Owner.DragEffect.LinearDamping;
+    if(currentDampening < strength)
+      currentDampening = Math.Lerp(currentDampening, strength * 7.0, 0.1);
+    else
+      currentDampening = strength;
+    this.Owner.DragEffect.LinearDamping = currentDampening;
+    
+    this.SplineJoint.MotorSpeed = (1.0 - strength) * this.MaxSpeed;
+    //this.SplineJoint.MotorSpeed = 0.0;
+    
+    foreach(var child in this.BrakeParticles.Children)
+    {
+      var emitRate = Real.Parse(child.Name.SubStringFromRuneIndices(6, child.Name.ComputeRuneCount()));
+      child.SphericalParticleEmitter.Active = active;
+      child.SphericalParticleEmitter.EmitRate = strength * emitRate;
+    }
+  }
+  
+  //************************************************************************************************
+  function OnStomachCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Name == "JumpLandRegion")
+    {
+      this.WeldJoint.Active = true;
+      this.JumpJoint.Active = false;
+      this.RiderJumped = false;
+    }
+  }
+  
+  //************************************************************************************************
+  function OnStomachCollisionEnded(event : CollisionEvent)
+  {
+    if(event.OtherObject.Name == "JumpJointRegion")
+    {
+      if(this.RiderJumped && !this.Ejected)
+        this.JumpJoint.Active = true;
+    }
+  }
+  
+  //************************************************************************************************
+  function SortUpcomingObjects(a : Cog, b : Cog) : Boolean
+  {
+    var posA = a.Transform.WorldTranslation;
+    var posB = b.Transform.WorldTranslation;
+    return posA.X < posB.X;
+  }
+  
+  //************************************************************************************************
+  function GetUpcomingObjects() : Array[Cog]
+  {
+    var obstacles = Array[Cog]();
+    
+    foreach(var contact in this.ObstacleDetectRegion.Collider.Contacts)
+    {
+      // Ignore non obstacles in the default collision group
+      if(contact.OtherObject.Collider.CollisionGroup == CollisionGroup.DefaultGroup && contact.OtherObject.Obstacle == null)
+        continue;
+      
+      obstacles.Add(contact.OtherObject);
+    }
+    
+    // Sort the objects
+    obstacles.Sort(this.SortUpcomingObjects);
+    
+    return obstacles;
+  }
+  
+  //************************************************************************************************
+  //function GetClosestObstacleDistance() : Real
+  //{
+  //  var closest = Real.PositiveMax;
+  //  var ourPosWorld = this.Transform.WorldTranslation;
+  //  
+  //  foreach(var contact in this.ObstacleDetectRegion.Collider.Contacts)
+  //  {
+  //    // Ignore non obstacles
+  //    if(contact.OtherObject.Obstacle == null)
+  //      continue;
+  //      
+  //    var distance = Math.Distance(contact.FirstPoint.WorldPoint, ourPosWorld);
+  //    if(distance < closest)
+  //      closest = distance;
+  //  }
+  //  
+  //  return closest;
+  //}
+  
+  //************************************************************************************************
+  function ConnectCollisions(cog : Cog)
+  {
+    if(cog.Collider != null && cog.Collider.Ghost == false)
+      Zero.Connect(cog, Events.CollisionStarted, this.OnCollisionStarted);
+    foreach(var child in cog.Children)
+      this.ConnectCollisions(child);
+  }
+
+  //************************************************************************************************
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.EjectRider != null)
+      this.EjectRider(1.0, true);
+    if(event.OtherObject.TripWire != null)
+      this.Owner.DispatchEvent(Events.TrapHit, ZilchEvent());
+  }
+
+  //************************************************************************************************
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.SetBrakesInternal(0);
+    this.SetBoostInternal(0);
+    
+    // Only add the extra gravity when we're not attached to a spline
+    if(this.IsCartInAir() == false)
+      this.Owner.GravityEffect.Active = false;
+    
+    // Always constrain the rider to be above the cart when the rider jumps
+    var jointPos = this.Transform.WorldTranslation + this.Orientation.WorldUp * 2.0;
+    this.JumpJoint.XPosition = jointPos.X + 0.2;
+    
+    this.UpdateBrakeParticles();
+  }
+  
+  //************************************************************************************************
+  function UpdateBrakeParticles()
+  {
+    debug return;
+    var diff = Math.Dot(this.SplineJoint.PreviousTangent, this.SplineJoint.CurrentTangent);
+    //Console.WriteLine(diff);
+    var min = 0.9999;
+    var max = 1.0;
+    
+    var sparkStrength = Math.Abs((diff - min) / (max - min));
+    sparkStrength = Math.Saturate(sparkStrength);
+    
+    //Console.WriteLine(sparkStrength);
+    foreach(var child in this.BrakeParticles.Children)
+    {
+      child.SphericalParticleEmitter.StartVelocity = Real3(-3, 0.4, -0.5) * sparkStrength;
+      child.SphericalParticleEmitter.RandomVelocity = Real3(2.5, 0.1, 0.4) * sparkStrength;
+    }
+  }
+  
+  //************************************************************************************************
+  function IsEjected() : Boolean
+  {
+    return this.Ejected;
+  }
+  
+  //************************************************************************************************
+  function IsReleased() : Boolean
+  {
+    var weld = this.Owner.FindChildByName("Weld");
+    
+    // The weld will be destroyed
+    return !(weld != null && weld.WeldJoint.Active);
+  }
+  
+  //************************************************************************************************
+  // Releases the character from the cart
+  function Release()
+  {
+    // The weld will be destroyed
+    if(this.WeldJoint != null && this.WeldJoint.Active)
+    {
+      // Disable the weld so the character can move freely from the cart
+      this.WeldJoint.Active = false;
+      
+      // Stop the cart from moving forward
+      this.SplineAttachment.MotorActive = false;
+    }
+  }
+}

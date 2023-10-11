@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Door"
+		var ResourceId = 0x553ed641df2ba127
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

@@ -1,0 +1,70 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "trainWagon_trainWagonGeneratedMeshNode0"
+				var ResourceId = 0x5a95f671d9833b58
+			}
+			Object
+			{
+				var Name = "trainWagon_trainWagonGeneratedMeshNode1"
+				var ResourceId = 0x5a95f671d9833b73
+			}
+			Object
+			{
+				var Name = "trainWagon_trainWagonGeneratedMeshNode2"
+				var ResourceId = 0x5a95f671d9833b7a
+			}
+			Object
+			{
+				var Name = "trainWagon_trainWagonGeneratedMeshNode3"
+				var ResourceId = 0x5a95f671d9833b81
+			}
+			Object
+			{
+				var Name = "trainWagon_wheel6GeneratedMeshNode4"
+				var ResourceId = 0x5a95f671d9833b89
+			}
+			Object
+			{
+				var Name = "trainWagon_wheel6GeneratedMeshNode5"
+				var ResourceId = 0x5a95f671d9833b8f
+			}
+			Object
+			{
+				var Name = "trainWagon_wheel7GeneratedMeshNode6"
+				var ResourceId = 0x5a95f671d9833b93
+			}
+			Object
+			{
+				var Name = "trainWagon_wheel7GeneratedMeshNode7"
+				var ResourceId = 0x5a95f671d9833b9a
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5a95f671d9957a28
+	}
+}

@@ -1,0 +1,85 @@
+class RocketShip : ZilchComponent
+{
+  var Fuel : Real = 10;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //if(Zero.Keyboard.KeyIsPressed(Keys.Space))
+    //{
+    //  this.ToggleRope();
+    //}
+    
+    if(Zero.Keyboard.KeyIsPressed(Keys.Enter))
+      this.CreateBomb();
+    if(Zero.Keyboard.KeyIsPressed(Keys.Space))
+      this.CreateMissile();
+      
+    if(this.Owner.HudCreator.HudSpace != null)
+    {
+      this.Owner.HudCreator.HudSpace.LevelSettings.ShipHudUiManager.SetPlayerCog(this.Owner);
+    }
+  }
+  
+  function CreateProjectile(worldPos : Real3, rotation : Quaternion, archetype : Archetype) : Cog
+  {
+    var cog = this.Space.CreateAtPosition(archetype, worldPos);
+    cog.Transform.WorldRotation = rotation;
+    
+    var selfBody = this.Owner.RigidBody;
+    var velocity = selfBody.Velocity;
+    var angularVelocity = selfBody.AngularVelocity;
+    
+    cog.RigidBody.Velocity = selfBody.GetPointVelocity(cog.Transform.WorldTranslation);
+    cog.RigidBody.AngularVelocity = angularVelocity;
+    return cog;
+  }
+  
+  function CreateBomb()
+  {
+    var selfPos = this.Owner.Transform.WorldTranslation;
+    var forward = this.Owner.Orientation.WorldForward;
+    var rotation = this.Owner.Transform.WorldRotation;
+    var bombPos = selfPos - forward * 2;
+    
+    this.CreateProjectile(bombPos, rotation, Archetype.Bomb);
+    
+    //var bombCog = this.Space.CreateAtPosition(Archetype.Bomb, bombPos);
+    //bombCog.RigidBody.Velocity = this.Owner.RigidBody.Velocity;
+    //this.Space.PhysicsSpace.AddPairFilter(bombCog, this.Owner);
+  }
+  
+  function CreateMissile()
+  {
+    var selfPos = this.Owner.Transform.WorldTranslation;
+    var forward = this.Owner.Orientation.WorldForward;
+    var rotation = this.Owner.Transform.WorldRotation;
+    var missilePos = selfPos + forward * 2;
+    
+    var missileCog = this.CreateProjectile(missilePos, rotation, Archetype.Missile);
+    this.Space.PhysicsSpace.AddPairFilter(missileCog, this.Owner);
+  }
+  
+  var RopeCog : Cog = null;
+  function ToggleRope()
+  {
+    if(this.RopeCog == null)
+    {
+      var pos = this.Owner.Transform.WorldTranslation;
+      pos -= 2 * this.Owner.Orientation.WorldForward;
+      this.RopeCog = this.Space.CreateAtPosition(Archetype.StickyAttachment, pos);
+      
+      var jointCreator = JointCreator();
+      
+      var jointCog = jointCreator.CreateLocalPoints(this.Owner, this.RopeCog, "StickJoint", Real3(0, -0.5, 0), Real3(-0.5, 0, 0));
+      jointCreator.AddJointLimit(jointCog);
+      //this.Space.PhysicsSpace.CreateJoint(this.Owner, this.RopeCog, "StickJoint", 
+    }
+  }
+  
+}

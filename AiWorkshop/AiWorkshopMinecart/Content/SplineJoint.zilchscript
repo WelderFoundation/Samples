@@ -1,0 +1,147 @@
+//------------------------------------------------------------------------------------- Spline Joint
+class SplineJoint : ZilchComponent
+{
+  [Dependency]  var CustomJoint : CustomJoint;
+  
+  [Property] var Target = CogPath();
+  [Property] var Spline = CogPath();
+  [Property] var MotorActive = true;
+  [Property] var MotorDirection = 1.0;
+  [Property] var MotorSpeed = 1.0;
+  [Property] var LocalPosition = Real3();
+  [Property] var DistanceToDetach = 0.6;
+  
+  //var Active : Boolean
+  //{
+  //  get { return this.Owner.CustomJoint.Active; }
+  //  set { this.Owner.CustomJoint.Active = value; }
+  //}
+  var Active = true;
+  
+  var PreviousTangent : Real3 = Real3.XAxis;
+  var CurrentTangent : Real3 = Real3.XAxis;
+  
+  var AxisConstraint0 : CustomConstraintInfo;
+  var AxisConstraint1 : CustomConstraintInfo;
+  var ForwardConstraint : CustomConstraintInfo;
+  
+  var Rotation0Constraint : CustomConstraintInfo;
+  var Rotation1Constraint : CustomConstraintInfo;
+  var Rotation2Constraint : CustomConstraintInfo;
+  
+  var UprightConstraint : CustomConstraintInfo;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.ComputeCustomJointInfo, this.OnComputeCustomJointInfo);
+    
+    this.AxisConstraint0 = this.CustomJoint.CreateConstraint();
+    this.AxisConstraint1 = this.CustomJoint.CreateConstraint();
+    this.AxisConstraint0.Baumgarte = 20.0;
+    this.AxisConstraint1.Baumgarte = 20.0;
+    this.ForwardConstraint = this.CustomJoint.CreateConstraint();
+    this.ForwardConstraint.Active = this.MotorActive;
+    
+    this.Rotation0Constraint = this.CustomJoint.CreateConstraint();
+    this.Rotation1Constraint = this.CustomJoint.CreateConstraint();
+    this.Rotation2Constraint = this.CustomJoint.CreateConstraint();
+    
+    this.UprightConstraint = this.CustomJoint.CreateConstraint();
+  }
+  
+  //************************************************************************************************
+  function SetTarget(target : Cog)
+  {
+    this.Target.Cog = target;
+    this.Owner.ObjectLink.ObjectB = target;
+  }
+  
+  //************************************************************************************************
+  function OnComputeCustomJointInfo(event : CustomJointEvent)
+  {
+    var target = this.Target.Cog;
+    
+    if(this.Spline.ScriptHierarchySpline == null)
+      return;
+      
+    this.AxisConstraint0.Active     = this.Active;
+    this.AxisConstraint1.Active     = this.Active;
+    this.ForwardConstraint.Active   = this.Active && this.MotorActive;
+    this.Rotation0Constraint.Active = this.Active;
+    this.Rotation1Constraint.Active = this.Active;
+    this.Rotation2Constraint.Active = this.Active;
+    this.UprightConstraint.Active   = !this.Active;
+    
+    if(this.Active == false)
+    {
+      //this.CustomJoint.ConstrainAngularVelocity(this.UprightConstraint, null, target, Real3.YAxis);
+      return;
+    }
+      
+    var sample = this.Spline.ScriptHierarchySpline.Spline.FindClosestPoint(target.Transform.WorldTranslation);
+    //if(Math.Distance(sample.Point, target.Transform.WorldTranslation) >= this.DistanceToDetach)
+    //{
+    //  this.Active = false;
+    //  return;
+    //}
+    
+    this.Active = true;
+    
+    var tangent = sample.Tangent;
+    var up = Real3.YAxis;
+    var right = Math.Normalize(Math.Cross(tangent, up));
+    // No need to normalize because they're already perpendicular
+    up = Math.Cross(right, tangent);
+    
+    this.UpdateLinear(sample.Point, tangent, up, right);
+    
+    this.UpdateRotation(tangent, up, right);
+    
+    this.PreviousTangent = this.CurrentTangent;
+    this.CurrentTangent = tangent;
+  }
+  
+  //************************************************************************************************
+  function UpdateLinear(worldPos : Real3, tangent : Real3, up : Real3, right : Real3)
+  {
+    right = Real3.ZAxis;
+    
+    var target = this.Target.Cog;
+    this.CustomJoint.ConstrainLinearPosition2d(this.AxisConstraint0, null, target, worldPos, this.LocalPosition, up);
+    this.CustomJoint.ConstrainLinearPosition2d(this.AxisConstraint1, null, target, worldPos, this.LocalPosition, right);
+    
+    // Compute the target forward direction (depending on the motor's direction)
+    var forwardDirection = this.MotorDirection * tangent;
+    // Constrain the velocity (no position correction) along the forward direction
+    this.CustomJoint.ConstrainLinearVelocity(this.ForwardConstraint, null, target, worldPos, this.LocalPosition, forwardDirection);
+    // Add a motor than can only push us forward on this axis
+    this.ForwardConstraint.ComputeMotor(this.MotorSpeed, 0, 100);
+  }
+  
+  //************************************************************************************************
+  function UpdateRotation(tangent : Real3, up : Real3, right : Real3)
+  {
+    this.Rotation1Constraint.SetJacobian(Real3.Zero, -Real3.YAxis, Real3.Zero, Real3.YAxis);
+    this.Rotation0Constraint.SetJacobian(Real3.Zero, -Real3.XAxis, Real3.Zero, Real3.XAxis);
+    this.Rotation2Constraint.SetJacobian(Real3.Zero, -Real3.ZAxis, Real3.Zero, Real3.ZAxis);
+    
+    var currentRotation = this.Target.Orientation.OrientationToWorldRotation;
+    var desiredRotation = Math.ToQuaternion(tangent, up, right);
+    
+    if(Math.Dot(currentRotation, desiredRotation) < 0)
+      currentRotation.XYZW = -currentRotation.XYZW;
+    
+    var deltaRotation = Math.Multiply(currentRotation, Math.Invert(desiredRotation));
+    // Now we abuse the properties of a quaternion. A quaternion is defined as [axis * sin(0.5 * theta), cos(0.5 * theta)].
+    // Using the small angle approximation that sin(theta) ~= theta, we can approximate the error on the x, y,
+    // and z axes as two times (quaternions map 2-1) the x, y, and z values of the quaternion.
+    var xError = 10 * deltaRotation.X;
+    var yError = 10 * deltaRotation.Y;
+    var zError = 10 * deltaRotation.Z;
+    
+    this.Rotation0Constraint.SetErrorAndBias(xError);
+    this.Rotation1Constraint.SetErrorAndBias(yError);
+    this.Rotation2Constraint.SetErrorAndBias(zError);
+  }
+}

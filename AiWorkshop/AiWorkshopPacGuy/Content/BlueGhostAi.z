@@ -1,0 +1,58 @@
+class BlueGhostAi : ZilchComponent
+{
+  // All movement should be done through the Ghost
+  [Dependency] var Ghost : Ghost;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to update our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Don't move if we're in the house
+    if(this.Ghost.InGhostHouse)
+      return;
+    
+    var playerPos = this.Ghost.PlayerPosition;
+    var ourPos = this.Ghost.OurPosition;
+      
+    //------------------------------------------------------- Student Code Below
+    // We only have to make a choice when we're at an intersection
+    if(this.Ghost.AtIntersection())
+    {
+      // Compute where the player is relative to us
+      var playerIsRight = (playerPos.X > ourPos.X);
+      var playerIsLeft = (playerPos.X < ourPos.X);
+      var playerIsUp = (playerPos.Y > ourPos.Y);
+      var playerIsDown = (playerPos.Y < ourPos.Y);
+      
+      // Simple checks for moving towards the player
+      if(playerIsDown && this.Ghost.CanMoveInDirection(Direction.Down))
+      {
+        this.Ghost.MoveInDirection(Direction.Down);
+      }
+      else if(playerIsUp && this.Ghost.CanMoveInDirection(Direction.Up))
+      {
+        this.Ghost.MoveInDirection(Direction.Up);
+      }
+      else if(playerIsRight && this.Ghost.CanMoveInDirection(Direction.Right))
+      {
+        this.Ghost.MoveInDirection(Direction.Right);
+      }
+      else if(playerIsLeft && this.Ghost.CanMoveInDirection(Direction.Left))
+      {
+        this.Ghost.MoveInDirection(Direction.Left);
+      }
+      // If we're in a corner and the player is on the opposite side, none of the above
+      // cases will have been hit, so we have to randomly pick a direction
+      else
+      {
+        // Move in the random direction
+        var randomDirection = this.Ghost.GetRandomDirection();
+        this.Ghost.MoveInDirection(randomDirection);
+      }
+    }
+  }
+}

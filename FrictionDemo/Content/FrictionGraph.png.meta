@@ -1,0 +1,27 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "FrictionGraph"
+		var ResourceId = 0x59b8b25789bcac1b
+		var AtlasId = 0x5274cf95e4a661fd
+		var FrameSizeX = 602
+		var FrameSizeY = 352
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 301
+		var OriginY = 176
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+		}
+	}
+}

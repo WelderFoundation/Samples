@@ -1,0 +1,22 @@
+class Rock : ZilchComponent
+{
+  var Falling : Boolean = true;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if (this.Falling == true)
+    {
+      if (event.OtherObject.Character != null)
+      {
+          event.OtherObject.Character.Die();        
+      }
+      
+      this.Falling = false;
+    }
+  }
+}

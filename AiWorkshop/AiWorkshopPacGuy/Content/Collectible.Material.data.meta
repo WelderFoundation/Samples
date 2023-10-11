@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Collectible"
+		var ResourceId = 0x555b7e1173b1f5df
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

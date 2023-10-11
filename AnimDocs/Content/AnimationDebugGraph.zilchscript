@@ -1,0 +1,97 @@
+class AnimationDebugGraph : ZilchComponent
+{
+  [Dependency] var AnimationGraph : AnimationGraph;
+  
+  var GraphSpace : Space;
+  
+  var Root : Cog;
+  
+  [Property]
+  var NodeArchetype : Archetype;
+  
+  [Property]
+  var CrossArchetype : Archetype;
+  
+  [Property]
+  var DirectArchetype : Archetype;
+  
+  [Property]
+  var SelectiveArchetype : Archetype;
+  
+  var NodeMap : HashMap[AnimationNode, Cog] = HashMap[AnimationNode, Cog]();
+  var NodeTypeMap : HashMap[AnimationNode, AnimType]= HashMap[AnimationNode, AnimType]();
+  
+  var ActiveNode : AnimationNode
+  {
+    get { return this.AnimationGraph.ActiveNode; }
+  }
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.AnimationNodeCreated, this.OnAnimationNodeCreated);
+    Zero.Connect(this.Owner, Events.SelectiveNodeCreated, this.OnSelectiveNodeCreated);
+    Zero.Connect(this.Owner, Events.DirectBlendNodeCreated, this.OnDirectBlendNodeCreated);
+    Zero.Connect(this.Owner, Events.CrossBlendNodeCreated, this.OnCrossBlendNodeCreated);
+  }
+
+  function OnAnimationNodeCreated(event : AnimationNodeCreated)
+  {
+    //var debugNode = this.CreateDebugNode(event.Node);
+  }
+
+  function OnSelectiveNodeCreated(event : SelectiveNodeCreated)
+  {
+    //var debugNode = this.cre(event.Node);
+  }
+  
+  function OnDirectBlendNodeCreated(event : DirectBlendNodeCreated)
+  {
+    
+  }
+
+  function OnCrossBlendNodeCreated(event : CrossBlendNodeCreated)
+  {
+    
+  }
+
+  function BuildGraph()
+  {
+    var activeDebugNode = this.NodeMap[this.ActiveNode];
+    var activeNodeType = this.NodeTypeMap[this.ActiveNode];
+    
+    //var activeNode = null;
+    //if(activeNodeType == AnimType.Basic)
+    //  activeNode = this.ActiveNode;
+    //else if(activeNodeType == AnimType.Cross)
+    //  activeNode = this.ActiveNode as CrossBlend;
+    //else if(activeNodeType == AnimType.Direct)
+    //  activeNode = this.ActiveNode as DirectBlend;
+    //else if(activeNodeType == AnimType.Selective)
+    //  activeNode = this.ActiveNode as SelectiveNode;
+  }
+  
+  function CreateBasicNode(node : AnimationNode) : Cog
+  {
+    var debugNode = this.GraphSpace.Create(this.NodeArchetype);
+    this.NodeMap[node] = debugNode;
+    this.NodeTypeMap[node] = AnimType.Basic;
+    debugNode.AnimationDebugNode.Node = node;
+    return debugNode;
+  }
+  
+  function CreateCrossNode(node : AnimationNode) : Cog
+  {
+    var debugNode = this.GraphSpace.Create(this.NodeArchetype);
+    this.NodeMap[node] = debugNode;
+    this.NodeTypeMap[node] = AnimType.Cross;
+    debugNode.AnimationDebugNode.Node = node;
+    return debugNode;
+  }
+  
+  function CreateDirectNode(node : AnimationNode) : Cog
+  {
+    return null;
+  }
+}
+
+enum AnimType {Basic, Direct, Cross, Selective}

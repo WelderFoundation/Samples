@@ -1,0 +1,15 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"56dc0b2bbc86c4cb:AlphaBlend"
+		"5961eaa40f1649f6:ZSort"
+	}
+	SimpleColor 
+	{
+		var Texture = "5827bc9481103535:ZeroAlbedo"
+		var Uv = Real2{0, 0}
+		var Scroll = Real2{0.5, 1}
+	}
+}

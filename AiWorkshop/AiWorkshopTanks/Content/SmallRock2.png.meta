@@ -1,0 +1,34 @@
+[Version:1]
+ImageContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Explosion"
+			"Particles"
+		}
+	}
+	TextureInfo 
+	{
+		var FileType = "png"
+		var LoadFormat = "RGBA8"
+		var Dimensions = "63 x 31"
+		var Size = "0.009 MB"
+	}
+	TextureBuilder 
+	{
+		var Name = "SmallRock2"
+		var ResourceId = 0x524514a2eb01ded4
+		var Type = TextureType.Texture2D
+		var Compression = TextureCompression.None
+		var AddressingX = TextureAddressing.Repeat
+		var AddressingY = TextureAddressing.Repeat
+		var Filtering = TextureFiltering.Trilinear
+		var Anisotropy = TextureAnisotropy.x2
+		var MipMapping = TextureMipMapping.PreGenerated
+		var HalfScaleCount = 0
+		var PremultipliedAlpha = false
+		var GammaCorrection = false
+	}
+}

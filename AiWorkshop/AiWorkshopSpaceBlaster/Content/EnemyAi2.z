@@ -1,0 +1,31 @@
+class EnemyAi2 : ZilchComponent
+{
+  // We rely on the Ship Component
+  [Dependency] var Ship : Ship;
+  
+  // Store how long we've been alive
+  var TimeAlive : Real = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to run our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    // Update our time alive
+    this.TimeAlive += event.Dt;
+    
+    // Calculate a direction based on a sin wave
+    var x = Math.Sin(this.TimeAlive * 2.0);
+    var direction = Real3(x,-1,0);
+    
+    // Move in that direction
+    this.Ship.MoveInDirection(direction, event.Dt);
+    
+    // Fires a projectile if the fire timer is up
+    this.Ship.Fire();
+  }
+}

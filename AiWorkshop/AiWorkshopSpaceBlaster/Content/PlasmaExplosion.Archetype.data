@@ -1,0 +1,570 @@
+Cog = 
+{
+	LinkId = 
+	{
+		uint Id = 1,
+	},
+	Named = 
+	{
+		string Name = "PlasmaExplosion",
+	},
+	Archetyped = 
+	{
+		string Name = "5245e5302c6e2015:PlasmaExplosion",
+	},
+	Transform = 
+	{
+		Vec3 Translation = [-31.8075, 7.35871, -0.0644722],
+		Vec3 Scale = [0.573678, 0.573678, 0.573678],
+		Quat Rotation = [0, 0, 0, 1],
+	},
+	TimedDeath = 
+	{
+		float Lifetime = 2.5,
+	},
+	Hierarchy = 
+	{
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 2,
+			},
+			Named = 
+			{
+				string Name = "Flash",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-3.8147e-006, 9.53674e-007, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				ParticleGeometry GeometryMode = Billboarded,
+				ParticleRenderMode RenderMode = Additive,
+				ParticleSortMode SortMode = None,
+				string Texture = "52437a75369dd99d:FlashParticle",
+				Vec4 Tint = [1, 1, 1, 1],
+				float VelocityScale = 2,
+				float LengthScale = 1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [2, 2, 2],
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 0,
+				float Dampening = 0,
+				Vec3 Twist = [0, 0, 0],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 6,
+				float EmitRate = 55,
+				float EmitVariance = 0,
+				float Size = 3,
+				float SizeVariance = 1,
+				float Lifetime = 0.1,
+				float LifetimeVariance = 0,
+				float Spin = 0,
+				float SpinVariance = 0,
+				bool RandomSpin = true,
+				float Fill = 1,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [0, 0, 0],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [0.3, 0.3, 0],
+				bool FastMovingEmitter = false,
+			},
+			ParticleGradientAnimator = 
+			{
+				string ColorGradientName = "52450b19ac20a48c:ExplosionGradient",
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 3,
+			},
+			Named = 
+			{
+				string Name = "Shockwave",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-3.8147e-006, 9.53674e-007, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				ParticleGeometry GeometryMode = Billboarded,
+				ParticleRenderMode RenderMode = Additive,
+				ParticleSortMode SortMode = None,
+				string Texture = "52437a753687897a:ShockWave",
+				Vec4 Tint = [1, 1, 1, 1],
+				float VelocityScale = 2,
+				float LengthScale = 1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [2, 2, 2],
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 35,
+				float Dampening = 0,
+				Vec3 Twist = [0, 0, 0],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 1,
+				float EmitRate = 555,
+				float EmitVariance = 0,
+				float Size = 0.1,
+				float SizeVariance = 0,
+				float Lifetime = 0.6,
+				float LifetimeVariance = 0,
+				float Spin = 0,
+				float SpinVariance = 0,
+				bool RandomSpin = true,
+				float Fill = 1,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [0, 0, 0],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [0, 0, 0],
+				bool FastMovingEmitter = false,
+			},
+			ParticleGradientAnimator = 
+			{
+				string ColorGradientName = "52450b19ac20a48c:ExplosionGradient",
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 4,
+			},
+			Named = 
+			{
+				string Name = "RoundSparks",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-3.8147e-006, 9.53674e-007, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				ParticleGeometry GeometryMode = Billboarded,
+				ParticleRenderMode RenderMode = Additive,
+				ParticleSortMode SortMode = None,
+				string Texture = "524514a2eb000bb0:RoundSparks",
+				Vec4 Tint = [1, 1, 1, 1],
+				float VelocityScale = 2,
+				float LengthScale = 1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [2, 2, 2],
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0.3, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 0,
+				float Dampening = 0,
+				Vec3 Twist = [0, 0, 0],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 13,
+				float EmitRate = 55,
+				float EmitVariance = 0,
+				float Size = 3,
+				float SizeVariance = 2,
+				float Lifetime = 4,
+				float LifetimeVariance = 0,
+				float Spin = 0,
+				float SpinVariance = 0,
+				bool RandomSpin = true,
+				float Fill = 1,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [1.5, 1.5, 1.5],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [0.3, 0.3, 0],
+				bool FastMovingEmitter = false,
+			},
+			ParticleWander = 
+			{
+				float WanderAngle = 0.5,
+				float WanderAngleVariance = 1,
+				float WanderStrength = 1,
+			},
+			ParticleGradientAnimator = 
+			{
+				string ColorGradientName = "52450b19ac20a48c:ExplosionGradient",
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 5,
+			},
+			Named = 
+			{
+				string Name = "Debri0",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-3.8147e-006, 9.53674e-007, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				ParticleGeometry GeometryMode = Billboarded,
+				ParticleRenderMode RenderMode = Blended,
+				ParticleSortMode SortMode = None,
+				string Texture = "524514a2eb01ded4:SmallRock2",
+				Vec4 Tint = [0.625, 0.625, 0.625, 1],
+				float VelocityScale = 2,
+				float LengthScale = 1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [2, 2, 2],
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0.3, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 0,
+				float Dampening = 0,
+				Vec3 Twist = [0, 0, 0],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 5,
+				float EmitRate = 55,
+				float EmitVariance = 0,
+				float Size = 0.3,
+				float SizeVariance = 0.2,
+				float Lifetime = 1,
+				float LifetimeVariance = 0,
+				float Spin = 0,
+				float SpinVariance = 500,
+				bool RandomSpin = true,
+				float Fill = 1,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [14, 14, 3],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [0, 0, 0],
+				bool FastMovingEmitter = false,
+			},
+			ParticleColorAnimator = 
+			{
+				Vec4 Color0 = [1, 1, 1, 1],
+				Vec4 Color1 = [1, 1, 1, 0.9999],
+				Vec4 Color2 = [1, 1, 1, 0.9999],
+				Vec4 Color3 = [1, 1, 1, 0.9999],
+				Vec4 Color4 = [0.285, 0.285, 0.285, 0],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 6,
+			},
+			Named = 
+			{
+				string Name = "Debri1",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-3.8147e-006, 9.53674e-007, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				ParticleGeometry GeometryMode = Billboarded,
+				ParticleRenderMode RenderMode = Blended,
+				ParticleSortMode SortMode = None,
+				string Texture = "524514a2eb01c888:SmallRock1",
+				Vec4 Tint = [0.625, 0.625, 0.625, 1],
+				float VelocityScale = 2,
+				float LengthScale = 1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [2, 2, 2],
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0.3, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 0,
+				float Dampening = 0,
+				Vec3 Twist = [0, 0, 0],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 8,
+				float EmitRate = 55,
+				float EmitVariance = 0,
+				float Size = 0.3,
+				float SizeVariance = 0.2,
+				float Lifetime = 1,
+				float LifetimeVariance = 0,
+				float Spin = 0,
+				float SpinVariance = 500,
+				bool RandomSpin = true,
+				float Fill = 1,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [14, 14, 3],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [0, 0, 0],
+				bool FastMovingEmitter = false,
+			},
+			ParticleColorAnimator = 
+			{
+				Vec4 Color0 = [1, 1, 1, 1],
+				Vec4 Color1 = [1, 1, 1, 0.9999],
+				Vec4 Color2 = [1, 1, 1, 0.9999],
+				Vec4 Color3 = [1, 1, 1, 0.9999],
+				Vec4 Color4 = [0.285, 0.285, 0.285, 0],
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 7,
+			},
+			Named = 
+			{
+				string Name = "Sparks",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-3.8147e-006, 9.53674e-007, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				ParticleGeometry GeometryMode = Beam,
+				ParticleRenderMode RenderMode = Additive,
+				ParticleSortMode SortMode = None,
+				string Texture = "52437a753690131a:FastSpark",
+				Vec4 Tint = [1, 1, 1, 1],
+				float VelocityScale = 0.3,
+				float LengthScale = 0.1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [2, 2, 2],
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 0,
+				float Dampening = 0,
+				Vec3 Twist = [0, 0, 0],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 35,
+				float EmitRate = 500,
+				float EmitVariance = 0,
+				float Size = 1,
+				float SizeVariance = 0,
+				float Lifetime = 1,
+				float LifetimeVariance = 0.3,
+				float Spin = 0,
+				float SpinVariance = 0,
+				bool RandomSpin = false,
+				float Fill = 0,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [10, 10, 2],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [0, 0, 0],
+				bool FastMovingEmitter = true,
+			},
+			ParticleGradientAnimator = 
+			{
+				string ColorGradientName = "52450b19ac20a48c:ExplosionGradient",
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 8,
+			},
+			Named = 
+			{
+				string Name = "SmokeTrails",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-3.8147e-006, 9.53674e-007, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				ParticleGeometry GeometryMode = Beam,
+				ParticleRenderMode RenderMode = Additive,
+				ParticleSortMode SortMode = None,
+				string Texture = "524514a2eb01f539:SmokeTrail",
+				Vec4 Tint = [1, 1, 1, 1],
+				float VelocityScale = 0.2,
+				float LengthScale = 0.1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [2, 2, 2],
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 0,
+				float Dampening = 1,
+				Vec3 Twist = [0, 0, 0],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 15,
+				float EmitRate = 500,
+				float EmitVariance = 0,
+				float Size = 2,
+				float SizeVariance = 0.5,
+				float Lifetime = 1,
+				float LifetimeVariance = 0.4,
+				float Spin = 0,
+				float SpinVariance = 0,
+				bool RandomSpin = false,
+				float Fill = 0,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [10, 10, 2],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [0, 0, 0],
+				bool FastMovingEmitter = true,
+			},
+			ParticleGradientAnimator = 
+			{
+				string ColorGradientName = "52450b19ac20a48c:ExplosionGradient",
+			},
+		},
+		Cog = 
+		{
+			LinkId = 
+			{
+				uint Id = 9,
+			},
+			Named = 
+			{
+				string Name = "Fire",
+			},
+			Transform = 
+			{
+				Vec3 Translation = [-3.8147e-006, 9.53674e-007, 0],
+				Vec3 Scale = [1, 1, 1],
+				Quat Rotation = [0, 0, 0, 1],
+			},
+			SpriteParticleSystem = 
+			{
+				SystemChildMode ChildMode = Independent,
+				SystemSpace SystemSpace = WorldSpace,
+				uint DrawOrder = 0,
+				ParticleGeometry GeometryMode = Billboarded,
+				ParticleRenderMode RenderMode = Additive,
+				ParticleSortMode SortMode = None,
+				string Texture = "52437a753684e01d:Smoke2",
+				Vec4 Tint = [1, 1, 1, 1],
+				float VelocityScale = 2,
+				float LengthScale = 1,
+				float MaxParticleSize = 100,
+				Vec3 SystemSize = [2, 2, 2],
+			},
+			LinearParticleAnimator = 
+			{
+				Vec3 Force = [0, 0, 0],
+				Vec3 RandomForce = [0, 0, 0],
+				float Torque = 0,
+				float Growth = 0,
+				float Dampening = 0,
+				Vec3 Twist = [0, 0, 0],
+			},
+			SphericalParticleEmitter = 
+			{
+				bool Active = true,
+				uint EmitCount = 25,
+				float EmitRate = 45,
+				float EmitVariance = 0,
+				float Size = 3,
+				float SizeVariance = 1,
+				float Lifetime = 1,
+				float LifetimeVariance = 0.5,
+				float Spin = 0,
+				float SpinVariance = 0,
+				bool RandomSpin = true,
+				float Fill = 0,
+				float EmitterVelocityPercent = 0,
+				Vec3 StartVelocity = [0, 0, 0],
+				Vec3 RandomVelocity = [1, 1, 0],
+				Vec3 TangentVelocity = [0, 0, 0],
+				Vec3 EmitterSize = [2, 2, 0],
+				bool FastMovingEmitter = false,
+			},
+			ParticleGradientAnimator = 
+			{
+				string ColorGradientName = "52450b19ac20a48c:ExplosionGradient",
+			},
+		},
+	},
+},

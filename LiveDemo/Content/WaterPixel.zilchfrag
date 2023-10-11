@@ -1,0 +1,20 @@
+[Pixel]
+struct WaterPixel
+{
+  [Input] var WaterPeak : Real4;
+  [Input] var WaterBase : Real4;
+  
+  [AppBuiltInInput] var ViewToWorld : Real4x4;
+  
+  [FragmentInput][StageInput] var ViewPosition : Real3;
+  [FragmentInput][StageInput] var WaveHeight : Real;
+  [FragmentInput][StageInput] var WaveMaxAmplitude : Real;
+  [Output] var Albedo : Real3;
+
+  function Main()
+  {
+    var amplitude = this.WaveMaxAmplitude;
+    var t = (this.WaveHeight + amplitude * 0.5) / amplitude;
+    this.Albedo = Math.Lerp(this.WaterPeak, this.WaterBase, t).XYZ;
+  }
+}

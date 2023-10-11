@@ -1,0 +1,51 @@
+[Version:1]
+Cog 
+{
+	var Name = "WallRegen"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{0.5, 0.5, 0.5}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = false
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5a8c705bfba4f1ac:Stipple"
+		var Mesh = "4de0354322b345ae:Cube"
+	}
+	AnimationGraph 
+	{
+		var Active = true
+		var PlayMode = AnimationPlayMode.PlayOnce
+		var TimeScale = 1
+		var Animation = "4f8ebbde619389d0:DefaultAnimation"
+		var DebugPreviewId = 68736
+	}
+	SimpleAnimation 
+	{
+		var Animation = "5573cd14088f90b1:WallRegen"
+		var PlayMode = AnimationPlayMode.PlayOnce
+	}
+	TimedDeath 
+	{
+		var Lifetime = 2
+		var SendsDeathEvent = true
+		var AutoDestroy = true
+	}
+	StippleInputs 
+	{
+		var AlbedoValue = Real4{1, 0.941176474, 0.109803915, 1}
+		var MetallicValue = 0.300000012
+		var RoughnessValue = 0.5
+		var SpecularValue = 0.5
+		var StippleDensity = 0
+		var StippleScale = 3
+	}
+}

@@ -1,0 +1,554 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "SpaceMarine2_Group26047"
+				var ResourceId = 0x5a5582818693bd8b
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface5"
+				var ResourceId = 0x5a5582818693bd98
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface6"
+				var ResourceId = 0x5a5582818693bd9c
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group56133"
+				var ResourceId = 0x5a5582818693bda0
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_bands3_ZBrush_defualt_group"
+				var ResourceId = 0x5a5582818693bda5
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group22960"
+				var ResourceId = 0x5a5582818693bda9
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_maleW13_copy2"
+				var ResourceId = 0x5a5582818693bdac
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface12"
+				var ResourceId = 0x5a5582818693bdb1
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface13"
+				var ResourceId = 0x5a5582818693bdb3
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group63311"
+				var ResourceId = 0x5a5582818693bdb6
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_bands3_ZBrush_defualt_group1"
+				var ResourceId = 0x5a5582818693bdbb
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65200"
+				var ResourceId = 0x5a5582818693bdbe
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65204"
+				var ResourceId = 0x5a5582818693bdc2
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract29_copy2"
+				var ResourceId = 0x5a5582818693bdc5
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_buckles_ZBrush_defualt_group1"
+				var ResourceId = 0x5a5582818693bdcb
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_buckles_Group2"
+				var ResourceId = 0x5a5582818693bdce
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group59138"
+				var ResourceId = 0x5a5582818693bdd1
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65197"
+				var ResourceId = 0x5a5582818693bdd4
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65196"
+				var ResourceId = 0x5a5582818693bdd8
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65195"
+				var ResourceId = 0x5a5582818693bdda
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65194"
+				var ResourceId = 0x5a5582818693bde1
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_ZBrush_defualt_group3"
+				var ResourceId = 0x5a5582818693bde5
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group14294"
+				var ResourceId = 0x5a5582818693bde8
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group46642"
+				var ResourceId = 0x5a5582818693bdeb
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface11"
+				var ResourceId = 0x5a5582818693bdee
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_sideB_Group1"
+				var ResourceId = 0x5a5582818693bdf1
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_sideB_ZBrush_defualt_group"
+				var ResourceId = 0x5a5582818693bdf4
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group35336"
+				var ResourceId = 0x5a5582818693bdf8
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group29187"
+				var ResourceId = 0x5a5582818693bdfb
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65188"
+				var ResourceId = 0x5a5582818693be03
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group63310"
+				var ResourceId = 0x5a5582818693be06
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_beltholder_Group3"
+				var ResourceId = 0x5a5582818693be0a
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_beltholder_Group2"
+				var ResourceId = 0x5a5582818693be0d
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_buckles_Group1"
+				var ResourceId = 0x5a5582818693be10
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_buckles_ZBrush_defualt_group"
+				var ResourceId = 0x5a5582818693be13
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group39854"
+				var ResourceId = 0x5a5582818693be16
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group46698"
+				var ResourceId = 0x5a5582818693be1a
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface35"
+				var ResourceId = 0x5a5582818693be1d
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface37"
+				var ResourceId = 0x5a5582818693be20
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group10014"
+				var ResourceId = 0x5a5582818693be23
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group11601"
+				var ResourceId = 0x5a5582818693be26
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group31434"
+				var ResourceId = 0x5a5582818693be29
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group28360"
+				var ResourceId = 0x5a5582818693be2c
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group63309"
+				var ResourceId = 0x5a5582818693be36
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract25"
+				var ResourceId = 0x5a5582818693be39
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface7"
+				var ResourceId = 0x5a5582818693be3c
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface8"
+				var ResourceId = 0x5a5582818693be3f
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface9"
+				var ResourceId = 0x5a5582818693be42
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract27_02"
+				var ResourceId = 0x5a5582818693be46
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract12"
+				var ResourceId = 0x5a5582818693be49
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract29_copy1"
+				var ResourceId = 0x5a5582818693be4c
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_sideB_Group2"
+				var ResourceId = 0x5a5582818693be4f
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65201"
+				var ResourceId = 0x5a5582818693be52
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_sideB_ZBrush_defualt_group1"
+				var ResourceId = 0x5a5582818693be55
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_buckles_Group3"
+				var ResourceId = 0x5a5582818693be58
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract29_copy3"
+				var ResourceId = 0x5a5582818693be5c
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_buckles_ZBrush_defualt_group2"
+				var ResourceId = 0x5a5582818693be5f
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract268"
+				var ResourceId = 0x5a5582818693be62
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65202"
+				var ResourceId = 0x5a5582818693be65
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group65203"
+				var ResourceId = 0x5a5582818693be69
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_beltholder_Group4"
+				var ResourceId = 0x5a5582818693be6c
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_beltholder_Group5"
+				var ResourceId = 0x5a5582818693be6f
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface38"
+				var ResourceId = 0x5a5582818693be72
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Group11311"
+				var ResourceId = 0x5a5582818693be75
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract265"
+				var ResourceId = 0x5a5582818693be81
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract0_copy2"
+				var ResourceId = 0x5a5582818693be84
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract25_01_copy1"
+				var ResourceId = 0x5a5582818693be88
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface25"
+				var ResourceId = 0x5a5582818693be8b
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface24"
+				var ResourceId = 0x5a5582818693be8e
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface23"
+				var ResourceId = 0x5a5582818693be91
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface22"
+				var ResourceId = 0x5a5582818693be94
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface21"
+				var ResourceId = 0x5a5582818693be97
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface20"
+				var ResourceId = 0x5a5582818693be9b
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface19"
+				var ResourceId = 0x5a5582818693be9f
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface18"
+				var ResourceId = 0x5a5582818693bea2
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface17"
+				var ResourceId = 0x5a5582818693bea5
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface16"
+				var ResourceId = 0x5a5582818693bea9
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface15"
+				var ResourceId = 0x5a5582818693beac
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface14"
+				var ResourceId = 0x5a5582818693beaf
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract266"
+				var ResourceId = 0x5a5582818693beb2
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract17_05"
+				var ResourceId = 0x5a5582818693beb6
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract21"
+				var ResourceId = 0x5a5582818693beb9
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_backleg_gaurds_Group2"
+				var ResourceId = 0x5a5582818693bebc
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_Extract0_copy3"
+				var ResourceId = 0x5a5582818693bebf
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_backleg_gaurds_Group3"
+				var ResourceId = 0x5a5582818693bec3
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_ZBrush_defualt_group"
+				var ResourceId = 0x5a5582818693bec8
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface30"
+				var ResourceId = 0x5a5582818693becb
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface31"
+				var ResourceId = 0x5a5582818693becf
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface32"
+				var ResourceId = 0x5a5582818693bed1
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface28"
+				var ResourceId = 0x5a5582818693bed4
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface29"
+				var ResourceId = 0x5a5582818693bed7
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface26"
+				var ResourceId = 0x5a5582818693beda
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface41"
+				var ResourceId = 0x5a5582818693bedd
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface40"
+				var ResourceId = 0x5a5582818693bee1
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface39"
+				var ResourceId = 0x5a5582818693bee4
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface34"
+				var ResourceId = 0x5a5582818693bef4
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface33"
+				var ResourceId = 0x5a5582818693bef6
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface42"
+				var ResourceId = 0x5a5582818693befa
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface43"
+				var ResourceId = 0x5a5582818693befc
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface44"
+				var ResourceId = 0x5a5582818693bf00
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_polySurface45"
+				var ResourceId = 0x5a5582818693bf03
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_pSphere5"
+				var ResourceId = 0x5a5582818693bf06
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_pSphere6"
+				var ResourceId = 0x5a5582818693bf09
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_pSphere7"
+				var ResourceId = 0x5a5582818693bf0c
+			}
+			Object
+			{
+				var Name = "SpaceMarine2_pSphere8"
+				var ResourceId = 0x5a5582818693bf0f
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5a55828186996fa7
+	}
+}

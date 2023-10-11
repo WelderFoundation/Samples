@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "GeoTest"
+		var ResourceId = 0x5ae359e6068e9b7f
+	}
+}

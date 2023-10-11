@@ -1,0 +1,31 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = true
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveZ
+		var ZBasisTo = BasisType.NegativeY
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "EdgeTile"
+				var ResourceId = 0x555b49fdd220e62c
+			}
+		}
+	}
+}

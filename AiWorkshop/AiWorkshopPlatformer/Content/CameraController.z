@@ -1,0 +1,38 @@
+class CameraController : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  
+  [Property] var Target : CogPath;
+  
+  [Property] var DistanceFromCameraToPan : Real = 4.0;
+  
+  [Property] var MinX : Real = 1.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+      Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var targetPos = this.Target.Cog.Transform.Translation;
+    var ourPos = this.Transform.Translation;
+    
+    var toTarget = targetPos.X - ourPos.X;
+    
+    var distance = Math.Abs(toTarget);
+    if(distance > this.DistanceFromCameraToPan)
+    {
+      var amountOff = distance - this.DistanceFromCameraToPan;
+      
+      var direction = toTarget / Math.Abs(toTarget);
+      
+      ourPos.X += amountOff * direction * 0.1;
+      
+      // Clamp to the left side of the screen
+      ourPos.X = Math.Max(this.MinX, ourPos.X);
+      
+      this.Transform.Translation = ourPos;
+    }
+  }
+}

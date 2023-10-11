@@ -1,0 +1,21 @@
+class EnemyMovement : ZilchComponent
+{
+    [Property]
+    var EnemySpeed : Real = 1.0;
+
+    var StartPosition: Real3 = Real3();
+
+    var Dt : Real = 0;
+
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+
+        this.StartPosition = this.Owner.Transform.Translation;
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        this.Owner.Transform.Translation += Real3(0.0, -0.01, 0.0) * this.EnemySpeed;
+    }
+}

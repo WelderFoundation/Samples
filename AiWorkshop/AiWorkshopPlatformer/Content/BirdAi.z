@@ -1,0 +1,41 @@
+class BirdAi : ZilchComponent
+{
+  // We rely on the bird for functionality
+  [Dependency] var Bird : Bird;
+  
+  // Just so all the birds don't follow the sign wave together
+  // This can be removed if you would like
+  var RandOffset : Real;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Run our logic every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    // Generate a random offset
+    this.RandOffset = this.LevelSettings.RandomContext.Float();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    
+    // Follow a sin wave
+    var t = Math.Sin((event.RealTimePassed + this.RandOffset) * 5.0) * 0.5;
+    
+    // Move in that direction and to the left
+    var direction = Real3(-1, t, 0);
+    this.Bird.MoveInDirection(direction, event.Dt);
+    
+    // Calculate the X distance
+    var playerPos = this.Bird.PlayerPosition;
+    var ourPos = this.Bird.OurPosition;
+    var distance = Math.Abs(playerPos.X - ourPos.X);
+    
+    // If we're in range, drop the rock
+    if(distance < 5.5)
+    {
+        this.Bird.DropObject();
+    }
+  }
+}

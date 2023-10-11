@@ -1,0 +1,19 @@
+[Pixel]
+struct FuzzyTriangleCuttoff
+{
+  [Input] var CutoffColor = Real4(1);
+  [Input] var GridSize : Real2;
+  [Input] var Cutoff : Real = 0.0;
+  [Input] var ViewToLocal : Real4x4;
+  [FragmentInput][StageInput] var ViewPosition : Real3;
+  [FragmentInput][StageInput][Output] var Color : Real4;
+  
+  function Main()
+  {
+    var localPos = Math.MultiplyPoint(this.ViewToLocal, this.ViewPosition);
+    if(localPos.Y <= this.Cutoff * this.GridSize.Y)
+    {
+      this.Color = this.CutoffColor;
+    }
+  }
+}

@@ -1,0 +1,97 @@
+class EnemyAi : ZilchComponent
+{
+    // We rely on the Tank Component
+    [Dependency] var Tank : Tank = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        // We want to run our logic every frame
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //------------------------------------------------------- Student Code Below
+        // Sensor distances
+        var leftSensor = this.Tank.GetLeftSensor().GetNormalizedDistance();
+        var centerSensor = this.Tank.GetCenterSensor().GetNormalizedDistance();
+        var rightSensor = this.Tank.GetRightSensor().GetNormalizedDistance();
+        
+		// Search for an enemy
+        var enemy = this.FindEnemy();
+		
+		// If we found the enemy, we want to turn towards them and shoot
+        if(enemy != null)
+        {
+            // Get the direction we need to turn to face the enemy
+            var turnDirection = this.Tank.GetTurnDirectionToEnemy(enemy);
+            
+            // Turn towards the enemy
+            this.Tank.Turn(turnDirection);
+            
+            // Fire at them
+            this.Tank.AttempFire();
+            
+            // Shooting enemies is our highest priority, so we don't want to
+            // run any other logic after this
+            return;
+        }
+		
+        // Always move forward
+        this.Tank.Move(1.0);
+        
+		// If there's nothing close in front of us, just turn away from whichever side is closer
+        if(centerSensor < 0.15)
+        {
+            if(leftSensor > rightSensor)
+            {
+                this.Tank.Turn(leftSensor);
+            }
+            else
+            {
+                this.Tank.Turn(-rightSensor);
+            }
+        }
+        // If we're moving too close to something in front of us, lets just prioritize left first
+        // The reason we just pick a side is because we don't want to wobble back and forth 
+        // when the left and right sensors alternate being closer
+        else if(centerSensor < 0.7)
+        {
+            if(leftSensor > rightSensor)
+            {
+                this.Tank.Turn(1);
+            }
+            else
+            {
+                this.Tank.Turn(-1);
+            }
+        }
+        // If we're critically close to something, turn full in one direction
+        else
+        {
+            this.Tank.Move(-1);
+            this.Tank.Turn(-2);
+        }
+    }
+	
+	function FindEnemy() : Cog
+    {        
+        // Walk through all of our tanks enemies
+        foreach (var enemy in this.Tank.Enemies)
+        {
+            // Check if the enemy is in range
+            if(this.Tank.EnemyIsInRange(enemy))
+            {
+                // Check to see if it's visible
+                if(this.Tank.EnemyIsVisible(enemy))
+                {
+					// We found an enemy!
+					return enemy;
+                }
+            }
+        }
+        
+        // We didn't find an enemy
+        return null;
+    }
+}

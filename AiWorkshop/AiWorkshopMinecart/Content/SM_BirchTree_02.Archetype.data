@@ -1,0 +1,125 @@
+[Version:1]
+Cog 
+{
+	var Name = "SM_BirchTree_02"
+	Transform 
+	{
+		var Translation = Real3{-18.0858879, 7.68622732, -15.1723938}
+		var Scale = Real3{1.55171537, 1.55171537, 1.55171537}
+		var Rotation = Quaternion{0, -0.0554855987, 0, 0.998459518}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x592c41516ef5ccb8]
+		{
+			var Name = "SMBirchTree02GeneratedMeshNode0"
+			Transform 
+			{
+				var Translation = Real3{0, 1.18973601, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5924959c7091e634:TreeTrunk"
+				var Mesh = "5aaa4c1c0e2e302e:SM_BirchTree_02_SM_BirchTree_02GeneratedMeshNode0"
+			}
+			MeshCollider 
+			{
+				var Ghost = false
+				var SendsEvents = true
+				var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+				var CollisionGroup = "4e740859314e5515:DefaultGroup"
+				var Offset = Real3{0, 0, 0}
+				var PhysicsMesh = "5b111775480495d9:SM_BirchTree_02_SM_BirchTree_02GeneratedMeshNode0"
+				var DrawEdges = true
+				var DrawFaces = false
+				var DrawFaceNormals = false
+			}
+			EjectRider 
+			{
+			}
+		}
+		Cog [Id:0x592c41516ef5d1de]
+		{
+			var Name = "SMBirchTree02GeneratedMeshNode1"
+			Transform 
+			{
+				var Translation = Real3{0, 1.18973601, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5924959c7091e634:TreeTrunk"
+				var Mesh = "5aaa4c1c0e2e303a:SM_BirchTree_02_SM_BirchTree_02GeneratedMeshNode1"
+			}
+			MeshCollider 
+			{
+				var Ghost = false
+				var SendsEvents = true
+				var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+				var CollisionGroup = "4e740859314e5515:DefaultGroup"
+				var Offset = Real3{0, 0, 0}
+				var PhysicsMesh = "5b111775480495e4:SM_BirchTree_02_SM_BirchTree_02GeneratedMeshNode1"
+				var DrawEdges = true
+				var DrawFaces = false
+				var DrawFaceNormals = false
+			}
+			EjectRider 
+			{
+			}
+		}
+		Cog [Id:0x592c41516ef5d6df]
+		{
+			var Name = "SMBirchTree02GeneratedMeshNode2"
+			Transform 
+			{
+				var Translation = Real3{0, 1.18973601, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5924958a74e00d54:TreeLeaves"
+				var Mesh = "5aaa4c1c0e2e303e:SM_BirchTree_02_SM_BirchTree_02GeneratedMeshNode2"
+			}
+			MeshCollider 
+			{
+				var Ghost = false
+				var SendsEvents = true
+				var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+				var CollisionGroup = "4e740859314e5515:DefaultGroup"
+				var Offset = Real3{0, 0, 0}
+				var PhysicsMesh = "5b111775480495e8:SM_BirchTree_02_SM_BirchTree_02GeneratedMeshNode2"
+				var DrawEdges = true
+				var DrawFaces = false
+				var DrawFaceNormals = false
+			}
+			EjectRider 
+			{
+			}
+		}
+	}
+}

@@ -1,0 +1,26 @@
+class AABBDebugDraw : ZilchComponent
+{
+  [Dependency]
+  var Transform : Transform;
+  
+  [Dependency]
+  var Collider : Collider;
+  
+  [Property]
+  var Color : Real4 = Real4(1,1,1,1);
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.FrameUpdate, this.OnFrameUpdate);
+  }
+
+  function OnFrameUpdate(event : UpdateEvent)
+  {
+    var obb = DebugObb();
+    obb.Color = this.Color;
+    obb.Position = this.Transform.Translation;
+    obb.Rotation = this.Transform.Rotation;
+    obb.HalfExtents = this.Transform.Scale/2.0;
+    DebugDraw.Add(obb);
+  }
+}

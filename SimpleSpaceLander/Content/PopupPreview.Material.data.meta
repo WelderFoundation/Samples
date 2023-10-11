@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "PopupPreview"
+		var ResourceId = 0x587e4a9d314e774d
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

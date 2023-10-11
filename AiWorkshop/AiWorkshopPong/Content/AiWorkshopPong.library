@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "AiWorkshopPong",
+	uint64 LibraryId = 556a24dafc7715ef,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

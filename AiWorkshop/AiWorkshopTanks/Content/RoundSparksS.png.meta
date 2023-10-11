@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "RoundSparksS"
+		var ResourceId = 0x5ab1d3f9f6c04e86
+		var FrameSizeX = 285
+		var FrameSizeY = 274
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 142
+		var OriginY = 137
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

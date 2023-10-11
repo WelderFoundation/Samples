@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "Scroller",
+		uint64 ResourceId = 5555b20f4966c2b0,
+	},
+},

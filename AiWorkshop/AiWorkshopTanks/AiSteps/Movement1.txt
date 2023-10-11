@@ -1,0 +1,33 @@
+class EnemyAi : ZilchComponent
+{
+    // We rely on the Tank Component
+    [Dependency] var Tank : Tank = null;
+    
+    function Initialize(init : CogInitializer)
+    {
+        // We want to run our logic every frame
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+    
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        //------------------------------------------------------- Student Code Below
+        // Sensor distances
+        var leftSensor = this.Tank.GetLeftSensor().GetNormalizedDistance();
+        var centerSensor = this.Tank.GetCenterSensor().GetNormalizedDistance();
+        var rightSensor = this.Tank.GetRightSensor().GetNormalizedDistance();
+        
+        // Always move forward
+        this.Tank.Move(1.0);
+        
+		// Only move based on the sensors distance so we aren't doing harsh turns when the wall is far away
+		if(leftSensor > rightSensor)
+		{
+			this.Tank.Turn(leftSensor);
+		}
+		else
+		{
+			this.Tank.Turn(-rightSensor);
+		}
+    }
+}

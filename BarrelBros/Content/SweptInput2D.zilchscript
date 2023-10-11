@@ -1,0 +1,66 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Copyright 2017 DigiPen USA Corporation, All Rights Reserved
+// Author: Zero Engine Team
+// Last updated by: Joshua Davis
+// Last update: 7/24/2017
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Simple input for a 2d swept character controller.
+class SweptInput2D : ZilchComponent
+{
+  [Dependency] var SweptController : SweptController;
+  
+  sends Interact : ZilchEvent;
+  
+  [Property] var LeftKey : Keys = Keys.A;
+  [Property] var RightKey : Keys = Keys.D;
+  [Property] var JumpKey : Keys = Keys.Space;
+  [Property] var InteractionKey : Keys = Keys.E;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    Zero.Connect(this.Owner, "CollectableHit", this.OnCollectableHit);
+  }
+
+  function OnCollectableHit(event : CollisionGroupEvent)
+  {
+    event.OtherObject.Destroy();
+  }
+
+  function OnKeyDown(event : KeyboardEvent)
+  {
+    if(event.Key == this.InteractionKey)
+      this.Interact();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var movement = Real3(0, 0, 0);
+    
+    // Check for left/right movment
+    if(Zero.Keyboard.KeyIsDown(this.LeftKey))
+      movement.X = -1;
+    if(Zero.Keyboard.KeyIsDown(this.RightKey))
+      movement.X = 1;
+    
+    this.SweptController.Update(movement, event.Dt);
+    
+    if(Zero.Keyboard.KeyIsPressed(this.JumpKey))
+    {
+      this.SweptController.Jump();
+    }
+  }
+  
+  function Interact()
+  {
+    var sphere = Sphere();
+    sphere.Center = this.Owner.Transform.WorldTranslation;
+    sphere.Radius = 2;
+    
+    var filter = CastFilter();
+    filter.IgnoreGhost = false;
+    this.Space.PhysicsSpace.DispatchWithinSphere(sphere, filter, Events.Interact, ZilchEvent());
+  }
+}

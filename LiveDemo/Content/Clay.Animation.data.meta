@@ -1,0 +1,17 @@
+[Version:1]
+DataContent 
+{
+	RichAnimationBuilder 
+	{
+		var Name = "Clay"
+		var ResourceId = 0x5b4f6a8c0672d8a8
+		var PreviewArchetype = ""
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Animation"
+		}
+	}
+}

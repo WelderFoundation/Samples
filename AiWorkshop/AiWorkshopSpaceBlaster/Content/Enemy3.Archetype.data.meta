@@ -1,0 +1,21 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Enemy3"
+		var ResourceId = 0x5558e5c194765828
+		var LoaderType = "Cog"
+		var Version = 0
+		var ShowInEditor = true
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Archetype"
+			"Enemy"
+			"Cog"
+		}
+	}
+}

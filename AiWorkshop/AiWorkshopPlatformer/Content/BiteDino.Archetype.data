@@ -1,0 +1,1336 @@
+[Version:1]
+Cog 
+{
+	var Name = "BiteControl"
+	Transform 
+	{
+		var Translation = Real3{-27.0183449, 4.90982056, -47.9950027}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	AnimationGraph 
+	{
+		var Active = true
+		var PlayMode = AnimationPlayMode.PlayOnce
+		var TimeScale = 1
+		var Animation = "4f8ebbde619389d0:DefaultAnimation"
+		var DebugPreviewId = 3
+	}
+	SimpleAnimation 
+	{
+		var Animation = "544c4b49faafba99:BiteDinoIdle"
+		var PlayMode = AnimationPlayMode.Loop
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5b605145f62f7749]
+		{
+			var Name = "Body"
+			Transform 
+			{
+				var Translation = Real3{0.00947300997, 0.959463, -1.20587998e-07}
+				var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "54489dcc19ab944b:BiteDinoBody"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b605145f62f774c]
+				{
+					var Name = "Scarf"
+					Transform 
+					{
+						var Translation = Real3{-0.219811007, 0.524932981, 0.5}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Sprite 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = false
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "582c575af53d18c9:AlphaSprite"
+						var VertexColor = Real4{1, 1, 1, 1}
+						var GeometryMode = SpriteGeometryMode.ZPlane
+						var SpriteSource = "5441b6ba7ff551bb:BiteDinoScarf"
+						var FlipX = false
+						var FlipY = false
+						var AnimationActive = true
+						var AnimationSpeed = 1
+						var StartFrame = 0
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605145f62f774d]
+						{
+							var Name = "ScarfPivot2"
+							Transform 
+							{
+								var Translation = Real3{-0.152740002, 0.112319998, -2.12625003}
+								var Scale = Real3{1.25, 1.25, 1.25}
+								var Rotation = Quaternion{0, 0, -0.0280962996, 0.999605}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605145f62f774f]
+								{
+									var Name = "ScarfPart2"
+									Transform 
+									{
+										var Translation = Real3{-0.151133999, 0.0543807, 0.00100004999}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5448806d32180a98:BiteDinoScarfPart2"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605145f62f7751]
+						{
+							var Name = "ScarfPivot1"
+							Transform 
+							{
+								var Translation = Real3{-0.199995995, 0.0825271979, -0.5}
+								var Scale = Real3{1.25, 1.25, 1.25}
+								var Rotation = Quaternion{0, 0, -0.0368711986, 0.999319971}
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605145f62f7752]
+								{
+									var Name = "ScarfPart1"
+									Transform 
+									{
+										var Translation = Real3{-0.255636007, 0.0221017003, -1}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5448806d3227fecd:BiteDinoScarfPart1"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b605145f62f7754]
+				{
+					var Name = "ArmPivotR"
+					Transform 
+					{
+						var Translation = Real3{-0.410930008, 0.368295997, 2}
+						var Scale = Real3{1.25, 1.25, 1.25}
+						var Rotation = Quaternion{0, 0, -0.258819014, 0.965925992}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605145f62f7755]
+						{
+							var Name = "ArmR"
+							Transform 
+							{
+								var Translation = Real3{-0.0697605014, -0.0671984032, 0.5}
+								var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5441b6ba7ff4de38:BiteDinoRightArm"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605145f62f7757]
+								{
+									var Name = "ElbowPivotR"
+									Transform 
+									{
+										var Translation = Real3{-0.0765888989, -0.224135995, -0.625}
+										var Scale = Real3{1.25, 1.25, 1.25}
+										var Rotation = Quaternion{0, 0, 0.0235329997, 0.999723017}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b605145f62f7758]
+										{
+											var Name = "HandR"
+											Transform 
+											{
+												var Translation = Real3{0.137584999, -0.336733997, 1}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff505b2:BiteDinoRightHand"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f7759]
+										{
+											var Name = "HandGrab1R"
+											Transform 
+											{
+												var Translation = Real3{0.137584999, -0.336733997, 1}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff51420:BiteDinoRightHandGrab1"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f775b]
+										{
+											var Name = "HandGrab2R"
+											Transform 
+											{
+												var Translation = Real3{0.137584999, -0.336733997, 1}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff5204c:BiteDinoRightHandGrab2"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f775c]
+										{
+											var Name = "HandPoint1R"
+											Transform 
+											{
+												var Translation = Real3{0.137584999, -0.336733997, 1}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff52af2:BiteDinoRightHandPoint1"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f775e]
+										{
+											var Name = "HandPoint2R"
+											Transform 
+											{
+												var Translation = Real3{0.137584999, -0.336733997, 1}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff5347e:BiteDinoRightHandPoint2"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b605145f62f775f]
+				{
+					var Name = "ArmPivotL"
+					Transform 
+					{
+						var Translation = Real3{0.412707001, 0.406058997, -0.5}
+						var Scale = Real3{1.25, 1.25, 1.25}
+						var Rotation = Quaternion{0, 0, -0.0156538002, 0.999876976}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605145f62f7761]
+						{
+							var Name = "ArmL"
+							Transform 
+							{
+								var Translation = Real3{0.086782001, -0.0737821981, -0.300000012}
+								var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5441b6ba7ff464a0:BiteDinoLeftArm"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605145f62f7762]
+								{
+									var Name = "ElbowPivotL"
+									Transform 
+									{
+										var Translation = Real3{0.121890999, -0.126638994, 0.375}
+										var Scale = Real3{1.25, 1.25, 1.25}
+										var Rotation = Quaternion{0, 0, -0.0338159017, 0.999427974}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b605145f62f7764]
+										{
+											var Name = "HandL"
+											EditorFlags 
+											{
+												var Locked = false
+												var Hidden = true
+											}
+											Transform 
+											{
+												var Translation = Real3{0.192531005, -0.335361004, -0.5}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "544dc1c577a609a0:BiteDinoLeftHand"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f7765]
+										{
+											var Name = "HandPoint1L"
+											EditorFlags 
+											{
+												var Locked = false
+												var Hidden = true
+											}
+											Transform 
+											{
+												var Translation = Real3{0.192531005, -0.335361004, -0.5}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "544dc1c577a62fac:BiteDinoLeftHandPoint1"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f7767]
+										{
+											var Name = "HandPoint2L"
+											EditorFlags 
+											{
+												var Locked = false
+												var Hidden = true
+											}
+											Transform 
+											{
+												var Translation = Real3{0.192531005, -0.335361004, -0.5}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "544dc1c577a63d1a:BiteDinoLeftHandPoint2"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f7768]
+										{
+											var Name = "HandGrab1L"
+											EditorFlags 
+											{
+												var Locked = false
+												var Hidden = true
+											}
+											Transform 
+											{
+												var Translation = Real3{0.192531005, -0.335361004, -0.5}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "544dc1c577a613fc:BiteDinoLeftHandGrab1"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f776a]
+										{
+											var Name = "HandGrab2L"
+											Transform 
+											{
+												var Translation = Real3{0.192531005, -0.335361004, -0.5}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, -0.000179615003, 1}
+											}
+											Sprite 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "544dc1c577a621f5:BiteDinoLeftHandGrab2"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+											Hierarchy 
+											{
+											}
+										}
+										Cog [Id:0x5b605145f62f776b]
+										{
+											var Name = "Nails1L"
+											EditorFlags 
+											{
+												var Locked = false
+												var Hidden = true
+											}
+											Transform 
+											{
+												var Translation = Real3{0.392762989, -0.434453011, 0.200000003}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, -0.000179615003, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff49aab:BiteDinoLeftHandNails1"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f776c]
+										{
+											var Name = "Nails2L"
+											Transform 
+											{
+												var Translation = Real3{0.381778002, -0.423539013, 0.200000003}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, -0.000179615003, 1}
+											}
+											Sprite 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff4ac3a:BiteDinoLeftHandNails2"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+										Cog [Id:0x5b605145f62f776e]
+										{
+											var Name = "Twig"
+											Transform 
+											{
+												var Translation = Real3{0.832540989, -0.115868002, -0.300000012}
+												var Scale = Real3{1, 1, 1}
+												var Rotation = Quaternion{0, 0, -0.0657427981, 0.997837007}
+											}
+											Sprite 
+											{
+												var Visible = true
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff57201:BiteDinoTwig"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b605145f62f776f]
+				{
+					var Name = "TailPivot"
+					Transform 
+					{
+						var Translation = Real3{0.0055885301, -0.741412997, 1.35354995e-07}
+						var Scale = Real3{1.25, 1.25, 1.25}
+						var Rotation = Quaternion{0, 0, 0.00861823, 0.999962986}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605145f62f7771]
+						{
+							var Name = "Tail"
+							Transform 
+							{
+								var Translation = Real3{-0.512211978, 0.630147994, -0.100000001}
+								var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "55bbf5b4ad05c64e:BiteDinoTail"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+				Cog [Id:0x5b605145f62f7772]
+				{
+					var Name = "HeadPivot"
+					Transform 
+					{
+						var Translation = Real3{-0.157361001, 0.629652023, 1.50733996e-07}
+						var Scale = Real3{1.25, 1.25, 1.25}
+						var Rotation = Quaternion{0, 0, -0.0100868996, 0.999948978}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605145f62f7774]
+						{
+							var Name = "Head"
+							Transform 
+							{
+								var Translation = Real3{0.135887995, 0.711269021, 1}
+								var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5441b6ba7ff420cf:BiteDinoHeadNoEye"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605145f62f7775]
+								{
+									var Name = "Eye"
+									Transform 
+									{
+										var Translation = Real3{-0.178783, -0.0353184007, 1.25}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = true
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "544e2838b38ea699:BiteDinoEye"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+								Cog [Id:0x5b605145f62f7776]
+								{
+									var Name = "Eye4"
+									Transform 
+									{
+										var Translation = Real3{-0.176880002, -0.0393074006, 3}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0.0261770003, 0.999656975}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5441b6ba7ff3fc47:BiteDinoEye4"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+									Hierarchy 
+									{
+									}
+								}
+								Cog [Id:0x5b605145f62f7778]
+								{
+									var Name = "Eye5"
+									Transform 
+									{
+										var Translation = Real3{-0.177475005, -0.0338210016, 3}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0.0261770003, 0.999656975}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5441b6ba7ff40822:BiteDinoEye5"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605145f62f7779]
+						{
+							var Name = "Head2"
+							Transform 
+							{
+								var Translation = Real3{0.260237992, 0.668088019, 2}
+								var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = false
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5441b6ba7ff453c5:BiteDinoHeadSideTop"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605145f62f777b]
+								{
+									var Name = "Teeth"
+									Transform 
+									{
+										var Translation = Real3{0.222744003, -0.595008016, 3}
+										var Scale = Real3{1, 1, 1}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5441b6ba7ff44a62:BiteDinoHeadSideTeeth"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+								Cog [Id:0x5b605145f62f777c]
+								{
+									var Name = "JawPivot"
+									Transform 
+									{
+										var Translation = Real3{-0.183390006, -0.514593005, -1.94910001e-07}
+										var Scale = Real3{1.25, 1.25, 1.25}
+										var Rotation = Quaternion{0, 0, -0.0839515999, 0.996469975}
+									}
+									Hierarchy 
+									{
+										Cog [Id:0x5b605145f62f777e]
+										{
+											var Name = "Jaw"
+											Transform 
+											{
+												var Translation = Real3{0.377858996, -0.105580002, 2.20000005}
+												var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+												var Rotation = Quaternion{0, 0, 0, 1}
+											}
+											Sprite 
+											{
+												var Visible = false
+												var ViewCulling = true
+												var VisibilityEvents = false
+												var OverrideBoundingBox = false
+												var LocalAabbCenter = Real3{0, 0, 0}
+												var LocalAabbHalfExtents = Real3{1, 1, 1}
+												var GroupSortValue = 0
+												var Material = "582c575af53d18c9:AlphaSprite"
+												var VertexColor = Real4{1, 1, 1, 1}
+												var GeometryMode = SpriteGeometryMode.ZPlane
+												var SpriteSource = "5441b6ba7ff4345c:BiteDinoHeadSideMouth"
+												var FlipX = false
+												var FlipY = false
+												var AnimationActive = true
+												var AnimationSpeed = 1
+												var StartFrame = 0
+											}
+										}
+									}
+								}
+								Cog [Id:0x5b605145f62f777f]
+								{
+									var Name = "Eye"
+									Transform 
+									{
+										var Translation = Real3{0.0219927002, 0.0186579991, 1.20000005}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "544e2838b38ea699:BiteDinoEye"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+								Cog [Id:0x5b605145f62f7781]
+								{
+									var Name = "Eye4"
+									Transform 
+									{
+										var Translation = Real3{0.0238955002, -0.00325000007, 1.75}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0.0261770003, 0.999656975}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5441b6ba7ff3fc47:BiteDinoEye4"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+									Hierarchy 
+									{
+									}
+								}
+								Cog [Id:0x5b605145f62f7782]
+								{
+									var Name = "Eye5"
+									Transform 
+									{
+										var Translation = Real3{0.0233005993, 0.0201555006, 1.75}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0.0261770003, 0.999656975}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5441b6ba7ff40822:BiteDinoEye5"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+						Cog [Id:0x5b605145f62f7783]
+						{
+							var Name = "Head3"
+							Transform 
+							{
+								var Translation = Real3{0.275108993, 0.630279005, 1}
+								var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+								var Rotation = Quaternion{0, 0, -0.0261770003, 0.999656975}
+							}
+							Sprite 
+							{
+								var Visible = false
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5441b6ba7ff43e6f:BiteDinoHeadSideNoEye"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+							Hierarchy 
+							{
+								Cog [Id:0x5b605145f62f7785]
+								{
+									var Name = "Eye"
+									Transform 
+									{
+										var Translation = Real3{-0.0277622994, 0.105489999, 2.5}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "544e2838b38ea699:BiteDinoEye"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+								Cog [Id:0x5b605145f62f7786]
+								{
+									var Name = "Eye4"
+									Transform 
+									{
+										var Translation = Real3{-0.0262177996, 0.103206001, 3}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5441b6ba7ff3fc47:BiteDinoEye4"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+								Cog [Id:0x5b605145f62f7788]
+								{
+									var Name = "Eye5"
+									Transform 
+									{
+										var Translation = Real3{-0.0265254993, 0.108716004, 3}
+										var Scale = Real3{1.125, 1.125, 1.125}
+										var Rotation = Quaternion{0, 0, 0, 1}
+									}
+									Sprite 
+									{
+										var Visible = false
+										var ViewCulling = true
+										var VisibilityEvents = false
+										var OverrideBoundingBox = false
+										var LocalAabbCenter = Real3{0, 0, 0}
+										var LocalAabbHalfExtents = Real3{1, 1, 1}
+										var GroupSortValue = 0
+										var Material = "582c575af53d18c9:AlphaSprite"
+										var VertexColor = Real4{1, 1, 1, 1}
+										var GeometryMode = SpriteGeometryMode.ZPlane
+										var SpriteSource = "5441b6ba7ff40822:BiteDinoEye5"
+										var FlipX = false
+										var FlipY = false
+										var AnimationActive = true
+										var AnimationSpeed = 1
+										var StartFrame = 0
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x5b605145f62f7789]
+		{
+			var Name = "LegL"
+			Transform 
+			{
+				var Translation = Real3{0.377211004, 0.637737989, -0.100000001}
+				var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+				var Rotation = Quaternion{0, 0, -0.00728210993, 0.999972999}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "5441b6ba7ff4cfd1:BiteDinoLeftLeg"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b605145f62f778a]
+				{
+					var Name = "FeetPivotL"
+					Transform 
+					{
+						var Translation = Real3{-0.050937701, -0.482695997, 0.125}
+						var Scale = Real3{1.25, 1.25, 1.25}
+						var Rotation = Quaternion{0, 0, 0.00728210993, 0.999972999}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605145f62f778c]
+						{
+							var Name = "FeetL"
+							Transform 
+							{
+								var Translation = Real3{0.193832994, -0.0851825029, -0.300000012}
+								var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5441b6ba7ff46f21:BiteDinoLeftFeet"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+						}
+					}
+				}
+			}
+		}
+		Cog [Id:0x5b605145f62f778d]
+		{
+			var Name = "LegR"
+			Transform 
+			{
+				var Translation = Real3{-0.321233988, 0.628431976, 1}
+				var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+				var Rotation = Quaternion{0, 0, -0.00728210993, 0.999972999}
+			}
+			Sprite 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = false
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var SpriteSource = "5441b6ba7ff53e99:BiteDinoRightLeg"
+				var FlipX = false
+				var FlipY = false
+				var AnimationActive = true
+				var AnimationSpeed = 1
+				var StartFrame = 0
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5b605145f62f778f]
+				{
+					var Name = "FeetPivotR"
+					Transform 
+					{
+						var Translation = Real3{-0.158825994, -0.468962997, -0.625}
+						var Scale = Real3{1.25, 1.25, 1.25}
+						var Rotation = Quaternion{0, 0, 0.00728210993, 0.999972999}
+					}
+					Hierarchy 
+					{
+						Cog [Id:0x5b605145f62f7790]
+						{
+							var Name = "FeetR"
+							Transform 
+							{
+								var Translation = Real3{0.219491005, -0.138889998, 0.400000006}
+								var Scale = Real3{0.800000012, 0.800000012, 0.800000012}
+								var Rotation = Quaternion{0, 0, 0, 1}
+							}
+							Sprite 
+							{
+								var Visible = true
+								var ViewCulling = true
+								var VisibilityEvents = false
+								var OverrideBoundingBox = false
+								var LocalAabbCenter = Real3{0, 0, 0}
+								var LocalAabbHalfExtents = Real3{1, 1, 1}
+								var GroupSortValue = 0
+								var Material = "582c575af53d18c9:AlphaSprite"
+								var VertexColor = Real4{1, 1, 1, 1}
+								var GeometryMode = SpriteGeometryMode.ZPlane
+								var SpriteSource = "5441b6ba7ff4e76c:BiteDinoRightFeet"
+								var FlipX = false
+								var FlipY = false
+								var AnimationActive = true
+								var AnimationSpeed = 1
+								var StartFrame = 0
+							}
+							Hierarchy 
+							{
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

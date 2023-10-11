@@ -1,0 +1,43 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"580269d9a1d6b870:ShadowCasters"
+		"58f4ed78bda39ec5:OpaqueDoubleSided"
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 0.319391012
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 0.497547448
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "592c4297c3079507:T_BigLeafFlower_01"
+	}
+	AlphaDiscard 
+	{
+		var Texture = "592c4297c3079507:T_BigLeafFlower_01"
+		var Threshold = 0.977716029
+	}
+	PlantWind 
+	{
+		var WindTexture = "592c789bf803f628:WindSample"
+		var WindSpeed = 23.335577
+	}
+	AlbedoValue 
+	{
+		var AlbedoValue = Real4{0.297222197, 0.534999967, 0.153564781, 1}
+		var GammaCorrect = true
+	}
+	FlipBackfaceNormals 
+	{
+	}
+}

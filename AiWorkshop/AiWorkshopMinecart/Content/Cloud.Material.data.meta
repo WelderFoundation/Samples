@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Cloud"
+		var ResourceId = 0x592d16aa047551b1
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

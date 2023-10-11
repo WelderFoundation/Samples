@@ -1,0 +1,26 @@
+class Extensions : ZilchComponent
+{
+  [Static][Extension(typeid(Actions))]
+  function PropertySpeed(actionSet : ActionSet, prop : Property[Real3], endValue : Real3, speed : Real, ease : Ease)
+  {
+    if(speed == 0)
+      return;
+      
+    var currentValue = prop.Get();
+    var distance = Math.Distance(currentValue, endValue);
+    var time = distance / speed;
+    Action.Property(actionSet, prop, endValue, time, ease);
+  }
+  
+  [Static][Extension(typeid(Actions))]
+  function PropertySpeed(actionSet : ActionSet, prop : Property[Quaternion], endValue : Quaternion, speed : Real, ease : Ease)
+  {
+    if(speed == 0)
+      return;
+      
+    var currentValue = prop.Get();
+    var distance = Math.AngleBetween(currentValue, endValue);
+    var time = distance / speed;
+    Action.Property(actionSet, prop, endValue, time, ease);
+  }
+}

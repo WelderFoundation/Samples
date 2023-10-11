@@ -1,0 +1,69 @@
+class Paddle : ZilchComponent
+{
+  // The speed the paddle moves
+  [Property]
+  var Speed : Real = 2.0;
+  
+  // Don't move passed this position on the Y
+  var Boundary : Real = 3.65;
+  var Wall : Real = 9.1;
+  
+  // Helper function for simple access to the position
+  var Position : Real3 
+  {
+    get { return this.Owner.Transform.Translation; }
+    set { this.Owner.Transform.Translation = value; }
+  }
+  
+  //************************************************************************************************
+  // Moves the paddle up and stops it from moving out of the level
+  function MoveUp(dt : Real)
+  {
+      // Move the paddle up
+    this.Owner.Transform.Translation += Real3(0, this.Speed * dt, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.Y > this.Boundary)
+      this.Owner.Transform.Translation = Real3(pos.X, this.Boundary, pos.Z);
+  }
+  
+  //************************************************************************************************
+  // Moves the paddle down and stops it from moving out of the level
+  function MoveDown(dt : Real)
+  {
+    // Move the paddle down
+    this.Owner.Transform.Translation -= Real3(0, this.Speed * dt, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.Y < -this.Boundary)
+      this.Owner.Transform.Translation = Real3(pos.X, -this.Boundary, pos.Z);
+  }
+  
+  //************************************************************************************************
+  // Moves the paddle right and stops it from moving out of the level
+  function MoveRight(dt : Real)
+  {
+    // Move the paddle down
+    this.Owner.Transform.Translation += Real3(this.Speed * dt, 0, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.X > this.Wall)
+      this.Owner.Transform.Translation = Real3(this.Wall, pos.Y, pos.Z);
+  }
+  
+  //************************************************************************************************
+  // Moves the paddle left and stops it from moving out of the level
+  function MoveLeft(dt : Real)
+  {
+    // Move the paddle down
+    this.Owner.Transform.Translation -= Real3(this.Speed * dt, 0, 0);
+    
+    // Clamp our position
+    var pos = this.Owner.Transform.Translation;
+    if(pos.X < -this.Wall)
+      this.Owner.Transform.Translation = Real3(-this.Wall, pos.Y, pos.Z);
+  }
+}

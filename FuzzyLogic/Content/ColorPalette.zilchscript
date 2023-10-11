@@ -1,0 +1,32 @@
+class ColorPalette : ZilchComponent
+{
+  [Property] var Redirect = CogPath();
+  
+  [Property] var Count = 5;
+  [Property] var Color0 = Real4(0,0,0,1);
+  [Property] var Color1 = Real4(0,0,0,1);
+  [Property] var Color2 = Real4(0,0,0,1);
+  [Property] var Color3 = Real4(0,0,0,1);
+  [Property] var Color4 = Real4(0,0,0,1);
+
+  function GetColor(i : Integer) : Real4
+  {
+    var redirectPalette = this.Redirect.ColorPalette;
+    if(redirectPalette != null)
+      return redirectPalette.GetColor(i);
+      
+    var index = (i % this.Count);
+    
+    if(index == 0)
+      return this.Color0;
+    if(index == 1)
+      return this.Color1;
+    if(index == 2)
+      return this.Color2;
+    if(index == 3)
+      return this.Color3;
+    if(index == 4)
+      return this.Color4;
+    return Real4(1);
+  }
+}

@@ -1,0 +1,49 @@
+class HPLogic : ZilchComponent
+{
+    [Property]
+    var MaxHP : Real = 9999.0; //Max HP of Object
+
+    [Property]
+    var CurrentHP : Real = 0.0; //Current HP of Object
+
+    [Property]
+    var DestroyAtZeroHP : Boolean = true; //Object to be destroy at 0 HP, may not apply to bosses for cutscenes?
+
+    [Property]
+    var ScalarOfDamage : Real = 1.0; //Element to be tweak for some types of dmg (Weak against?)
+
+    sends Death : ZilchEvent; //Sends Death to object listening, add points on destroy?
+
+
+    function Initialize(init : CogInitializer)
+    {
+        //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+        //this.CurrentHP = this.MaxHP;
+        Zero.Connect(this.Owner, Events.ApplyDamage, this.OnApplyDamage); //listen to object that apply damage to object
+    }
+
+
+    function OnApplyDamage(damageEvent : DamageEvent)
+    {
+        this.ApplyDamage(damageEvent.Damage);
+    }
+
+
+    function ApplyDamage(damage : Real)
+    {
+        damage = damage * this.ScalarOfDamage;
+
+        this.CurrentHP -= damage;
+
+        if(this.CurrentHP <= 0.0)
+            {
+                var toSend = ZilchEvent();
+                this.Owner.DispatchEvent(Events.Death, toSend);
+                
+                if(this.DestroyAtZeroHP)
+                {
+                    this.Owner.Destroy();
+                }
+            }
+    }
+}

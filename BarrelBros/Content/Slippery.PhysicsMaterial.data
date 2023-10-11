@@ -1,0 +1,9 @@
+[Version:1]
+PhysicsMaterial 
+{
+	var Restitution = 0.183000013
+	var StaticFriction = 0.200000003
+	var DynamicFriction = 0.200000003
+	var Density = 1
+	var HighPriority = false
+}

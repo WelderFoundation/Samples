@@ -1,0 +1,1103 @@
+[Version:1]
+Level 
+{
+	Cog [ContextId:1]
+	{
+		var Name = "LevelSettings"
+		GravityEffect 
+		{
+			var Active = false
+			var WakeUpOnChange = true
+			var DebugDrawEffect = false
+			var LocalSpaceDirection = true
+			var Strength = 10
+			var Direction = Real3{0, -1, 0}
+		}
+		DragEffect 
+		{
+			var Active = false
+			var WakeUpOnChange = true
+			var DebugDrawEffect = false
+			var LinearDamping = 0.200000003
+			var AngularDamping = 0.100000001
+			var LinearDrag = 0
+			var AngularDrag = 0
+		}
+		GridDraw 
+		{
+			var Active = false
+			var HalfCellOffset = false
+			var CellSize = 1
+			var Axis = AxisDirection.X
+			var Lines = 100
+			var DrawAxisOrigins = true
+			var AlwaysDrawInEditor = true
+			var DrawInGame = false
+			var GridColor = Real4{0.5, 0.5, 0.5, 0.400000006}
+			var GridHighlight = Real4{0, 0, 0, 0.400000006}
+			var HighlightInterval = 10
+			var FollowEditorCamera = false
+		}
+		GravityManager 
+		{
+			var GravityCoef = 0.5
+		}
+	}
+	Cog [ContextId:2]
+	{
+		var Name = "Renderer"
+		DeferredRenderer 
+		{
+			var GeometryDebug = GeometryValue.None
+			var EditorDebugDraw = true
+			var GameDebugDraw = true
+			var RenderDiffuse = true
+			var RenderSpecular = true
+			var RenderSkybox = true
+			var Skybox = "5822dec85e380cf1:SimpleSkybox"
+			var ClearColor = Real4{0, 0, 0, 1}
+			var DirectLighting = true
+			var IndirectLighting = true
+			var IndirectIntensity = 1
+			var ToneMap = true
+		}
+	}
+	Cog [ContextId:3]
+	{
+		var Name = "EditorCamera"
+		Transform 
+		{
+			var Translation = Real3{55.5622253, 71.2886581, 30.8039207}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, -1.09278471e-08, 0, 1}
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = false
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 200
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 60
+			var Size = 42.8247871
+		}
+		EditorCameraController 
+		{
+			var ControlMode = ControlMode.ZPlane
+			var Previous3DMode = ControlMode.Orbit
+			var LookDistance = 30.2816963
+			var VerticalAngle = 0
+			var HorizontalAngle = 0
+			var LookTarget = Real3{55.5622253, 71.2886581, 0.522224963}
+			var MoveSensitivity = 1
+		}
+	}
+	Cog [ContextId:4]
+	{
+		var Name = "GameCamera"
+		Transform 
+		{
+			var Translation = Real3{55.9637718, 76.5844269, 20}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = false
+			var RenderInGame = true
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Letterbox
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 200
+			var PerspectiveMode = PerspectiveMode.Perspective
+			var FieldOfView = 60
+			var Size = 20
+		}
+		SoundListener 
+		{
+			var Active = true
+			var AttenuationScale = 1
+		}
+		FollowCamera 
+		{
+			var TargetPath = CogPath{			var Path = ":/RocketShip"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var ResolvedCog = 5
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+}
+			var LinearInterpolationSpeed = 0.899999976
+			var AngularInterpolationSpeed = 0.00999999978
+		}
+	}
+	Cog [ContextId:5]
+	{
+		var Name = "RocketShip"
+		Transform 
+		{
+			var Translation = Real3{55.9637718, 76.5844269, 0}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		HudCreator 
+		{
+			var HudLevel = "587a556f720d5995:ShipHud"
+			var SpaceArchetype = "576f215c0825de61:Space"
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "587e78638a3182cc:spaceRocketParts_021"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		MultiConvexMeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var Mesh = "587e7daf2b95713a:RocketShip"
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{5, 0, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Dynamic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+		RocketShip 
+		{
+		}
+		PlanetGravity 
+		{
+			var Mass = 1
+		}
+		MassOverride 
+		{
+			var Active = true
+			var InverseMass = 0.192843691
+			var Mass = 5.18554688
+			var LocalInverseInertiaTensor = Real3x3{0.488735199, -2.41283771e-09, 1.07089067e-10, -2.41283771e-09, 1.94686544, 3.50130452e-10, 1.07089067e-10, 3.50130452e-10, 0.589801431}
+			var LocalCenterOfMass = Real3{0, 0, 0}
+		}
+		PopupHudDisplay 
+		{
+			var DisplayOffscreenTargets = true
+		}
+		Orientation 
+		{
+			var GlobalUp = Real3{0, 1, 0}
+			var LocalOrientationBasis = Quaternion{0.707106769, 0, 0, 0.707106769}
+			var DefaultBases = OrientationBases.ForwardYUpZ
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x6213821d0c0f9695][ContextId:6]
+			{
+				var Name = "UpThruster"
+				Transform 
+				{
+					var Translation = Real3{0, -2.01084137, 0}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{0.688700199, 0.970000029, 0, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "587e786d8a753b4d:spaceEffects_007"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				ThrustEffect 
+				{
+					var Active = false
+					var WakeUpOnChange = true
+					var DebugDrawEffect = true
+					var LocalSpaceDirection = true
+					var ForceStrength = 10
+					var ForceDirection = Real3{0, 1, 0}
+				}
+				Thruster 
+				{
+					var Key = Keys.W
+					var Shift = false
+				}
+			}
+			Cog [Id:0x6213821d0c0f96a1][ContextId:7]
+			{
+				var Name = "DownThruster"
+				Transform 
+				{
+					var Translation = Real3{0, 1.92186737, 0}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 1, -4.37113883e-08}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{0.688700199, 0.970000029, 0, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "587e786d8a753b4d:spaceEffects_007"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				ThrustEffect 
+				{
+					var Active = false
+					var WakeUpOnChange = true
+					var DebugDrawEffect = true
+					var LocalSpaceDirection = true
+					var ForceStrength = 10
+					var ForceDirection = Real3{0, 1, 0}
+				}
+				Thruster 
+				{
+					var Key = Keys.S
+					var Shift = false
+				}
+			}
+			Cog [Id:0x6213821d0c0f96a5][ContextId:8]
+			{
+				var Name = "RightThruster"
+				Transform 
+				{
+					var Translation = Real3{-1.20000005, 0.400000006, 0}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, -0.707106829, 0.707106829}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{0.688700199, 0.970000029, 0, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "587e786d8a753b4d:spaceEffects_007"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				ThrustEffect 
+				{
+					var Active = false
+					var WakeUpOnChange = true
+					var DebugDrawEffect = true
+					var LocalSpaceDirection = true
+					var ForceStrength = 10
+					var ForceDirection = Real3{0, 1, 0}
+				}
+				Thruster 
+				{
+					var Key = Keys.D
+					var Shift = false
+				}
+			}
+			Cog [Id:0x6213821d0c0f96aa][ContextId:9]
+			{
+				var Name = "LeftThruster"
+				Transform 
+				{
+					var Translation = Real3{1.20000005, 0.400000006, 0}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 0.707106829, 0.707106829}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{0.688700199, 0.970000029, 0, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "587e786d8a753b4d:spaceEffects_007"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				ThrustEffect 
+				{
+					var Active = false
+					var WakeUpOnChange = true
+					var DebugDrawEffect = true
+					var LocalSpaceDirection = true
+					var ForceStrength = 10
+					var ForceDirection = Real3{0, 1, 0}
+				}
+				Thruster 
+				{
+					var Key = Keys.A
+					var Shift = false
+				}
+			}
+			Cog [Id:0x6213821d0c0f96ae][ContextId:10]
+			{
+				var Name = "LeftSmallThruster"
+				Transform 
+				{
+					var Translation = Real3{0.65303731, 0, 0}
+					var Scale = Real3{1, 0.5, 1}
+					var Rotation = Quaternion{0, 0, 0.707106829, 0.707106829}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{0.688700199, 0.970000029, 0, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "587e786d8a753b4d:spaceEffects_007"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				Thruster 
+				{
+					var Key = Keys.Left
+					var Shift = false
+				}
+				ForceEffect 
+				{
+					var Active = true
+					var WakeUpOnChange = true
+					var DebugDrawEffect = true
+					var LocalSpaceDirection = true
+					var Strength = 2
+					var Direction = Real3{0, 1, 0}
+				}
+			}
+			Cog [Id:0x6213821d0c0f96b2][ContextId:11]
+			{
+				var Name = "RightSmallThruster"
+				Transform 
+				{
+					var Translation = Real3{-0.653037012, 0, 0}
+					var Scale = Real3{1, 0.5, 1}
+					var Rotation = Quaternion{0, 0, -0.707106829, 0.707106829}
+				}
+				Sprite 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "582c575af53d18c9:AlphaSprite"
+					var VertexColor = Real4{0.688700199, 0.970000029, 0, 1}
+					var GeometryMode = SpriteGeometryMode.ZPlane
+					var SpriteSource = "587e786d8a753b4d:spaceEffects_007"
+					var FlipX = false
+					var FlipY = false
+					var AnimationActive = true
+					var AnimationSpeed = 1
+					var StartFrame = 0
+				}
+				Thruster 
+				{
+					var Key = Keys.Right
+					var Shift = false
+				}
+				ForceEffect 
+				{
+					var Active = true
+					var WakeUpOnChange = true
+					var DebugDrawEffect = true
+					var LocalSpaceDirection = true
+					var Strength = 2
+					var Direction = Real3{0, 1, 0}
+				}
+			}
+		}
+	}
+	Cog [InheritId:"587a4f4c6d741efc:Missile"][ContextId:12]
+	{
+		Transform 
+		{
+			var Translation = Real3{48.6754837, 73.7949066, 0}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+	}
+	Cog [ContextId:13]
+	{
+		var Name = "spaceStation021"
+		Transform 
+		{
+			var Translation = Real3{56.1290588, 64.9128113, 0}
+			var Scale = Real3{3, 3, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "587e78638a017c23:spaceStation_021"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		MultiConvexMeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var Mesh = "587e7a38db907c49:SpaceStation"
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{2.5, 0, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Dynamic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+		PlanetGravity 
+		{
+			var Mass = 100
+		}
+		MassOverride 
+		{
+			var Active = true
+			var InverseMass = 0.00380228832
+			var Mass = 262.999512
+			var LocalInverseInertiaTensor = Real3x3{9.82501297e-05, 9.5611108e-07, -4.97347995e-16, 9.5611108e-07, 0.000175161491, 1.42801976e-13, -4.97347995e-16, 1.42801976e-13, 6.60380028e-05}
+			var LocalCenterOfMass = Real3{0, 0, 0}
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x6213821d0c0e0694][ContextId:14]
+			{
+				var Name = "HudCamera"
+				Transform 
+				{
+					var Translation = Real3{0, 0, 10}
+					var Scale = Real3{0.333333343, 0.333333343, 1}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				CameraViewport 
+				{
+					var RenderInEditor = false
+					var RenderInGame = true
+					var RenderOrder = 0
+					var CameraPath = CogPath
+					{
+						var Path = "."
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 14
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var RendererPath = CogPath
+					{
+						var Path = ":/Renderer"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 2
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var ResolutionOrAspect = Integer2{1920, 1080}
+					var RenderToViewport = false
+					var ForwardViewportEvents = false
+					var ViewportScaling = ViewportScaling.Letterbox
+					var MarginColor = Real4{0, 0, 0, 1}
+					var NormalizedSize = Real2{1, 1}
+					var NormalizedOffset = Real2{0, 0}
+				}
+				Camera 
+				{
+					var NearPlane = 0.100000001
+					var FarPlane = 200
+					var PerspectiveMode = PerspectiveMode.Perspective
+					var FieldOfView = 60
+					var Size = 20
+				}
+				SoundListener 
+				{
+					var Active = true
+					var AttenuationScale = 1
+				}
+				PopupCamera 
+				{
+					var GameCameraPath = CogPath{					var Path = ":/GameCamera"
+					var ErrorOnResolveToNull = false
+					var ErrorOnPathCantCompute = false
+					var ErrorOnDirectLinkFail = false
+					var UpdateCogOnPathChange = true
+					var UpdatePathOnCogChange = true
+					var UpdateCogOnInitialize = true
+					var ResolvedNullErrorOccurred = false
+					var ResolvedCog = 4
+					var PathPreference0 = CogPathPreference.CogRelative
+					var PathPreference1 = CogPathPreference.SpaceRelative
+					var PathPreference2 = CogPathPreference.Absolute
+}
+				}
+			}
+		}
+	}
+	Cog [ContextId:15]
+	{
+		var Name = "spaceMeteors003"
+		Transform 
+		{
+			var Translation = Real3{55.8496704, 6.00840855, 0}
+			var Scale = Real3{3, 3, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "587e786d8a71fa16:spaceMeteors_003"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		MultiConvexMeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var Mesh = "587e7c51074e4a26:Meteor3"
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{0, 0, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Dynamic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+		PlanetGravity 
+		{
+			var Mass = 500
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x6213821d0c0e2b04][ContextId:16]
+			{
+				var Name = "HudCamera"
+				Transform 
+				{
+					var Translation = Real3{0, 0, 15}
+					var Scale = Real3{1, 1, 1}
+					var Rotation = Quaternion{0, 0, 0, 1}
+				}
+				CameraViewport 
+				{
+					var RenderInEditor = false
+					var RenderInGame = true
+					var RenderOrder = 0
+					var CameraPath = CogPath
+					{
+						var Path = "."
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 16
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var RendererPath = CogPath
+					{
+						var Path = ":/Renderer"
+						var ErrorOnResolveToNull = false
+						var ErrorOnPathCantCompute = false
+						var ErrorOnDirectLinkFail = false
+						var UpdateCogOnPathChange = true
+						var UpdatePathOnCogChange = true
+						var UpdateCogOnInitialize = true
+						var ResolvedNullErrorOccurred = false
+						var Cog = 2
+						var PathPreference0 = CogPathPreference.CogRelative
+						var PathPreference1 = CogPathPreference.SpaceRelative
+						var PathPreference2 = CogPathPreference.Absolute
+					}
+					var ResolutionOrAspect = Integer2{1920, 1080}
+					var RenderToViewport = false
+					var ForwardViewportEvents = false
+					var ViewportScaling = ViewportScaling.Letterbox
+					var MarginColor = Real4{0, 0, 0, 1}
+					var NormalizedSize = Real2{1, 1}
+					var NormalizedOffset = Real2{0, 0}
+				}
+				Camera 
+				{
+					var NearPlane = 0.100000001
+					var FarPlane = 200
+					var PerspectiveMode = PerspectiveMode.Perspective
+					var FieldOfView = 60
+					var Size = 20
+				}
+				SoundListener 
+				{
+					var Active = true
+					var AttenuationScale = 1
+				}
+				PopupCamera 
+				{
+					var GameCameraPath = CogPath{					var Path = ":/GameCamera"
+					var ErrorOnResolveToNull = false
+					var ErrorOnPathCantCompute = false
+					var ErrorOnDirectLinkFail = false
+					var UpdateCogOnPathChange = true
+					var UpdatePathOnCogChange = true
+					var UpdateCogOnInitialize = true
+					var ResolvedNullErrorOccurred = false
+					var ResolvedCog = 4
+					var PathPreference0 = CogPathPreference.CogRelative
+					var PathPreference1 = CogPathPreference.SpaceRelative
+					var PathPreference2 = CogPathPreference.Absolute
+}
+				}
+			}
+		}
+	}
+	Cog [ContextId:17]
+	{
+		var Name = "Asteroid"
+		Transform 
+		{
+			var Translation = Real3{41.6215668, -5.65627289, 0}
+			var Scale = Real3{0.5, 0.5, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "587e786d8a714f90:spaceMeteors_001"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		MultiConvexMeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var Mesh = "587a39983014e187:Meteor1"
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{0, 1, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Dynamic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+		PlanetGravity 
+		{
+			var Mass = 3
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:18]
+	{
+		var Name = "Asteroid"
+		Transform 
+		{
+			var Translation = Real3{18.4606495, 6.00840998, 0}
+			var Scale = Real3{0.5, 0.5, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "587e786d8a714f90:spaceMeteors_001"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		MultiConvexMeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var Mesh = "587a39983014e187:Meteor1"
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{9.86384379e-08, 1, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Dynamic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+		PlanetGravity 
+		{
+			var Mass = 3
+		}
+		AutoComputeOrbitVelocity 
+		{
+			var CounterClockwise = false
+			var Target = CogPath{			var Path = ":/spaceMeteors003"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var ResolvedCog = 14
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+}
+		}
+		PlanetGravityDebugHeper 
+		{
+			var Target = CogPath{			var Path = ":/spaceMeteors003"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var ResolvedCog = 14
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:19]
+	{
+		var Name = "Asteroid"
+		Transform 
+		{
+			var Translation = Real3{93.2072525, 13.5462379, 0}
+			var Scale = Real3{0.5, 0.5, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "587e786d8a714f90:spaceMeteors_001"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		MultiConvexMeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var Mesh = "587a39983014e187:Meteor1"
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{0, 1, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Dynamic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+		PlanetGravity 
+		{
+			var Mass = 3
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:20]
+	{
+		var Name = "Asteroid"
+		Transform 
+		{
+			var Translation = Real3{93.2072525, -5.65627289, 0}
+			var Scale = Real3{0.5, 0.5, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Sprite 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "582c575af53d18c9:AlphaSprite"
+			var VertexColor = Real4{1, 1, 1, 1}
+			var GeometryMode = SpriteGeometryMode.ZPlane
+			var SpriteSource = "587e786d8a714f90:spaceMeteors_001"
+			var FlipX = false
+			var FlipY = false
+			var AnimationActive = true
+			var AnimationSpeed = 1
+			var StartFrame = 0
+		}
+		MultiConvexMeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var Mesh = "587a39983014e187:Meteor1"
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{0, 1, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Dynamic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+		PlanetGravity 
+		{
+			var Mass = 3
+		}
+		Hierarchy 
+		{
+		}
+	}
+}

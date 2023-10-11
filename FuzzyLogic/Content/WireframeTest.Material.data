@@ -1,0 +1,22 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	SolidWireFrameGeo 
+	{
+	}
+	SolidWireFramePixel 
+	{
+		var Filled = false
+		var Pixels = 3
+	}
+	AlbedoValue 
+	{
+		var AlbedoValue = Real4{0.090299964, 0.644999981, 0.328820884, 1}
+		var GammaCorrect = true
+	}
+}

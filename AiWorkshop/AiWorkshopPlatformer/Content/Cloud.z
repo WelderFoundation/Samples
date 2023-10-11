@@ -1,0 +1,19 @@
+class Cloud : ZilchComponent
+{
+  [Property] var Scalar : Real = 1.0;
+  
+  var Speed : Real;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    this.Speed = this.LevelSettings.RandomContext.Range(0.05, 0.5);
+    this.Owner.Transform.Translation += Real3(0, 0, this.LevelSettings.RandomContext.Range(-0.1, 0.1));
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Owner.Transform.Translation += Real3(this.Speed * 0.3 * this.Scalar * event.Dt, 0, 0);
+  }
+}

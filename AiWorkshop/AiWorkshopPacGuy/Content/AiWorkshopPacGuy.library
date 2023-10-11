@@ -1,0 +1,7 @@
+ContentLibrary = 
+{
+	string Name = "AiWorkshopPacGuy",
+	uint64 LibraryId = 557d4f6d03d33baf,
+	string SourceControlType = "",
+	bool ReadOnly = false,
+},

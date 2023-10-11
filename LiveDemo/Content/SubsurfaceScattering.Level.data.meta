@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "SubsurfaceScattering"
+		var ResourceId = 0x5b4f6727f3216c12
+		var LoaderType = "Level"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

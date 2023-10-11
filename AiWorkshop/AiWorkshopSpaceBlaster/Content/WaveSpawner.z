@@ -1,0 +1,53 @@
+class WaveSpawner : ZilchComponent
+{
+  // The type of enemy to create.
+  [Property] var EnemyType : Archetype;
+  
+  // The amount of enemies we want to create for this wave.
+  [Property] var EnemyCount : Integer = 5;
+  
+  // The amount of time between each spawn of enemies.
+  [Property] var TimeBetweenSpawns : Real = 0.3;
+  
+  // If set, the enemies will be randomly created across the screen.
+  // Otherwise, the enemies will be created at the position of the wave Object.
+  [Property] var RandomPosition : Boolean = true;
+  
+  // How long to wait before starting the next wave.
+  [Property] var TimeUntilNextWave : Real = 5.0;
+  
+  var SpawnWidth : Real = 24.0;
+  
+  // Keep track of how many enemies we've spawned 
+  var EnemiesSpawned : Integer = 0;
+
+  function StartWave()
+  {
+    this.Spawn();
+  }
+  
+  function Spawn()
+  {
+    // Default our position to the position of the spawner object
+    var worldPos = this.Owner.Transform.WorldTranslation;
+    
+    // Generate a random position if specified
+    if(this.RandomPosition)
+      worldPos.X = this.LevelSettings.RandomContext.Range(-this.SpawnWidth, this.SpawnWidth);
+    
+    // Create the enemy
+    var enemy = this.Space.CreateAtPosition(this.EnemyType, worldPos);
+    enemy.Name = "Enemy";
+    
+    // Move on to the next wave
+    this.EnemiesSpawned += 1;
+    
+    // Queue the next spawn
+    if(this.EnemiesSpawned < this.EnemyCount)
+    {
+      var seq = Action.Sequence(this.Owner.Actions);
+      Action.Delay(seq, this.TimeBetweenSpawns);
+      Action.Call(seq, this.Spawn);
+    }
+  }
+}

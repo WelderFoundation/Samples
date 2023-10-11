@@ -1,0 +1,16 @@
+[Version:1]
+TextContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Tank"
+		}
+	}
+	ZilchScriptBuilder 
+	{
+		var Name = "DetachOnRootDead"
+		var ResourceId = 0x5a84551f763c2681
+	}
+}

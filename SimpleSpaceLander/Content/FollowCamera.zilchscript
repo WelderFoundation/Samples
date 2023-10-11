@@ -1,0 +1,50 @@
+class FollowCamera : ZilchComponent
+{
+  [Property] var TargetPath : CogPath = CogPath();
+  [Property] var LinearInterpolationSpeed : Real = 0.9;
+  [Property] var AngularInterpolationSpeed : Real = 0.01;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var targetCog = this.TargetPath.Cog;
+    if(targetCog == null)
+      return;
+    
+    var myTransform = this.Owner.Transform;
+    var targetPos = targetCog.Transform.WorldTranslation;
+    targetPos = Math.Lerp(myTransform.WorldTranslation, targetPos, this.LinearInterpolationSpeed);
+    var targetRot = Math.Slerp(myTransform.WorldRotation, targetCog.Transform.WorldRotation, this.AngularInterpolationSpeed);
+    targetRot = Math.RotateTowards(myTransform.WorldRotation, targetCog.Transform.WorldRotation, Math.ToRadians(this.AngularInterpolationSpeed));
+    
+    this.Owner.Transform.SetPositionNoZ(targetPos);
+    this.Owner.Transform.WorldRotation = targetRot;
+  }
+}
+
+class MathExtension
+{
+  [Extension(typeid(Real3))]
+  function SetIgnoreZ(value : Real2)
+  {
+    this.XY = value;
+  }
+  
+  [Extension(typeid(Real3))]
+  function SetIgnoreZ(value : Real3)
+  {
+    this.XY = value.XY;
+  }
+  
+  [Extension(typeid(Transform))]
+  function SetPositionNoZ(value : Real3)
+  {
+    var pos = this.WorldTranslation;
+    pos.XY = value.XY;
+    this.WorldTranslation = pos;
+  }
+}

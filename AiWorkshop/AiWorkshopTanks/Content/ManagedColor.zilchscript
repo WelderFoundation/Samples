@@ -1,0 +1,29 @@
+[RunInEditor]
+class ManagedColor : ZilchComponent
+{
+  [ShaderInput("AlbedoValue")] var AlbedoValue = Real4(1);
+  
+  /****************************************************************************/
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.UpdateColor, this.OnUpdateColor);
+    Zero.Connect(this.Owner, Events.UpdateAlbedoValue, this.OnUpdateAlbedoValue);
+  }
+  
+  /****************************************************************************/
+  function OnUpdateAlbedoValue(event : UpdateAlbedoValueEvent)
+  {
+    this.AlbedoValue = event.Color * event.GlowFactor;
+  }
+  
+  /****************************************************************************/
+  function OnUpdateColor(event : UpdateColorEvent)
+  {
+    var color = event.Color;
+    this.AlbedoValue = color.Primary;
+    
+    var particleColor = this.Owner.ParticleColorAnimator;
+    if(particleColor != null)
+      particleColor.TimeGradient = event.Color.EffectGradient;
+  }
+}

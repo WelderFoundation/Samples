@@ -1,0 +1,101 @@
+class SplineScaffoldingGenerator : SplineMeshGenerator
+{
+  // The distance between supports
+  [Property] var SupportDistance = 1.0;
+  [Property] var TrackWidth = 1.0;
+  [Property] var SupportSize = Real2(0.1);
+  [Property] var OverHeight = 0.05;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    (this as SplineMeshGenerator)~>Initialize(init);
+    this.Mesh.PrimitiveType = PrimitiveType.Triangles;
+    
+    var vertices = this.Mesh.Vertices;
+    
+    vertices.AddAttribute(VertexSemantic.Position, VertexElementType.Real, 3);
+  }
+  
+  //************************************************************************************************
+  [Override] function GenerateMesh(spline : Spline, mesh : Mesh)
+  {
+    //Console.WriteLine("****************************************************");
+    var remainingPlanarDistance = 0.0;
+    var currentDistance = 0.0;
+    var index = 0;
+    
+    var worldUp = Real3.YAxis;
+    
+    var lastSamplePos = spline.SampleDistance(0).Point;
+    
+    while(currentDistance <= spline.TotalDistance)
+    {
+      var sample = spline.SampleDistance(currentDistance);
+      currentDistance += this.SupportDistance;
+      
+      var lastToCurrent = (sample.Point - lastSamplePos);
+      lastToCurrent -= worldUp * Math.Dot(lastToCurrent, worldUp);
+      
+      var planarDistanceTraveled = Math.Length(lastToCurrent);
+      remainingPlanarDistance -= planarDistanceTraveled;
+      
+      //Console.WriteLine(remainingPlanarDistance);
+      
+      lastSamplePos = sample.Point;
+      
+      if(remainingPlanarDistance > 0.01)
+      {
+        currentDistance -= (this.SupportDistance - remainingPlanarDistance);
+        continue;
+      }
+      
+      remainingPlanarDistance += this.SupportDistance;
+      
+      var forward = sample.Tangent;
+      var up = worldUp;
+      var right = Math.Normalize(Math.Cross(forward, up));
+      // No need to normalize because they're already perpendicular
+      up = Math.Cross(right, forward);
+      
+      var pos = sample.Point;
+      
+      index += this.AddVerticalSupport(mesh, pos +  right * this.TrackWidth, forward, up, right, index);
+      index += this.AddVerticalSupport(mesh, pos + -right * this.TrackWidth, forward, up, right, index);
+    }
+  }
+  
+  //************************************************************************************************
+  function AddVerticalSupport(mesh : Mesh, pos : Real3, forward : Real3, up : Real3, right : Real3, index : Integer) : Integer
+  {
+    var worldUp = Real3.YAxis;
+    
+    // We want the forward to be perpendicular to the world up
+    forward -= worldUp * Math.Dot(worldUp, forward);
+    forward = Math.Normalize(forward);
+    
+    // Raycast down
+    var filter = CastFilter();
+    filter.CollisionGroup = CollisionGroup.CartTrack;
+    filter.IgnoreDynamic = true;
+    
+    var result = this.Space.PhysicsSpace.CastRayFirst(Ray(pos, -worldUp), filter);
+    
+    if(result.ObjectHit != null)
+    //if(true)
+    {
+      var center = (result.WorldPosition + pos) * 0.5;
+      var height = Math.Distance(result.WorldPosition, pos);
+      //var center = pos;
+      //var height = 5.0;
+      
+      center += Real3(0, this.OverHeight, 0);
+      height += this.OverHeight * 2;
+      var offset = SplineMeshDecorator.AddRectangle(this.Mesh, center, forward, -right, worldUp, Real3(this.SupportSize.X, height * 0.5, this.SupportSize.Y), index);
+      index += offset;
+      return offset;
+    }
+    
+    return 0;
+  }
+}

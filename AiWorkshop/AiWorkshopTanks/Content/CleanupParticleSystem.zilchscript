@@ -1,0 +1,15 @@
+class CleanupParticleSystem : ZilchComponent
+{
+  [Property] var TargetSystem : CogPath = CogPath(".");
+  
+  function Initialize(init : CogInitializer)
+  {
+    if(this.TargetSystem != null)
+      Zero.Connect(this.TargetSystem.Cog, Events.AllParticlesDead, this.OnAllParticlesDead);
+  }
+
+  function OnAllParticlesDead(event : ObjectEvent)
+  {
+    this.Owner.Destroy();
+  }
+}

@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "AlphaSpriteCopy1"
+		var ResourceId = 0x594e60b54c489ae8
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

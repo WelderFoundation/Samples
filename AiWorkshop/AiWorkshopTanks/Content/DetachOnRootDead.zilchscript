@@ -1,0 +1,22 @@
+class DetachOnRootDead : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner.FindRoot(), Events.Death, this.OnDeath);
+  }
+
+  function OnDeath(event : ZilchEvent)
+  {
+    this.Owner.Detach();
+    
+    // Animate the camera back a bit
+    var dir = this.Owner.Transform.TransformNormal(Real3(-1,0,0));
+    var toPos = this.Owner.Transform.WorldTranslation + dir;
+    
+    var seq = Action.Group(this.Owner.Actions);
+    Action.Property(seq, @this.Owner.Transform.WorldTranslation, toPos, 3.0, Ease.QuadOut);
+    
+    var cam = this.Owner.FindChildByName("Camera");
+    Action.Property(seq, @cam.Camera.FieldOfView, 65, 3.0, Ease.QuadOut);
+  }
+}

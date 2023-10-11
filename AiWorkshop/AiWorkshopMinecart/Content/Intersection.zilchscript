@@ -1,0 +1,19 @@
+class Intersection
+{
+  [Static] function ClosestPointOnSegmentToPoint(segmentPointA : Real3, segmentPointB : Real3, point : Real3) : Real3
+  {
+    var lineSegment = (segmentPointB - segmentPointA);
+    // Project the point onto ab
+    var t = Math.Dot(point - segmentPointA, lineSegment);
+    
+    if(t <= 0.0)
+      return segmentPointA;
+    
+    var denom = Math.Dot(lineSegment, lineSegment);
+    if(t >= denom)
+      return segmentPointB;
+      
+    t /= denom;
+    return segmentPointA + (lineSegment * t);
+  }
+}

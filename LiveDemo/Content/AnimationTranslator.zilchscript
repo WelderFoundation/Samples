@@ -1,0 +1,63 @@
+class AnimationTranslator : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Property] var AnimationRoot = CogPath();
+  [Property] var RootOffset = Real3();
+  [Property] var Jumping = true;
+  var StartPos : Real3;
+  var LastPos : Real3;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.AnimationPostUpdate, this.OnAnimationPostUpdate);
+    Zero.Connect(this.Owner.FindChildByName("MutantHead"), Events.CollisionStarted, this.OnCollisionStarted);
+    this.StartPos = this.AnimationRoot.Transform.LocalTranslation;
+    this.LastPos = this.StartPos;
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    //this.Owner.SimpleAnimation.PlaySingle(Animation.Reacting, AnimationPlayMode.PlayOnce);
+  }
+
+  function OnAnimationPostUpdate(event : Event)
+  {
+    var rootTranslation = this.AnimationRoot.Transform.LocalTranslation;
+    var diff = (rootTranslation - this.LastPos);
+    
+    this.Transform.Translation += this.Transform.TransformNormal(diff);
+    this.AnimationRoot.Transform.Translation = this.StartPos + this.RootOffset;
+    this.LastPos = rootTranslation;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Jumping == false)
+      return;
+    var min = 0.9;
+    var max = 1.5;
+    var t = (event.TimePassed - min) / (max - min);
+    t = Math.Clamp(t, 0, 1);
+    t = this.QuadInOut(t) * 2.0;
+    this.Transform.Translation += Real3(0, -4.2, 0) * t * event.Dt;
+  }
+  
+  //function QuadInOut(t : Real) : Real
+  //{
+  //  if(t < 0.5)
+  //    return 2.0 * t * t;
+  //  else
+  //    return (-2.0 * t * t) + (4.0 * t) - 1.0;
+  //}
+  
+  function QuadInOut(t : Real) : Real
+  {
+    if(t < 0.25)
+      return 4 * t * t;
+    else if(t < 0.75)
+      return (-4.0 * t * t) + (4.0 * t) - 0.5;
+    else
+      return 4 * Math.Pow(t - 1, 2);
+  }
+}

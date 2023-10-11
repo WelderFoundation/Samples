@@ -1,0 +1,8 @@
+DataContent = 
+{
+	RichAnimationBuilder = 
+	{
+		string Name = "RingWarp",
+		uint64 ResourceId = 528e6c176df2d568,
+	},
+},

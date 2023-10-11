@@ -1,0 +1,110 @@
+// Outputs all information about scene geometry into two buffers.
+[Pixel][RenderPass]
+struct MyGeometryPass
+{
+  [AppBuiltInInput] var FarPlane : Real;
+  
+  [Input] var PerspectivePosition : Real4;
+  
+  [Input] var ViewPosition : Real3;
+  [Input] var ViewNormal : Real3;
+  
+  [Input] var Albedo : Real3 = Real3(1.0, 0.0, 0.0);
+  [Input] var Metallic : Real = 0.0;
+  [Input] var Roughness : Real = 1.0;
+  [Input] var Specular : Real = 0.5;
+  [Input] var Emissive : Real3 = Real3(0);
+
+  
+  // Normal, Depth, Roughness
+  [Output] var Target0 : Real4;
+  // Albedo, Metallic, Specular
+  [Output] var Target1 : Real4;
+  // Emissive
+  [Output] var Target2 : Real4;
+  
+  function Main()
+  {
+    this.ViewNormal = Math.Normalize(this.ViewNormal);
+    
+    // The magnitude of the normal's Z can be easily recomputed since the normal is unit length
+    // but the sign would be unknown, so we borrow the sign bit from roughness since it will not use it.
+    // zSign will be -1 if ViewNormal.Z is negative, otherwise it will be 1.
+    var zSign = 1.0 - 2.0 * Math.Step(this.ViewNormal.Z, 0.0);
+    // Making sure roughness is never completely 0 has two purposes,
+    // 0 behaves poorly in lighting calculations and we need to make sure we have the sign value for the normal.
+    this.Roughness = Math.Clamp(this.Roughness, 0.001, 1.0) * zSign;
+    
+    var metallicSpecular = Utility.PackX(Math.Saturate(this.Metallic));
+    metallicSpecular += Utility.PackY(Math.Saturate(this.Specular));
+    
+    this.Target0 = Real4(this.ViewNormal.XY, -this.ViewPosition.Z / this.FarPlane, this.Roughness);
+    this.Target1 = Real4(this.Albedo, metallicSpecular);
+    this.Target2 = Real4(this.Emissive, 1);
+  }
+  
+  [Static]
+  function GetNormal(geometrySample0 : Real4) : Real3
+  {
+    var normal = Real3(geometrySample0.XY, 0.0);
+    // zSign will be -1 if geometrySample0.W is negative, otherwise it will be 1.
+    var zSign = 1.0 - 2.0 * Math.Step(geometrySample0.W, 0.0);
+    normal.Z = Math.Sqrt(Math.Max(1.0 - Math.LengthSq(normal.XY), 0.0)) * zSign;
+    return normal;
+  }
+  
+  [Static]
+  function GetDepth(geometrySample0 : Real4) : Real
+  {
+    return geometrySample0.Z;
+  }
+  
+  [Static]
+  function GetRoughness(geometrySample0 : Real4) : Real
+  {
+    return Math.Abs(geometrySample0.W);
+  }
+  
+  [Static]
+  function GetAlbedo(geometrySample1 : Real4) : Real3
+  {
+    return geometrySample1.XYZ;
+  }
+  
+  [Static]
+  function GetMetallic(geometrySample1 : Real4) : Real
+  {
+    return Utility.UnpackX(geometrySample1.W);
+  }
+  
+  [Static]
+  function GetSpecular(geometrySample1 : Real4) : Real
+  {
+    return Utility.UnpackY(geometrySample1.W);
+  }
+  
+  [Static]
+  function ReconstructViewPosition(geometrySample0 : Real4, perspectiveToView : Real4x4, perspectivePosition : Real4, farPlane : Real) : Real3
+  {
+    // Get the Z coordinate of ViewPosition.
+    var depth = GeometryPass.GetDepth(geometrySample0);
+    var viewZ = -depth * farPlane;
+    
+    // Transform the current pixel to view space for a reference point.
+    var viewPosition = Math.Multiply(perspectiveToView, perspectivePosition);
+    viewPosition /= viewPosition.W;
+    
+    // Set Z to the NDC space -1 to get a near plane point along the same line of perspective.
+    // This allows us to get the correct view ray whether the projection used is orthographic or perspective.
+    perspectivePosition.Z = -perspectivePosition.W;
+    var viewStart = Math.Multiply(perspectiveToView, perspectivePosition);
+    viewStart /= viewStart.W;
+    var viewRay = Math.Normalize(viewPosition.XYZ - viewStart.XYZ);
+    
+    // Since viewStart.Z is equal to the near plane distance, we want to scale viewRay so that
+    // the Z coordinate of (viewStart + viewRay) is equal to viewZ, giving us the original ViewPosition from the GeometryPass.
+    var zDistanceFromNear = viewZ - viewStart.Z;
+    viewRay *= (zDistanceFromNear / viewRay.Z);
+    return viewStart.XYZ + viewRay;
+  }
+}

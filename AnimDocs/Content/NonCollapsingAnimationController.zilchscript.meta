@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "NonCollapsingAnimationController"
+		var ResourceId = 0x5a58f48fbb23fb92
+	}
+}

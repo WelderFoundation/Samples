@@ -1,0 +1,48 @@
+[Pixel]
+struct EmissiveValue
+{
+  [Input] var EmissiveColor : Real4 = Real4(1,0,0,1);
+  [Input] var EmissiveIntensity : Real = 4.0;
+  
+  [Output] var Emissive : Real3;
+  
+  function Main()
+  {
+    this.Emissive = this.EmissiveColor.XYZ * this.EmissiveIntensity;
+  }
+}
+
+[Pixel]
+struct EmissiveMap
+{
+  [Input] var Texture : SampledImage2d;
+  [Input] var EmissiveColor : Real4 = Real4(1,0,0,1);
+  [Input] var EmissiveIntensity : Real = 4.0;
+  
+  [FragmentInput][StageInput] var Uv : Real2;
+  [Output] var Emissive : Real3;
+  
+  function Main()
+  {
+    this.Emissive = this.Texture.Sample(this.Uv).XYZ * this.EmissiveColor.XYZ * this.EmissiveIntensity;
+  }
+}
+
+
+[Pixel]
+struct EmissivePulse
+{
+  [PropertyInput] var PulseSpeed : Real = 2.0;
+  [PropertyInput] var BaseIntensity : Real = 1.0;
+  [PropertyInput] var PulseIntensity : Real = 0.1;
+  [AppBuiltInInput] var FrameTime : Real;
+  [FragmentInput][Output] var Emissive : Real3;
+  
+  function Main()
+  {
+    // [0, 1]
+    var scale = Math.Sin(this.FrameTime * this.PulseSpeed) * 0.5 + 0.5;
+    this.Emissive *= this.BaseIntensity + scale * this.PulseIntensity;
+  }
+}
+

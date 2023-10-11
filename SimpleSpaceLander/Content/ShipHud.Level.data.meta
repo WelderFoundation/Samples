@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "ShipHud"
+		var ResourceId = 0x587a556f720d5995
+		var LoaderType = "Level"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

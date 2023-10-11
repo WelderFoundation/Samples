@@ -1,0 +1,26 @@
+ImageContent = 
+{
+	ContentTags = 
+	{
+		object Tags = 
+		[
+			"Ships",
+		],
+	},
+	SpriteSourceBuilder = 
+	{
+		string Name = "enemy1",
+		uint64 ResourceId = 524e0209b31db088,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 441,
+		uint FrameSizeY = 703,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 220,
+		float OriginY = 351,
+		float PixelsPerUnit = 210,
+		bool Smoothing = true,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+	},
+},

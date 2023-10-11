@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "TreeLeaves"
+		var ResourceId = 0x5924958a74e00d54
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

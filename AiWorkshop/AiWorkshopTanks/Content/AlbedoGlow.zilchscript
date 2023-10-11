@@ -1,0 +1,21 @@
+class AlbedoGlow : ZilchComponent
+{
+  [Property][ShaderInput("AlbedoValue")] var AlbedoValue = Real4(1);
+  [Property] var Intensity = 1.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Make the Albeo glow.
+    this.AlbedoValue *= this.Intensity;
+  }
+}
+
+class EmissiveValueParam : ZilchComponent
+{
+  [Property][ShaderInput("EmissiveValue")] var EmissiveColor = Real4(1);
+  [Property][ShaderInput("EmissiveValue")] var EmissiveIntensity = 1.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+  }
+}

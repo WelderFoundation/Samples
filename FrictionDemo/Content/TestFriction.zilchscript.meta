@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TestFriction"
+		var ResourceId = 0x59839f74b6b5ea44
+	}
+}

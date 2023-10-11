@@ -1,0 +1,21 @@
+BinaryContent = 
+{
+	BinaryBuilder = 
+	{
+		string Name = "PlatformAssetsC",
+		uint64 ResourceId = 541ae85cbcaea297,
+		string LoaderType = "TilePaletteSource",
+		uint Version = 0,
+		string FilterTag = "",
+		string ResourceOwner = "",
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"PlatformAssets",
+			"Terrain",
+			"Background",
+		],
+	},
+},

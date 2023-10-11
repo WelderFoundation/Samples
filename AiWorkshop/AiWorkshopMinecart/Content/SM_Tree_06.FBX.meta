@@ -1,0 +1,53 @@
+[Version:1]
+GeometryContent 
+{
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "SM_Tree_06_SM_Tree_06GeneratedMeshNode0"
+				var ResourceId = 0x5aaa4c11093da9f4
+			}
+			Object
+			{
+				var Name = "SM_Tree_06_SM_Tree_06GeneratedMeshNode1"
+				var ResourceId = 0x5aaa4c11093daa02
+			}
+		}
+	}
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 0.00999999978
+		var ChangeBasis = true
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.NegativeZ
+		var ZBasisTo = BasisType.PositiveY
+	}
+	PhysicsMeshBuilder 
+	{
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "SM_Tree_06_SM_Tree_06GeneratedMeshNode0"
+				var ResourceId = 0x5b11179f69659582
+			}
+			Object
+			{
+				var Name = "SM_Tree_06_SM_Tree_06GeneratedMeshNode1"
+				var ResourceId = 0x5b11179f6965958e
+			}
+		}
+		var MeshBuilt = PhysicsMeshType.PhysicsMesh
+	}
+}

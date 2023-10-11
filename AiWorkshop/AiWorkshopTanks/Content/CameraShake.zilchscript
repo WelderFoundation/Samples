@@ -1,0 +1,47 @@
+// Because this script sets the translation of camera around the origin, you would want to attach
+// the Camera to another object. Any logic to make the camera follow the player should be
+// applied to the parent object, and not the camera itself.
+//
+// Another thing to note - If the Microphone component is on the Camera, you will get a bad
+// doppler affect while the camera is shaking. Move the microphone to the parent object.
+class CameraShake : ZilchComponent
+{
+  // We require a transform to apply the random position.
+  [Dependency] var Transform : Transform;
+  
+  // Used to generate a random position offset. The higher the number, the more intense the shake.
+  // Instead of calling a function to set the intensity, a property can be useful because you
+  // can += to it to avoid over-writing a previous shake.
+  [Property] var CurrentIntensity : Real = 0.0;
+  
+  // A scalar that determines how slowly the shake settles.
+  // 0 means the shake instantly stops
+  // 1 means it will shake forever
+  [Property] var Dissipation : Real = 0.98;
+  
+  var Random : Random = new Random(5);
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Every frame we want to update 
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Generate a random position
+    var pos = Real3(0);
+    pos.XY = this.Random.Real2(0, this.CurrentIntensity);
+    
+    // If your camera just sits at the origin in your game, you don't have to anchor it
+    // to another object. This line maintains the z translation of the camera to
+    // push it back for frustum culling
+    pos.Z = this.Owner.Transform.Translation.Z;
+    
+    // Set the new position
+    this.Owner.Transform.Translation = pos;
+    
+    // Apply the dissipation
+    this.CurrentIntensity *= this.Dissipation;
+  }
+}

@@ -1,0 +1,23 @@
+[Pixel]
+struct UvScale
+{
+  [Input] var Scalar = Real2(1);
+  [FragmentInput][StageInput][Output] var Uv : Real2;
+  
+  function Main()
+  {
+    this.Uv *= this.Scalar;
+  }
+}
+
+[Pixel]
+struct AlbedoScalar
+{
+  [Input] var Scalar = 1.0;
+  [FragmentInput][StageInput][Output] var Albedo : Real3;
+  
+  function Main()
+  {
+    this.Albedo *= this.Scalar;
+  }
+}

@@ -1,0 +1,8 @@
+TextContent = 
+{
+	ZilchScriptBuilder = 
+	{
+		string Name = "JumpRhinoAi",
+		uint64 ResourceId = 5775108b7cab9e94,
+	},
+},

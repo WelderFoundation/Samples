@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "InterpolationLever"
+		var ResourceId = 0x59456567fb7209bf
+	}
+}

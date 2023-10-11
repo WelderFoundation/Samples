@@ -1,0 +1,14 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+	}
+	SubsurfaceScattering 
+	{
+		var LightPosWorld = Real3{1, 2, 1}
+		var LightColor = Real4{1, 1, 1, 1}
+		var SubsurfaceDistortion = 0.620000005
+	}
+}

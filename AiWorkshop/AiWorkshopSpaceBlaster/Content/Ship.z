@@ -1,0 +1,136 @@
+class Ship : ZilchComponent
+{
+  // We require the orientation component to orient ourself to the direction we're moving in,
+  // as well as to determine which direction we fire in
+  [Dependency] var Orientation : Orientation;
+  
+  // How fast we move (meters / second)
+  [Property] var Speed : Real = 1.0;
+  
+  // The projectile we create when fired
+  [Property] var Projectile : Archetype;
+  
+  // The speed at which our projectiles move at
+  [Property] var ProjectileSpeed : Real = 10.0;
+  
+  // The time in-between shots
+  [Property] var TimeBetweenShots : Real = 1.0;
+  
+  // The homing projectile we create when fired
+  [Property] var HomingProjectile : Archetype;
+  
+  // Keeps track of the last time we fired
+  var TimeSinceLastFire : Real = 0.0;
+  
+  // Keeps track of how long the ship has been alive
+  var TimeAlive : Real = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We need to update our fire time on logic update
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    // Allow them to fire right at the start
+    this.TimeSinceLastFire = this.TimeBetweenShots;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Time has passed since we last fired
+    this.TimeSinceLastFire += event.Dt;
+    
+    // Time has passed since we've been alive
+    this.TimeAlive += event.Dt;
+  }
+  
+  function MoveInDirection(direction : Real3, dt : Real)
+  {
+    // Move in our given direction
+    this.Owner.Transform.Translation += direction * this.Speed * dt;
+  }
+  
+  function Fire() : Boolean
+  {
+    if(this.Space.MarkedForDestruction)
+      return false;
+      
+    // Check if we can fire
+    if(this.TimeSinceLastFire >= this.TimeBetweenShots)
+    {
+      Console.WriteLine(this.Owner.Name, "Firing");
+      // Spawn the projectile at our position
+      var ourPos = this.Owner.Transform.WorldTranslation;
+      var projectile = this.Space.CreateAtPosition(this.Projectile, ourPos);
+      
+      // Shoot the projectile in whichever direction we're facing
+      var direction = this.Orientation.WorldForward;
+      projectile.RigidBody.Velocity = direction * this.ProjectileSpeed;
+      
+      // Face the projectile in our direction
+      projectile.Orientation.LookAtDirection(direction);
+      
+      // Reset the shot timer
+      this.TimeSinceLastFire = 0.0;
+      
+      return true;
+    }
+    
+    return false;
+  }
+  
+  function FireHomingMissile() : Boolean
+  {
+    // Check if we can fire
+    if(this.TimeSinceLastFire >= this.TimeBetweenShots)
+    {
+      // Spawn the projectile at our position
+      var ourPos = this.Owner.Transform.WorldTranslation;
+      var projectile = this.Space.CreateAtPosition(this.HomingProjectile, ourPos);
+      
+      // Shoot the projectile in whichever direction we're facing
+      var direction = this.Orientation.WorldForward;
+      projectile.RigidBody.Velocity = direction * this.ProjectileSpeed; 
+      
+      // Face the projectile in our direction
+      projectile.Orientation.LookAtDirection(direction);
+      
+      // Set projectile flag
+      projectile.DamageOnCollide.OriginRoot = this.Owner.FindRoot();
+      if(this.Owner.PlayerController != null)
+      {
+        projectile.Homing.ShootAt = TeamFlag.Enemy;
+        projectile.SphereCollider.CollisionGroup = CollisionGroup.PlayerProjectile;
+      }
+      else
+      {
+        projectile.Homing.ShootAt = TeamFlag.Player;
+        projectile.SphereCollider.CollisionGroup = CollisionGroup.EnemyProjectile;
+      }
+      
+      // Reset the shot timer
+      this.TimeSinceLastFire = 0.0;
+      
+      return true;
+    }
+    
+    return false;
+  }
+  
+  function RotateToPlayer(dt : Real)
+  {
+    // Find the player's position
+    var player = this.Space.FindObjectByName("Player");
+    
+    if(player != null)
+    {
+      var playerPos = player.Transform.WorldTranslation;
+  
+      // Calculate the rotation to face the player
+      var desiredRotation = this.Orientation.GetLookAtPointRotation(playerPos);
+  
+      // Slowly rotate towards the player
+      var rotation = this.Owner.Transform.Rotation;
+      this.Owner.Transform.Rotation = Math.RotateTowards(rotation, desiredRotation, 0.1);
+    }
+  }
+}

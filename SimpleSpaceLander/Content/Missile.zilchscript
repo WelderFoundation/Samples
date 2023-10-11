@@ -1,0 +1,24 @@
+class Missile : ZilchComponent
+{
+  [Property] var Thrust : Real = 20;
+  [Property] var ThrustLifetime : Real = 1;
+  
+  [Property] var ParticlePath : CogPath = CogPath();
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Owner.ForceEffect.Strength = this.Thrust;
+    
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Delay(seq, this.ThrustLifetime);
+    Action.Call(seq, this.DeactivateThrust);
+  }
+  
+  function DeactivateThrust()
+  {
+    // Stop thrust
+    this.Owner.ForceEffect.Active = false;
+    // Stop emitting particles
+    this.ParticlePath.Cog.SphericalParticleEmitter.Active = false;
+  }
+}

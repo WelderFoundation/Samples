@@ -1,0 +1,24 @@
+class HUDModeButtonLogic : ZilchComponent
+{
+    [Property]
+    var Active : Real = 0;
+    
+    function Initialize(init : CogInitializer)
+    {
+        Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    }
+
+    function OnLogicUpdate(event : UpdateEvent)
+    {
+        if (this.Active > 0)
+        {
+            this.Owner.Sprite.Visible = true;
+        }
+        
+        if (this.Active == 0)
+        {
+            this.Owner.Sprite.Visible = false;
+        }
+    }
+}
+    

@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "AnimationDocumentation"
+	var LibraryId = 0x59ae303dbc1c5f1f
+	var SourceControlType = ""
+	var ReadOnly = false
+}

@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "SM_Tree_06"
+		var ResourceId = 0x592c47ff2404f099
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}

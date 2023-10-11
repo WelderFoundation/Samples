@@ -1,0 +1,29 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	FloorGridPixel 
+	{
+		var TileTexture = "5b7e94cb06b3522a:FloorTexture2Glow"
+		var ColorScale = Real4{1, 1, 1, 1}
+		var ColorAdd = Real4{0.0350000262, 0.0350000262, 0.0350000262, 1}
+		var GridColorTexture = "null"
+		var GridDimensions = Integer2{0, 0}
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+	MetallicMap 
+	{
+		var MetallicMap = "5ab9917344d34d1c:TileMetallic"
+	}
+	RoughnessMap 
+	{
+		var RoughnessMap = "5ab9932b3df1f84d:TileRoughness"
+	}
+}

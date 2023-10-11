@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ThickSplineRenderer"
+		var ResourceId = 0x594e523bfa85c40d
+	}
+}

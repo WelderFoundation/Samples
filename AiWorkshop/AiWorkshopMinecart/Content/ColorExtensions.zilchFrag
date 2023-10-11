@@ -1,0 +1,193 @@
+// MIT Licensed (see LICENSE.md).
+
+struct ColorImplements
+{
+  // Converts RGB Bytes [0-255] into an RGBA Real4 (alpha defaults to 1.0). Integer is used in place of 
+  // Byte for convenience.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function FromBytes(r : Integer, g : Integer, b : Integer) : Real4{}
+  
+  // Converts RGBA Bytes [0-255] into an RGBA Real4. Integer is used in place of Byte for convenience.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function FromBytes(r : Integer, g : Integer, b : Integer, a : Integer) : Real4{}
+  
+  // Converts RGBA Bytes [0-255] into an RGBA Real4. Integer is used in place of Byte for convenience.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function FromBytes(rgba : Integer4) : Real4{}
+  
+  // Converts a hex String into an RGBA Real4. Must be a 3, 4, 6, or 8 digit RGB[A] representation with 
+  // an optional preceding '#' or '0x' (case insensitive). E.g. #f00, #F00F, ff0000, 0x00FF00FF.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function FromHexString(value : String) : Real4{}
+  
+  // Converts HSV Reals into an RGBA Real4 (alpha defaults to 1.0). The hue parameter will wrap if is 
+  // beyond [0-1]. The saturation and value parameters may go beyond [0-1] to represent HDR values.
+  [Static][Extension(typeid(Color))][Implements]
+  function FromHsva(h : Real, s : Real, v : Real) : Real4
+  {
+    return Color.FromHsva(h, s, v, 1.0);
+  }
+  
+  // Converts HSVA Reals into an RGBA Real4. The hue parameter will wrap if is beyond [0-1]. The 
+  // saturation and value parameters may go beyond [0-1] to represent HDR values.
+  [Static][Extension(typeid(Color))][Implements]
+  function FromHsva(h : Real, s : Real, v : Real, a : Real) : Real4
+  {
+    h = Math.FMod(h, 1.0);
+  if (h < 0)
+    h += 1.0;
+    
+    var alpha: Real = a;
+    
+    var chroma : Real = s * v;
+  var hPrime: Real = h * 6.0;
+  var x : Real = chroma * (1.0 - Math.Abs(Math.FMod(hPrime, 2.0) - 1.0));
+
+  var color : Real4 = Real4.Zero;
+  if (hPrime < 1)
+    color = Real4(chroma, x, 0, 0);
+  else if (hPrime < 2)
+    color = Real4(x, chroma, 0, 0);
+  else if (hPrime < 3)
+    color = Real4(0, chroma, x, 0);
+  else if (hPrime < 4)
+    color = Real4(0, x, chroma, 0);
+  else if (hPrime < 5)
+    color = Real4(x, 0, chroma, 0);
+  else if (hPrime <= 6)
+    color = Real4(chroma, 0, x, 0);
+  else
+    color = Real4(0, 0, 0, 0);
+
+  var m : Real = v - chroma;
+  return color + Real4(m, m, m, alpha);
+  }
+  
+  // Converts an HSVA Real4 into an RGBA Real4. The hue parameter will wrap if is beyond [0-1]. The 
+  // saturation and value parameters may go beyond [0-1] to represent HDR values.
+  [Static][Extension(typeid(Color))][Implements]
+  function FromHsva(hsva : Real4) : Real4
+  {
+    return Color.FromHsva(hsva.X, hsva.Y, hsva.Z, hsva.W);
+  }
+  
+  // Converts an RGB packed Integer and an alpha Byte [0-255] into an RGBA Real4. Endianness is handled 
+  // so that 0x00FF00FF always means full green and full alpha.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function FromInteger(rgb : Integer, a : Integer) : Real4{}
+  
+  // Converts an RGB packed Integer and an alpha Real into an RGBA Real4. Endianness is handled so that 
+  // 0x00FF00FF always means full green and full alpha.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function FromInteger(rgb : Integer, a : Real) : Real4{}
+  
+  // Converts an RGBA packed Integer into an RGBA Real4. Endianness is handled so that 0x00FF00FF always
+  // means full green and full alpha.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function FromInteger(rgba : Integer) : Real4{}
+  
+  // Converts RGB Reals into an RGBA Integer4 [0-255] (alpha defaults to 255). Integer is used in place 
+  // of Byte for convenience.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToBytes(r : Real, g : Real, b : Real) : Integer4{}
+  
+  // Converts RGBA Reals into an RGBA Integer4 [0-255]. Integer is used in place of Byte for 
+  // convenience.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToBytes(r : Real, g : Real, b : Real, a : Real) : Integer4{}
+  
+  // Converts an RGBA Real4 into an RGBA Integer4 [0-255]. Integer is used in place of Byte for 
+  // convenience.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToBytes(rgba : Real4) : Integer4{}
+  
+  // Converts RGB Reals into the 8 digit hex format RRGGBBAA (alpha defaults to 1.0 so the end will 
+  // always be FF).
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToHexString(r : Real, g : Real, b : Real) : String{}
+  
+  // Converts RGBA Reals into the 8 digit hex format RRGGBBAA.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToHexString(r : Real, g : Real, b : Real, a : Real) : String{}
+  
+  // Converts an RGBA Real4 into the 8 digit hex format RRGGBBAA.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToHexString(rgba : Real4) : String{}
+  
+  // Converts RGB Reals into an HSVA Real4 (alpha defaults to 1.0).
+  [Static][Extension(typeid(Color))][Implements]
+  function ToHsva(r : Real, g : Real, b : Real) : Real4
+  {
+    return Color.ToHsva(Real4(r, g, b, 1.0));
+  }
+  
+  // Converts RGBA Reals into an HSVA Real4.
+  [Static][Extension(typeid(Color))][Implements]
+  function ToHsva(r : Real, g : Real, b : Real, a : Real) : Real4
+  {
+    return Color.ToHsva(Real4(r, g, b, a));
+  }
+  
+  // Converts an RGBA Real4 into an HSVA Real4.
+  [Static][Extension(typeid(Color))][Implements]
+  function ToHsva(rgba : Real4) : Real4
+  {
+    var r : Real = rgba.X;
+    var g : Real = rgba.Y;
+    var b : Real = rgba.Z;
+    var alpha : Real = rgba.W;
+    // Calculate chroma
+  var max : Real = Math.Max(Math.Max(r, g), b);
+  var min : Real = Math.Min(Math.Min(r, g), b);
+  var chroma : Real = max - min;
+
+  // Calculate Hue
+  var hue : Real = 0;
+  if (chroma == 0.0)
+  {
+    hue = 0;
+  }
+  else
+  {
+    if (max == r)
+      hue = (g - b) / chroma;
+    else if (max == g)
+      hue = ((b - r) / chroma) + 2.0;
+    else // max == b
+      hue = ((r - g) / chroma) + 4.0;
+  }
+
+  hue *= (60.0 / 360.0);
+
+  // Wrap the hue around
+  if (hue < 0.0)
+    hue += 1.0;
+
+  // Calculate the value (or lightness)
+  var value : Real = max;
+
+  // Calculate Saturation
+  var saturation : Real = 0;
+  if (value == 0.0)
+    saturation = 0.0;
+  else
+    saturation = chroma / value;
+
+  return Real4(hue, saturation, value, alpha);
+  }
+  
+  // Converts RGB Reals into an RGBA packed Integer (alpha defaults to 255). Endianness is handled so 
+  // that 0x00FF00FF always means full green and full alpha.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToInteger(r : Real, g : Real, b : Real) : Integer{}
+  
+  // Converts RGBA Reals into an RGBA packed Integer. Endianness is handled so that 0x00FF00FF always 
+  // means full green and full alpha.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToInteger(r : Real, g : Real, b : Real, a : Real) : Integer{}
+  
+  // Converts an RGBA Real4 into an RGBA packed Integer. Endianness is handled so that 0x00FF00FF always
+  // means full green and full alpha.
+  //[Static][Extension(typeid(Color))][Implements]
+  //function ToInteger(rgba : Real4) : Integer{}
+}

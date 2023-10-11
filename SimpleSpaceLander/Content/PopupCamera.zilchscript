@@ -1,0 +1,41 @@
+class PopupCameraQueryEvent : ZilchEvent
+
+{
+  var Results : Array[Cog] = Array[Cog]();
+}
+
+class PopupCamera : ZilchComponent
+{
+  sends PopupCameraQuery : PopupCameraQueryEvent;
+  
+  [Property] var GameCameraPath : CogPath = CogPath();
+  
+  var IsVisibleToGameCamera : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.PopupCameraQuery, this.OnPopupCameraQuery);
+    Zero.Connect(this.Owner.Parent, Events.EnterView, this.OnEnterView);
+    Zero.Connect(this.Owner.Parent, Events.ExitView, this.OnExitView);
+  }
+
+  function OnEnterView(event : GraphicalEvent)
+  {
+    if(event.ViewingObject == this.GameCameraPath.Cog)
+      this.IsVisibleToGameCamera = true;
+  }
+  
+  function OnExitView(event : GraphicalEvent)
+  {
+    if(event.ViewingObject == this.GameCameraPath.Cog)
+      this.IsVisibleToGameCamera = false;
+  }
+  function OnPopupCameraQuery(event : PopupCameraQueryEvent)
+  {
+    event.Results.Add(this.Owner);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

@@ -1,0 +1,30 @@
+class KillOnHit : ZilchComponent
+{
+  [Property] var Active : Boolean = true;
+  [Property] var VelocityThreshold : Real = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(this.Active && event.OtherObject.Character != null && event.OtherObject != this.Owner.FindRoot())
+    {
+      if(this.VelocityThreshold == 0.0)
+      {
+        event.OtherObject.Character.Die();
+      }
+      else if(this.Owner.RigidBody != null)
+      {
+        var vel = Math.Length(this.Owner.RigidBody.Velocity);
+                                
+        if(vel >= this.VelocityThreshold)
+        {
+          event.OtherObject.Character.Die();
+        }
+      }
+    }
+  }
+}

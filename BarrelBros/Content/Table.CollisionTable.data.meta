@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Table"
+		var ResourceId = 0x59457c7d55231f8d
+		var LoaderType = "CollisionTable"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

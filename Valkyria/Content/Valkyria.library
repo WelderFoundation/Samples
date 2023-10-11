@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "Valkyria"
+	var LibraryId = 0x5f3b977c00fe6c78
+	var SourceControlType = ""
+	var ReadOnly = false
+}

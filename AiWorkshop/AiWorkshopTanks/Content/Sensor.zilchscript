@@ -1,0 +1,85 @@
+enum SensorType{Distance, Normalized}
+
+class Sensor : ZilchComponent
+{
+  // Dependencies
+  [Dependency] var Transform : Transform;
+  
+  // Whether or not to draw each frame
+  [Property] var DebugDrawFlag : Boolean = false;
+  
+  // The length of the sensor
+  [Property] var MaxLength : Real = 5.0;
+  
+  var DebugColor : Real4 = Real4(1,0,0,1);
+  var DebugColorHit : Real4 = Real4(0,1,0,1);
+  
+  // Cast down the local x-axis.
+  var Direction : Real3 = Real3(1,0,0);
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want to debug draw the ray we're casting
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  // Distance [0, 1]
+  function GetNormalizedDistance() : Real
+  {
+    var result = this.Space.PhysicsSpace.CastRayFirst(this.GetRay());
+    if(result.ObjectHit != null)
+    {
+      if(result.Distance < this.MaxLength)
+        return 1.0 - (result.Distance / this.MaxLength);
+    }
+    
+    return 0.0;
+  }
+  
+  // Distance [0, MaxLength]
+  function GetDistance() : Real
+  {
+    var result = this.Space.PhysicsSpace.CastRayFirst(this.GetRay());
+    if(result.ObjectHit != null)
+    {
+      if(result.Distance < this.MaxLength)
+        return result.Distance;
+    }
+    
+    return this.MaxLength;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.DebugDrawFlag)
+    {
+      // Cast the ray
+      var distance = this.GetDistance();
+      
+      // If we hit something, change the color
+      var color = this.DebugColor;
+      if(distance < this.MaxLength)
+      {
+          color = this.DebugColorHit;
+      }
+      
+      // Calculate the line
+      var ray = this.GetRay();
+      var end = ray.Start + ray.Direction * distance;
+      
+      // Draw the line
+      var line = DebugLine(ray.Start, end);
+      line.Color = color;
+      line.HeadSize = 0.2;
+      DebugDraw.Add(line);
+    }
+  }
+
+  function GetRay() : Ray
+  {
+    var ray = Ray();
+    ray.Start = this.Owner.Transform.WorldTranslation;
+    ray.Direction = this.Owner.Transform.TransformNormal(this.Direction);
+    return ray;
+  }
+}

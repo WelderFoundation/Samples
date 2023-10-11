@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "AiWorkshopTanks"
+	var LibraryId = 0x5b4f557bb3a7ec5f
+	var SourceControlType = ""
+	var ReadOnly = false
+}

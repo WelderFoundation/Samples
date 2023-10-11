@@ -1,0 +1,18 @@
+[Version:1]
+DataContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+		}
+	}
+	DataBuilder 
+	{
+		var Name = "Space_Marine_Head"
+		var ResourceId = 0x59ae32520afd5679
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

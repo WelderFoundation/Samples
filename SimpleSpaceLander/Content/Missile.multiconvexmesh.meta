@@ -1,0 +1,13 @@
+[Version:1]
+BinaryContent 
+{
+	BinaryBuilder 
+	{
+		var Name = "Missile"
+		var ResourceId = 0x587a4fb56c7c0f3a
+		var LoaderType = "MultiConvexMesh"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = ""
+	}
+}

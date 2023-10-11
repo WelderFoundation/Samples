@@ -1,0 +1,20 @@
+RichAnimation = 
+{
+	float SampleTolerance = 0.05,
+	float Duration = 0,
+	Object Root = 
+	{
+		TrackType Type = Object,
+		string Name = "Root",
+		string Path = "",
+		bool Disabled = false,
+		uint PropertyTypeId = 0,
+		string PropertyTypeName = "void",
+		Array KeyFrames = 
+		[
+		],
+		Array Children = 
+		[
+		],
+	},
+},

@@ -1,0 +1,18 @@
+DataContent = 
+{
+	RichAnimationBuilder = 
+	{
+		string Name = "RhinoDinoCharge",
+		uint64 ResourceId = 5452240148551465,
+		string PreviewArchetype = "",
+	},
+	ContentTags = 
+	{
+		Array Tags = 
+		[
+			"Rhino",
+			"Dino",
+			"RhinoDinoSprite",
+		],
+	},
+},

@@ -1,0 +1,99 @@
+class UiSpace : ZilchComponent
+{
+  [Property] var Enabled = true;
+  [Property] var LevelToLoad : Level;
+  
+  var LoadedSpace : Space;
+  
+  function Initialize(init : CogInitializer)
+  {
+    if(this.Enabled == false)
+      return;
+      
+    this.LoadedSpace = this.GameSession.CreateSpace(Archetype.Space);
+    this.LoadedSpace.LoadLevel(this.LevelToLoad);
+  }
+}
+//------------------------------------------------------------------- Sub Space
+[RunInEditor]
+class UiSubSpace : ZilchComponent
+{
+  [Dependency] var UiWidget : UiWidget;
+  [Property] var SpaceToLoad : Archetype = Archetype.Space;
+  [Property] var LevelToLoad : Level;
+  
+  // The CameraViewport in the level we're loading.
+  [Property] var SubCameraViewportCog = CogPath(":/GameCamera");
+  
+  // Used to update the material's Texture with the rendered sub-space.
+  [ShaderInput("UiSpriteMount")] var Texture : Texture;
+  
+  var SubSpace : Space;
+  
+  //***************************************************************************
+  var SubCameraViewport : CameraViewport
+  {
+    get
+    {
+      var cog = this.SubCameraViewportCog.Cog;
+      if(cog != null)
+        return cog.CameraViewport;
+      return null;
+    }
+  }
+  
+  //***************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    // Give it a nice name for easy debugging
+    var spaceName = "SpaceMount_`this.Owner.Name`";
+    
+    this.SubSpace = this.GameSession.CreateNamedSpace(spaceName, this.SpaceToLoad);
+    this.SubSpace.LoadLevel(this.LevelToLoad);
+    
+    // The CogPath needs to resolve 
+    this.SubCameraViewportCog.RelativeTo = this.SubSpace;
+    this.SubCameraViewportCog.Refresh();
+    
+    var cameraViewport = this.SubCameraViewport;
+    if(cameraViewport != null)
+    {
+      // We only want it to render to the texture, not to the viewport
+      cameraViewport.RenderToViewport = false;
+      
+      // Store the texture's it's rendering to
+      this.Texture = cameraViewport.FinalTexture;
+      
+      this.UpdateResolution();
+      
+      // When our size changes, we want to re-calculate the rendering resolution of the sub-space
+      Zero.Connect(this.Owner, Events.TransformUpdated, this.OnTransformUpdated);
+    }
+    else
+    {
+      this.SubSpace.Destroy();
+      throw Exception("Could not find the CameraViewport '`this.SubCameraViewportCog.Path`' in Level '`this.LevelToLoad.Name`'");
+    }
+  }
+  
+  //***************************************************************************
+  function OnTransformUpdated(event : ObjectEvent)
+  {
+    this.UpdateResolution();
+  }
+  
+  //***************************************************************************
+  function UpdateResolution()
+  {
+    var cameraViewport = this.SubCameraViewport;
+    if(cameraViewport != null)
+      cameraViewport.ResolutionOrAspect = this.UiWidget.Size as Integer2;
+  }
+  
+  //***************************************************************************
+  destructor()
+  {
+    if(this.SubSpace != null)
+      this.SubSpace.Destroy();
+  }
+}

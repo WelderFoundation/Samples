@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "PbrScalars"
+		var ResourceId = 0x5b49d91f35f68fbe
+	}
+}

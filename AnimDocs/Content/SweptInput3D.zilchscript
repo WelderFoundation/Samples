@@ -1,0 +1,119 @@
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Copyright 2017 DigiPen USA Corporation, All Rights Reserved
+// Author: Zero Engine Team
+// Last updated by: Joshua Davis
+// Last update: 7/24/2017
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+// Simple input for a 3d swept character controller. Rotation is controlled by the child camera.
+class SweptInput3D : ZilchComponent
+{
+  [Dependency] var SweptController : SweptController;
+  [Dependency] var Orientation : Orientation;
+  
+  [Property] var LeftKey : Keys = Keys.A;
+  [Property] var RightKey : Keys = Keys.D;
+  [Property] var ForwardKey : Keys = Keys.W;
+  [Property] var BackKey : Keys = Keys.S;
+  [Property] var JumpKey : Keys = Keys.Space;
+  
+  sends IdleEvent : ZilchEvent;
+  sends WaveEvent : ZilchEvent;
+  sends JumpEvent : JumpEvent;
+  sends DoubleJumpEvent : JumpEvent;
+  sends MovementEvent : MovementEvent;
+  
+  var PreJump : Boolean = false;
+  
+  [Property]
+  var ModelObj : CogPath = CogPath();
+  
+  var MoveDir : Real3 = Real3();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.ModelObj.Cog, Events.AnimationEnded, this.OnAnimationEnded);
+    Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+    Zero.Connect(Zero.Keyboard, Events.KeyUp, this.OnKeyUp);
+  }
+
+  function OnKeyDown(event : KeyboardEvent)
+  {
+    if(event.Key == this.JumpKey)
+    {
+      if(this.SweptController.Grounded)
+      {
+        Console.WriteLine("Jump Input");
+        this.Owner.DispatchDown(Events.JumpEvent, JumpEvent());
+      }
+      else
+      {
+        Console.WriteLine("Double Jump Input");
+        this.Owner.DispatchDown(Events.DoubleJumpEvent, JumpEvent());
+        this.SweptController.JumpUnconditionally();
+      }
+    }
+    else if(event.Key == Keys.P)
+    {
+      this.Owner.DispatchDown(Events.WaveEvent, ZilchEvent());
+    }
+    else if(event.Key == this.LeftKey)
+     this.MoveDir += Real3(-1, 0, 0);
+    else if(event.Key == this.RightKey)
+     this.MoveDir += Real3(1, 0, 0);
+    else if(event.Key == this.BackKey)
+     this.MoveDir += Real3(0, 0, 1);
+    else if(event.Key == this.ForwardKey)
+     this.MoveDir += Real3(0, 0, -1);
+  }
+
+  function OnKeyUp(event : KeyboardEvent)
+  {
+    if(event.Key == this.LeftKey)
+     this.MoveDir -= Real3(-1, 0, 0);
+    else if(event.Key == this.RightKey)
+     this.MoveDir -= Real3(1, 0, 0);
+    else if(event.Key == this.BackKey)
+     this.MoveDir -= Real3(0, 0, 1);
+    else if(event.Key == this.ForwardKey)
+     this.MoveDir -= Real3(0, 0, -1);
+  }
+
+  function OnAnimationEnded(event : AnimationGraphEvent)
+  {
+    if(event.Animation == this.ModelObj.Cog.BlendedAnimationController.JumpStartAnimation)
+    {
+      this.PreJump = false;
+      this.SweptController.Jump();
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var movement = Real3();
+    if(Math.Length(this.MoveDir) > 0.0)
+    {
+      movement = this.Owner.Transform.TransformNormal(this.MoveDir);
+    
+      this.Owner.DispatchDown(Events.MovementEvent, MovementEvent(movement));
+    }
+    else
+      this.Owner.DispatchDown(Events.IdleEvent, ZilchEvent());
+    
+    
+    this.SweptController.Update(movement, event.Dt);
+  }
+}
+
+
+class JumpEvent : ZilchEvent {}
+class MovementEvent : ZilchEvent
+{
+  var MoveDir : Real3;
+  
+  constructor(dir : Real3) : base()
+  {
+    this.MoveDir = dir;
+  }
+}

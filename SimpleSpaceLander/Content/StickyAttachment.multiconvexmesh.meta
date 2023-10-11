@@ -1,0 +1,13 @@
+[Version:1]
+BinaryContent 
+{
+	BinaryBuilder 
+	{
+		var Name = "StickyAttachment"
+		var ResourceId = 0x587a4bcb8ba1ca95
+		var LoaderType = "MultiConvexMesh"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = ""
+	}
+}

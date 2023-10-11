@@ -1,0 +1,126 @@
+enum Direction { Left, Up, Right, Down}
+
+class Character : ZilchComponent
+{
+  // Used for sweeping to check if we're at an intersection
+  [Dependency] var Collider : Collider;
+  
+  // Used for movement
+  [Dependency] var SweptController : SweptController;
+  
+  // The speed at which we move
+  [Property] var Speed : Real = 7.0;
+  
+  // Opposite movement is only for the player
+  [Property] var CanMoveOpposite : Boolean = true;
+  
+  [Property][ShaderInput("AlbedoValue", "AlbedoValue")] var Color = Real4(1);
+  
+  // We start not moving, so don't update until the user has given us input
+  var Moving : Boolean = false;
+  
+  // The current direction we've moving in
+  var CurrentDirection : Direction;
+  
+  // The input given from the player or Ai. Once this action can be taken (at an intersection), it will be taken
+  var NextDirection : Direction;
+  
+  // Used to get a direction vector from the Direction enum
+  var Directions : Array[Real3] = Array[Real3](){Real3(-1,0,0), Real3(0,1,0), Real3(1,0,0), Real3(0,-1,0)};
+  
+  // Every frame these will be updated after the player has moved
+  var AvailablePaths : Array[Boolean] = Array[Boolean](){false, false, false, false};
+  
+  // We want a short buffer between when we tell the ai we're at an intersection so that we don't report
+  // that we're at an intersection multiple frames in a row (let the character time to leave the intersection)
+  var IntersectionTimer : Real = 0.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Always update the move speed in case they change it at run time
+    this.SweptController.MaxMoveSpeed = this.Speed;
+    
+    // Update the increment timer
+    this.IntersectionTimer += event.Dt;
+    
+    // Don't do anything if we're not moving
+    if(this.Moving == false)
+      return;
+    
+    // Update available paths
+    for(var i = 0; i < 4; ++i)
+      this.AvailablePaths[i] = this.CastCollider(i as Direction);
+    
+    // Can't move opposite of our moving direction
+    if(!this.CanMoveOpposite)
+      this.AvailablePaths[this.GetOppositeOfMoving()] = false;
+    
+    // If we can move in the queued direction, then move that way
+    if(this.AvailablePaths[this.NextDirection])
+      this.CurrentDirection = this.NextDirection;
+    
+    // Move in our current direction
+    var dir = this.Directions[this.CurrentDirection];
+    this.SweptController.Update(dir, event.Dt);
+  }
+  
+  function GetCollisionObject() : Cog
+  {
+    return this.Owner.FindChildByName("CharacterCollision");
+  }
+  
+  function AtIntersection() : Boolean
+  {
+    // The directions perpendicular to our movement
+    // ex. if we're moving left or right, these directions will be up and down
+    var perpDir0 = (this.CurrentDirection + 1) % 4;
+    var perpDir1 = (this.CurrentDirection + 3) % 4;
+    
+    // We're at an intersection only if we can move in our perpendicular direction
+    var atIntersection = this.CanMoveInDirection(perpDir0) || this.CanMoveInDirection(perpDir1);
+    
+    // Take into consideration the intersection timer as we may not have moved out of the intersection yet
+    if(atIntersection && this.IntersectionTimer > 0.1)
+    {
+      this.IntersectionTimer = 0.0;
+      return true;
+    }
+    
+    return false;
+  }
+  
+  function GetOppositeOfMoving() : Direction
+  {
+    return ((this.CurrentDirection + 2) % 4);
+  }
+  
+  function MoveInDirection(direction : Direction)
+  {
+    this.Moving = true;
+    this.NextDirection = direction;
+  }
+  
+  function CanMoveInDirection(direction : Direction) : Boolean
+  {
+    return this.AvailablePaths[direction];
+  }
+  
+  function CastCollider(direction : Direction) : Boolean
+  {
+    var filter = CastFilter();
+    filter.IgnoreKinematic = true;
+    filter.IgnoreDynamic = true;
+    filter.CollisionGroup = CollisionGroup.VolumeCast;
+    
+    var dir = this.Directions[direction];
+    
+    var results = this.Space.PhysicsSpace.SweepCollider(this.Collider, dir, 1.0, filter);
+    
+    return !results.IsNotEmpty;
+  }
+}

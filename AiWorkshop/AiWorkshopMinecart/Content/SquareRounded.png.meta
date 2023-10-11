@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "SquareRounded"
+		var ResourceId = 0x5b04f6ff385b0599
+		var FrameSizeX = 100
+		var FrameSizeY = 100
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 50
+		var OriginY = 50
+		var PixelsPerUnit = 1
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{10, 10, 10, 10}
+		var Fill = SpriteFill.NineSlice
+	}
+}

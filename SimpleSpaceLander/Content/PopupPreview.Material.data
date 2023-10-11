@@ -1,0 +1,12 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"587e4e7b9c0e09f9:Popup"
+	}
+	PopupSprite 
+	{
+		var Texture = "5573a48b3504254e:SsaoRandom4x4"
+	}
+}

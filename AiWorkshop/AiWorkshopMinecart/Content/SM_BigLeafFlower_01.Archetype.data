@@ -1,0 +1,23 @@
+[Version:1]
+Cog 
+{
+	var Name = "SMBigLeafFlower01"
+	Transform 
+	{
+		var Translation = Real3{-1.24770498, -0.695454597, -1.67794418}
+		var Scale = Real3{1, 1.29417098, 1}
+		var Rotation = Quaternion{0, -0.447470039, 0, 0.894298971}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "592c432be40edd57:BigLeafFlower"
+		var Mesh = "5aaa4c290b99bd9d:SM_BigLeafFlower_01"
+	}
+}

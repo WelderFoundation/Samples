@@ -1,0 +1,19 @@
+ImageContent = 
+{
+	SpriteSourceBuilder = 
+	{
+		string Name = "rock2",
+		uint64 ResourceId = 5249d3b610ec0ca5,
+		uint64 AtlasId = 5274cf95e4a661fd,
+		uint FrameSizeX = 618,
+		uint FrameSizeY = 599,
+		uint FrameCount = 1,
+		float FrameDelay = 0.0833333,
+		float OriginX = 309,
+		float OriginY = 299,
+		float PixelsPerUnit = 210,
+		bool Smoothing = true,
+		bool Looping = true,
+		Vec4 Slices = [0, 0, 0, 0],
+	},
+},

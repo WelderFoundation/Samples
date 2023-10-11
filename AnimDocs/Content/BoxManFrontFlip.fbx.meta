@@ -1,0 +1,94 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "BoxManFrontFlip_Stomach"
+				var ResourceId = 0x59af21f77ac82da7
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_Chest"
+				var ResourceId = 0x59af21f77ac82db2
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_Head"
+				var ResourceId = 0x59af21f77ac82db6
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_LArm"
+				var ResourceId = 0x59af21f77ac82dba
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_LArm01"
+				var ResourceId = 0x59af21f77ac82dbe
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_RArm"
+				var ResourceId = 0x59af21f77ac82dc3
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_RArm01"
+				var ResourceId = 0x59af21f77ac82dc6
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_LLeg"
+				var ResourceId = 0x59af21f77ac82dcb
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_LLeg01"
+				var ResourceId = 0x59af21f77ac82dce
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_RLeg"
+				var ResourceId = 0x59af21f77ac82dd1
+			}
+			Object
+			{
+				var Name = "BoxManFrontFlip_RLeg01"
+				var ResourceId = 0x59af21f77ac82dd6
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "BoxManFrontFlip"
+				var ResourceId = 0x59af21f77ac82ddd
+			}
+		}
+	}
+}

@@ -1,0 +1,19 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "BirdDino"
+		var ResourceId = 0x5420e27749bcba00
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Bird"
+			"BirdDinoSprite"
+		}
+	}
+}

@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchFragmentBuilder 
+	{
+		var Name = "ColorExtensions"
+		var ResourceId = 0x63c178f74b7fb72d
+	}
+}

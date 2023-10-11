@@ -1,0 +1,27 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	TileAlbedo 
+	{
+		var AlbedoMap = "5ab99775f04f1488:FloorTexture8"
+		var AlbedoValue = Real4{1, 1, 1, 1}
+		var GammaCorrect = true
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 1
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 0.300000012
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+}

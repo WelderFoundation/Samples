@@ -1,0 +1,13 @@
+[Pixel]
+struct HueAnimate
+{
+  [Input] var Speed = 1.0;
+  
+  [AppBuiltInInput] var FrameTime : Real;
+  [Output] var Hue : Real;
+  
+  function Main()
+  {
+    this.Hue = this.FrameTime * this.Speed * 360.0;
+  }
+}

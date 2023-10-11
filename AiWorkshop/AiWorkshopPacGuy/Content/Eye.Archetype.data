@@ -1,0 +1,48 @@
+[Version:1]
+Cog 
+{
+	var Name = "EyeLeft"
+	Transform 
+	{
+		var Translation = Real3{-2.88714004, 0, 0}
+		var Scale = Real3{0.300000012, 0.300000012, 0.300000012}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "555b72e3dd9d5569:Character"
+		var Mesh = "4de0354322b376ae:Sphere"
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5aab2324f38c3dc3]
+		{
+			var Name = "Pupil"
+			Transform 
+			{
+				var Translation = Real3{0.0724134594, -0.110474519, 0.251520991}
+				var Scale = Real3{0.667141378, 0.667141378, 0.667141378}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5aab237ceef76bd5:EyePupil"
+				var Mesh = "4de0354322b376ae:Sphere"
+			}
+		}
+	}
+}

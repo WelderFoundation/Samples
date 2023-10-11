@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "SplineScaffoldingGenerator"
+		var ResourceId = 0x5aaab1ad015ae01a
+	}
+}

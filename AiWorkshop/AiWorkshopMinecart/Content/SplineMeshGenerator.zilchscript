@@ -1,0 +1,489 @@
+//---------------------------------------------------------------------------- Spline Generate Event
+class SplineGenerateEvent : ZilchEvent
+{
+  var Spline : Spline;
+}
+
+//----------------------------------------------------------------------- Spline Graphical Generator
+[RunInEditor]
+class SplineGraphicalGenerator : ZilchComponent
+{
+  [Property] var SplineTarget = CogPath();
+  
+  sends GenerateSplineGraphical : SplineGenerateEvent;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.SplineTarget.Cog, Events.SplineModified, this.OnSplineModified);
+  }
+  
+  //************************************************************************************************
+  function OnSplineModified(event : SplineEvent)
+  {
+    this.Generate();
+  }
+  
+  //************************************************************************************************
+  [Display] function Generate()
+  {
+    var spline = this.SplineTarget.ScriptHierarchySpline.Spline;
+    
+    var eventToSend = SplineGenerateEvent() { Spline = spline };
+    
+    this.Owner.DispatchDown(Events.GenerateSplineGraphical, eventToSend);
+  }
+}
+
+//---------------------------------------------------------------------------- Spline Mesh Generator
+[ComponentInterface][RunInEditor]
+class SplineMeshGenerator : ZilchComponent
+{
+  [Dependency] var Model : Model;
+  var Mesh : Mesh = Mesh.CreateRuntime();
+  var PhysicsMesh : PhysicsMesh;
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.GenerateSplineGraphical, this.OnGenerateSplineGraphical);
+    Zero.Connect(this.Owner, "ComponentsModified", this.OnComponentsModified);
+    this.Model.Mesh = this.Mesh;
+  }
+  
+  //************************************************************************************************
+  function OnComponentsModified(event : Event)
+  {
+    
+  }
+  
+  //************************************************************************************************
+  function OnGenerateSplineGraphical(event : SplineGenerateEvent)
+  {
+    var vertices = this.Mesh.Vertices;
+    var indices = this.Mesh.Indices;
+    vertices.ClearData();
+    indices.Clear();
+    
+    this.GenerateMesh(event.Spline, this.Mesh);
+    this.Mesh.Upload();
+    
+    var meshCollider = this.Owner.MeshCollider;
+    if(meshCollider != null)
+    {
+      if(this.PhysicsMesh == null)
+        this.PhysicsMesh = PhysicsMesh.CreateRuntime();
+      
+      var physicsVertices = this.PhysicsMesh.Vertices;
+      var physicsIndices = this.PhysicsMesh.Indices;
+      
+      physicsVertices.Clear();
+      physicsIndices.Clear();
+      
+      // Copy over vertices
+      for(var i = 0; i < vertices.VertexCount; ++i)
+      {
+        var pos = vertices.GetVertexData(i, VertexSemantic.Position, VertexElementType.Real, 3).XYZ;
+        physicsVertices.Add(pos);
+      }
+      
+      // Copy over indices
+      for(var i = 0; i < indices.Count; ++i)
+        physicsIndices.Add(indices[i]);
+      
+      this.PhysicsMesh.UpdateAndNotifyIfModified();
+      meshCollider.PhysicsMesh = this.PhysicsMesh;
+    }
+  }
+  
+  //************************************************************************************************
+  [Virtual] function GenerateMesh(spline : Spline, mesh : Mesh)
+  {
+    throw Exception("Not implemented");
+  }
+}
+
+//----------------------------------------------------------------------- Spline Mesh Generator Line
+class SplineMeshGeneratorLine : SplineMeshGenerator
+{
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    this.Mesh.PrimitiveType = PrimitiveType.Lines;
+    
+    var vertices = this.Mesh.Vertices;
+    
+    // The position on the spline
+    vertices.AddAttribute(VertexSemantic.Position, VertexElementType.Real, 3);
+    // The tangent of the current point on the spline
+    vertices.AddAttribute(VertexSemantic.Tangent, VertexElementType.Real, 3);
+    // The distance from the start of the spline
+    vertices.AddAttribute(VertexSemantic.Aux0, VertexElementType.Real, 1);
+  }
+  
+  //************************************************************************************************
+  [Override] function GenerateMesh(spline : Spline, mesh : Mesh)
+  {
+    var vertices = mesh.Vertices;
+    var bakedPoints = spline.BakedPoints;
+    
+    var distance = 0.0;
+    var lastPos = bakedPoints[0].Position;
+    vertices.AddReal(lastPos);
+    vertices.AddReal(Math.Normalize(bakedPoints[1].Position - lastPos));
+    vertices.AddReal(distance);
+      
+    var count = bakedPoints.Count;
+    for(var i = 1; i < count; ++i)
+    {
+      var pos = bakedPoints[i].Position;
+      var tangent = Math.Normalize(pos - lastPos);
+      vertices.AddReal(pos);
+      vertices.AddReal(tangent);
+      
+      distance += Math.Distance(pos, lastPos);
+      vertices.AddReal(distance);
+      
+      lastPos = pos;
+    }
+    
+    // Close the spline
+    if(spline.Closed)
+    {
+      vertices.AddReal(lastPos);
+      
+      var pos = bakedPoints[0].Position;
+      vertices.AddReal(Math.Normalize(pos - lastPos));
+      
+      distance += Math.Distance(pos, lastPos);
+      vertices.AddReal(distance);
+    }
+  }
+}
+
+//------------------------------------------------------------------ Spline Mesh Generator Rectangle
+// Note that when using this, you will need to use a geometry shader to generate polygon normals.
+// This could be extended to include normals / tangents / bitangents in the mesh
+class SplineMeshGeneratorRectangle : SplineMeshGenerator
+{
+  [Property] var Size = Real2(0.2);
+  [Property] var Offset = Real2();
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    (this as SplineMeshGenerator)~>Initialize(init);
+    this.Mesh.PrimitiveType = PrimitiveType.Triangles;
+    
+    var vertices = this.Mesh.Vertices;
+    
+    // The position on the spline
+    vertices.AddAttribute(VertexSemantic.Position, VertexElementType.Real, 3);
+    //vertices.AddAttribute(VertexSemantic.Normal, VertexElementType.Real, 3);
+    //vertices.AddAttribute(VertexSemantic.Tangent, VertexElementType.Real, 3);
+    //vertices.AddAttribute(VertexSemantic.Bitangent, VertexElementType.Real, 3);
+    // The distance from the start of the spline
+    //vertices.AddAttribute(VertexSemantic.Aux0, VertexElementType.Real, 1);
+  }
+  
+  //************************************************************************************************
+  [Static] function AddQuad(mesh : Mesh, center : Real3, right : Real3, up : Real3, distance : Real)
+  {
+    // These points represent the vertex positions in the first image in the 'AddRectangleIndices' function
+    var p0 = center - right - up;
+    var p1 = center + right - up;
+    var p2 = center + right + up;
+    var p3 = center - right + up;
+    
+    var vertices = mesh.Vertices;
+    vertices.AddReal(p0);
+    //vertices.AddReal(distance);
+    vertices.AddReal(p1);
+    //vertices.AddReal(distance);
+    vertices.AddReal(p2);
+    //vertices.AddReal(distance);
+    vertices.AddReal(p3);
+    //vertices.AddReal(distance);
+  }
+    
+  //************************************************************************************************
+  [Static] function AddRectangleIndices(mesh : Mesh, index : Integer)
+  {
+    //=======================================//
+    //                                       //
+    //           7-------6                   //
+    //          /|      /|                   //
+    //         / |     / |                   //
+    //        /  |    /  |                   //
+    //       /   4---/---5                   //
+    //      /   /   /   /                    //
+    //     /   /   /   /                     //
+    //    3-------2   /                      //
+    //    |  /    |  /                       //
+    //    | /     | /                        //
+    //    |/      |/                         //
+    //    0-------1                          //
+    //                                       //
+    //                                       //
+    //                     13------12        //
+    //                    /        /         //
+    //          14       /        /    11    //
+    //          /|      /        /     /|    //
+    //         / |     /  top   /     / |    //
+    //        /  |    /        /     /  |    //
+    //       /   |   /        /     /   |    //
+    //      /   15  5--------4     /   10    //
+    //     / L  /                 /  R /     //
+    //    6    /      8-------9  3    /      //
+    //    |   /      /       /   |   /       //
+    //    |  /      /       /    |  /        //
+    //    | /      /  bot  /     | /         //
+    //    |/      /       /      |/          //
+    //    7      /       /       2           //
+    //          0-------1                    //
+    //                                       //
+    //=======================================//
+    
+    var indices = mesh.Indices;
+
+    // Bottom face
+    indices.Add(index);
+    indices.Add(index + 5);
+    indices.Add(index + 1);
+
+    indices.Add(index);
+    indices.Add(index + 4);
+    indices.Add(index + 5);
+
+    // Right face
+    indices.Add(index + 1);
+    indices.Add(index + 5);
+    indices.Add(index + 6);
+
+    indices.Add(index + 1);
+    indices.Add(index + 6);
+    indices.Add(index + 2);
+
+    // Top face
+    indices.Add(index + 3);
+    indices.Add(index + 2);
+    indices.Add(index + 6);
+
+    indices.Add(index + 3);
+    indices.Add(index + 6);
+    indices.Add(index + 7);
+
+    // Left face
+    indices.Add(index + 4);
+    indices.Add(index);
+    indices.Add(index + 3);
+
+    indices.Add(index + 4);
+    indices.Add(index + 3);
+    indices.Add(index + 7);
+  }
+  
+  //************************************************************************************************
+  [Override] function GenerateMesh(spline : Spline, mesh : Mesh)
+  {
+    var bakedPoints = spline.BakedPoints;
+    
+    if(bakedPoints.Count < 2)
+      return;
+    
+    var distance = 0.0;
+    var index = 0;
+    
+    var worldUp = Real3.YAxis;
+    
+    var sample0 = bakedPoints[0].Position;
+    var sample1 = bakedPoints[1].Position;
+    
+    var tangent = Math.Normalize(sample1 - sample0);
+    var up = worldUp;
+    var right = Math.Normalize(Math.Cross(tangent, up));
+    // No need to normalize because they're already perpendicular
+    up = Math.Cross(right, tangent);
+    
+    var sample0Center = sample0;
+    sample0Center += right * this.Offset.X;
+    sample0Center += up * this.Offset.Y;
+    
+    var sizeUp    = up * this.Size.Y * 0.5;
+    var sizeRight = right * this.Size.X * 0.5;
+    
+    // Add the first quad
+    SplineMeshGeneratorRectangle.AddQuad(this.Mesh, sample0Center, sizeRight, sizeUp, distance);
+    
+    var count = bakedPoints.Count;
+    for(var i = 1; i < count; ++i)
+    {
+      sample1 = bakedPoints[i].Position;
+      
+      tangent = Math.Normalize(sample1 - sample0);
+      up = worldUp;
+      right = Math.Normalize(Math.Cross(tangent, up));
+      // No need to normalize because they're already perpendicular
+      up = Math.Cross(right, tangent);
+    
+      var sample1Center = sample1;
+      sample1Center += right * this.Offset.X;
+      sample1Center += up * this.Offset.Y;
+      
+      sizeUp    = up * this.Size.Y * 0.5;
+      sizeRight = right * this.Size.X * 0.5;
+      
+      SplineMeshGeneratorRectangle.AddQuad(this.Mesh, sample1Center, sizeRight, sizeUp, distance);
+      
+      SplineMeshGeneratorRectangle.AddRectangleIndices(this.Mesh, index);
+      
+      sample0 = sample1;
+      index += 4;
+    }
+  }
+}
+
+//class SplineMeshGeneratorCylinder : SplineMeshGeneratorPiece
+//{
+//  
+//}
+
+
+class SplineMeshDecorator : SplineMeshGenerator
+{
+  [Property] var Distance = 1.0;
+  [Property] var StartOffset = 0.0;
+  [Property] var Size = Real3(0.4, 0.1, 1);
+  [Property] var Offset = Real3(0);
+  
+  //************************************************************************************************
+  function Initialize(init : CogInitializer)
+  {
+    (this as SplineMeshGenerator)~>Initialize(init);
+    this.Mesh.PrimitiveType = PrimitiveType.Triangles;
+    
+    var vertices = this.Mesh.Vertices;
+    
+    vertices.AddAttribute(VertexSemantic.Position, VertexElementType.Real, 3);
+  }
+  
+  //************************************************************************************************
+  [Override] function GenerateMesh(spline : Spline, mesh : Mesh)
+  {
+    var currentDistance = this.StartOffset;
+    var index = 0;
+    
+    var worldUp = Real3.YAxis;
+    
+    while(currentDistance <= spline.TotalDistance)
+    {
+      var sample = spline.SampleDistance(currentDistance);
+      
+      var forward = sample.Tangent;
+      var up = worldUp;
+      var right = Math.Normalize(Math.Cross(forward, up));
+      // No need to normalize because they're already perpendicular
+      up = Math.Cross(right, forward);
+      
+      var pos = sample.Point + this.Offset;
+      
+      forward *= this.Size.X;
+      up *= this.Size.Y;
+      right *= -this.Size.Z;
+      index += SplineMeshDecorator.AddRectangle(this.Mesh, pos, right, up, forward, index);
+      currentDistance += this.Distance;
+    }
+  }
+  
+  //************************************************************************************************
+  [Static] function AddRectangle(mesh : Mesh, center : Real3, forward : Real3, right : Real3, up : Real3, size : Real3, index : Integer) : Integer
+  {
+    forward *= size.Z;
+    up *= size.Y;
+    right *= size.X;
+    return SplineMeshDecorator.AddRectangle(mesh, center, forward, right, up, index);
+  }
+  
+  //************************************************************************************************
+  [Static] function AddRectangle(mesh : Mesh, center : Real3, forward : Real3, right : Real3, up : Real3, index : Integer) : Integer
+  {
+    // These points represent the vertex positions in the first image
+    var p0 = center - right - up + forward;
+    var p1 = center + right - up + forward;
+    var p2 = center + right + up + forward;
+    var p3 = center - right + up + forward;
+    
+    var p4 = center - right - up - forward;
+    var p5 = center + right - up - forward;
+    var p6 = center + right + up - forward;
+    var p7 = center - right + up - forward;
+    
+    var vertices = mesh.Vertices;
+    vertices.AddReal(p0);
+    vertices.AddReal(p1);
+    vertices.AddReal(p2);
+    vertices.AddReal(p3);
+    vertices.AddReal(p4);
+    vertices.AddReal(p5);
+    vertices.AddReal(p6);
+    vertices.AddReal(p7);
+
+    var indices = mesh.Indices;
+
+    // Bottom face
+    indices.Add(index);
+    indices.Add(index + 5);
+    indices.Add(index + 1);
+
+    indices.Add(index);
+    indices.Add(index + 4);
+    indices.Add(index + 5);
+
+    // Right face
+    indices.Add(index + 1);
+    indices.Add(index + 5);
+    indices.Add(index + 6);
+
+    indices.Add(index + 1);
+    indices.Add(index + 6);
+    indices.Add(index + 2);
+
+    // Top face
+    indices.Add(index + 3);
+    indices.Add(index + 2);
+    indices.Add(index + 6);
+
+    indices.Add(index + 3);
+    indices.Add(index + 6);
+    indices.Add(index + 7);
+
+    // Left face
+    indices.Add(index + 4);
+    indices.Add(index);
+    indices.Add(index + 3);
+
+    indices.Add(index + 4);
+    indices.Add(index + 3);
+    indices.Add(index + 7);
+    
+    // Front face
+    indices.Add(index);
+    indices.Add(index + 1);
+    indices.Add(index + 2);
+    
+    indices.Add(index);
+    indices.Add(index + 2);
+    indices.Add(index + 3);
+    
+    // Back face
+    indices.Add(index + 5);
+    indices.Add(index + 4);
+    indices.Add(index + 7);
+    
+    indices.Add(index + 5);
+    indices.Add(index + 7);
+    indices.Add(index + 6);
+    
+    return 8;
+  }
+}

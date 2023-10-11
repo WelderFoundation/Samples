@@ -1,0 +1,26 @@
+[Version:1]
+Cog [InheritId:"5a8137f76f9e0161:UiFuzzySet"]
+{
+	Transform 
+	{
+		var Translation = Real3{0, -229, 0}
+		var Rotation = Quaternion{0, 0, 0, 1}
+		var Scale = Real3{1, 1, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5a93d780cb855b1a]
+		{
+			Hierarchy 
+			{
+				Cog [Id:0x5a93d715dd48fe82]
+				{
+					UiWidget 
+					{
+						var Active = false
+					}
+				}
+			}
+		}
+	}
+}

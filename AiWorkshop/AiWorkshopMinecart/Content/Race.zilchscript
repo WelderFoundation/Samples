@@ -1,0 +1,77 @@
+
+class Race : ZilchComponent
+{
+  [Dependency] var UiSpace : UiSpace;
+  
+  [Property] var Goal = CogPath(":/Goal");
+  
+  var CoinCount : Integer
+  {
+    get { return this.CoinCountInternal; }
+    set { this.CoinCountInternal = value; this.UpdateCoinUi(); }
+  }
+  
+  var CoinCountInternal = 0;
+  
+  var TimerText : Cog;
+  var CoinText : Cog;
+  var FinalTime : Real;
+  var Finished = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.TimerText = this.UiSpace.LoadedSpace.FindObjectByName("TimerText");
+    this.CoinText = this.UiSpace.LoadedSpace.FindObjectByName("CoinCounterText");
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Goal.Cog, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Update the final time if we haven't finished yet
+    if(this.Finished == false)
+      this.FinalTime = event.RealTimePassed;
+      
+    this.TimerText.SpriteText.Text = String.FormatC("%1.2f", this.FinalTime);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(this.Finished)
+      return;
+    
+    this.Finished = true;
+    
+    // The rider must be in the cart for success
+    var cart = event.OtherObject.FindRoot();
+    var failed = cart.Cart.IsRiderInAir();
+    
+    var resultsUi = this.UiSpace.LoadedSpace.FindObjectByName("RaceResults");
+    resultsUi.UiWidget.Active = true;
+    resultsUi.UiWidget.HierarchyColor = Real4(1,1,1,0);
+    
+    // Fade in the final Ui
+    var seq = Action.Sequence(resultsUi.Actions);
+    Action.Property(seq, @resultsUi.UiWidget.HierarchyColor, Real4(1), 1.0, Ease.QuadOut);
+    
+    resultsUi.FindChildByName("FinalTimerText").SpriteText.Text = this.TimerText.SpriteText.Text;
+    resultsUi.FindChildByName("FinalCoinCounterText").SpriteText.Text = "`this.CoinCount`";
+    
+    var subtractiveTime = 0.3 * (this.CoinCount as Real);
+    resultsUi.FindChildByName("FinalCoinTimerText").SpriteText.Text = String.FormatC("-%1.2f", subtractiveTime);
+    
+    var finalTime = this.FinalTime - subtractiveTime;
+    resultsUi.FindChildByName("ResultingTimerText").SpriteText.Text = String.FormatC("%1.2f", finalTime);
+    
+    if(failed)
+      resultsUi.FindChildByName("Lose").UiWidget.Active = true;
+    else
+      resultsUi.FindChildByName("Win").UiWidget.Active = true;
+  }
+  
+  function UpdateCoinUi()
+  {
+    this.CoinText.SpriteText.Text = "`this.CoinCount`";
+  }
+
+}

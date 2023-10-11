@@ -1,0 +1,55 @@
+enum Types {Air, Dirt, Grass, Stone, Wood , Cloud}  //an enum is simply a replcement for an integer, the first element in the list is zero and it increases from there
+                                            //the enum is simply there to make the code easier to read
+class World : ZilchComponent
+{
+    var Items : Array[Array[Tile]] = Array[Array[Tile]]();//this is an array that contains data about every tile in the world
+    function Initialize(init : CogInitializer)//this code fills the world with tiles and runs the terrain generation, these may be seperated into different pieces latter on
+    {
+        for(var x = 0; x<100; ++x)
+        {
+            this.Items.Add(Array[Tile]());
+            for(var y = 0; y<100; ++y)
+            {
+                this.Items.Get(x).Add(new Tile());
+                this.Items.Get(x).Get(y).Position=Integer2(x,y);
+                this.Items.Get(x).Get(y).GraphicRef=this.Space.CreateAtPosition(Archetype.Block, Real3(x-50,y-50,0));
+                if(y < 45) //temporary terrain generation code
+                {
+                    this.SetType(Types.Stone,this.Items.Get(x).Get(y));
+                } else if( y < 50)
+                {
+                    this.SetType(Types.Dirt,this.Items.Get(x).Get(y));
+                } else if( y == 50)
+                {
+                    this.SetType(Types.Grass,this.Items.Get(x).Get(y));
+                } else
+                {
+                    this.SetType(Types.Air,this.Items.Get(x).Get(y));
+                }
+            }
+        }
+        
+    }
+    function SetType(materialType : Integer, tile : Tile)//change what the material of a tile is. NEVER CHANGE THE TILES MATERIAL WITHOUT USING THIS
+    {
+        //this is what changes what the tile looks like
+        if(materialType == 0) 
+        {
+            tile.GraphicRef.Sprite.Visible=false;
+        } else {
+            tile.GraphicRef.Sprite.Visible=true;
+        }
+        if(materialType == 1) tile.GraphicRef.Sprite.VertexColor=Real4(0.16,0.08,0.05,1);
+        if(materialType == 2) tile.GraphicRef.Sprite.VertexColor=Real4(0.02,0.8,0.04,1);
+        if(materialType == 3) tile.GraphicRef.Sprite.VertexColor=Real4(0.2,0.2,0.2,1);
+        if(materialType == 4) tile.GraphicRef.Sprite.SpriteSource=SpriteSource.Circle;
+        if(materialType == 5) tile.GraphicRef.Sprite.SpriteSource=SpriteSource.Circle;
+        tile.Type=materialType;
+    }
+}
+class Tile //this
+{
+    var Position : Integer2 = Integer2();//the basic quardinats of the tile, may not be neccasary but it's there
+    var Type : Integer = Types.Air;//this is what material the tile is made out of
+    var GraphicRef : Cog = null;//this is the graphical part of the tile that exist outside of code
+}

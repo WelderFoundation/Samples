@@ -1,0 +1,30 @@
+class PlayerController : ZilchComponent
+{
+  // We require the character
+  [Dependency] var Character : Character;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // We want our code to run every frame
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //------------------------------------------------------- Student Code Below
+    // Don't do anything if we're dead
+    if(this.Character.Dead)
+      return;
+    
+    // Left
+    if(Zero.Keyboard.KeyIsDown(Keys.A))
+      this.Character.WalkLeft();
+    // Right
+    else if(Zero.Keyboard.KeyIsDown(Keys.D))
+      this.Character.WalkRight();
+    
+    // Jump if space is pressed
+    if(Zero.Keyboard.KeyIsPressed(Keys.Space))
+      this.Character.Jump();
+  }
+}

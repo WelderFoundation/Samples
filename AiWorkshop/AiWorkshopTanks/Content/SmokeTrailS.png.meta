@@ -1,0 +1,20 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "SmokeTrailS"
+		var ResourceId = 0x5ab1d03f2c45c3a7
+		var FrameSizeX = 228
+		var FrameSizeY = 228
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 114
+		var OriginY = 114
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}
