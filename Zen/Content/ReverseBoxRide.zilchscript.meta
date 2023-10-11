@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ReverseBoxRide"
+		var ResourceId = 0x5ad7db6a60751f4c
+	}
+}

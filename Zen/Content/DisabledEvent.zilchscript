@@ -1,0 +1,4 @@
+class DisabledEvent : ZilchEvent
+{
+  sends DisabledEvent : DisabledEvent;
+}

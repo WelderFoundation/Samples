@@ -1,0 +1,94 @@
+//SchweppyController
+//By AJ Bussman
+//12.11.17
+//Requires the Swept controller and passes a vector into its Update function along with controlling the jumpimg.
+
+class SchweppyController : ZilchComponent
+{
+  [Dependency] 
+  var SweptController : SweptController;
+  [Dependency]
+  var Sprite : Sprite = null;
+  
+  [Property]
+  var Active : Boolean = false;
+  [Property] 
+  var LeftKey : Keys = Keys.A;
+  [Property] 
+  var RightKey : Keys = Keys.D;
+  [Property] 
+  var JumpKey : Keys = Keys.W;
+  [Property]
+  var SprintKey : Keys = Keys.Control;
+  [Property]
+  var ControlKey : Keys = Keys.E;
+  
+  var DoubleJump : Boolean = false;
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var movement = Real3(0,0,0);
+    if(Zero.Keyboard.KeyIsPressed(this.ControlKey))
+    {
+      if(this.Active)
+        this.Active = false;
+      else
+        this.Active = true;
+    }
+    if(this.Active)
+    {
+      //left
+      if(Zero.Keyboard.KeyIsDown(this.LeftKey))
+      {
+        --movement.X;
+        this.Sprite.FlipX = true;
+      }
+      //right
+      if(Zero.Keyboard.KeyIsDown(this.RightKey))
+      {
+        ++movement.X;
+        this.Sprite.FlipX = false;
+      }
+      
+      //sprint
+      if(Zero.Keyboard.KeyIsDown(this.SprintKey))
+      {
+        //this.SweptController.MaxMoveSpeed = 150;
+      }
+      
+      //sprint cancel
+      if(Zero.Keyboard.KeyIsReleased(this.SprintKey))
+      {
+        this.SweptController.MaxMoveSpeed = 10;
+      }
+      
+      //jump
+      if(this.Owner.SweptController.Grounded == true)
+        //this.DoubleJump = true;
+      
+      if(Zero.Keyboard.KeyIsPressed(this.JumpKey))
+      {
+        if(this.Owner.SweptController.Grounded == true)
+        {
+          this.SweptController.Jump();
+          this.DoubleJump = true;
+        }
+        else if(this.DoubleJump == true)
+        {
+          this.SweptController.JumpUnconditionally();
+          this.DoubleJump = false;
+        }
+      }
+      //jump cancel
+      //if(this.Owner.SweptController.Jumping == true && Zero.Keyboard.KeyIsUp(this.JumpKey))
+      //  this.Owner.SweptController.JumpCancel();
+    }
+    this.Owner.SweptController.Update(movement, event.Dt);
+  }
+}

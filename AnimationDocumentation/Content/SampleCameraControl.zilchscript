@@ -1,0 +1,63 @@
+class SampleCameraControl : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  
+  [Property] var RightMouseToMove : Boolean = false;
+  [Property] var MouseSensitivity : Real = 10.0;
+  
+  var MoveActive : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    if (this.RightMouseToMove)
+    {
+      Zero.Connect(this.Space, Events.RightMouseDown, this.OnRightMouseDown);
+      Zero.Connect(this.Space, Events.RightMouseUp, this.OnRightMouseUp);
+    }
+    else
+    {
+      this.MoveActive = true;
+      Zero.Mouse.Trapped = true;
+    }
+    
+    Zero.Connect(this.Space, Events.MouseScroll, this.OnMouseScroll);
+    Zero.Connect(this.Space, Events.MouseMove, this.OnMouseMove);
+  }
+
+  function OnRightMouseDown(event : ViewportMouseEvent)
+  {
+    this.MoveActive = true;
+    Zero.Mouse.Trapped = true;
+  }
+
+  function OnRightMouseUp(event : ViewportMouseEvent)
+  {
+    this.MoveActive = false;
+    Zero.Mouse.Trapped = false;
+  }
+
+  function OnMouseScroll(event : ViewportMouseEvent)
+  {
+    var scroll = event.Scroll * 0.5;
+    
+    this.Owner.Transform.LocalTranslation += Real3(0.0, 0.0, -scroll.Y);
+  }
+
+  function OnMouseMove(event : ViewportMouseEvent)
+  {
+    if (this.MoveActive == false)
+      return;
+    
+    var move = event.Movement * 0.005;
+    var sensitivity = this.MouseSensitivity / 10.0;
+    
+    var verticalRotation = Math.ToQuaternion(Real3.XAxis, -move.Y * sensitivity);
+    this.Transform.RotateLocal(verticalRotation);
+    
+    if (this.Owner.Parent != null)
+    {
+      var horizontalRotation = Math.ToQuaternion(Real3.YAxis, -move.X * sensitivity);
+      this.Owner.Parent.Transform.RotateLocal(horizontalRotation);
+    }
+  }
+}

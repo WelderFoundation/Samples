@@ -1,0 +1,173 @@
+[Version:1]
+Cog 
+{
+	var Name = "BinarySwitch"
+	Transform 
+	{
+		var Translation = Real3{21, -13, 19}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5ad7716646dab596:TestTrigger"
+		var Mesh = "4de0354322b345ae:Cube"
+	}
+	BoxCollider 
+	{
+		var Ghost = true
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
+	Button 
+	{
+		var Target1 = CogPath
+		{
+			var Path = ":/Dispatcher13"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var Target2 = CogPath
+		{
+			var Path = ":/Dispatcher14"
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var Target3 = CogPath
+		{
+			var Path = ""
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var Target4 = CogPath
+		{
+			var Path = ""
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var Sticky = true
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ad7753caee0a8dc]
+		{
+			var Name = "Cube"
+			Transform 
+			{
+				var Translation = Real3{0, -0.3125, 0}
+				var Scale = Real3{0.75, 0.125, 0.75}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ae7e6a7ea113140:TestObject"
+				var Mesh = "4de0354322b345ae:Cube"
+			}
+			BoxCollider 
+			{
+				var Ghost = true
+				var SendsEvents = true
+				var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+				var CollisionGroup = "4e740859314e5515:DefaultGroup"
+				var Offset = Real3{0, 0, 0}
+				var HalfSize = Real3{0.5, 0.5, 0.5}
+			}
+			SmoothMove 
+			{
+				var Duration = 1
+				var MoveAmount = Real3{0, -0.0625, 0}
+				var IsExtended = false
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ad77536ad6ec0ff]
+		{
+			var Name = "Cube"
+			Transform 
+			{
+				var Translation = Real3{0, -0.4375, 0}
+				var Scale = Real3{1, 0.125, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ae7e6a7ea113140:TestObject"
+				var Mesh = "4de0354322b345ae:Cube"
+			}
+			BoxCollider 
+			{
+				var Ghost = true
+				var SendsEvents = true
+				var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+				var CollisionGroup = "4e740859314e5515:DefaultGroup"
+				var Offset = Real3{0, 0, 0}
+				var HalfSize = Real3{0.5, 0.5, 0.5}
+			}
+			Hierarchy 
+			{
+			}
+		}
+	}
+}

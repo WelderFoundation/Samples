@@ -1,0 +1,54 @@
+class CharacterAnimationController : ZilchComponent
+{
+  [Dependency] var AnimationGraph : AnimationGraph;
+  [Dependency] var SimpleAnimation : SimpleAnimation;
+  
+  [Property]
+  var IdleAnimation : Animation = null;
+  
+  [Property]
+  var RunAnimation : Animation = null;
+  
+  [Property]
+  var JumpAnimation : Animation = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.JumpEvent, this.OnJumpEvent);
+    Zero.Connect(this.Owner, Events.MovementEvent, this.OnMovementEvent);
+  }
+
+
+
+  function OnJumpEvent(event : JumpEvent)
+  {
+    if(this.SimpleAnimation.Animation != this.JumpAnimation)
+    {
+      this.SimpleAnimation.PlayMode = AnimationPlayMode.PlayOnce;
+      this.SimpleAnimation.Animation = this.JumpAnimation;
+    }
+  }
+
+  function OnMovementEvent(event : MovementEvent)
+  {
+    if(!this.Owner.Parent.SweptController.Grounded)
+        return;
+    
+    if(Math.Length(event.MoveDir) > 0.1)
+    {
+      if(this.SimpleAnimation.Animation != this.RunAnimation)
+      {
+        this.SimpleAnimation.PlayMode = AnimationPlayMode.Loop;
+        this.SimpleAnimation.Animation = this.RunAnimation;
+      }
+    }
+    else
+    {
+      if(this.SimpleAnimation.Animation != this.IdleAnimation)
+      {
+        this.SimpleAnimation.PlayMode = AnimationPlayMode.Loop;
+        this.SimpleAnimation.Animation = this.IdleAnimation;
+      }
+    }
+  }
+}

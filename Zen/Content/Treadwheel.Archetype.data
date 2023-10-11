@@ -1,0 +1,168 @@
+[Version:1]
+Cog 
+{
+	var Name = "Treadwheel"
+	Transform 
+	{
+		var Translation = Real3{-3, 8, 8.34375}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Model 
+	{
+		var Visible = false
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 1
+		var Material = "5ae7e6a7ea113140:TestObject"
+		var Mesh = "4de0354322b345ae:Cube"
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
+	TriggerDispatcher 
+	{
+		var ObjectToDispatchTo = DispatchObjects.Space
+	}
+	Treadwheel 
+	{
+		var NumberOfStates = 2
+		var Target1 = CogPath
+		{
+			var Path = ""
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var Target2 = CogPath
+		{
+			var Path = ""
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var Target3 = CogPath
+		{
+			var Path = ""
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+		var Target4 = CogPath
+		{
+			var Path = ""
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+	}
+	Reactive 
+	{
+		var Active = true
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ae7984492044ff9]
+		{
+			var Name = "Treadwheel_pole"
+			Transform 
+			{
+				var Translation = Real3{0, -0.125, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 1
+				var Material = "5ae7e6a7ea113140:TestObject"
+				var Mesh = "5ae7f30f9149f675:Treadwheel"
+			}
+			SmoothRotate 
+			{
+				var Duration = 2
+			}
+			TriggerableObject 
+			{
+				var TriggerGroup = ""
+			}
+			Orientation 
+			{
+				var GlobalUp = Real3{0, 1, 0}
+				var LocalOrientationBasis = Quaternion{0, 0, 0, 1}
+				var DefaultBases = OrientationBases.ForwardNegativeZUpY
+			}
+			Hierarchy 
+			{
+			}
+		}
+		Cog [Id:0x5ae7985a91a8c6e6]
+		{
+			var Name = "Treadwheel_base"
+			Transform 
+			{
+				var Translation = Real3{0, -0.4375, 0}
+				var Scale = Real3{0.5, 0.125, 0.5}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 1
+				var Material = "5ae7e6a7ea113140:TestObject"
+				var Mesh = "4de0354322b345ae:Cube"
+			}
+		}
+	}
+}

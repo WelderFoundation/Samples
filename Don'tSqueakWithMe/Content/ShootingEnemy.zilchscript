@@ -1,0 +1,50 @@
+class ShootingEnemy : ZilchComponent
+{
+  [Property]
+  var Player:CogPath=null;
+  
+  [Property]
+  var BallSpeed:Real=20;
+  
+  [Property]
+  var Projectile:Archetype= null;
+  
+  var Timer:Real=0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //Console.WriteLine("`this.Timer`");
+    
+    this.Timer+=event.Dt;
+    
+    if(this.Player.Cog.Transform.Translation.X>this.Owner.Transform.Translation.X)
+    {
+      this.Owner.Sprite.FlipX=true;
+      this.Owner.Sprite.FlipY=false;
+      this.Owner.Transform.SetEulerAnglesXYZ(0,0,0);
+    }
+    else
+    {
+      this.Owner.Sprite.FlipX=true;
+      this.Owner.Sprite.FlipY=true;
+      this.Owner.Transform.SetEulerAnglesXYZ(0,0,Math.Pi);
+    }
+    
+    if(this.Timer>5)
+    {
+      this.Timer=0;
+      var spawnPos=this.Owner.Transform.Translation;
+      var ball=this.Space.CreateAtPosition(this.Projectile,spawnPos);
+      var direction=Real3();
+      direction.X=Math.Cos(this.Owner.Transform.EulerAngles.Z+Math.Pi/2.0);
+      direction.Y=Math.Sin(this.Owner.Transform.EulerAngles.Z+Math.Pi/2.0);
+      direction=Math.Cross(direction,Real3(0,0,1));
+      ball.RigidBody.Velocity=direction*this.BallSpeed;
+    }
+  }
+}

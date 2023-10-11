@@ -1,0 +1,16 @@
+[Version:1]
+TextContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"DSWMShooter"
+		}
+	}
+	ZilchScriptBuilder 
+	{
+		var Name = "PlayerShooting"
+		var ResourceId = 0x5ae9ed913eba4f9b
+	}
+}

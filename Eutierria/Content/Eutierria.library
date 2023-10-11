@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "Eutierria"
+	var LibraryId = 0x5a49bb83b59baf30
+	var SourceControlType = ""
+	var ReadOnly = false
+}

@@ -1,0 +1,19 @@
+[Version:1]
+DataContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"Material"
+		}
+	}
+	DataBuilder 
+	{
+		var Name = "test"
+		var ResourceId = 0x5ae7369b2d4ae0d1
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

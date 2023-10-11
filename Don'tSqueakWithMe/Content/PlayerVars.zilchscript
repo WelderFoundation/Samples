@@ -1,0 +1,25 @@
+class PlayerVars : ZilchComponent
+{
+  [Property]
+  var Lives : Integer = 3;
+  
+  [Property]
+  var Pellets : Integer = 0;
+  
+  [Property]
+  var Origin : Real3 = Real3(0, 0, 0);
+  
+  var HUD : Space = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Origin = this.Owner.Transform.Translation;
+    this.HUD = this.LevelSettings.HUDCreator.HUDSpace;
+  }
+  
+  function CallChangeWaterBottleChangeSprite()
+  {
+    var object = this.HUD.FindFirstObjectByName("WaterBottle01");
+    object.WaterBottleChangeSprite.UpdateSprite(this.Lives);
+  }
+}

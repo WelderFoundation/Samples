@@ -1,0 +1,21 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "BackgroundMidday3"
+		var ResourceId = 0x5a4a3b24f9f12ac4
+		var AtlasId = 0x5274cf95e4a661fd
+		var FrameSizeX = 0
+		var FrameSizeY = 0
+		var FrameCount = 1
+		var FrameDelay = 0.0833333358
+		var OriginX = 960
+		var OriginY = 540
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Linear
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

@@ -1,0 +1,87 @@
+////////////////////////////////////////////////////////////
+// File name: Treadwheel.z
+// Date: 3/4/18
+// Description: When activated by a TriggerEvent, dispatches
+//              events to its connected objects.
+////////////////////////////////////////////////////////////
+class Treadwheel : ZilchComponent
+{
+  [Property]
+  var NumStates : Integer;
+  [Property]
+  var Target1 : CogPath = null;
+  [Property]
+  var Target2 : CogPath = null;
+  [Property]
+  var Target3 : CogPath = null;
+  [Property]
+  var Target4 : CogPath = null;
+  
+  var State : State = State.Zero;
+  var Enabled : Boolean = true;
+  var DisabledEvent : Boolean = false;
+  var Targets : Array[Cog] = Array[Cog]();
+  var Count : Integer = 0;
+  var InCount : Integer = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Create an array of Targets for easier iteration.
+    if (this.Target1 != null)
+      this.Targets.Add(this.Target1.Cog);
+    if (this.Target2 != null)
+      this.Targets.Add(this.Target2.Cog);
+    if (this.Target3 != null)
+      this.Targets.Add(this.Target3.Cog);
+    if (this.Target4 != null)
+      this.Targets.Add(this.Target4.Cog);
+    
+    this.Owner.Children.Current.SmoothRotate.RotateAmount = Real3(0, 360 / this.NumStates, 0);
+    
+    foreach (var ent in this.Targets)
+    {
+      if (ent != null)
+        this.Count += 1;
+    }
+    
+    Zero.Connect(this.Owner, Events.TargetEvent, this.OnTargetEvent);
+    Zero.Connect(this.Owner, Events.DisabledEvent, this.OnDisabledEvent);
+    Zero.Connect(this.Owner, Events.EndTriggerEvent, this.OnEndTriggerEvent);
+  }
+
+  function OnDisabledEvent(event : DisabledEvent)
+  {
+    this.DisabledEvent = !this.DisabledEvent;
+  }
+
+  function OnEndTriggerEvent(event : EndTriggerEvent)
+  {
+    this.InCount += 1;
+    
+    if (this.InCount == this.Count)
+    {
+      this.Enabled = true;
+      this.InCount = 0;
+    }
+  }
+
+  function OnTargetEvent(event : TargetEvent)
+  {
+    if (this.DisabledEvent || !this.Enabled)
+      return;
+    
+    this.LevelSettings.TriggerDispatcher.DispatchOnObject(TriggerEvent(), this.Owner.Children.Current);
+    this.Enabled = false;
+    
+    foreach (var target in this.Targets)
+    {
+      if (target == null)
+        continue;
+      
+      var te = TriggerEvent();
+      te.Sender = this.Owner;
+      
+      this.LevelSettings.TriggerDispatcher.DispatchOnObject(te, target);
+    }
+  }
+}

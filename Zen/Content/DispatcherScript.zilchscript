@@ -1,0 +1,161 @@
+////////////////////////////////////////////////////////////
+// File name: DispatcherScript.z
+// Date: 3/9/18
+// Description: Daisy-chaining Dispatchers allows a single
+//              input to cause multiple actions without
+//              requiring a thousand CogPaths on the
+//              triggering entity.
+////////////////////////////////////////////////////////////
+
+enum State { Zero = 0, One = 1, Two = 2, Three = 3, Odd, Even, FirstTwo, SecondTwo, All, None }
+
+class DispatcherScript : ZilchComponent
+{
+  // All of the "TwoState" booleans determine the behavior of the Dispatcher. If an object is "two-state," the Dispatcher
+  // will trigger it with a negative value on even states (in other words, two-state objects are reset on even states).
+  [Property]
+  var Obj1 : CogPath = null;
+  [Property]
+  var Obj1OnEnd : Boolean = false; // Should this object be triggered using an EndTriggerEvent?
+  [Property]
+  var Obj1Delay : Real;
+  [Property]
+  var Obj2 : CogPath = null;
+  [Property]
+  var Obj2OnEnd : Boolean = false; // Should this object be triggered using an EndTriggerEvent?
+  [Property]
+  var Obj2Delay : Real;
+  [Property]
+  var Obj3 : CogPath = null;
+  [Property]
+  var Obj3OnEnd : Boolean = false; // Should this object be triggered using an EndTriggerEvent?
+  [Property]
+  var Obj3Delay : Real;
+  [Property]
+  var Obj4 : CogPath = null;
+  [Property]
+  var Obj4OnEnd : Boolean = false; // Should this object be triggered using an EndTriggerEvent?
+  [Property]
+  var Obj4Delay : Real;
+  [Property]
+  var Duration : Real;
+  [Property]
+  var ActiveState : State;
+  [Property]
+  var OneTime : Boolean = false;
+  
+  var State : State = State.Zero;
+  var ETECount : Integer = 0; // How many EndTriggerEvents have come in so far. Prevents input spamming.
+  var Count : Integer;
+  
+  // Arrays to store targets in  to simplify iteration.
+  var Objs : Array[Cog] = Array[Cog]();
+  var Delays : Array[Real] = Array[Real]();
+  var Triggered : Array[Boolean] = Array[Boolean]();
+  var Timer : Real = 0;
+  var TimerRunning : Boolean = false;
+  var TriggeringEnt : Cog;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Add objects to arrays for easier iteration.
+    if (this.Obj1 != null)
+      this.Objs.Add(this.Obj1.Cog);
+    if (this.Obj2 != null)
+      this.Objs.Add(this.Obj2.Cog);
+    if (this.Obj3 != null)
+      this.Objs.Add(this.Obj3.Cog);
+    if (this.Obj4 != null)
+      this.Objs.Add(this.Obj4.Cog);
+    
+    if (this.Obj1OnEnd)
+      this.Obj1Delay += this.Duration;
+    if (this.Obj2OnEnd)
+      this.Obj2Delay += this.Duration;
+    if (this.Obj3OnEnd)
+      this.Obj3Delay += this.Duration;
+    if (this.Obj4OnEnd)
+      this.Obj4Delay += this.Duration;
+    
+    this.Delays.Add(this.Obj1Delay);
+    this.Delays.Add(this.Obj2Delay);
+    this.Delays.Add(this.Obj3Delay);
+    this.Delays.Add(this.Obj4Delay);
+    
+    while (this.Triggered.Count != 4)
+      this.Triggered.Add(true);
+    
+    foreach (var ent in this.Objs)
+    {
+      if (ent != null)
+        this.Count += 1;
+    }
+    
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Owner, Events.EndTriggerEvent, this.OnEndTriggerEvent);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnEndTriggerEvent(event : EndTriggerEvent)
+  {
+    this.ETECount += 1;
+    Console.WriteLine("`this.Owner`: ETECount: `this.ETECount` / `this.Count`");
+    if (this.ETECount == this.Count && !this.OneTime)
+    {
+      this.TriggeringEnt.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+      this.ETECount = 0;
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Timer += event.Dt;
+    
+    for (var i = 0; i < 4; i += 1)
+    {
+      if (!this.Triggered[i] && this.Timer >= this.Delays[i])
+      {
+        var te = TriggerEvent();
+        te.Sender = this.Owner;
+        
+        this.LevelSettings.TriggerDispatcher.DispatchOnObject(te, this.Objs[i]);
+        this.Triggered[i] = true;
+      }
+    }
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    // Update the state.
+    if (this.State != State.Three)
+      this.State += 1;
+    else
+      this.State = State.Zero;
+    
+    this.TriggeringEnt = event.Sender;
+    
+    if (this.ActiveState == State.Even && this.State % 2 == 0){}
+    else if (this.ActiveState == State.Odd && this.State % 2 == 1){}
+    else if (this.ActiveState == State.FirstTwo && (this.State == State.Zero || this.State == State.One)){}
+    else if (this.ActiveState == State.SecondTwo && (this.State == State.Two || this.State == State.Three)){}
+    else if (this.ActiveState == this.State || this.ActiveState == State.All){}
+    else
+    {
+      this.TriggeringEnt.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+      Console.WriteLine("`this.Owner` is inactive this state; sending ETE up the pipeline...");
+      return;
+    }
+    
+    if (this.OneTime)
+      this.ActiveState = State.None;
+    
+    // Mark each object as untriggered.
+    for (var i = 0; i < this.Objs.Count; i += 1)
+    {
+      if (this.Objs[i] != null)
+        this.Triggered[i] = false;
+    }
+    
+    this.Timer = 0;
+  }
+}

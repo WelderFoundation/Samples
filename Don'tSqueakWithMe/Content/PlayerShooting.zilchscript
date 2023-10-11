@@ -1,0 +1,33 @@
+class PlayerShooting : ZilchComponent
+{
+  [Property]
+  var BallSpeed : Real = 20;
+  
+  [Property]
+  var ShootKey : Keys = Keys.Space;
+  
+  [Property]
+  var Projectile : Archetype = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(Zero.Keyboard.KeyIsPressed(this.ShootKey) /*&& this.Owner.PlayerVars.Pellets>0*/)
+    {
+      //this.Owner.PlayerVars.Pellets-=1;
+      
+      var spawnPos = this.Owner.Transform.Translation;
+      var ball = this.Space.CreateAtPosition(this.Projectile,spawnPos);
+      var direction = Real3();
+      
+      direction.X = Math.Cos(this.Owner.Transform.EulerAngles.Z + Math.Pi);
+      //direction.Y = Math.Sin(this.Owner.Transform.EulerAngles.Z /*+ Math.Pi/2.0*/);
+      direction = Math.Cross(direction,Real3(0,0,1));
+      ball.RigidBody.Velocity = direction * this.BallSpeed;
+    }
+  }
+}

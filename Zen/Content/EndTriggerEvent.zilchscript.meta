@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "EndTriggerEvent"
+		var ResourceId = 0x5ad8202917e7317b
+	}
+}

@@ -1,0 +1,89 @@
+[Version:1]
+Cog 
+{
+	var Name = "SelectiveBlendDebugNode"
+	Transform 
+	{
+		var Translation = Real3{-2.4884541, 5.48450708, 3.1162734}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Sprite 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var SpriteSource = "5586f579ca73ecc2:SquareBordered"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = true
+		var AnimationSpeed = 1
+		var StartFrame = 0
+	}
+	SelectiveDebugNode 
+	{
+		var NameObj = CogPath
+		{
+			var Path = ""
+			var ErrorOnResolveToNull = false
+			var ErrorOnPathCantCompute = false
+			var ErrorOnDirectLinkFail = false
+			var UpdateCogOnPathChange = true
+			var UpdatePathOnCogChange = true
+			var UpdateCogOnInitialize = true
+			var ResolvedNullErrorOccurred = false
+			var Cog = 4294967293
+			var PathPreference0 = CogPathPreference.CogRelative
+			var PathPreference1 = CogPathPreference.SpaceRelative
+			var PathPreference2 = CogPathPreference.Absolute
+		}
+	}
+	Area 
+	{
+		var Size = Real2{1.25, 1.25}
+		var Origin = Location.Center
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5a7e9188b020dba3]
+		{
+			var Name = "NameObj"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 1}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			SpriteText 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{0, 0, 0, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var Text = "Sprite Text..."
+				var Font = "57343753bb4eaaec:NotoSans-Regular"
+				var FontSize = 32
+				var PixelsPerUnit = 128
+				var TextAlign = TextAlign.Center
+			}
+			Area 
+			{
+				var Size = Real2{1, 1}
+				var Origin = Location.Center
+			}
+		}
+	}
+}

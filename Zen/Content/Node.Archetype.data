@@ -1,0 +1,26 @@
+[Version:1]
+Cog 
+{
+	var Name = "Node"
+	Transform 
+	{
+		var Translation = Real3{-3.99999976, 9, -0.5}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 1
+		var Material = "5ae50f211edfca3d:Path"
+		var Mesh = "4de0354322b345ae:Cube"
+	}
+	PathNode 
+	{
+	}
+}

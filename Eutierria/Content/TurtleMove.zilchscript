@@ -1,0 +1,73 @@
+/*
+TurtleMove.Z
+Ryan Bly
+1/9/18
+Allows the turtle to move
+*/
+
+class TurtleMove : ZilchComponent
+{
+  [Dependency]
+  var Sprite : Sprite = null;
+  
+  [Property]
+  var Active : Boolean = false;
+  
+  [Property] 
+  var LeftKey : Keys = Keys.A;
+  [Property] 
+  var RightKey : Keys = Keys.D;
+  [Property]
+  var ControlKey : Keys = Keys.E;
+  
+  [Property]
+  var Walk : SpriteSource = SpriteSource.TurtleSwim;
+  [Property]
+  var Stand : SpriteSource = SpriteSource.TurtleIdle;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var movement = Real3(0,0,0);
+    if(Zero.Keyboard.KeyIsPressed(this.ControlKey))
+      {
+        if(this.Active)
+          this.Active = false;
+        else
+          this.Active = true;
+      }
+      
+    if(this.Active)
+    {
+      //left
+      if(Zero.Keyboard.KeyIsDown(this.LeftKey))
+      {
+        --movement.X;
+        this.Sprite.FlipX = false;
+      }
+      //right
+      if(Zero.Keyboard.KeyIsDown(this.RightKey))
+      {
+        ++movement.X;
+        this.Sprite.FlipX = true;
+      }
+      if(this.Sprite.SpriteSource == this.Stand)
+      {
+        if(Zero.Keyboard.KeyIsDown(this.LeftKey) || Zero.Keyboard.KeyIsDown(this.RightKey))
+          this.Sprite.SpriteSource = this.Walk;
+      }
+      //Walk
+      else if(this.Sprite.SpriteSource == this.Walk)
+      {
+        if(Zero.Keyboard.KeyIsUp(this.LeftKey) && Zero.Keyboard.KeyIsUp(this.RightKey))
+          this.Sprite.SpriteSource = this.Stand;
+      }
+    }
+    this.Owner.Transform.Translation += movement / 8;
+    
+  }
+}

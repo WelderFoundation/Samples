@@ -1,0 +1,17 @@
+//DangerZone
+//By AJ Bussman
+//12.12.17
+//Attach this to things you want to auto kill the player
+
+class DangerZone : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    
+  }
+}

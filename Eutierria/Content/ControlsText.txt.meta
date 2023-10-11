@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	TextBuilder 
+	{
+		var Name = "ControlsText"
+		var ResourceId = 0x5a4bd11fef23634c
+	}
+}

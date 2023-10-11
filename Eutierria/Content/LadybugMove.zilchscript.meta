@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "LadybugMove"
+		var ResourceId = 0x5a494b0e68f68204
+	}
+}

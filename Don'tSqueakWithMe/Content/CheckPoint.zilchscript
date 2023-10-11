@@ -1,0 +1,20 @@
+class CheckPoint : ZilchComponent
+{
+  [Dependency]
+  var Transfrom : Transform = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.PlayerVars != null)
+    {
+      event.OtherObject.PlayerVars.Origin = this.Transfrom.Translation;
+      this.Owner.Destroy();
+    }
+  }
+
+}

@@ -1,0 +1,28 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "5acfdda87736ac1e:pagoda_"
+	}
+	NormalMap 
+	{
+		var NormalMap = "5acfdfc7efff6672:pagoda_n"
+		var Bumpiness = 0.5
+		var RedLeft = false
+		var GreenDown = false
+	}
+	RoughnessMap 
+	{
+		var RoughnessMap = "5acfdfc7effef75f:pagoda_d"
+	}
+	SpecularMap 
+	{
+		var SpecularMap = "5acfdfc7effef75f:pagoda_d"
+	}
+}

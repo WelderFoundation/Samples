@@ -1,0 +1,36 @@
+[Version:1]
+Cog 
+{
+	var Name = "cliff02"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ac2822e07157ae8]
+		{
+			var Name = "Cylinder007"
+			Transform 
+			{
+				var Translation = Real3{-2.83121443, 0, 1}
+				var Scale = Real3{0.99999994, 0.99999994, 1}
+				var Rotation = Quaternion{0, 0, 0.201265797, 0.979536772}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5ac2822e07033a86:cliff02"
+			}
+		}
+	}
+}

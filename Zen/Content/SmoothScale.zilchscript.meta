@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "SmoothScale"
+		var ResourceId = 0x5acc5496b504ffad
+	}
+}

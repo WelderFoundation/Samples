@@ -1,0 +1,27 @@
+/*
+HUDCreator.z
+Freddy Martin
+12/13/17
+Handles the HUD
+*/
+class HUDCreator : ZilchComponent
+{
+  [Property]
+  var HUDLevel : Level = Level.HUDLevel;
+  
+  var HUDSpace : Space = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.HUDSpace = this.GameSession.CreateNamedSpace("HUDSpace",Archetype.Space);
+    this.HUDSpace.LoadLevel(this.HUDLevel);
+  }
+
+  function Destroyed()
+  {
+    if(this.HUDSpace!=null)
+    {
+      this.HUDSpace.Destroy();
+    }
+  }
+}

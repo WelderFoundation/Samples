@@ -1,0 +1,62 @@
+/**
+2018.1.8
+Jessica
+This script causes the gumba enemy
+**/
+
+class PacingEnemy : ZilchComponent
+{
+  [Dependency]
+  var Transform : Transform = null;
+  
+  [Dependency]
+  var Sprite : Sprite = null;
+  
+  [Dependency]
+  var RigidBody : RigidBody = null;
+  
+  [Property]
+  var Direction : Boolean = false;
+  
+  [Property]
+  var MaxRight : Real = Real(7);
+  [Property]
+  var MaxLeft : Real = Real(-7);
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Movement();
+  }
+  
+  function Movement()
+  {
+    this.Dircetion();
+    if (this.Direction)
+    {
+      this.Transform.Translation += Real3(0.05, 0, 0);
+      this.Sprite.FlipX = true;
+    }
+    else
+    {
+      this.Transform.Translation -= Real3(0.05, 0, 0);
+      this.Sprite.FlipX = false;
+    }
+  }
+  
+  function Dircetion()
+  {
+    if(this.Transform.Translation.X >= this.MaxRight)
+    {
+      this.Direction = false;
+    }
+    if(this.Transform.Translation.X <= this.MaxLeft)
+    {
+      this.Direction = true;
+    }
+  }
+}

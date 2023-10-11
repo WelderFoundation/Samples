@@ -1,0 +1,252 @@
+enum RobotAnimState {Idle, Walk, Jog, Sprint, PreJump, JumpStart, JumpEnd, PostJump, DoubleJump, Wave }
+
+class RobotAnimationController : ZilchComponent
+{
+  [Dependency] var AnimationGraph : AnimationGraph;
+  
+  [Property]
+  var IdleAnimation : Animation;
+  
+  [Property]
+  var IdleBlendDur : Real = 0.1;
+  
+  [Property]
+  var WalkAnimation : Animation;
+  
+  [Property]
+  var WalkBlendDur : Real = 0.1;
+  
+  [Property]
+  var JogAnimation : Animation;
+  
+  [Property]
+  var JogBlendDur : Real = 0.1;
+  
+  [Property]
+  var SprintAnimation : Animation;
+  
+  [Property]
+  var SprintBlendDur : Real = 0.1;
+  
+  [Property]
+  var JumpStartAnimation : Animation;
+  
+  [Property]
+  var JumpStartBlendDur : Real = 0.1;
+  
+  [Property]
+  var JumpAirAnimation : Animation;
+  
+  [Property]
+  var JumpEndAnimation : Animation;
+  
+  [Property]
+  var DoubleJumpAnimation : Animation;
+  
+  var Root : Cog;
+  
+  var AnimState : RobotAnimState;
+  
+  [Property]
+  var WaveAnimation : Animation;
+  
+  [Property]
+  var WaveRootObj : CogPath = CogPath();
+  
+  var MoveDir : Real3 = Real3();
+  
+  var ActiveNode : AnimationNode
+  {
+    get
+    {
+      return this.AnimationGraph.ActiveNode;
+    }
+    set
+    {
+      Console.WriteLine("Setting active node");
+      var activeNodeEvent = ActiveAnimationNodeSet();
+      activeNodeEvent.PrevNode = this.AnimationGraph.ActiveNode;
+      this.AnimationGraph.ActiveNode = value;
+      activeNodeEvent.NewNode = value;
+      activeNodeEvent.Source = this.Owner;
+      this.Owner.DispatchEvent(Events.ActiveAnimationNodeSet, activeNodeEvent);
+    }
+  }
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+    this.Root = this.Owner.Parent;
+    Console.WriteLine("RobotAnimationController: `this.Root`");
+    
+    Zero.Connect(this.Owner, Events.IdleEvent, this.OnIdleEvent);
+    Zero.Connect(this.Owner, Events.MovementEvent, this.OnMovementEvent);
+    Zero.Connect(this.Owner, Events.AnimationEnded, this.OnAnimationEnded);
+    Zero.Connect(this.Owner, Events.WaveEvent, this.OnWaveEvent);
+
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    Console.WriteLine("init active node");
+    this.ActiveNode = this.CreateBasicNode(this.IdleAnimation, AnimationPlayMode.Loop);
+    this.AnimState = RobotAnimState.Idle;
+  }
+
+  function OnIdleEvent(event : ZilchEvent)
+  {
+    if(this.AnimationGraph.IsPlayingInGraph(this.IdleAnimation))
+      return;
+    
+    Console.WriteLine("On Idle");
+    this.ActiveNode = this.CrossTo(this.IdleAnimation, AnimationPlayMode.Loop, this.IdleBlendDur);
+    this.AnimState = RobotAnimState.Idle;
+  }
+
+  function OnWaveEvent(event : ZilchEvent)
+  {
+    var activeNode = this.ActiveNode;
+    var waveBasic = this.CreateBasicNode(this.WaveAnimation, AnimationPlayMode.PlayOnce);
+    
+    //crashes editor
+    //waveBasic.CollapseToPoseOnFinish = false;
+    
+    var waveSelective = this.CreateSelectiveBlendNode(activeNode, waveBasic, this.WaveRootObj.Cog);
+    //waveSelective.CollapseToPoseOnFinish = true;
+    waveSelective.Duration = waveBasic.Duration;
+    
+    var chainToIdle = this.AnimationGraph.CreateChainNode();
+    chainToIdle.From = waveSelective;
+    chainToIdle.To = activeNode;
+    
+    var crossToWave = this.CreateCrossBlendNode(activeNode, chainToIdle);
+    
+    
+    this.ActiveNode = crossToWave;
+    this.AnimState = RobotAnimState.Wave;
+  }
+
+  function OnMovementEvent(event : MovementEvent)
+  {
+    this.MoveDir = event.MoveDir;
+    if(!this.Root.SweptController.Grounded || this.AnimState == RobotAnimState.Wave)
+      return;
+    
+    var speed = this.Root.SweptController.MaxMoveSpeed;
+    var walkSpeed = this.Root.SweptInput3D.WalkSpeed;
+    var jogSpeed = this.Root.SweptInput3D.JogSpeed;
+    var sprintSpeed = this.Root.SweptInput3D.SprintSpeed;
+    
+    //Check if in sprint conditions
+    if(speed > jogSpeed && this.AnimState != RobotAnimState.Sprint)
+    {
+      Console.WriteLine("sprint cond");
+      //Cross to sprint
+      this.CrossTo(this.SprintAnimation, AnimationPlayMode.Loop, this.SprintBlendDur);
+      this.AnimState = RobotAnimState.Sprint;
+    }
+    //Check if in jogging conditions
+    else if(speed > walkSpeed && speed < sprintSpeed && this.AnimState != RobotAnimState.Jog)
+    {
+      Console.WriteLine("jog cond");
+      //Cross to jogging
+      this.CrossTo(this.JogAnimation, AnimationPlayMode.Loop, this.JogBlendDur);
+      this.AnimState = RobotAnimState.Jog;
+    }
+    //Check if in walking conditions
+    else if(speed > 0.0 && speed < jogSpeed && this.AnimState != RobotAnimState.Walk)
+    {
+      Console.WriteLine("walk cond");
+      //Cross to walking
+      this.CrossTo(this.WalkAnimation, AnimationPlayMode.Loop, this.WalkBlendDur);
+      this.AnimState = RobotAnimState.Walk;
+    }
+    //Check if in idle conditions
+    else if(speed == 0.0 && this.AnimState != RobotAnimState.Idle && this.AnimState != RobotAnimState.PreJump)
+    {
+      Console.WriteLine("idle cond");
+      //Cross to idle
+      this.CrossTo(this.IdleAnimation, AnimationPlayMode.Loop, this.IdleBlendDur);
+      this.AnimState = RobotAnimState.Idle;
+    }
+  }
+  
+  function OnAnimationEnded(event : AnimationGraphEvent)
+  {
+  }
+  
+  function CrossTo(anim : Animation, playMode : AnimationPlayMode) : CrossBlend
+  {
+    //Console.WriteLine("CrossTo:");
+    var activeNode = this.ActiveNode;
+    var targetNode = this.CreateBasicNode(anim, playMode);
+    targetNode.Duration = anim.Duration;
+    //Console.WriteLine("  activeNode: `activeNode` `this.Space.TimeSpace.RealTimePassed`");
+    //Console.WriteLine("  targetNode: `targetNode` `anim.Name` `this.Space.TimeSpace.RealTimePassed`");
+    
+    var cross = this.CreateCrossBlendNode(activeNode, targetNode);
+    cross.Duration = anim.Duration/2;
+    //Console.WriteLine("  crossNode: `cross` `this.Space.TimeSpace.RealTimePassed`");
+    
+    this.ActiveNode = cross;
+    return cross;
+  }
+  
+  function CrossTo(anim : Animation, playMode : AnimationPlayMode, duration : Real) : CrossBlend
+  {
+    var cross = this.CrossTo(anim, playMode);
+    cross.Duration = duration;    
+    return cross;
+  }
+  
+  function CrossTo(anim : Animation, playMode : AnimationPlayMode, duration : Real, targetDur : Real) : CrossBlend
+  {
+    var cross = this.CrossTo(anim, playMode);
+    cross.Duration = duration;
+    cross.To.Duration = targetDur;
+    return cross;
+  }
+  
+  function CreateBasicNode(anim : Animation, playMode : AnimationPlayMode) : AnimationNode
+  {
+    var node = this.AnimationGraph.CreateBasicNode(anim, playMode);
+    this.Owner.DispatchEvent(Events.AnimationNodeCreated, AnimationNodeCreated(this.Owner, node as AnimationNode, null, null, AnimType.Basic, null, anim));
+    return node;
+  }
+  
+  function CreateDirectBlendNode(from : AnimationNode, to : AnimationNode) : DirectBlend
+  {
+    var node = this.AnimationGraph.CreateDirectBlendNode();
+    node.From = from;
+    node.To = to;
+    
+    this.Owner.DispatchEvent(Events.AnimationNodeCreated, AnimationNodeCreated(this.Owner, node as AnimationNode, from, to, AnimType.Direct, null, null));
+    return node;
+  }
+  
+  function CreateCrossBlendNode(from : AnimationNode, to : AnimationNode) : CrossBlend
+  {
+    var node = this.AnimationGraph.CreateCrossBlendNode();
+    node.From = from;
+    node.To = to;
+    
+    this.Owner.DispatchEvent(Events.AnimationNodeCreated, AnimationNodeCreated(this.Owner, node, from, to, AnimType.Cross, null, null));
+    return node;
+  }
+  
+  function CreateSelectiveBlendNode(from : AnimationNode, to : AnimationNode, root : Cog) : SelectiveNode
+  {
+    var node = this.AnimationGraph.CreateSelectiveNode();
+    node.Root = root;
+    node.From = from;
+    node.To = to;
+    
+    this.Owner.DispatchEvent(Events.AnimationNodeCreated, AnimationNodeCreated(this.Owner, node, from, to, AnimType.Selective, root, null));
+    return node;
+  }
+  
+  function TimeRemaining(node : AnimationNode) : Real
+  {
+    return node.Duration * (1.0 - node.GetNormalizedTime());
+  }
+}

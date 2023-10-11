@@ -1,0 +1,34 @@
+class Destroyer : ZilchComponent
+{
+  var Targets : Array[Cog] = Array[Cog]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    foreach (var target in this.Targets)
+    {
+      target.Destroy();
+    }
+  }
+
+  function OnCollisionEnded(event : CollisionEvent)
+  {
+    this.Targets.RemoveFirst(event.OtherObject);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    this.Targets.Add(event.OtherObject);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

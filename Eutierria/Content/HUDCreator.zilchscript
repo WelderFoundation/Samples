@@ -1,0 +1,28 @@
+//HudCreator
+//AJ Bussman
+//12.13.17
+//Add this to the LevelSettings and select a hudlevel to generate on top of the current level.
+
+class HUDCreator : ZilchComponent
+{
+  //The level to make
+  [Property]
+  var HUDLevel : Level = Level.HUDLevel;
+  
+  //the new space to make
+  var HUDSpace : Space = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.HUDSpace = this.GameSession.CreateNamedSpace("HUDSpace", Archetype.Space);
+    this.HUDSpace.LoadLevel(this.HUDLevel);
+  }
+  
+  function Destroyed()
+  {
+    if(this.HUDSpace != null)
+    {
+      this.HUDSpace.Destroy();
+    }
+  }
+}

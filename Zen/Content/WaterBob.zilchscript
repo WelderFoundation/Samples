@@ -1,0 +1,46 @@
+class WaterBob : ZilchComponent
+{
+  [Property]
+  var MaxBobDuration : Real;
+  [Property]
+  var MaxBobSpeed : Real;
+  
+  var BobSpeed : Real;
+  var BobDuration : Real;
+  var IsBobbing : Boolean = false;
+  var Timer : Real = 0;
+  var PRNG : Random = Random();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (this.IsBobbing)
+    {
+      this.Timer += event.Dt;
+      
+      // Upwards part of the bob.
+      if (this.Timer <= this.BobDuration / 2)
+      {
+        this.Owner.GravityEffect.Direction = Real3(0, 1, 0);
+      }
+      else
+        this.Owner.GravityEffect.Active = false;
+      
+      if (this.Timer >= this.BobDuration)
+        this.IsBobbing = false;
+    }
+    else
+    {
+      this.BobDuration = this.PRNG.Range(0, this.MaxBobDuration);
+      this.BobSpeed = this.PRNG.Range(100, this.MaxBobSpeed);
+      this.IsBobbing = true;
+      
+      this.Owner.GravityEffect.Strength = this.BobSpeed;
+      this.Owner.GravityEffect.Active = true;
+    }
+  }
+}

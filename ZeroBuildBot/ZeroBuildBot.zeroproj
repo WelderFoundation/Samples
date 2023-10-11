@@ -1,0 +1,38 @@
+[Version:1]
+Cog 
+{
+	var Name = ""
+	ProjectSettings 
+	{
+		var ProjectName = "ZeroBuildBot"
+		var ProjectOwner = ""
+		var DefaultLevel = "Level"
+		var ProjectSpace = "Space"
+		var AutoTakeProjectScreenshot = true
+		var Guid = 0x5813312a0649d59f
+	}
+	WindowLaunchSettings 
+	{
+		var LaunchFullscreen = true
+		var WindowedResolution = Integer2{1280, 720}
+	}
+	FrameRateSettings 
+	{
+		var VerticalSync = false
+		var LimitFrameRate = true
+		var FrameRate = 60
+	}
+	LauncherProjectInfo 
+	{
+		var Tags = ""
+		var Application = "WelderEditor"
+		var Branch = "master"
+		var MajorVersion = 0
+		var MinorVersion = 0
+		var PatchVersion = 25
+		var RevisionId = 2182
+		var ShortChangeSet = "2c32d856074a"
+		var MsSinceEpoch = 1696823138238
+		var PackageExtension = "zip"
+	}
+}

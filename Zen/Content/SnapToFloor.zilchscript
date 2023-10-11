@@ -1,0 +1,46 @@
+class SnapToFloor : ZilchComponent
+{
+  [Property]
+  var Offset : Real = 5;
+  [Property]
+  var Active : Boolean = true;
+  [Property]
+  var FrameDisabled : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function DisableForFrame()
+  {
+    this.FrameDisabled = true;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (this.FrameDisabled)
+    {
+      this.FrameDisabled = false;
+      return;
+    }
+    
+    if (!this.Active)
+      return;
+    
+    // Create a ray for the cast.
+    var ray = Ray();
+    
+    ray.Start = this.Owner.Transform.WorldTranslation;
+    ray.Direction = Real3(0, -1, 0);
+    
+    // Cast the ray.
+    var result = this.Space.PhysicsSpace.CastRayFirst(ray);
+    
+    if (result.ObjectHit == null)
+      return;
+    
+    // Get the normal.
+    this.Owner.Transform.WorldTranslation = Real3(result.WorldPosition.X, result.WorldPosition.Y + this.Offset, result.WorldPosition.Z);
+  }
+}

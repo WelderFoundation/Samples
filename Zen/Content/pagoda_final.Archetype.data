@@ -1,0 +1,122 @@
+[Version:1]
+Cog 
+{
+	var Name = "pagoda_final"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5acfd824d84f9772]
+		{
+			var Name = "Cone001"
+			Transform 
+			{
+				var Translation = Real3{749.125549, 452.176666, 1115.10645}
+				var Scale = Real3{25, 25, 400}
+				var Rotation = Quaternion{-0.707106829, 0, 0, 0.707106709}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5acfd824d84221d2:pagoda_final_Cone001"
+			}
+		}
+		Cog [Id:0x5acfd824d84f9776]
+		{
+			var Name = "Lamp"
+			Transform 
+			{
+				var Translation = Real3{407.624542, 590.38623, -100.545395}
+				var Scale = Real3{100.000008, 100.000008, 100.000008}
+				var Rotation = Quaternion{0.169075772, 0.755880475, -0.272171319, 0.570947528}
+			}
+		}
+		Cog [Id:0x5acfd824d84f9777]
+		{
+			var Name = "Camera"
+			Transform 
+			{
+				var Translation = Real3{748.113159, 534.366516, 650.763977}
+				var Scale = Real3{100, 100.000008, 100}
+				var Rotation = Quaternion{-0.212557301, 0.904797077, -0.0843893737, 0.359221727}
+			}
+		}
+		Cog [Id:0x5acfd824d84f9779]
+		{
+			var Name = "Cylinder000"
+			Transform 
+			{
+				var Translation = Real3{1400, 200, 199.999863}
+				var Scale = Real3{25, 25, 200}
+				var Rotation = Quaternion{1.37678754e-07, 0.707106888, 0.707106709, -1.37678782e-07}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5acfd824d84221df:pagoda_final_Cylinder000"
+			}
+		}
+		Cog [Id:0x5acfd824d84f977a]
+		{
+			var Name = "Cube000"
+			Transform 
+			{
+				var Translation = Real3{2200, 900, 0}
+				var Scale = Real3{100, 400, 100}
+				var Rotation = Quaternion{-0.707106829, 0, 0, 0.707106709}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5acfd824d84221e2:pagoda_final_Cube000"
+			}
+		}
+		Cog [Id:0x5acfd824d84f977c]
+		{
+			var Name = "Cylinder001"
+			Transform 
+			{
+				var Translation = Real3{1400.00012, 200, 1699.99976}
+				var Scale = Real3{25, 25, 200}
+				var Rotation = Quaternion{1.37678754e-07, 0.707106888, 0.707106709, -1.37678782e-07}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5acfd824d84221e8:pagoda_final_Cylinder001"
+			}
+		}
+	}
+}

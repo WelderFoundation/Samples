@@ -1,0 +1,16 @@
+//TextBlockUser
+//AJ Bussman
+//12.14.17
+//This will display the textblock chosen in the sprite text
+
+class TextBlockUser : ZilchComponent
+{
+  [Dependency]
+  var SpriteText : SpriteText = null;
+  [Property]
+  var TextBlockToUse : TextBlock = TextBlock.CreditsText;
+  function Initialize(init : CogInitializer)
+  {
+    this.SpriteText.Text = this.TextBlockToUse.Text;
+  }
+}

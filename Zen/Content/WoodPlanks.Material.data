@@ -1,0 +1,32 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "5ac8b575315ceef6:woodplanks"
+	}
+	NormalMap 
+	{
+		var NormalMap = "5ac8b18c153a85d4:woodplanks_n"
+		var Bumpiness = 0.5
+		var RedLeft = false
+		var GreenDown = false
+	}
+	MetallicMap 
+	{
+		var MetallicMap = "5ac8b18c153ac68d:woodplanks_s"
+	}
+	RoughnessMap 
+	{
+		var RoughnessMap = "5ac8b18c153ac68d:woodplanks_s"
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+}

@@ -1,0 +1,55 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = true
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "pagoda_final_Cone001"
+				var ResourceId = 0x5ac221d1513a550d
+			}
+			Object
+			{
+				var Name = "pagoda_final_Cylinder000"
+				var ResourceId = 0x5ac221d1513a5517
+			}
+			Object
+			{
+				var Name = "pagoda_final_Cube000"
+				var ResourceId = 0x5ac221d1513a551c
+			}
+			Object
+			{
+				var Name = "pagoda_final_Cylinder001"
+				var ResourceId = 0x5ac221d1513a5521
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5ac221d1512f7b01
+	}
+	TextureContent 
+	{
+		var Textures = Array
+		{
+		}
+	}
+}

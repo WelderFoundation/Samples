@@ -1,0 +1,11 @@
+class Music : ZilchComponent
+{
+  [Property]
+  var Sound : SoundCue = SoundCue.Main_Menu_Music;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Space.SoundSpace.PlayCue(this.Sound);
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+}

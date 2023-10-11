@@ -1,0 +1,46 @@
+class SetParent : ZilchComponent
+{
+  var Targets : Array[Cog] = Array[Cog]();
+  var State : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    if (this.State)
+    {
+      foreach (var target in this.Targets)
+      {
+        Console.WriteLine("Detatched `target`");
+        target.Detach();
+      }
+    }
+    else
+    {
+      foreach (var target in this.Targets)
+      {
+        Console.WriteLine("Attached `target`");
+        target.AttachTo(this.Owner);
+      }
+    }
+    
+    this.State = !this.State;
+  }
+
+  function OnCollisionEnded(event : CollisionEvent)
+  {
+    Console.WriteLine("Removed `event.OtherObject`");
+    this.Targets.RemoveFirst(event.OtherObject);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    Console.WriteLine("Added `event.OtherObject`");
+    this.Targets.Add(event.OtherObject);
+  }
+}

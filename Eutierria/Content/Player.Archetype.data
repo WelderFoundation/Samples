@@ -1,0 +1,100 @@
+[Version:1]
+Cog 
+{
+	var Name = "Player"
+	Transform 
+	{
+		var Translation = Real3{-16.2664242, -2.14904046, 0.100000001}
+		var Scale = Real3{0.5, 0.5, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Sprite 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c575af53d18c9:AlphaSprite"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var SpriteSource = "5a494c531b045e45:PlayerIdle"
+		var FlipX = false
+		var FlipY = false
+		var AnimationActive = true
+		var AnimationSpeed = 1
+		var StartFrame = 0
+	}
+	BoxCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{3.0999999, 3.75, 5}
+	}
+	RigidBody 
+	{
+		var Velocity = Real3{0, 0, 0}
+		var AngularVelocity = Real3{0, 0, 0}
+		var DynamicState = RigidBodyDynamicState.Dynamic
+		var AllowSleep = true
+		var Asleep = false
+		var RotationLocked = false
+		var Mode2D = Mode2DStates.InheritFromSpace
+	}
+	SweptController 
+	{
+		var WorldUp = Real3{0, 1, 0}
+		var LockZAxis = false
+		var ForwardEvents = false
+		var Gravity = 10
+		var JumpSpeed = 7
+		var JumpCancelFactor = 0.5
+		var MaxMoveSpeed = 7
+		var MaxFallSpeed = 50
+		var GroundAcceleration = 50
+		var AirAcceleration = 10
+		var GroundDeceleration = 50
+		var AirDeceleration = 10
+		var MaxGroundSlope = 45
+		var MaxCeilingSlope = 45
+		var GroundSnapDistance = 0.100000001
+		var ControllerVelocity = Real3{0, 0, 0}
+		var Grounded = true
+		var Jumping = false
+		var GroundTraction = 1
+		var AirTraction = 1
+	}
+	SchweppyController 
+	{
+		var Active = true
+		var LeftKey = Keys.A
+		var RightKey = Keys.D
+		var JumpKey = Keys.W
+		var SprintKey = Keys.Control
+		var ControlKey = Keys.E
+	}
+	CustomCollisionEventTracker 
+	{
+	}
+	PlayerAnimation 
+	{
+		var ControlKey = Keys.E
+		var Walk = "5a494c7e180bf8b6:PlayerWalk"
+		var Stand = "5a494c531b045e45:PlayerIdle"
+		var Jump = "5a4973c299844a86:PlayerJump"
+		var Land = "5a4a725f2c50852c:PlayerLand"
+		var WhistleRaise = "5a4a0e62187ea8cd:PlayerWhistleRaise"
+		var WhistleHold = "5a4a0fa10f5394f2:PlayerWhistleHold"
+		var WhistleDrop = "5a4a0fd40d9e4cba:PlayerWhistleDrop"
+	}
+	PlayerCollision 
+	{
+		var NextLevel = "5a496e46595130d5:Level12"
+		var GameOverLevel = "null"
+	}
+}

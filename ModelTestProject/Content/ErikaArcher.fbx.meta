@@ -1,0 +1,74 @@
+[Version:1]
+GeometryContent 
+{
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "ErikaArcher_Erika_Archer_Bow_Mesh"
+				var ResourceId = 0x6530393a01d36dd9
+			}
+			Object
+			{
+				var Name = "ErikaArcher_Erika_Archer_Arrow_Mesh"
+				var ResourceId = 0x6530393a01d36dea
+			}
+			Object
+			{
+				var Name = "ErikaArcher_Erika_Archer_Clothes_Mesh"
+				var ResourceId = 0x6530393a01d36df9
+			}
+			Object
+			{
+				var Name = "ErikaArcher_Erika_Archer_Eyes_Mesh"
+				var ResourceId = 0x6530393a01d36e0a
+			}
+			Object
+			{
+				var Name = "ErikaArcher_Erika_Archer_Eyelashes_Mesh"
+				var ResourceId = 0x6530393a01d36e25
+			}
+			Object
+			{
+				var Name = "ErikaArcher_Erika_Archer_Body_Mesh"
+				var ResourceId = 0x6530393a01d36e38
+			}
+		}
+	}
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 0.100000001
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "ErikaArcher"
+				var ResourceId = 0x5a93bbbd9b0c95e0
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5a93bbbd9b11b616
+	}
+}

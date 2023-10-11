@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "DebugUI"
+		var ResourceId = 0x5ad44778dd2e472e
+		var LoaderType = "Level"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

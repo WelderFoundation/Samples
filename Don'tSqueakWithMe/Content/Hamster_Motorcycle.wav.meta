@@ -1,0 +1,12 @@
+[Version:1]
+AudioContent 
+{
+	SoundBuilder 
+	{
+		var Name = "Hamster_Motorcycle"
+		var ResourceId = 0x5aa3608c4ed08988
+		var Streamed = false
+		var Normalize = false
+		var MaxVolume = 0.899999976
+	}
+}

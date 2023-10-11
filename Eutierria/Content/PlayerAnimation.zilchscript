@@ -1,0 +1,103 @@
+//PlayerAnimation
+//By AJ Bussman
+//12.12.17
+//This script is in charge of controlling the players current animation
+
+class PlayerAnimation : ZilchComponent
+{
+  //This script requires sprites not models
+  [Dependency]
+  var Sprite : Sprite = null;
+  //use thus for what keys to check
+  [Dependency]
+  var SchweppyController : SchweppyController = null;
+  //so we can tell when grounded
+  [Dependency]
+  var SweptController : SweptController = null;
+  
+  [Property]
+  var ControlKey : Keys = Keys.E;
+  
+  [Property]
+  var Walk : SpriteSource = SpriteSource.PlayerWalk;
+  [Property]
+  var Stand : SpriteSource = SpriteSource.PlayerIdle;
+  [Property]
+  var Jump : SpriteSource = SpriteSource.PlayerJump;
+  [Property]
+  var Land : SpriteSource = SpriteSource.PlayerLand;
+  [Property]
+  var WhistleRaise : SpriteSource = SpriteSource.PlayerWhistleRaise;
+  [Property]
+  var WhistleHold : SpriteSource = SpriteSource.PlayerWhistleHold;
+  [Property]
+  var WhistleDrop : SpriteSource = SpriteSource.PlayerWhistleDrop;
+  
+  var AnimChange : Boolean = false;
+  
+  var Timer : Real = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (Zero.Keyboard.KeyIsPressed(this.ControlKey))
+      {
+        if(this.Sprite.SpriteSource == this.WhistleHold)
+          this.Sprite.SpriteSource = this.WhistleDrop;
+        else
+          this.Sprite.SpriteSource = this.WhistleRaise;
+        this.AnimChange = true;
+      }
+      
+    //Animation will be controlled within different states
+    if(this.Owner.SchweppyController.Active)
+    {
+      //Standing
+      if(this.Sprite.SpriteSource == this.Stand)
+      {
+        if(Zero.Keyboard.KeyIsDown(this.SchweppyController.LeftKey) || Zero.Keyboard.KeyIsDown(this.SchweppyController.RightKey))
+          this.Sprite.SpriteSource = this.Walk;
+        if(!this.SweptController.Grounded)
+          this.Sprite.SpriteSource = this.Jump;
+      }
+      //Walk
+      else if(this.Sprite.SpriteSource == this.Walk)
+      {
+        if(Zero.Keyboard.KeyIsUp(this.SchweppyController.LeftKey) && Zero.Keyboard.KeyIsUp(this.SchweppyController.RightKey))
+          this.Sprite.SpriteSource = this.Stand;
+        if(!this.SweptController.Grounded)
+          this.Sprite.SpriteSource = this.Jump;
+      }
+      //Jump
+      else if(this.Sprite.SpriteSource == this.Jump)
+      {
+        if(this.SweptController.Grounded)
+          this.Sprite.SpriteSource = this.Land;
+      }
+      
+      else if (this.Sprite.SpriteSource == this.Land)
+      {
+        if(this.Sprite.CurrentFrame == 2 || !this.SweptController.Grounded)
+          this.Sprite.SpriteSource = this.Stand;
+      }
+    }
+    
+    if (this.AnimChange)
+    {
+      if(this.Sprite.SpriteSource == this.WhistleRaise && this.Sprite.CurrentFrame == 2)
+      {
+        this.Sprite.SpriteSource = this.WhistleHold;
+        this.AnimChange = false;
+      }
+      else if (this.Sprite.SpriteSource == this.WhistleDrop && this.Sprite.CurrentFrame == 2)
+      {
+        this.Sprite.SpriteSource = this.Stand;
+        this.AnimChange = false;
+      }
+    }
+  }
+}

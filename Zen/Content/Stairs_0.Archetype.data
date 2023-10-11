@@ -1,0 +1,60 @@
+[Version:1]
+Cog 
+{
+	var Name = "Cube"
+	Transform 
+	{
+		var Translation = Real3{20, -16.25, 6.99999905}
+		var Scale = Real3{1.00000012, 1.00000012, 1.00000012}
+		var Rotation = Quaternion{-0.50000006, 0.499999881, 0.500000298, 0.499999762}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5ae7e5f554460351:DevWall2"
+		var Mesh = "5ae728a2be312829:WedgeCollider"
+	}
+	MeshCollider 
+	{
+		var Ghost = false
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+		var DrawEdges = true
+		var DrawFaces = false
+		var DrawFaceNormals = false
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ad6d6b0c25e6f69]
+		{
+			var Name = "Cube"
+			Transform 
+			{
+				var Translation = Real3{0, -1.90734863e-06, 1.90734863e-06}
+				var Scale = Real3{0.999999821, 0.999999881, 0.999999821}
+				var Rotation = Quaternion{0.500000298, 0.499999762, 0.50000006, 0.499999821}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ae7e5f554460351:DevWall2"
+				var Mesh = "5ad384aaf90eac7c:stairs_ramp"
+			}
+		}
+	}
+}

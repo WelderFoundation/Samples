@@ -1,0 +1,110 @@
+class Walkway : ZilchComponent
+{
+  [Property]
+  var Offset : Integer2;
+  [Property]
+  var DismountPosition : Boolean = false; // Can the player dismount a box to this position?
+  [Property]
+  var Enabled : Boolean = true;
+  
+  var Debug : Boolean;
+  var Initialized : Boolean = false;
+  var Nodes : Array[Cog] = Array[Cog]();
+  var DisabledEvent : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Debug = this.LevelSettings.Grid.Debug;
+
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Owner, Events.TargetEvent, this.OnTargetEvent);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.DisabledEvent, this.OnDisabledEvent);
+  }
+
+  function OnDisabledEvent(event : DisabledEvent)
+  {
+    this.DisabledEvent = true;
+  }
+
+  function OnTargetEvent(event : TargetEvent)
+  {
+    if (!this.Enabled || this.DisabledEvent)
+      return;
+    
+    var pos = event.PosToSend;
+    var pos2 = pos;
+    if (this.Offset != Integer2(0, 0))
+      pos += Real3(this.Offset.X, 0, this.Offset.Y);
+    
+    var triggerEvent = TriggerEvent();
+    triggerEvent.Real3ToSend = pos;
+    
+    this.LevelSettings.TriggerDispatcher.DispatchOnObject(triggerEvent, this.Space.FindObjectByName("Player"));
+    this.Space.CreateAtPosition(Archetype.TargetMarker, pos2);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    this.Enabled = !this.Enabled;
+    this.UpdateNodes(this.Enabled);
+    event.Sender.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (!this.Initialized)
+      this.ActuallyInitialize();
+    
+    // Enable this object for the next frame.
+    this.DisabledEvent = false;
+  }
+
+  function ActuallyInitialize()
+  {
+    this.Initialized = true;
+    
+    var xNodes = Math.Floor(this.Owner.Transform.Scale.X);
+    var zNodes = Math.Floor(this.Owner.Transform.Scale.Z);
+    var nodeDims = Integer2(xNodes as Integer, zNodes as Integer);
+    
+    // Calculate the total number of nodes in each state.
+    var nodeCount = nodeDims.X * nodeDims.Y;
+    
+    // Convert the X and Z positions to positions "on the grid"-- ie, whole number integers.
+    var posX = Math.Floor(this.Owner.Transform.WorldTranslation.X) - nodeDims.X / 2;
+    var posZ = Math.Floor(this.Owner.Transform.WorldTranslation.Z) - nodeDims.Y / 2;
+    
+    if (this.Offset != Integer2(0, 0))
+    {
+      posX += this.Offset.X;
+      posZ += this.Offset.Y;
+    }
+    
+    var newPos = this.LevelSettings.Grid.ConvertToGridPoint(Integer2(posX as Integer, posZ as Integer));
+    
+    // Create the nodes.
+    for (var x = newPos.X; x < newPos.X + nodeDims.X; x += 1)
+    {
+      for (var y = newPos.Y; y < newPos.Y + nodeDims.Y; y += 1)
+      {
+        this.Nodes.Add(this.LevelSettings.Grid.SetPoint(x, y));
+        this.UpdateNodes(this.Enabled);
+        
+        if (this.DismountPosition)
+          this.LevelSettings.Grid.Grid[x][y].PathNode.ValidForDismount = true;
+      }
+    }
+  }
+
+  function UpdateNodes(state : Boolean)
+  {
+    foreach (var node in this.Nodes)
+    {
+      if (state)
+        this.LevelSettings.Grid.EnableNode(node.PathNode.GridPos);
+      else
+        this.LevelSettings.Grid.DisableNode(node.PathNode.GridPos);
+    }
+  }
+}

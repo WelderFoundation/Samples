@@ -1,0 +1,48 @@
+class ComponentManager : ZilchComponent
+{
+  var ComponentCount : Integer = 0;
+  var InCount : Integer = 0;
+  var TriggeringEnt : Cog;
+  
+  function Initialize(init : CogInitializer)
+  {
+    if (this.Owner.SmoothMove != null)
+      this.ComponentCount += 1;
+    if (this.Owner.SmoothRotate != null)
+      this.ComponentCount += 1;
+    if (this.Owner.SmoothZoom != null)
+      this.ComponentCount += 1;
+    if (this.Owner.SmoothScale != null)
+      this.ComponentCount += 1;
+    
+    Zero.Connect(this.Owner, Events.EndTriggerEvent, this.OnEndTriggerEvent);
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    this.TriggeringEnt = event.Sender;
+  }
+
+  function OnEndTriggerEvent(event : EndTriggerEvent)
+  {
+    this.InCount += 1;
+    
+    if (this.InCount == this.ComponentCount)
+    {
+      this.InCount = 0;
+      
+      if (this.TriggeringEnt == null)
+      {
+        Console.WriteLine("WARNING! `this.Owner` tried firing EndTriggerEvent, but TriggeringEnt was null!");
+        return;
+      }
+      this.TriggeringEnt.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

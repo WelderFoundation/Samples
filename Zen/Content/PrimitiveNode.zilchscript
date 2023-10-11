@@ -1,0 +1,9 @@
+enum PrimitiveMoveDir { XAxis, ZAxis }
+
+class PrimitiveNode : ZilchComponent
+{
+  [Property]
+  var NextNode : CogPath;
+  [Property]
+  var MoveDir : PrimitiveMoveDir;
+}

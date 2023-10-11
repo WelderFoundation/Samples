@@ -1,0 +1,11 @@
+////////////////////////////////////////////////////////////
+// File name: TriggerableObject.z
+// Date: 3/4/18
+// Description: A simple class which stores an object's
+//              TriggerGroup. Used for dispatching events.
+////////////////////////////////////////////////////////////
+class TriggerableObject : ZilchComponent
+{
+  [Property]
+  var TriggerGroup : String;
+}

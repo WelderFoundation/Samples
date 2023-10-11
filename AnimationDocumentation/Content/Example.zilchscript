@@ -1,0 +1,90 @@
+class BadExample : ZilchComponent
+{
+  [Property]
+  var PlayerCogPath : CogPath = CogPath();
+  
+  [Property]
+  var Speed : Real;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    
+  }
+}
+
+class Intercept : ZilchComponent
+{
+  [Dependency] var RigidBody : RigidBody;
+  
+  [Property]
+  var PlayerCogPath : CogPath = CogPath();
+  
+  [Property]
+  var Velocity : Real = 5.0;
+  
+  [Property]
+  var MinDistance : Real = 5.0;
+  
+  [Property]
+  var PredictionTime : Real = 1.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Owner.RigidBody.DynamicState = RigidBodyDynamicState.Kinematic;
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var playerCog = this.PlayerCogPath.Cog;
+    var playerPos = playerCog.Transform.Translation;
+    var myPos = this.Owner.Transform.Translation;
+    var distance = Math.Distance(myPos, playerPos);
+    
+    if(distance <= this.MinDistance)
+    {
+      var playerVelocity = playerCog.RigidBody.Velocity;
+      var predictedPos = playerPos + (playerVelocity * this.PredictionTime);
+      var myMoveDir = Math.Normalize(predictedPos - myPos);
+      var newPos = myPos + (myMoveDir * this.Velocity * event.Dt);
+      this.Owner.Transform.Translation = newPos;
+    }
+  }
+}
+
+
+class InterceptNoCache : ZilchComponent
+{
+  [Dependency] var RigidBody : RigidBody;
+  
+  [Property]
+  var PlayerCogPath : CogPath = CogPath();
+  
+  [Property]
+  var Velocity : Real = 5.0;
+  
+  [Property]
+  var MinDistance : Real = 5.0;
+  
+  [Property]
+  var PredictionTime : Real = 1.0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Owner.RigidBody.DynamicState = RigidBodyDynamicState.Kinematic;
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+function OnLogicUpdate(event : UpdateEvent)
+{
+  if(Math.Distance(this.Owner.Transform.Translation, this.PlayerCogPath.Cog.Transform.Translation) <= this.MinDistance)
+  {
+    this.Owner.Transform.Translation = this.Owner.Transform.Translation + (Math.Normalize(this.PlayerCogPath.Cog.Transform.Translation + (this.PlayerCogPath.Cog.RigidBody.Velocity * this.PredictionTime) - this.Owner.Transform.Translation) * this.Velocity * event.Dt);
+  }
+}
+}

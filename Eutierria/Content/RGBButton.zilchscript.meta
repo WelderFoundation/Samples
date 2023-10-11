@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "RGBButton"
+		var ResourceId = 0x5a7d3d9a0876edfe
+	}
+}

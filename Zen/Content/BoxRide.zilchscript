@@ -1,0 +1,47 @@
+class BoxRide : ZilchComponent
+{
+  [Property]
+  var MountRange : Real = 1;
+  
+  var IsAttached : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var player = this.Space.FindObjectByName("Player");
+    
+    // Check if the player is able to mount this box.
+    // TODO: Replace Math.Distance with a formula to ensure that Y distance is accounted for as well.
+    if (!this.IsAttached && Math.Distance(Real2(this.Owner.Transform.WorldTranslation.X, this.Owner.Transform.WorldTranslation.Z), Real2(player.Transform.WorldTranslation.X, player.Transform.WorldTranslation.Z)) <= this.MountRange)
+    {
+      // Check if the player is trying to mount a box & attach them to this box if they are.
+      if (Zero.Keyboard.KeyIsPressed(Keys.Space))
+      {
+        this.IsAttached = true;
+        player.Transform.WorldTranslation = this.Owner.Transform.WorldTranslation + Real3(0, 1, 0);
+        player.AttachTo(this.Owner);
+        player.GravityEffect.Active = false;
+        return;
+      }
+    }
+    
+    // Dismount the box.
+    if (this.IsAttached)
+    {
+      player.Transform.WorldTranslation = this.Owner.Transform.WorldTranslation + Real3(0, 1, 0);
+      
+      if (Zero.Keyboard.KeyIsPressed(Keys.Space))
+      {
+        Console.WriteLine("Detached");
+        this.IsAttached = false;
+        player.GravityEffect.Active = true;
+        player.Transform.WorldTranslation -= Real3(1, 0, 0);
+        player.Detach();
+      }
+    }
+  }
+}

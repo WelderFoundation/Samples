@@ -1,0 +1,17 @@
+class Enemy : ZilchComponent
+{
+  [Property]
+  var Lives:Integer=1;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Lives<=0)
+    {
+      this.Owner.Destroy();
+    }
+  }
+}

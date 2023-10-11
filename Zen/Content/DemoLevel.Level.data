@@ -1,0 +1,6291 @@
+[Version:1]
+Level 
+{
+	Cog [InheritId:"5ace98a47db81557:GameLevelSettings"][ContextId:1]
+	{
+		Grid [LocallyAdded]
+		{
+			var WorldSize = Integer2{128, 128}
+			var Debug = false
+			var AllowDiagonals = false
+			var WorldOffset = 5
+		}
+		HideToolTextures [LocallyAdded]
+		{
+			var Enabled = true
+		}
+		MouseTest [LocallyAdded]
+		{
+		}
+		TriggerDispatcher [LocallyAdded]
+		{
+			var ObjectToDispatchTo = DispatchObjects.Space
+		}
+	}
+	Cog [ContextId:2]
+	{
+		var Name = "Renderer"
+		DeferredRenderer 
+		{
+			var GeometryDebug = GeometryValue.None
+			var EditorDebugDraw = true
+			var GameDebugDraw = true
+			var RenderDiffuse = true
+			var RenderSpecular = true
+			var RenderSkybox = true
+			var Skybox = "5822dec85e380cf1:SimpleSkybox"
+			var ClearColor = Real4{0, 0, 0, 1}
+			var DirectLighting = true
+			var IndirectLighting = true
+			var IndirectIntensity = 1
+			var ToneMap = true
+		}
+		Ssao 
+		{
+			var Active = true
+			var Radius = 1
+			var Intensity = 1
+			var BlurDepthThreshold = 0.0500000007
+			var DebugBuffer = false
+		}
+		Bloom 
+		{
+			var Active = true
+			var Intensity = 0.100000001
+			var Threshold = 1
+			var Bloom1 = true
+			var Bloom2 = true
+			var Bloom3 = true
+			var Bloom4 = true
+			var Bloom5 = true
+			var DebugBuffer = false
+		}
+	}
+	Cog [ContextId:3]
+	{
+		var Name = "DirectionalLightShadows"
+		Transform 
+		{
+			var Translation = Real3{0, 20, 20}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{-0.382683456, 0, 0, 0.923879504}
+		}
+		SelectionIcon 
+		{
+			var Visible = true
+			var VisibilityEvents = true
+			var Material = "56581e2bb81777be:DebugDrawOnTop"
+			var SpriteSource = "58f8e4be736f5ea2:LightIcon"
+			var ViewScale = 1
+			var OverrideSelections = true
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = false
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "580267aabbf7843e:DirectionalLightShadows"
+			var Mesh = "59040f1e835d03e1:Triangle"
+		}
+		DirectionalLight 
+		{
+			var LightColor = Real4{1, 1, 1, 1}
+			var LightIntensity = 5
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = true
+			var RenderOrder = -1
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 3
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = false
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 100
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 45
+			var Size = 64
+		}
+		ShadowRenderer 
+		{
+			var ResolutionValue = ShadowResolution.High
+			var NormalOffsetBias = 0.100000001
+		}
+	}
+	Cog [ContextId:4]
+	{
+		var Name = "EditorCamera"
+		Transform 
+		{
+			var Translation = Real3{73.745842, -16.2383308, -1.7565155}
+			var Scale = Real3{1, 1, 1}
+			var Rotation = Quaternion{0.0565735362, 0.795587182, -0.0752051547, 0.598485231}
+		}
+		CameraViewport 
+		{
+			var RenderInEditor = true
+			var RenderInGame = false
+			var RenderOrder = 0
+			var CameraPath = CogPath
+			{
+				var Path = "."
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var RendererPath = CogPath
+			{
+				var Path = ":/Renderer"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 2
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var ResolutionOrAspect = Integer2{1920, 1080}
+			var RenderToViewport = true
+			var ForwardViewportEvents = false
+			var ViewportScaling = ViewportScaling.Fill
+			var MarginColor = Real4{0, 0, 0, 1}
+			var NormalizedSize = Real2{1, 1}
+			var NormalizedOffset = Real2{0, 0}
+		}
+		Camera 
+		{
+			var NearPlane = 0.100000001
+			var FarPlane = 300
+			var PerspectiveMode = PerspectiveMode.Orthographic
+			var FieldOfView = 60
+			var Size = 25.571682
+		}
+		EditorCameraController 
+		{
+			var ControlMode = ControlMode.Orbit
+			var Previous3DMode = ControlMode.Orbit
+			var LookDistance = 54.2252121
+			var VerticalAngle = -0.188495576
+			var HorizontalAngle = -45.8340034
+			var LookTarget = Real3{22.5688992, -6.07753754, 13.0100698}
+			var MoveSensitivity = 1
+		}
+	}
+	Cog [InheritId:"5adf304b8f86a98e:GameCamera"][ContextId:5]
+	{
+		Transform 
+		{
+			var Translation = Real3{30, -5.5, 20.5}
+			var Rotation = Quaternion{-0.27935335, 0.364770293, 0.115711957, 0.880633354}
+			var Scale = Real3{1, 1, 1}
+		}
+		Camera 
+		{
+			var FarPlane = 300
+			var Size = 10
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{0, 0, 0}
+			var AngularVelocity = Real3{1.86264504e-06, 3.72529007e-06, -1.86264504e-06}
+		}
+		SmoothMove 
+		{
+			var MoveAmount = Real3{0, 36, 7.5}
+		}
+		SmoothZoom [LocallyAdded]
+		{
+			var Duration = 5
+			var ZoomAmount = 32
+		}
+	}
+	Cog [ContextId:6]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{8, -11.5, 10}
+			var Scale = Real3{3, 19.9999981, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:7]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{8.5, -11.5, 9}
+			var Scale = Real3{2, 19.9999981, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:8]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, -0.999999046, 3.50000095}
+			var Scale = Real3{2.99999976, 0.99999994, 15}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:9]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, -1, 15.25}
+			var Scale = Real3{6.99999952, 0.99999994, 9.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:10]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, -4, 15.5}
+			var Scale = Real3{4.99999952, 4.99999952, 8.99999905}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:11]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{7, -4, 19.5}
+			var Scale = Real3{0.99999994, 4.99999952, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:12]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{6, -4, 19}
+			var Scale = Real3{0.99999994, 4.99999952, 1.99999988}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:13]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{7, -4, 11.25}
+			var Scale = Real3{0.99999994, 4.99999952, 1.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:14]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{10, -6, 11.25}
+			var Scale = Real3{4.99999952, 0.99999994, 0.49999997}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:15]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{10, -6, 19.7499981}
+			var Scale = Real3{4.99999952, 0.99999994, 0.49999997}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:16]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, -24, 0}
+			var Scale = Real3{2.99999976, 45, 7.99999952}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:17]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{6, -4, 12}
+			var Scale = Real3{0.99999994, 4.99999952, 1.99999988}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:18]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{7, -2, 15.5}
+			var Scale = Real3{0.99999994, 0.99999994, 6.99999952}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:19]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{6.5, -19, 15.5}
+			var Scale = Real3{11.999999, 25, 8.99999905}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58953786043:DevFloor1b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:20]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{6, -2.5, 15.5}
+			var Scale = Real3{0.99999994, 1.99999988, 4.99999952}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:21]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{1.00000048, 0, 15.5}
+			var Scale = Real3{0.99999994, 0.99999994, 8.99999905}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:22]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{6.99999952, 0, 15.25}
+			var Scale = Real3{0.99999994, 0.99999994, 9.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:23]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{6.99999952, 1, 16.25}
+			var Scale = Real3{0.99999994, 0.99999994, 7.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:24]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{1, 1, 15.5}
+			var Scale = Real3{0.99999994, 0.99999994, 9}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:25]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5.5, 0, 11.5}
+			var Scale = Real3{1.99999988, 0.99999994, 2}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:26]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{2.50000024, 0, 11.5}
+			var Scale = Real3{1.99999988, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:27]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{2.50000024, 1, 11.5}
+			var Scale = Real3{1.99999988, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:28]
+	{
+		var Name = "Target32"
+		Transform 
+		{
+			var Translation = Real3{4, 2, 11.25}
+			var Scale = Real3{1, 0.99999994, 0.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 1
+			var MoveAmount = Real3{0, -2, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+	}
+	Cog [ContextId:29]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, 0, 19.5}
+			var Scale = Real3{4.99999952, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:30]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, -0.5, 20.5}
+			var Scale = Real3{4.99999952, 2, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:31]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, 23, 10.25}
+			var Scale = Real3{2.99999976, 0.99999994, 4.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:32]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, 23.9999962, 10.25}
+			var Scale = Real3{0.99999994, 0.99999994, 4.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:33]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 23.9999962, 11.25}
+			var Scale = Real3{0.99999994, 0.99999994, 2.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:34]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4.5, 23.9999962, 8.5}
+			var Scale = Real3{1.99999988, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:35]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-7.99999905, 8.99999619, -14.5}
+			var Scale = Real3{0.49999997, 0.49999997, 0.49999997}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "5adfe351311906f4:pyramid_3x1x3"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:36]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, 33, 9.5}
+			var Scale = Real3{0.49999997, 0.49999997, 0.49999997}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "5adfe351311906f4:pyramid_3x1x3"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:37]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, 11, 9.50000095}
+			var Scale = Real3{1.00000012, 3.00000024, 3.00000024}
+			var Rotation = Quaternion{-0.499999911, 0.49999994, -0.50000006, 0.50000006}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:38]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-7.99999905, -1, -8.49999619}
+			var Scale = Real3{2.99999976, 0.99999994, 9}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:39]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-1.99999952, -0.999999046, -2.49999809}
+			var Scale = Real3{8.99999905, 0.99999994, 2.99999976}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:40]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{7.5, 23, 9.50000095}
+			var Scale = Real3{3.99999976, 0.99999994, 2.99999976}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:41]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{8, 23, 10.25}
+			var Scale = Real3{11, 0.99999994, 4.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5adbfd75183a1080:TestInvisible"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:42]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{11, 23, 9.50000095}
+			var Scale = Real3{1, 3, 3.00000048}
+			var Rotation = Quaternion{0.707106769, 0.707106829, -5.21540606e-08, -5.21540606e-08}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:43]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{10, 23.9999962, 8.5}
+			var Scale = Real3{1, 0.99999994, 1.00000012}
+			var Rotation = Quaternion{0.707106769, 0.707106829, -5.21540713e-08, -5.21540571e-08}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:44]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{12.999999, 23.9999962, 10.5}
+			var Scale = Real3{1, 0.99999994, 1.00000012}
+			var Rotation = Quaternion{0.707106769, 0.707106829, -5.21540713e-08, -5.21540571e-08}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:45]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{11, 23.7499962, 9.5}
+			var Scale = Real3{0.5, 0.99999994, 1.00000012}
+			var Rotation = Quaternion{0.707106769, 0.707106829, -5.21540713e-08, -5.21540571e-08}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7da7eb107c906:DevWater"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:46]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{9, 23.9999962, 10.5}
+			var Scale = Real3{6.99999952, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:47]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{7.5, 23.9999962, 8.5}
+			var Scale = Real3{3.99999976, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:48]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-8.99999809, -1, -14.4999981}
+			var Scale = Real3{5, 0.99999994, 2.99999976}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:49]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-10.4999981, -0.999999046, -14.4999981}
+			var Scale = Real3{8, 0.99999994, 2.99999976}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5adbfd75183a1080:TestInvisible"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:50]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-7.99999905, -0.999999046, -2.49999809}
+			var Scale = Real3{1, 3, 2.99999976}
+			var Rotation = Quaternion{0, 0, 0.707106829, 0.707106769}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:51]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-9, 0, -3.49999809}
+			var Scale = Real3{1, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0.707106829, 0.707106769}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:52]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-6.99999905, 5, -1.49999905}
+			var Scale = Real3{10.999999, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0.707106829, 0.707106769}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:53]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-12.9999981, -0.999999046, -14.4999981}
+			var Scale = Real3{1, 3, 2.99999976}
+			var Rotation = Quaternion{0, 0, 0.707106829, 0.707106769}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:54]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-13.9999981, 0, -15.4999981}
+			var Scale = Real3{1, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0.707106829, 0.707106769}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:55]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-11.9999981, 0, -13.4999981}
+			var Scale = Real3{1, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0.707106829, 0.707106769}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:56]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 0, 3.50000095}
+			var Scale = Real3{0.99999994, 0.99999994, 15}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:57]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-6.99999905, 0, -9.99999619}
+			var Scale = Real3{0.99999994, 0.99999994, 11.999999}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:58]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, 0, 5.00000095}
+			var Scale = Real3{0.99999994, 0.99999994, 11.999999}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:59]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-9, 0, -8.99999714}
+			var Scale = Real3{0.99999994, 0.99999994, 9.99999905}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:60]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-10.4999981, 0, -15.4999981}
+			var Scale = Real3{1, 0.99999994, 6.00000048}
+			var Rotation = Quaternion{0, 0.707106888, 0, 0.707106709}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:61]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-10.4999981, 0, -13.4999962}
+			var Scale = Real3{1, 0.99999994, 2}
+			var Rotation = Quaternion{0, 0.707106888, 0, 0.707106709}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:62]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-1.99999952, 0, -1.49999905}
+			var Scale = Real3{8.99999905, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:63]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-1.5, 0, -3.49999809}
+			var Scale = Real3{11.999999, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:64]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 5, -3.49999809}
+			var Scale = Real3{0.99999994, 9, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:65]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-6.99999905, 5.5, -3.49999809}
+			var Scale = Real3{0.99999994, 9.99999905, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:66]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-9, 0, -2.49999809}
+			var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5adbfd75183a1080:TestInvisible"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:67]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-7.99999905, 0, -1.49999905}
+			var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5adbfd75183a1080:TestInvisible"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:68]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-6.99999905, 4.49999905, -15.4999981}
+			var Scale = Real3{0.99999994, 7.99999952, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:69]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 28.5, 8.5}
+			var Scale = Real3{0.99999994, 7.99999952, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:70]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-6.99999905, 4.49999905, -13.4999981}
+			var Scale = Real3{0.99999994, 7.99999952, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:71]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 28.5, 10.5}
+			var Scale = Real3{0.99999994, 7.99999952, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:72]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{-9, 4.49999905, -13.4999981}
+			var Scale = Real3{0.99999994, 7.99999952, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:73]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, 28.5, 10.5}
+			var Scale = Real3{0.99999994, 7.99999952, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:74]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 9.99999809, -3.49999809}
+			var Scale = Real3{1, 0.99999994, 1}
+			var Rotation = Quaternion{0, -0.707106888, 0, 0.707106709}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:75]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 9.99999809, -1.49999905}
+			var Scale = Real3{1, 0.99999994, 1}
+			var Rotation = Quaternion{0, -0.707106888, 0, 0.707106709}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:76]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, 8, -1.49999905}
+			var Scale = Real3{1, 0.99999994, 1}
+			var Rotation = Quaternion{0, -0.707106888, 0, 0.707106709}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:77]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 8, 8.5}
+			var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 1, 0, -5.96046377e-08}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:78]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 9.99999809, 10.5}
+			var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 1, 0, -5.96046377e-08}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:79]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 5, -1.49999905}
+			var Scale = Real3{0.99999994, 9, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:80]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 5, 10.5}
+			var Scale = Real3{0.99999994, 9, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:81]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{4, 12, 10.5}
+			var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:82]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, 12, 9.50000095}
+			var Scale = Real3{0.99999994, 0.99999994, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:83]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 17, 10.5}
+			var Scale = Real3{10.999999, 0.99999994, 1.00000012}
+			var Rotation = Quaternion{0.707106769, 0.707106829, -5.21540713e-08, -5.21540571e-08}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:84]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, 12, 8.5}
+			var Scale = Real3{1, 0.99999994, 1.00000012}
+			var Rotation = Quaternion{0.707106769, 0.707106829, -5.21540713e-08, -5.21540571e-08}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "57b24459d8122a05:Wedge"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:85]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, 11.5, 10.5}
+			var Scale = Real3{0.99999994, 21.9999981, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:86]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{5, 4, 8.5}
+			var Scale = Real3{0.99999994, 6.99999905, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:87]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{3.00000024, 2.99999905, -1.49999905}
+			var Scale = Real3{0.99999994, 9, 0.99999994}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:88]
+	{
+		var Name = "WorldGeometry"
+		Transform 
+		{
+			var Translation = Real3{6, -16.5, 5.5}
+			var Scale = Real3{7, 30, 4}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [InheritId:"5adf37504796c208:Water"][ContextId:89]
+	{
+		Transform 
+		{
+			var Translation = Real3{-8, -0.25, -8}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.5, 12}
+		}
+		ForceEffect 
+		{
+			var Direction = Real3{0, 0, -1}
+		}
+	}
+	Cog [InheritId:"5adf37504796c208:Water"][ContextId:90]
+	{
+		Transform 
+		{
+			var Translation = Real3{4, -0.25, 5.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.5, 14}
+		}
+		ForceEffect 
+		{
+			var Direction = Real3{0, 0, -1}
+		}
+	}
+	Cog [InheritId:"5adf37504796c208:Water"][ContextId:91]
+	{
+		Transform 
+		{
+			var Translation = Real3{-1.49999952, -0.25, -2.49999809}
+			var Rotation = Quaternion{0, 0.707106829, 0, 0.707106829}
+			var Scale = Real3{1, 0.5, 12}
+		}
+		ForceEffect 
+		{
+			var Direction = Real3{0, 0, -1}
+		}
+	}
+	Cog [InheritId:"5adf37504796c208:Water"][ContextId:92]
+	{
+		Transform 
+		{
+			var Translation = Real3{7.5, 23.75, 9.50000095}
+			var Rotation = Quaternion{0, 0.707106829, 0, 0.707106829}
+			var Scale = Real3{1, 0.5, 6}
+		}
+		ForceEffect 
+		{
+			var Strength = 2
+			var Direction = Real3{0, 0, -1}
+		}
+	}
+	Cog [InheritId:"5adf37504796c208:Water"][ContextId:93]
+	{
+		Transform 
+		{
+			var Translation = Real3{4, 23.75, 10.75}
+			var Rotation = Quaternion{0, -4.17232506e-08, 0, 1}
+			var Scale = Real3{1, 0.5, 3.5}
+		}
+	}
+	Cog [InheritId:"5adf37504796c208:Water"][ContextId:94]
+	{
+		Transform 
+		{
+			var Translation = Real3{-10, -0.25, -14.5}
+			var Rotation = Quaternion{0, 0.707106829, 0, 0.707106829}
+			var Scale = Real3{1, 0.5, 5}
+		}
+		ForceEffect 
+		{
+			var Direction = Real3{0, 0, -1}
+		}
+	}
+	Cog [InheritId:"5adf37504796c208:Water"][ContextId:95]
+	{
+		Transform 
+		{
+			var Translation = Real3{-13, -0.25, -14.5}
+			var Rotation = Quaternion{0, 0.707106829, 0, 0.707106829}
+			var Scale = Real3{1, 0.5, 1}
+		}
+		ForceEffect [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37504796c208:Water"][ContextId:96]
+	{
+		Transform 
+		{
+			var Translation = Real3{4, -0.25, 15.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{5, 0.5, 7}
+		}
+		ForceEffect 
+		{
+			var Direction = Real3{0, 0, -1}
+		}
+	}
+	Cog [InheritId:"5adf98c802f18a7b:Player"][ContextId:97]
+	{
+		Transform 
+		{
+			var Translation = Real3{27, -13, 13}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		MovePlayer 
+		{
+			var StartUsesWorldOffset = true
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:98]
+	{
+		var Name = "Walkway"
+		Transform 
+		{
+			var Translation = Real3{26, -8.5, 18}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = true
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:99]
+	{
+		var Name = "Walkway"
+		Transform 
+		{
+			var Translation = Real3{26, -8.5, 13}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+		Walkway 
+		{
+			var Enabled = true
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:100]
+	{
+		var Name = "Walkway"
+		Transform 
+		{
+			var Translation = Real3{26, -8.5, 23}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+		Walkway 
+		{
+			var Enabled = true
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:101]
+	{
+		var Name = "Walkway"
+		Transform 
+		{
+			var Translation = Real3{21, -8.5, 18}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{3, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = true
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:102]
+	{
+		var Name = "Walkway"
+		Transform 
+		{
+			var Translation = Real3{31, -8.5, 18}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{3, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = true
+		}
+	}
+	Cog [ContextId:103]
+	{
+		var Name = "StairPillar"
+		Transform 
+		{
+			var Translation = Real3{14, -35.5, 7}
+			var Scale = Real3{1, 12, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 22, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad74aefd244e1e6][ContextId:104]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{9.53674316e-07, 0.541666627, 0}
+					var Scale = Real3{0.99999994, 0.0833333358, 0.99999994}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ad384aaf90eac7c:stairs_ramp"
+				}
+			}
+			Cog [Id:0x5ad74ae3d14fecb8][ContextId:105]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{9.53674316e-07, 0.541666627, 0}
+					var Scale = Real3{1.00000012, 1.00000012, 0.0833333433}
+					var Rotation = Quaternion{-0.707106829, 1.44001717e-07, 1.510262e-07, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ae728a2be312829:WedgeCollider"
+				}
+				MeshCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+					var DrawEdges = true
+					var DrawFaces = false
+					var DrawFaceNormals = false
+				}
+			}
+		}
+	}
+	Cog [ContextId:106]
+	{
+		var Name = "StairPillar2"
+		Transform 
+		{
+			var Translation = Real3{15, -35, 7}
+			var Scale = Real3{1, 11, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 21, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad74af82ed3cf83][ContextId:107]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{9.53674316e-07, 0.545454502, 0}
+					var Scale = Real3{0.99999994, 0.0909090936, 0.99999994}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ad384aaf90eac7c:stairs_ramp"
+				}
+			}
+			Cog [Id:0x5ad74a8b2b726df7][ContextId:108]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{9.53674316e-07, 0.545454502, 0}
+					var Scale = Real3{1.00000012, 1.00000012, 0.0909091011}
+					var Rotation = Quaternion{-0.707106829, 1.43682428e-07, 1.51345489e-07, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ae728a2be312829:WedgeCollider"
+				}
+				MeshCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+					var DrawEdges = true
+					var DrawFaces = false
+					var DrawFaceNormals = false
+				}
+			}
+		}
+	}
+	Cog [ContextId:109]
+	{
+		var Name = "StairPillar3"
+		Transform 
+		{
+			var Translation = Real3{16, -34.5, 7}
+			var Scale = Real3{1, 10, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 20, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad74a8e2a5baed3][ContextId:110]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{9.53674316e-07, 0.550000012, 0}
+					var Scale = Real3{0.99999994, 0.100000001, 0.99999994}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ad384aaf90eac7c:stairs_ramp"
+				}
+			}
+			Cog [Id:0x5ad74a87282dfa47][ContextId:111]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{9.53674316e-07, 0.550000012, 0}
+					var Scale = Real3{1.00000012, 1.00000012, 0.100000016}
+					var Rotation = Quaternion{-0.707106829, 1.4329926e-07, 1.51728642e-07, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ae728a2be312829:WedgeCollider"
+				}
+				MeshCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+					var DrawEdges = true
+					var DrawFaces = false
+					var DrawFaceNormals = false
+				}
+			}
+		}
+	}
+	Cog [ContextId:112]
+	{
+		var Name = "StairPillar4"
+		Transform 
+		{
+			var Translation = Real3{17, -34, 7}
+			var Scale = Real3{1, 9, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 19, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad74a902493d667][ContextId:113]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{4.76837158e-07, 0.555555463, 0}
+					var Scale = Real3{0.99999994, 0.111111112, 0.99999994}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ad384aaf90eac7c:stairs_ramp"
+				}
+			}
+			Cog [Id:0x5ad74a9423c2547e][ContextId:114]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{4.76837158e-07, 0.555555463, 0}
+					var Scale = Real3{1.00000012, 1.00000012, 0.111111127}
+					var Rotation = Quaternion{-0.707106829, 1.4283097e-07, 1.52196947e-07, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ae728a2be312829:WedgeCollider"
+				}
+				MeshCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+					var DrawEdges = true
+					var DrawFaces = false
+					var DrawFaceNormals = false
+				}
+			}
+		}
+	}
+	Cog [ContextId:115]
+	{
+		var Name = "StairPillar5"
+		Transform 
+		{
+			var Translation = Real3{18, -33.5, 7}
+			var Scale = Real3{1, 8, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 18, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad74aaf2234a8dc][ContextId:116]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{4.76837158e-07, 0.5625, 0}
+					var Scale = Real3{1.00000012, 1.00000012, 0.125000015}
+					var Rotation = Quaternion{-0.707106829, 1.42245582e-07, 1.5278232e-07, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ae728a2be312829:WedgeCollider"
+				}
+				MeshCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+					var DrawEdges = true
+					var DrawFaces = false
+					var DrawFaceNormals = false
+				}
+			}
+			Cog [Id:0x5ad74aa221021469][ContextId:117]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{4.76837158e-07, 0.5625, 0}
+					var Scale = Real3{0.99999994, 0.125, 0.99999994}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ad384aaf90eac7c:stairs_ramp"
+				}
+			}
+		}
+	}
+	Cog [ContextId:118]
+	{
+		var Name = "StairPillar6"
+		Transform 
+		{
+			var Translation = Real3{19, -33, 7}
+			var Scale = Real3{1, 7, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 17, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad74abc3d9ffacd][ContextId:119]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{4.76837158e-07, 0.571428537, 0}
+					var Scale = Real3{1.00000024, 1.00000024, 0.142857179}
+					var Rotation = Quaternion{-0.707106829, 1.83639813e-07, 1.95681793e-07, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ae728a2be312829:WedgeCollider"
+				}
+				MeshCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+					var DrawEdges = true
+					var DrawFaces = false
+					var DrawFaceNormals = false
+				}
+			}
+			Cog [Id:0x5ad74ab53c77ce00][ContextId:120]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{4.76837158e-07, 0.571428537, 0}
+					var Scale = Real3{0.99999994, 0.142857149, 0.99999994}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ad384aaf90eac7c:stairs_ramp"
+				}
+			}
+		}
+	}
+	Cog [ContextId:121]
+	{
+		var Name = "StairPillar7"
+		Transform 
+		{
+			var Translation = Real3{20, -32.5, 7}
+			var Scale = Real3{1, 6, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 16, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad6d6a3c6d54c5a][ContextId:122]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{9.53674316e-07, 0.583333254, 0}
+					var Scale = Real3{1.00000012, 1.00000012, 0.166666687}
+					var Rotation = Quaternion{-0.707106829, 1.40489476e-07, 1.54538455e-07, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ae728a2be312829:WedgeCollider"
+				}
+				MeshCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+					var DrawEdges = true
+					var DrawFaces = false
+					var DrawFaceNormals = false
+				}
+			}
+			Cog [Id:0x5ad6d6a3c6d54c8d][ContextId:123]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{9.53674316e-07, 0.583333254, 0}
+					var Scale = Real3{0.99999994, 0.166666672, 0.99999994}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106769}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "5ad384aaf90eac7c:stairs_ramp"
+				}
+			}
+		}
+	}
+	Cog [ContextId:124]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{21, -14, 8}
+			var Scale = Real3{3, 1, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:125]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{21, -14, 18}
+			var Scale = Real3{3, 1, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [InheritId:"5ad775daa8159aee:BinarySwitch"][ContextId:126]
+	{
+		Transform 
+		{
+			var Translation = Real3{21, -13, 19}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+			var Scale = Real3{1, 1, 1}
+		}
+	}
+	Cog [ContextId:127]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{21, -17, 7}
+			var Scale = Real3{1, 5, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:128]
+	{
+		var Name = "BridgeToIsland"
+		Transform 
+		{
+			var Translation = Real3{6, -21, 1.50000048}
+			var Scale = Real3{4, 1, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 19, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:129]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{7, -24, -1.99999952}
+			var Scale = Real3{3, 45, 3}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:130]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{21, -17, 19}
+			var Scale = Real3{1, 5, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:131]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{24, -16.5, 17}
+			var Scale = Real3{1, 6, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:132]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{15, -17, 13}
+			var Scale = Real3{1, 5, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:133]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{27, -17, 13}
+			var Scale = Real3{1, 5, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:134]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{16, -14, 13}
+			var Scale = Real3{1.00000012, 1, 3.00000048}
+			var Rotation = Quaternion{0, 0.707106829, 0, 0.707106709}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [ContextId:135]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{26, -14, 13}
+			var Scale = Real3{1.00000012, 1, 3.00000048}
+			var Rotation = Quaternion{0, 0.707106829, 0, 0.707106709}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e5f554460351:DevWall2"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		Hierarchy 
+		{
+		}
+	}
+	Cog [InheritId:"5adf3799bb713149:BasicRotater"][ContextId:136]
+	{
+		Transform 
+		{
+			var Translation = Real3{21, -14, 13}
+			var Rotation = Quaternion{0, 5.96046377e-08, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+		}
+		SmoothRotate 
+		{
+			var RotateAmount = Real3{0, -90, 0}
+		}
+		ComponentManager [LocallyAdded]
+		{
+		}
+		Hierarchy [ChildOrderOverride]
+		{
+			Cog [Id:0x5acb5953d75c0abf][LocallyAdded][ContextId:137]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{0, -4, -1.90734863e-06}
+					var Scale = Real3{0.99999994, 7, 0.99999994}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106829}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "4de0354322b345ae:Cube"
+				}
+				BoxCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var HalfSize = Real3{0.5, 0.5, 0.5}
+				}
+				Hierarchy 
+				{
+				}
+			}
+			Cog [Id:0x5ad7642e7aaecf73][LocallyAdded][ContextId:138]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{-2, 0, 0}
+					var Scale = Real3{1, 1, 3}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106829}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "4de0354322b345ae:Cube"
+				}
+				BoxCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var HalfSize = Real3{0.5, 0.5, 0.5}
+				}
+				Hierarchy 
+				{
+				}
+			}
+			Cog [Id:0x5ad759ff83d6fb34][LocallyAdded][ContextId:139]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{0, 0, -2}
+					var Scale = Real3{3, 1, 1}
+					var Rotation = Quaternion{0, 0.707106829, 0, 0.707106829}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e5f554460351:DevWall2"
+					var Mesh = "4de0354322b345ae:Cube"
+				}
+				BoxCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var HalfSize = Real3{0.5, 0.5, 0.5}
+				}
+				Hierarchy 
+				{
+				}
+			}
+		}
+	}
+	Cog [ContextId:140]
+	{
+		var Name = "Cube"
+		Transform 
+		{
+			var Translation = Real3{9, -2, 8}
+			var Scale = Real3{1.00000036, 1.00000024, 1.00000036}
+			var Rotation = Quaternion{0.499999464, 0.500000358, 0.500000417, -0.499999732}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "5ae728a2be312829:WedgeCollider"
+		}
+		MeshCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+			var DrawEdges = true
+			var DrawFaces = false
+			var DrawFaceNormals = false
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{0, 0, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Dynamic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+	}
+	Cog [ContextId:141]
+	{
+		var Name = "Target1"
+		Transform 
+		{
+			var Translation = Real3{5, -2, 8}
+			var Scale = Real3{7, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58953786043:DevFloor1b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{8, 0, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad7ec80833fb9db][ContextId:142]
+			{
+				var Name = "Cube"
+				Transform 
+				{
+					var Translation = Real3{0.571428657, 0, 0}
+					var Scale = Real3{1.00000024, 0.142857164, 1.00000024}
+					var Rotation = Quaternion{0.50000006, -0.499999881, 0.5, 0.500000179}
+				}
+				Model 
+				{
+					var Visible = true
+					var ViewCulling = true
+					var VisibilityEvents = true
+					var OverrideBoundingBox = false
+					var LocalAabbCenter = Real3{0, 0, 0}
+					var LocalAabbHalfExtents = Real3{1, 1, 1}
+					var GroupSortValue = 0
+					var Material = "5ae7e58953786043:DevFloor1b"
+					var Mesh = "5ae728a2be312829:WedgeCollider"
+				}
+				MeshCollider 
+				{
+					var Ghost = false
+					var SendsEvents = true
+					var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+					var CollisionGroup = "4e740859314e5515:DefaultGroup"
+					var Offset = Real3{0, 0, 0}
+					var PhysicsMesh = "5ae728a2be312832:WedgeCollider"
+					var DrawEdges = true
+					var DrawFaces = false
+					var DrawFaceNormals = false
+				}
+			}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:143]
+	{
+		var Name = "Target2"
+		Transform 
+		{
+			var Translation = Real3{13, -1.5, 8}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{7, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [ContextId:144]
+	{
+		var Name = "Target3"
+		Transform 
+		{
+			var Translation = Real3{13, -7, 13}
+			var Scale = Real3{13, 1, 1}
+			var Rotation = Quaternion{0, 0.707106769, 0, 0.707106829}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58953786043:DevFloor1b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 5
+			var MoveAmount = Real3{0, 0, -4}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+	}
+	Cog [ContextId:145]
+	{
+		var Name = "Target4"
+		Transform 
+		{
+			var Translation = Real3{6, -12.5, 8}
+			var Scale = Real3{7, 20, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 2
+			var MoveAmount = Real3{0, 1, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:146]
+	{
+		var Name = "Target5"
+		Transform 
+		{
+			var Translation = Real3{17, -1.5, 8}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:147]
+	{
+		var Name = "Target6"
+		Transform 
+		{
+			var Translation = Real3{18, -1.5, 8}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:148]
+	{
+		var Name = "Target7"
+		Transform 
+		{
+			var Translation = Real3{18, -1.5, 10}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:149]
+	{
+		var Name = "Target8"
+		Transform 
+		{
+			var Translation = Real3{18, -1.5, 24}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 1}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:150]
+	{
+		var Name = "Target9"
+		Transform 
+		{
+			var Translation = Real3{18, -1.5, 22}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:151]
+	{
+		var Name = "Target10"
+		Transform 
+		{
+			var Translation = Real3{22, -5, 12}
+			var Rotation = Quaternion{0, 0, -0.382683426, 0.923879564}
+			var Scale = Real3{9.89900017, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:152]
+	{
+		var Name = "Target14"
+		Transform 
+		{
+			var Translation = Real3{26, -8.5, 16}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+		Walkway 
+		{
+			var Enabled = true
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:153]
+	{
+		var Name = "Target11"
+		Transform 
+		{
+			var Translation = Real3{26, -8.5, 20}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:154]
+	{
+		var Name = "Target12"
+		Transform 
+		{
+			var Translation = Real3{24, -8.5, 18}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{3, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = true
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:155]
+	{
+		var Name = "Target13"
+		Transform 
+		{
+			var Translation = Real3{28, -8.5, 18}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{3, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:156]
+	{
+		Transform 
+		{
+			var Translation = Real3{11, -6, 13.4077301}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target3"
+				var Cog = 144
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/Teleporter2"
+				var Cog = 157
+			}
+			var Obj2OnEnd = true
+			var Obj3 = CogPath
+			{
+				var Path = ":/Target1"
+				var Cog = 141
+			}
+			var Obj3OnEnd = false
+			var Obj4 = CogPath
+			{
+				var Path = ":/Target4"
+				var Cog = 145
+			}
+			var Obj4OnEnd = true
+			var ActiveState = State.Odd
+		}
+		MeshCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:158]
+	{
+		var Name = "Dispatcher2"
+		Transform 
+		{
+			var Translation = Real3{17, -0.999999881, 9}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target7"
+				var Cog = 148
+			}
+			var Obj1OnEnd = false
+			var Obj2 = CogPath
+			{
+				var Path = ":/Target2"
+				var Cog = 143
+			}
+			var Obj2OnEnd = false
+			var Obj3 = CogPath
+			{
+				var Path = ":/Target5"
+				var Cog = 146
+			}
+			var Obj3OnEnd = false
+			var Obj4 = CogPath
+			{
+				var Path = ":/Target6"
+				var Cog = 147
+			}
+			var Obj4OnEnd = false
+			var ActiveState = State.Even
+		}
+		MeshCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:159]
+	{
+		var Name = "Dispatcher3"
+		Transform 
+		{
+			var Translation = Real3{11, -6, 12.4077301}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target3"
+				var Cog = 144
+			}
+			var Obj1OnEnd = false
+			var Obj2 = CogPath
+			{
+				var Path = ":/Teleporter2"
+				var Cog = 157
+			}
+			var Obj2OnEnd = false
+			var Obj3 = CogPath
+			{
+				var Path = ":/Target1"
+				var Cog = 141
+			}
+			var Obj3OnEnd = false
+			var Obj4 = CogPath
+			{
+				var Path = ":/Target4"
+				var Cog = 145
+			}
+			var Obj4OnEnd = false
+			var ActiveState = State.Even
+		}
+		MeshCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:160]
+	{
+		var Name = "Dispatcher4"
+		Transform 
+		{
+			var Translation = Real3{17, -0.999999881, 10}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target7"
+				var Cog = 148
+			}
+			var Obj1OnEnd = true
+			var Obj2 = CogPath
+			{
+				var Path = ":/Target2"
+				var Cog = 143
+			}
+			var Obj2OnEnd = true
+			var Obj3 = CogPath
+			{
+				var Path = ":/Target5"
+				var Cog = 146
+			}
+			var Obj3OnEnd = true
+			var Obj4 = CogPath
+			{
+				var Path = ":/Target6"
+				var Cog = 147
+			}
+			var Obj4OnEnd = true
+			var ActiveState = State.Odd
+		}
+		MeshCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:161]
+	{
+		var Name = "Dispatcher5"
+		Transform 
+		{
+			var Translation = Real3{11, -6, 18}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target8"
+				var Cog = 149
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/Target9"
+				var Cog = 150
+			}
+			var Obj2OnEnd = false
+			var Obj3 = CogPath
+			{
+				var Path = ""
+			}
+			var Obj3OnEnd = false
+			var Obj4 = CogPath
+			{
+				var Path = ""
+			}
+			var Obj4OnEnd = false
+			var ActiveState = State.Odd
+		}
+		MeshCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:162]
+	{
+		var Name = "Dispatcher6"
+		Transform 
+		{
+			var Translation = Real3{11, -6, 19}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target8"
+				var Cog = 149
+			}
+			var Obj1OnEnd = true
+			var Obj2 = CogPath
+			{
+				var Path = ":/Target9"
+				var Cog = 150
+			}
+			var Obj2OnEnd = true
+			var Obj3 = CogPath
+			{
+				var Path = ""
+			}
+			var Obj3OnEnd = false
+			var Obj4 = CogPath
+			{
+				var Path = ""
+			}
+			var Obj4OnEnd = false
+			var ActiveState = State.Even
+		}
+		MeshCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:163]
+	{
+		var Name = "Dispatcher7"
+		Transform 
+		{
+			var Translation = Real3{7.75, -6, 15}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Dispatcher2"
+				var Cog = 158
+			}
+			var Obj1OnEnd = false
+			var Obj2 = CogPath
+			{
+				var Path = ":/Dispatcher5"
+				var Cog = 161
+			}
+			var Obj2OnEnd = false
+			var Obj3 = CogPath
+			{
+				var Path = ":/Dispatcher6"
+				var Cog = 162
+			}
+			var Obj3OnEnd = false
+			var Obj4 = CogPath
+			{
+				var Path = ":/Dispatcher18"
+				var Cog = 164
+			}
+			var Obj4OnEnd = false
+			var ActiveState = State.All
+		}
+		MeshCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:164]
+	{
+		var Name = "Dispatcher18"
+		Transform 
+		{
+			var Translation = Real3{7.75, -6, 14}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target32"
+				var Cog = 28
+			}
+			var Obj1OnEnd = false
+			var Obj2 = CogPath
+			{
+				var Path = ":/Dispatcher6"
+				var Cog = 162
+			}
+			var Obj2OnEnd = false
+			var Obj3 = CogPath
+			{
+				var Path = ""
+			}
+			var Obj3OnEnd = false
+			var Obj4 = CogPath
+			{
+				var Path = ""
+			}
+			var Obj4OnEnd = false
+			var ActiveState = State.Even
+			var OneTime = true
+		}
+		MeshCollider [LocallyRemoved]
+		{
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:165]
+	{
+		var Name = "Dispatcher8"
+		Transform 
+		{
+			var Translation = Real3{23, -8, 15}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target11"
+				var Cog = 153
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/Target14"
+				var Cog = 152
+			}
+			var Obj3 = CogPath
+			{
+				var Path = ""
+			}
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:166]
+	{
+		var Name = "Dispatcher9"
+		Transform 
+		{
+			var Translation = Real3{23, -8, 21}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target13"
+				var Cog = 155
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/Target12"
+				var Cog = 154
+			}
+			var Obj3 = CogPath
+			{
+				var Path = ""
+			}
+			var ActiveState = State.Three
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:167]
+	{
+		var Name = "Dispatcher10"
+		Transform 
+		{
+			var Translation = Real3{29, -8, 15}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target12"
+				var Cog = 154
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/Target13"
+				var Cog = 155
+			}
+			var Obj3 = CogPath
+			{
+				var Path = ""
+			}
+			var ActiveState = State.One
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:168]
+	{
+		var Name = "Dispatcher11"
+		Transform 
+		{
+			var Translation = Real3{29, -8, 21}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Target14"
+				var Cog = 152
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/Target11"
+				var Cog = 153
+			}
+			var Obj3 = CogPath
+			{
+				var Path = ""
+			}
+			var ActiveState = State.Two
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:169]
+	{
+		var Name = "Dispatcher12"
+		Transform 
+		{
+			var Translation = Real3{26, -8, 18}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Dispatcher9"
+				var Cog = 166
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/Dispatcher8"
+				var Cog = 165
+			}
+			var Obj2OnEnd = false
+			var Obj3 = CogPath
+			{
+				var Path = ":/Dispatcher10"
+				var Cog = 167
+			}
+			var Obj4 = CogPath
+			{
+				var Path = ":/Dispatcher11"
+				var Cog = 168
+			}
+			var ActiveState = State.All
+		}
+	}
+	Cog [InheritId:"5ad771fba639ad2b:AreaTrigger"][ContextId:170]
+	{
+		var Name = "AreaTrigger"
+		Transform 
+		{
+			var Translation = Real3{19, -12, 7}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Button 
+		{
+			var Target1 = CogPath
+			{
+				var Path = ":/GameCamera"
+				var Cog = 5
+			}
+			var Sticky = true
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:171]
+	{
+		var Name = "Dispatcher13"
+		Transform 
+		{
+			var Translation = Real3{20, -14, 6}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/StairPillar"
+				var Cog = 103
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/StairPillar2"
+				var Cog = 106
+			}
+			var Obj2OnEnd = false
+			var Obj2Delay = 1
+			var Obj3 = CogPath
+			{
+				var Path = ":/StairPillar3"
+				var Cog = 109
+			}
+			var Obj3Delay = 2
+			var Obj4 = CogPath
+			{
+				var Path = ":/StairPillar4"
+				var Cog = 112
+			}
+			var Obj4Delay = 3
+			var ActiveState = State.One
+			var OneTime = true
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:172]
+	{
+		var Name = "Dispatcher14"
+		Transform 
+		{
+			var Translation = Real3{19, -14, 6}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/StairPillar5"
+				var Cog = 115
+			}
+			var Obj1Delay = 4
+			var Obj2 = CogPath
+			{
+				var Path = ":/StairPillar6"
+				var Cog = 118
+			}
+			var Obj2OnEnd = false
+			var Obj2Delay = 5
+			var Obj3 = CogPath
+			{
+				var Path = ":/StairPillar7"
+				var Cog = 121
+			}
+			var Obj3Delay = 6
+			var Obj4 = CogPath
+			{
+				var Path = ":/Target10"
+				var Cog = 151
+			}
+			var Obj4OnEnd = true
+			var Obj4Delay = 6
+			var ActiveState = State.One
+			var OneTime = true
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:173]
+	{
+		var Name = "Dispatcher15"
+		Transform 
+		{
+			var Translation = Real3{8.09556961, -1.04784966, 1.75}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/WalkwayTarget3"
+				var Cog = 174
+			}
+			var Obj1OnEnd = true
+			var Obj2 = CogPath
+			{
+				var Path = ":/BridgeToIsland"
+				var Cog = 128
+			}
+			var Obj2OnEnd = false
+			var Obj3 = CogPath
+			{
+				var Path = ":/WalkwayTarget"
+				var Cog = 175
+			}
+			var Obj3OnEnd = true
+			var ActiveState = State.One
+		}
+	}
+	Cog [InheritId:"5ae7f47229f5d873:Treadwheel"][ContextId:176]
+	{
+		Transform 
+		{
+			var Translation = Real3{6, -6, 15}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Treadwheel 
+		{
+			var NumStates = 2
+			var Target1 = CogPath
+			{
+				var Path = ":/Dispatcher7"
+				var Cog = 163
+			}
+			var Target2 = CogPath
+			{
+				var Path = ":/Dispatcher"
+				var Cog = 156
+			}
+			var Target3 = CogPath
+			{
+				var Path = ":/Dispatcher3"
+				var Cog = 159
+			}
+			var Target4 = CogPath
+			{
+				var Path = ":/Dispatcher4"
+				var Cog = 160
+			}
+		}
+	}
+	Cog [InheritId:"5adf37dca925cb64:Teleporter"][ContextId:177]
+	{
+		Transform 
+		{
+			var Translation = Real3{-11.25, 0, -14.5}
+			var Rotation = Quaternion{0, -1, 0, 2.98023224e-08}
+			var Scale = Real3{1, 1, 1}
+		}
+		NavTP 
+		{
+			var Offset = 24
+			var NegativeShift = false
+			var Debug = false
+		}
+	}
+	Cog [InheritId:"5adf37dca925cb64:Teleporter"][ContextId:157]
+	{
+		var Name = "Teleporter2"
+		Transform 
+		{
+			var Translation = Real3{13, -6, 7}
+			var Rotation = Quaternion{0, -0.707106888, 0, -0.707106709}
+			var Scale = Real3{1, 1, 1}
+		}
+		NavTP 
+		{
+			var Offset = 0
+			var NegativeShift = false
+			var Debug = false
+			var Active = false
+		}
+	}
+	Cog [InheritId:"5adf37dca925cb64:Teleporter"][ContextId:178]
+	{
+		var Name = "Teleporter3"
+		Transform 
+		{
+			var Translation = Real3{18, -1, 10}
+			var Rotation = Quaternion{0, 0.707106769, 0, -0.707106888}
+			var Scale = Real3{1, 1, 1}
+		}
+		NavTP 
+		{
+			var Offset = 0
+			var NegativeShift = true
+			var Debug = false
+		}
+	}
+	Cog [InheritId:"5adf3769467953e4:Box"][ContextId:179]
+	{
+		var Name = "Box1"
+		Transform 
+		{
+			var Translation = Real3{10, 24, 9.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var ViewCulling = false
+		}
+		RigidBody 
+		{
+			var AllowSleep = false
+			var RotationLocked = true
+		}
+		PrimitivePathFollower 
+		{
+			var Speed = 100
+			var Axis = PrimitiveMoveDir.XAxis
+			var InitNode = CogPath
+			{
+				var Path = ":/DummyNode5"
+				var Cog = 180
+			}
+			var Enabled = true
+		}
+		BoxRide 
+		{
+			var MountRange = 2
+		}
+		JoinGridWhenInactive [LocallyAdded]
+		{
+			var InactivityPeriod = 0.5
+			var WakeChange = 0.0500000007
+		}
+	}
+	Cog [InheritId:"5adf3769467953e4:Box"][ContextId:181]
+	{
+		var Name = "Box1"
+		Transform 
+		{
+			var Translation = Real3{4, 0, -1.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var ViewCulling = false
+		}
+		RigidBody 
+		{
+			var AllowSleep = false
+			var RotationLocked = true
+		}
+		PrimitivePathFollower 
+		{
+			var Speed = 100
+			var Axis = PrimitiveMoveDir.ZAxis
+			var InitNode = CogPath
+			{
+				var Path = ":/DummyNode2"
+				var Cog = 182
+			}
+			var Enabled = true
+		}
+		BoxRide 
+		{
+			var MountRange = 2
+		}
+		JoinGridWhenInactive [LocallyAdded]
+		{
+			var InactivityPeriod = 0.5
+			var WakeChange = 0.0500000007
+		}
+	}
+	Cog [InheritId:"5adf3769467953e4:Box"][ContextId:183]
+	{
+		var Name = "Box1"
+		Transform 
+		{
+			var Translation = Real3{4, 0, 6.25}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var ViewCulling = false
+		}
+		RigidBody 
+		{
+			var AllowSleep = false
+			var RotationLocked = true
+		}
+		PrimitivePathFollower 
+		{
+			var Speed = 100
+			var Axis = PrimitiveMoveDir.ZAxis
+			var InitNode = CogPath
+			{
+				var Path = ":/DummyNode2"
+				var Cog = 182
+			}
+			var Enabled = true
+		}
+		BoxRide 
+		{
+			var MountRange = 2
+		}
+		JoinGridWhenInactive [LocallyAdded]
+		{
+			var InactivityPeriod = 0.5
+			var WakeChange = 0.0500000007
+		}
+	}
+	Cog [InheritId:"5adf3769467953e4:Box"][ContextId:184]
+	{
+		var Name = "Box1"
+		Transform 
+		{
+			var Translation = Real3{4, 11.25, 18}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var ViewCulling = false
+		}
+		RigidBody 
+		{
+			var AllowSleep = false
+			var RotationLocked = true
+		}
+		PrimitivePathFollower 
+		{
+			var Speed = 100
+			var Axis = PrimitiveMoveDir.ZAxis
+			var InitNode = CogPath
+			{
+				var Path = ""
+			}
+			var Enabled = true
+		}
+		BoxRide 
+		{
+			var MountRange = 2
+		}
+		JoinGridWhenInactive [LocallyAdded]
+		{
+			var InactivityPeriod = 0.5
+			var WakeChange = 0.0500000007
+		}
+	}
+	Cog [InheritId:"5adf3769467953e4:Box"][ContextId:185]
+	{
+		var Name = "Box1"
+		Transform 
+		{
+			var Translation = Real3{-8, 0, -12.499999}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var ViewCulling = false
+		}
+		RigidBody 
+		{
+			var AllowSleep = false
+			var RotationLocked = true
+		}
+		PrimitivePathFollower 
+		{
+			var Speed = 100
+			var Axis = PrimitiveMoveDir.ZAxis
+			var InitNode = CogPath
+			{
+				var Path = ":/DummyNode4"
+				var Cog = 186
+			}
+			var Enabled = true
+		}
+		BoxRide 
+		{
+			var MountRange = 2
+		}
+		JoinGridWhenInactive [LocallyAdded]
+		{
+			var InactivityPeriod = 0.5
+			var WakeChange = 0.0500000007
+		}
+	}
+	Cog [InheritId:"5adf3769467953e4:Box"][ContextId:187]
+	{
+		var Name = "Box1"
+		Transform 
+		{
+			var Translation = Real3{-8, 0, -5.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var ViewCulling = false
+		}
+		RigidBody 
+		{
+			var AllowSleep = false
+			var RotationLocked = true
+		}
+		PrimitivePathFollower 
+		{
+			var Speed = 100
+			var Axis = PrimitiveMoveDir.ZAxis
+			var InitNode = CogPath
+			{
+				var Path = ":/DummyNode4"
+				var Cog = 186
+			}
+			var Enabled = true
+		}
+		BoxRide 
+		{
+			var MountRange = 2
+		}
+		JoinGridWhenInactive [LocallyAdded]
+		{
+			var InactivityPeriod = 0.5
+			var WakeChange = 0.0500000007
+		}
+	}
+	Cog [InheritId:"5adf3769467953e4:Box"][ContextId:188]
+	{
+		var Name = "Box1"
+		Transform 
+		{
+			var Translation = Real3{-1.75, 0, -2.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var ViewCulling = false
+		}
+		RigidBody 
+		{
+			var AllowSleep = false
+			var RotationLocked = true
+		}
+		PrimitivePathFollower 
+		{
+			var Speed = 100
+			var Axis = PrimitiveMoveDir.XAxis
+			var InitNode = CogPath
+			{
+				var Path = ":/DummyNode3"
+				var Cog = 189
+			}
+			var Enabled = true
+		}
+		BoxRide 
+		{
+			var MountRange = 2
+		}
+		JoinGridWhenInactive [LocallyAdded]
+		{
+			var InactivityPeriod = 0.5
+			var WakeChange = 0.0500000007
+		}
+	}
+	Cog [ContextId:182]
+	{
+		var Name = "DummyNode2"
+		Transform 
+		{
+			var Translation = Real3{4, 0, -3.5}
+			var Scale = Real3{1, 2, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae50f211edfca3d:TestPath"
+			var Mesh = "4de0354322b376ae:Sphere"
+		}
+		PrimitiveNode 
+		{
+			var NextNode = CogPath
+			{
+				var Path = ":/DummyNode3"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 189
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var MoveDir = PrimitiveMoveDir.XAxis
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:189]
+	{
+		var Name = "DummyNode3"
+		Transform 
+		{
+			var Translation = Real3{-9, 0, -2.5}
+			var Scale = Real3{1, 2, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae50f211edfca3d:TestPath"
+			var Mesh = "4de0354322b376ae:Sphere"
+		}
+		PrimitiveNode 
+		{
+			var NextNode = CogPath
+			{
+				var Path = ":/DummyNode4"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 186
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var MoveDir = PrimitiveMoveDir.ZAxis
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:186]
+	{
+		var Name = "DummyNode4"
+		Transform 
+		{
+			var Translation = Real3{-8, 0, -15.5}
+			var Scale = Real3{1, 2, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae50f211edfca3d:TestPath"
+			var Mesh = "4de0354322b376ae:Sphere"
+		}
+		PrimitiveNode 
+		{
+			var NextNode = CogPath
+			{
+				var Path = ""
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 4294967293
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var MoveDir = PrimitiveMoveDir.XAxis
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:190]
+	{
+		var Name = "DummyNode8"
+		Transform 
+		{
+			var Translation = Real3{0, 0, -14.5}
+			var Scale = Real3{1, 2, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae50f211edfca3d:TestPath"
+			var Mesh = "4de0354322b376ae:Sphere"
+		}
+		PrimitiveNode 
+		{
+			var NextNode = CogPath
+			{
+				var Path = ":/DummyNode5"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 180
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var MoveDir = PrimitiveMoveDir.XAxis
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [InheritId:"5adffc6764b48941:DummyNode"][ContextId:180]
+	{
+		var Name = "DummyNode5"
+		Transform 
+		{
+			var Translation = Real3{3, 24, 9.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 2, 1}
+		}
+		PrimitiveNode 
+		{
+			var NextNode = CogPath
+			{
+				var Path = ""
+			}
+			var MoveDir = PrimitiveMoveDir.ZAxis
+		}
+	}
+	Cog [ContextId:191]
+	{
+		var Name = "DummyNode7"
+		Transform 
+		{
+			var Translation = Real3{4, 0, 10.5}
+			var Scale = Real3{1, 2, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae50f211edfca3d:TestPath"
+			var Mesh = "4de0354322b376ae:Sphere"
+		}
+		PrimitiveNode 
+		{
+			var NextNode = CogPath
+			{
+				var Path = ":/DummyNode2"
+				var ErrorOnResolveToNull = false
+				var ErrorOnPathCantCompute = false
+				var ErrorOnDirectLinkFail = false
+				var UpdateCogOnPathChange = true
+				var UpdatePathOnCogChange = true
+				var UpdateCogOnInitialize = true
+				var ResolvedNullErrorOccurred = false
+				var Cog = 182
+				var PathPreference0 = CogPathPreference.CogRelative
+				var PathPreference1 = CogPathPreference.SpaceRelative
+				var PathPreference2 = CogPathPreference.Absolute
+			}
+			var MoveDir = PrimitiveMoveDir.ZAxis
+		}
+		BoxCollider 
+		{
+			var Ghost = true
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:192]
+	{
+		Transform 
+		{
+			var Translation = Real3{15, -1.5, 21}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{5, 0.125, 7}
+		}
+		Model 
+		{
+			var Material = "5ae50f211edfca3d:TestPath"
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:193]
+	{
+		Transform 
+		{
+			var Translation = Real3{15, -1.5, 17}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{5, 0.125, 1}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:194]
+	{
+		Transform 
+		{
+			var Translation = Real3{18, -1.5, 16}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 9}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:195]
+	{
+		Transform 
+		{
+			var Translation = Real3{9, -1.5, 7.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 7}
+		}
+		Model 
+		{
+			var Material = "5ae50f211edfca3d:TestPath"
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:196]
+	{
+		Transform 
+		{
+			var Translation = Real3{8, -1.5, 7}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 7}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:197]
+	{
+		var Name = "WalkwayTarget5"
+		Transform 
+		{
+			var Translation = Real3{6, -0.5, 9.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:198]
+	{
+		var Name = "WalkwayTarget4"
+		Transform 
+		{
+			var Translation = Real3{7, -1, 9.00000095}
+			var Rotation = Quaternion{0, 0, -0.382683426, 0.923879504}
+			var Scale = Real3{1.41400003, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:199]
+	{
+		var Name = "WalkwayTarget6"
+		Transform 
+		{
+			var Translation = Real3{6, 0, 10.000001}
+			var Rotation = Quaternion{-0.382683426, 0, 0, 0.923879504}
+			var Scale = Real3{1, 0.125, 1.41400003}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:200]
+	{
+		var Name = "Walkway"
+		Transform 
+		{
+			var Translation = Real3{6, 0.5, 12.000001}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{3, 0.125, 1}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:201]
+	{
+		var Name = "Walkway"
+		Transform 
+		{
+			var Translation = Real3{4, 0.5, 20}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{5, 0.125, 2}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:202]
+	{
+		var Name = "WalkwayTarget2"
+		Transform 
+		{
+			var Translation = Real3{6.5, 0.5, 11.000001}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{2, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:203]
+	{
+		Transform 
+		{
+			var Translation = Real3{6, -1.5, 5.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:204]
+	{
+		Transform 
+		{
+			var Translation = Real3{6, -1.5, 7.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 1}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:174]
+	{
+		var Name = "WalkwayTarget3"
+		Transform 
+		{
+			var Translation = Real3{6, -1.5, 1.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:175]
+	{
+		var Name = "WalkwayTarget"
+		Transform 
+		{
+			var Translation = Real3{6, -1.5, 3.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 1}
+		}
+		Walkway 
+		{
+			var Enabled = false
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:205]
+	{
+		Transform 
+		{
+			var Translation = Real3{7, -1.5, -1.99999905}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{3, 0.125, 3}
+		}
+		Walkway 
+		{
+			var Enabled = true
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:206]
+	{
+		Transform 
+		{
+			var Translation = Real3{7, -1.5, 5.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 3}
+		}
+	}
+	Cog [InheritId:"5adf37e4a3da52ec:Walkway"][ContextId:207]
+	{
+		Transform 
+		{
+			var Translation = Real3{7, -1.5, 7.00000095}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 0.125, 1}
+		}
+	}
+	Cog [InheritId:"5ae7f47229f5d873:Treadwheel"][ContextId:208]
+	{
+		var Name = "Treadwheel2"
+		Transform 
+		{
+			var Translation = Real3{24, -13, 17}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var Material = "5adbfd75183a1080:TestInvisible"
+		}
+		Treadwheel 
+		{
+			var NumStates = 4
+			var Target1 = CogPath
+			{
+				var Path = ":/Dispatcher12"
+				var Cog = 169
+			}
+			var Target2 = CogPath
+			{
+				var Path = ":/Rotater"
+				var Cog = 136
+			}
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ae7984492044ff9][ContextId:209]
+			{
+				ComponentManager [LocallyAdded]
+				{
+				}
+			}
+		}
+	}
+	Cog [InheritId:"5ad775daa8159aee:BinarySwitch"][ContextId:210]
+	{
+		Transform 
+		{
+			var Translation = Real3{9, -6, 12}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Button 
+		{
+			var Target1 = CogPath
+			{
+				var Path = ":/Dispatcher15"
+				var Cog = 173
+			}
+			var Target2 = CogPath
+			{
+				var Path = ""
+			}
+			var Sticky = true
+		}
+	}
+	Cog [InheritId:"5ad775daa8159aee:BinarySwitch"][ContextId:211]
+	{
+		Transform 
+		{
+			var Translation = Real3{7, -1, -2}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		Button 
+		{
+			var Target1 = CogPath
+			{
+				var Path = ":/Dispatcher16"
+				var Cog = 212
+			}
+			var Target2 = CogPath
+			{
+				var Path = ":/Dispatcher17"
+				var Cog = 213
+			}
+			var Sticky = true
+		}
+	}
+	Cog [ContextId:214]
+	{
+		var Name = "Stairs2"
+		Transform 
+		{
+			var Translation = Real3{6, -2, 9.5}
+			var Scale = Real3{1, 1, 2}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		Model 
+		{
+			var Visible = true
+			var ViewCulling = true
+			var VisibilityEvents = true
+			var OverrideBoundingBox = false
+			var LocalAabbCenter = Real3{0, 0, 0}
+			var LocalAabbHalfExtents = Real3{1, 1, 1}
+			var GroupSortValue = 0
+			var Material = "5ae7e58e521037f6:DevFloor2b"
+			var Mesh = "4de0354322b345ae:Cube"
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		SmoothMove 
+		{
+			var Duration = 1
+			var MoveAmount = Real3{0, 1, 0}
+			var IsExtended = false
+			var TwoState = true
+		}
+		ComponentManager 
+		{
+		}
+		Hierarchy 
+		{
+			Cog [Id:0x5ad594eeb8e403b1][InheritId:"5ad6d74ac0f14ac9:Stairs"][ContextId:215]
+			{
+				Transform 
+				{
+					var Translation = Real3{0, 1, 0.25}
+					var Rotation = Quaternion{-4.47034552e-08, 0.707106709, 0.707106888, -8.9406953e-08}
+					var Scale = Real3{1.00000036, 0.500000119, 1.00000024}
+				}
+			}
+			Cog [Id:0x5ad594ecb80c53d2][InheritId:"5ad6d74ac0f14ac9:Stairs"][ContextId:216]
+			{
+				Transform 
+				{
+					var Translation = Real3{1, 0, -0.25}
+					var Rotation = Quaternion{-0.50000006, 0.50000006, 0.49999994, 0.49999994}
+					var Scale = Real3{0.50000006, 1.00000024, 1.00000012}
+				}
+			}
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:212]
+	{
+		var Name = "Dispatcher16"
+		Transform 
+		{
+			var Translation = Real3{6, -1.00000191, 6}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/Stairs2"
+				var Cog = 214
+			}
+			var Obj2 = CogPath
+			{
+				var Path = ":/WalkwayTarget2"
+				var Cog = 202
+			}
+			var Obj2OnEnd = false
+			var Obj3 = CogPath
+			{
+				var Path = ""
+			}
+			var Duration = 1
+			var ActiveState = State.All
+		}
+	}
+	Cog [InheritId:"5adf37d5a78a9e3a:Dispatcher"][ContextId:213]
+	{
+		var Name = "Dispatcher17"
+		Transform 
+		{
+			var Translation = Real3{6, -1.00000191, 7}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		DispatcherScript 
+		{
+			var Obj1 = CogPath
+			{
+				var Path = ":/WalkwayTarget4"
+				var Cog = 198
+			}
+			var Obj1OnEnd = true
+			var Obj2 = CogPath
+			{
+				var Path = ":/WalkwayTarget5"
+				var Cog = 197
+			}
+			var Obj2OnEnd = true
+			var Obj3 = CogPath
+			{
+				var Path = ":/WalkwayTarget6"
+				var Cog = 199
+			}
+			var Obj3OnEnd = true
+			var Duration = 1
+			var ActiveState = State.All
+		}
+	}
+	Cog [InheritId:"5adf37eea5a96a41:LevelGoal"][ContextId:217]
+	{
+		Transform 
+		{
+			var Translation = Real3{4, 1, 19.5}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 1}
+		}
+		BoxCollider 
+		{
+			var Offset = Real3{0, 0, -0.25}
+			var HalfSize = Real3{0.5, 0.5, 0.75}
+			var Size = Real3{1, 1, 1.5}
+		}
+	}
+	Cog [InheritId:"5aca240dd48dd360:SwitchDisabler"][ContextId:218]
+	{
+		var Name = "SwitchDisabler"
+		Transform 
+		{
+			var Translation = Real3{21, -12.5, 13}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{7, 2, 7}
+		}
+		SwitchDisabler 
+		{
+			var Ent1 = CogPath
+			{
+				var Path = ":/Treadwheel2"
+				var Cog = 208
+			}
+		}
+	}
+	Cog [InheritId:"5aca240dd48dd360:SwitchDisabler"][ContextId:219]
+	{
+		Transform 
+		{
+			var Translation = Real3{13, -6.00000191, 13}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{1, 1, 13}
+		}
+		SwitchDisabler 
+		{
+			var Ent1 = CogPath
+			{
+				var Path = ":/Treadwheel"
+				var Cog = 176
+			}
+		}
+	}
+	Cog [InheritId:"5aca240dd48dd360:SwitchDisabler"][ContextId:220]
+	{
+		Transform 
+		{
+			var Translation = Real3{14, -1.00000191, 8}
+			var Rotation = Quaternion{0, 0, 0, 1}
+			var Scale = Real3{9, 1, 1}
+		}
+		SwitchDisabler 
+		{
+			var Ent1 = CogPath
+			{
+				var Path = ":/Treadwheel"
+				var Cog = 176
+			}
+		}
+	}
+}

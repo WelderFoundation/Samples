@@ -1,0 +1,29 @@
+[Version:1]
+Cog 
+{
+	var Name = "AsteroidSpawner"
+	Transform 
+	{
+		var Translation = Real3{38.626091, 1.3396858, 2.61772215e-07}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Orientation 
+	{
+		var GlobalUp = Real3{0, 1, 0}
+		var LocalOrientationBasis = Quaternion{0, 0, 0, 1}
+		var DefaultBases = OrientationBases.ForwardNegativeZUpY
+	}
+	ObjectSpawner 
+	{
+		var ArchetypeToSpawn = "5a703244eb5f142f:Asteroid"
+		var SpawnKey = Keys.Unknown
+		var InitalVelocity = 3
+		var SpawnOffset = Real3{0, 0, 0}
+		var RandomDirection = true
+	}
+	CreateOnInterval 
+	{
+		var SpawnRate = 5
+	}
+}

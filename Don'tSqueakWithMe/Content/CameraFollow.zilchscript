@@ -1,0 +1,70 @@
+/*
+CameraFollow.z
+Freddy Martin
+12/14/17
+Atach within certain boundss
+*/
+class CameraFollow : ZilchComponent
+{
+  [Dependency]
+  var Transform:Transform=null;
+  
+  [Property]
+  var LeftLevel:Boolean=true;
+  
+  [Property]
+  var Target:CogPath=null;
+  
+  [Property]
+  var Min:Real2=Real2(-40,-40);
+  
+  [Property]
+  var Max:Real2=Real2(40,40);
+  
+  [Property]
+  var LerpValue:Real=0.1;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Target.Cog!=null)
+    {
+      if(this.LeftLevel)
+      {
+        this.Max.X=this.Owner.Transform.Translation.X;
+      }
+      else if(this.Space.FindFirstObjectByName("GameOver")!=null)
+      {
+        this.Space.FindFirstObjectByName("GameOver").Destroy();
+      }
+      var newPos=this.Target.Cog.Transform.Translation;
+      newPos.Z=this.Transform.Translation.Z;
+      //Use lerp to smooth movement
+      newPos=Math.Lerp(Real3(this.Transform.Translation.X,this.Transform.Translation.Y,this.Transform.Translation.Z),newPos,this.LerpValue);
+      if(!this.LeftLevel)
+      {
+        if(newPos.Y<this.Min.Y)
+        {
+          newPos.Y=this.Min.Y;
+        }
+        else if(newPos.Y>this.Max.Y)
+        {
+          newPos.Y=this.Max.Y;
+        }
+      }
+      if(newPos.X<this.Min.X)
+      {
+        newPos.X=this.Min.X;
+      }
+      else if(newPos.X>this.Max.X)
+      {
+        newPos.X=this.Max.X;
+      }
+      this.Transform.Translation=newPos;
+    }
+  }
+}

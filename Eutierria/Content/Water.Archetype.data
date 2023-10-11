@@ -1,0 +1,17 @@
+[Version:1]
+Cog 
+{
+	var Name = "Sprite"
+	Transform 
+	{
+		var Translation = Real3{-18.547081, -11.5581045, -7.48479351e-07}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	DangerZone 
+	{
+	}
+	WaterScript 
+	{
+	}
+}

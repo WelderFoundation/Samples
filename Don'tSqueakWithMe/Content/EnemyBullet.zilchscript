@@ -1,0 +1,18 @@
+class EnemyBullet : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Name=="Player")
+    {
+      event.OtherObject.PlayerVars.Lives-=1;
+      event.OtherObject.PlayerVars.CallChangeWaterBottleChangeSprite();
+    }
+    this.Owner.Destroy();
+  }
+
+}

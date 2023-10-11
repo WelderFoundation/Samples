@@ -1,0 +1,28 @@
+class LevelButton : ZilchComponent
+{
+  [Property]
+  var LevelToLoad : Level;
+  [Property]
+  var LoadOnHUD : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.MouseDown, this.OnMouseDown);
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnMouseDown(event : ViewportMouseEvent)
+  {
+    if (event.HitObject == this.Owner)
+    {
+      if (this.LoadOnHUD)
+        this.GameSession.ChangeLevel.LoadHUDLevel(this.LevelToLoad);
+      else
+        this.GameSession.ChangeLevel.LoadMainLevel(this.LevelToLoad);
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

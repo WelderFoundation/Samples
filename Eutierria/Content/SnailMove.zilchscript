@@ -1,0 +1,56 @@
+/*
+TurtleMove.Z
+Ryan Bly
+1/9/18
+Allows the snail to move
+*/
+
+class SnailMove : ZilchComponent
+{
+  [Dependency]
+  var Sprite : Sprite = null;
+  
+  [Property]
+  var Active : Boolean = false;
+  
+  [Property] 
+  var UpKey : Keys = Keys.W;
+  [Property] 
+  var DownKey : Keys = Keys.S;
+  [Property]
+  var ControlKey : Keys = Keys.E;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+  
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var movement = Real3(0,0,0);
+    if(Zero.Keyboard.KeyIsPressed(this.ControlKey))
+      {
+        if(this.Active)
+          this.Active = false;
+        else
+          this.Active = true;
+      }
+      
+    if(this.Active)
+    {
+      //left
+      if(Zero.Keyboard.KeyIsDown(this.DownKey))
+      {
+        --movement.Y;
+        this.Sprite.FlipX = true;
+      }
+      //right
+      if(Zero.Keyboard.KeyIsDown(this.UpKey))
+      {
+        ++movement.Y;
+        this.Sprite.FlipX = false;
+      }
+    }
+    this.Owner.Transform.Translation += movement / 15;
+  }
+}

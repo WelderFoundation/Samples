@@ -1,0 +1,9 @@
+[Version:1]
+FontContent 
+{
+	FontBuilder 
+	{
+		var Name = "PAPYRUS"
+		var ResourceId = 0x5ace2e2f7d84ec0a
+	}
+}

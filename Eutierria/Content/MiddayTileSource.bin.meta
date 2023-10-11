@@ -1,0 +1,20 @@
+[Version:1]
+BinaryContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"TilePaletteSource"
+		}
+	}
+	BinaryBuilder 
+	{
+		var Name = "MiddayTileSource"
+		var ResourceId = 0x5a4bc5f5bdd87d76
+		var LoaderType = "TilePaletteSource"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = ""
+	}
+}

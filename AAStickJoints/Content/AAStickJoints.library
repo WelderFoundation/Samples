@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "AAStickJoints"
+	var LibraryId = 0x5b114a6f850c051f
+	var SourceControlType = ""
+	var ReadOnly = false
+}

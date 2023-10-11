@@ -1,0 +1,92 @@
+class JoinGridWhenInactive : ZilchComponent
+{
+  [Property]
+  var InactivityPeriod : Real = 0.5; // Similarly to RigidBody.Asleep, if this entity doesn't move for this much time, it will join the node grid.
+  [Property]
+  var WakeChange : Real = 0.05; // The minimum amount of movement required to "wake" this entity.
+  
+  var Inactive : Boolean = false;
+  var LastFramePos : Real3;
+  var Timer : Real;
+  var Nodes : Array[Cog] = Array[Cog]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    // If our scale is < (1,1), we aren't big enough to house any nodes, so there's no point in running the rest of this script.
+    if (this.Owner.Transform.Scale.X < 1 || this.Owner.Transform.Scale.Z < 1)
+      return;
+    
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Calculate the change in position since last frame.
+    var newPos = this.Owner.Transform.WorldTranslation;
+    var deltaPos = newPos - this.LastFramePos;
+    
+    // If the position hasn't changed too much since last frame, start/update the timer. Otherwise, update variables and check next frame.
+    if (Math.Abs(deltaPos.X) < this.WakeChange && Math.Abs(deltaPos.Z) < this.WakeChange)
+    {
+      // If the timer has completed, create/enable node(s). Otherwise, subtract Dt from the timer.
+      if (this.Timer <= 0)
+      {
+        if (!this.Inactive)
+          this.Sleep();
+      }
+      else
+      {
+        this.Timer -= event.Dt;
+      }
+    }
+    else
+    {
+      if (this.Inactive)
+        this.Wake();
+      
+      this.Timer = this.InactivityPeriod;
+      this.LastFramePos = newPos;
+    }
+  }
+  
+  function Sleep()
+  {
+    // Re-calculate how many nodes to create, in case scale has changed since the last sleep.
+    var xNodes = Math.Floor(this.Owner.Transform.Scale.X);
+    var zNodes = Math.Floor(this.Owner.Transform.Scale.Z);
+    var nodeDims = Integer2(xNodes as Integer, zNodes as Integer);
+    
+    // Calculate the total number of nodes in each state.
+    var nodeCount = nodeDims.X * nodeDims.Y;
+    
+    // Convert the X and Z positions to positions "on the grid"-- ie, whole number integers.
+    var posX = Math.Round(this.Owner.Transform.WorldTranslation.X) - nodeDims.X / 2;
+    var posZ = Math.Round(this.Owner.Transform.WorldTranslation.Z) - nodeDims.Y / 2;
+    var newPos = this.LevelSettings.Grid.ConvertToGridPoint(Integer2(posX as Integer, posZ as Integer));
+    
+    // Create the nodes.
+    for (var x = newPos.X; x < newPos.X + nodeDims.X; x += 1)
+    {
+      for (var y = newPos.Y; y < newPos.Y + nodeDims.Y; y += 1)
+      {
+        this.Nodes.Add(this.LevelSettings.Grid.SetPoint(x, y));
+      }
+    }
+    
+    this.Inactive = true;
+  }
+  
+  function Wake()
+  {
+    // Disable our nodes.
+    foreach (var node in this.Nodes)
+    {
+      this.LevelSettings.Grid.DisableNode(node.PathNode.GridPos);
+    }
+    
+    // Set array to null.
+    this.Nodes = Array[Cog]();
+    
+    this.Inactive = false;
+  }
+}

@@ -1,0 +1,16 @@
+[Version:1]
+TextContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"JessicaNoThings"
+		}
+	}
+	ZilchScriptBuilder 
+	{
+		var Name = "ObsticalsDestroyable"
+		var ResourceId = 0x5aea29d091810496
+	}
+}

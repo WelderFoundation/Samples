@@ -1,0 +1,30 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"58f4ed78bda39ec5:OpaqueDoubleSided"
+		"5ae7c225e126421d:Player"
+	}
+	AlphaDiscard 
+	{
+		var Texture = "5827bc9481103535:ZeroAlbedo"
+		var Threshold = 0.5
+	}
+	FlipBackfaceNormals 
+	{
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "5827bc9481103535:ZeroAlbedo"
+	}
+	SpecularMap 
+	{
+		var SpecularMap = "5827bc9481103535:ZeroAlbedo"
+	}
+	Test 
+	{
+		var TexSize = Real2{0, 0}
+		var UvScale = Real2{0.5, 0.5}
+	}
+}

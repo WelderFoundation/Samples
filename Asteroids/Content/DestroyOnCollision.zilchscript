@@ -1,0 +1,22 @@
+class DestroyOnCollision : ZilchComponent
+{
+  [Property]
+  var DestroyOwner : Boolean = true;
+  
+  [Property]
+  var DestroyOther : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(this.DestroyOther)
+      event.OtherObject.Destroy();
+    
+    if(this.DestroyOwner)
+      this.Owner.Destroy();
+  }
+}

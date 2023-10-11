@@ -1,0 +1,56 @@
+//PlayerCollision.Z
+//Ryan Bly
+//1/9/18
+//this handle deifferent kinds of collisions as well as a death event
+
+class PlayerCollision : ZilchComponent
+{
+  [Dependency]
+  var Transform : Transform = null;
+  [Dependency]
+  var SweptController : SweptController = null;
+
+  [Property]
+  var NextLevel : Level = null;
+  [Property]
+  var CheckPoint : Cog = null;
+  //Level to load when you hit a dangerzone
+  [Property]
+  var GameOverLevel : Level = null;
+  
+  //location to respawn the player
+  var RespawnLocation : Real3 = Real3(0,0,0);
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.RespawnLocation = this.Owner.Transform.Translation;
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    Zero.Connect(this.Owner, "Death", this.OnDeath);
+    Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
+  }
+
+  function OnCollisionPersisted(event : CollisionEvent)
+  {
+    if(event.OtherObject.LevelDoor != null)
+    {
+        this.Space.LoadLevel(this.NextLevel);
+    }
+  }
+
+  function OnDeath(event : Event)
+  {
+    this.Space.LoadLevel(Level.LoseLevel);
+    //this.SweptController.ControllerVelocity = Real3(0,0,0);
+    //this.Transform.Translation = this.RespawnLocation;
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    //DangerZone kill the player, if collided with
+    if(event.OtherObject.DangerZone != null)
+    {
+      var deathEvent = new ZilchEvent();
+      this.Owner.DispatchEvent("Death", deathEvent);
+    }
+  }
+}

@@ -1,0 +1,71 @@
+[Version:1]
+Cog 
+{
+	var Name = "beach_plant_merged"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ac00c6f595f9ba0]
+		{
+			var Name = "coast_leaf2149"
+			Transform 
+			{
+				var Translation = Real3{-0.566206217, 0.1366117, 0.0281320624}
+				var Scale = Real3{1.74559176, 1.74559176, 1.74559152}
+				var Rotation = Quaternion{0, 0, 0.400831252, 0.916151941}
+			}
+			Hierarchy 
+			{
+				Cog [Id:0x5ac00c6f595f9ba7]
+				{
+					var Name = "coast_leaf2149GeneratedMeshNode0"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5ac00c6f5956a089:beach_plant_merged_coast_leaf2149GeneratedMeshNode0"
+					}
+				}
+				Cog [Id:0x5ac00c6f595f9ba8]
+				{
+					var Name = "coast_leaf2149GeneratedMeshNode1"
+					Transform 
+					{
+						var Translation = Real3{0, 0, 0}
+						var Scale = Real3{1, 1, 1}
+						var Rotation = Quaternion{0, 0, 0, 1}
+					}
+					Model 
+					{
+						var Visible = true
+						var ViewCulling = true
+						var VisibilityEvents = true
+						var OverrideBoundingBox = false
+						var LocalAabbCenter = Real3{0, 0, 0}
+						var LocalAabbHalfExtents = Real3{1, 1, 1}
+						var GroupSortValue = 0
+						var Material = "583afb5e7bf75e18:ZeroMaterial"
+						var Mesh = "5ac00c6f5956a095:beach_plant_merged_coast_leaf2149GeneratedMeshNode1"
+					}
+				}
+			}
+		}
+	}
+}

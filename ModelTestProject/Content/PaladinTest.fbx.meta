@@ -1,0 +1,64 @@
+[Version:1]
+GeometryContent 
+{
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = false
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "PaladinTest_Paladin_J_Nordstrom"
+				var ResourceId = 0x5a93bbac9ebd20d0
+			}
+			Object
+			{
+				var Name = "PaladinTest_Paladin_J_Nordstrom_Helmet"
+				var ResourceId = 0x5a93bbac9ebd2100
+			}
+			Object
+			{
+				var Name = "PaladinTest_Paladin_J_Nordstrom_Sword"
+				var ResourceId = 0x5a93bbac9ebd210c
+			}
+			Object
+			{
+				var Name = "PaladinTest_Paladin_J_Nordstrom_Shield"
+				var ResourceId = 0x5a93bbac9ebd211a
+			}
+		}
+	}
+	AnimationBuilder 
+	{
+		var Clips = Array
+		{
+		}
+		var Animations = Array
+		{
+			Object
+			{
+				var Name = "PaladinTest"
+				var ResourceId = 0x5a93bbac9ebd2132
+			}
+		}
+	}
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 0.100000001
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5a93bbac9e8c7a92
+	}
+}

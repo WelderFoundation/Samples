@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "SoundCueDemo"
+	var LibraryId = 0x5ac673a5e5f8feec
+	var SourceControlType = ""
+	var ReadOnly = false
+}

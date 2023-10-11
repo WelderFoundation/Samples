@@ -1,0 +1,22 @@
+class PrintText : ZilchComponent
+{
+  //var SpriteSourceThing : Texture = Texture.Zeromade; 
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent) 
+  {
+  }
+  
+  [Property] var LinesToPrint : Integer = 10;
+  [Property] function PrintText()
+  {
+    for (var i = 0; i < this.LinesToPrint; ++i)
+    {
+      Console.WriteLine("Line of text # `i`");
+    }
+  }
+}

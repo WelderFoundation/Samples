@@ -1,0 +1,14 @@
+class TwoPlayerScript : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    if(this.GameSession.GameVars.TwoPlayer)
+    {
+      var name = this.Space.FindObjectByName("Player");
+      var player = this.Space.CreateAtPosition(Archetype.PlayerTwo, name.Transform.Translation);
+      player.PlayerControl.LeftKey = Keys.Left;
+      player.PlayerControl.RightKey = Keys.Right;
+      player.Name = "PlayerTwo";
+    }
+  }
+}

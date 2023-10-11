@@ -1,0 +1,16 @@
+[Version:1]
+TextContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"FreddyThings"
+		}
+	}
+	ZilchScriptBuilder 
+	{
+		var Name = "HurtPlayer"
+		var ResourceId = 0x5aea211a6d486fb8
+	}
+}

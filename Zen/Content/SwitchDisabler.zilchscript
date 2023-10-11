@@ -1,0 +1,52 @@
+class SwitchDisabler : ZilchComponent
+{
+  [Property]
+  var Ent1 : CogPath = null;
+  [Property]
+  var Ent2 : CogPath = null;
+  [Property]
+  var Ent3 : CogPath = null;
+  [Property]
+  var Ent4 : CogPath = null;
+  
+  var Ents : Array[Cog] = Array[Cog]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    if (this.Ent1 != null)
+      this.Ents.Add(this.Ent1.Cog);
+    if (this.Ent2 != null)
+      this.Ents.Add(this.Ent2.Cog);
+    if (this.Ent3 != null)
+      this.Ents.Add(this.Ent3.Cog);
+    if (this.Ent4 != null)
+      this.Ents.Add(this.Ent4.Cog);
+    
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+  }
+
+  function OnCollisionEnded(event : CollisionEvent)
+  {
+    if (event.OtherObject.Name != "Player")
+      return;
+    
+    foreach (var ent in this.Ents)
+    {
+      if (ent != null)
+        ent.DispatchEvent(Events.DisabledEvent, DisabledEvent());
+    }
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if (event.OtherObject.Name != "Player")
+      return;
+    
+    foreach (var ent in this.Ents)
+    {
+      if (ent != null)
+        ent.DispatchEvent(Events.DisabledEvent, DisabledEvent());
+    }
+  }
+}

@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "GraphLevel"
+		var ResourceId = 0x5a7e8f32e5cf5385
+		var LoaderType = "Level"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

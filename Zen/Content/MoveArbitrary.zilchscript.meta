@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "MoveArbitrary"
+		var ResourceId = 0x5acb6c3990e1b2e3
+	}
+}

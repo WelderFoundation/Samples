@@ -1,0 +1,45 @@
+class SmoothZoom : ZilchComponent
+{
+  [Property]
+  var Duration : Real;
+  [Property]
+  var ZoomAmount : Real;
+  
+  var Active : Boolean = false;
+  var StartingZoom : Real;
+  var Timer : Real = 0;
+  var TriggeringEnt : Cog;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.ZoomAmount *= -1;
+    
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    this.ZoomAmount *= -1;
+    this.StartingZoom = this.Owner.Camera.Size;
+    this.Active = true;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (this.Active)
+    {
+      if (this.Timer > 1)
+      {
+        this.Timer = 0;
+        this.Owner.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+        this.Active = false;
+        return;
+      }
+      
+      this.Timer += event.Dt / this.Duration;
+      
+      this.Owner.Camera.Size = Math.Lerp(this.StartingZoom, this.ZoomAmount + this.StartingZoom, Math.SmoothStep(0, 1, this.Timer));
+    }
+  }
+}

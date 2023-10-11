@@ -1,0 +1,35 @@
+class ChangeLevel : ZilchComponent
+{
+  [Property]
+  var ShowTags : Boolean = true; // Should we show the version tag and build number?
+  var MainSpace : Space;
+  var HUDSpace : Space;
+  var DebugSpace : Space;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.HUDSpace = this.GameSession.CreateSpace(Archetype.Space);
+    this.HUDSpace.LoadLevel(Level.DebugUI);
+  }
+
+  // Loads a specified level onto the HUD space.
+  function LoadHUDLevel(level : Level)
+  {
+    this.HUDSpace.LoadLevel(level);
+  }
+
+  // Loads a specified level onto the main space.
+  function LoadMainLevel(level : Level)
+  {
+    if (this.MainSpace.TimeSpace.Paused)
+      this.TogglePause();
+    
+    this.MainSpace.LoadLevel(level);
+  }
+
+  // Toggles the main space's paused state.
+  function TogglePause()
+  {
+    this.MainSpace.TimeSpace.Paused = !this.MainSpace.TimeSpace.Paused;
+  }
+}

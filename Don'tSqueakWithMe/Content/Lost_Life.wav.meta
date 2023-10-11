@@ -1,0 +1,12 @@
+[Version:1]
+AudioContent 
+{
+	SoundBuilder 
+	{
+		var Name = "Lost_Life"
+		var ResourceId = 0x5aa37e06af390d9b
+		var Streamed = false
+		var Normalize = false
+		var MaxVolume = 0.899999976
+	}
+}

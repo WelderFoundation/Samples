@@ -1,0 +1,88 @@
+class Button : ZilchComponent
+{
+  [Property]
+  var Target1 : CogPath = null;
+  [Property]
+  var Target2 : CogPath = null;
+  [Property]
+  var Target3 : CogPath = null;
+  [Property]
+  var Target4 : CogPath = null;
+  
+  [Property]
+  var Sticky : Boolean = false; // If true, this button will "stick" to the pressed state, meaning that it will only become unpressed upon being triggered.
+  
+  var IsDown : Boolean = false;
+  var Targets : Array[Cog] = Array[Cog]();
+  var DisabledEvent : Boolean = false;
+  var Enabled : Boolean = true;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Store the targets in an array for easier iteration.
+    if (this.Target1 != null)
+      this.Targets.Add(this.Target1.Cog);
+    if (this.Target2 != null)
+      this.Targets.Add(this.Target2.Cog);
+    if (this.Target3 != null)
+      this.Targets.Add(this.Target3.Cog);
+    if (this.Target4 != null)
+      this.Targets.Add(this.Target4.Cog);
+    
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+    Zero.Connect(this.Owner, Events.CollisionPersisted, this.OnCollisionPersisted);
+    Zero.Connect(this.Owner, Events.DisabledEvent, this.OnDisabledEvent);
+    Zero.Connect(this.Owner, Events.EndTriggerEvent, this.OnEndTriggerEvent);
+  }
+
+  function OnEndTriggerEvent(event : EndTriggerEvent)
+  {
+    this.Enabled = true;
+  }
+
+  function OnDisabledEvent(event : DisabledEvent)
+  {
+    this.DisabledEvent = !this.DisabledEvent;
+  }
+
+  function OnCollisionEnded(event : CollisionEvent)
+  {
+    if (this.Sticky)
+      return;
+    
+    this.IsDown = false;
+    this.ChangeState();
+  }
+
+  function OnCollisionPersisted(event : CollisionEvent)
+  {
+    this.IsDown = true;
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if (this.IsDown)
+      return;
+    
+    this.ChangeState();
+  }
+
+  function ChangeState()
+  {
+    if (this.DisabledEvent || !this.Enabled)
+      return;
+    if (!this.Owner.Children.IsEmpty && this.Owner.Children.Current != null)
+      this.LevelSettings.TriggerDispatcher.DispatchOnObject(TriggerEvent(), this.Owner.Children.Current);
+    
+    this.Enabled = false;
+    
+    var te = TriggerEvent();
+    te.Sender = this.Owner;
+    
+    foreach (var target in this.Targets)
+    {
+      this.LevelSettings.TriggerDispatcher.DispatchOnObject(te, target);
+    }
+  }
+}

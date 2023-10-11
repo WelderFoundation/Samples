@@ -1,0 +1,54 @@
+/**
+MainMenuButton
+Jessica
+2018.1.10
+This is ment to allow for the buttons to be pressed
+**/
+
+class MainMenuButton : ZilchComponent
+{
+  [Dependency]
+  var Sprite : Sprite = null;
+  
+  [Dependency]
+  var SimpleSound : SimpleSound = null;
+  
+  //This gives the button the ablility to give the Level Settings the two Player Ok
+  [Property]
+  var TwoPlayer : Boolean = false;
+  
+  var OriginSprite : SpriteSource = null;
+  
+  var OriginColor : Real4 = Real4(0, 0, 0, 0);
+  
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.OriginSprite = this.Sprite.SpriteSource;
+    this.OriginColor = this.Sprite.VertexColor;
+    
+    this.Sprite.VertexColor = Real4(0, 0, 0, 0);
+    
+    Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
+    Zero.Connect(this.Owner, Events.LeftMouseDown, this.OnLeftMouseDown);
+    Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
+  }
+
+  function OnMouseEnter(event : ViewportMouseEvent)
+  {
+    this.Sprite.VertexColor = this.OriginColor;
+  }
+
+  function OnLeftMouseDown(event : ViewportMouseEvent)
+  {
+    this.GameSession.GameVars.TwoPlayer = this.TwoPlayer;
+    this.Space.LoadLevel(Level.Level1);
+    this.Space.SoundSpace.PlayCue(SoundCue.Weasel_Death);
+    
+  }
+
+  function OnMouseExit(event : ViewportMouseEvent)
+  {
+    this.Sprite.VertexColor = Real4(0, 0, 0, 0);
+  }
+}

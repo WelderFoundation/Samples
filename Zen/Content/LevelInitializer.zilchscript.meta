@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "LevelInitializer"
+		var ResourceId = 0x5ad455044a2127ab
+	}
+}

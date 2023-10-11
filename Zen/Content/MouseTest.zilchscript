@@ -1,0 +1,26 @@
+class MouseTest : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Space, Events.MouseDown, this.OnMouseDown);
+  }
+
+  function OnMouseDown(event : ViewportMouseEvent)
+  {
+    // Did we hit an object?
+    if (event.HitObject != null)
+    {
+      // Create and dispatch a TriggerEvent to the given object.
+      var targetEvent = TargetEvent();
+      targetEvent.PosToSend = event.HitPosition;
+      
+      event.HitObject.DispatchEvent(Events.TargetEvent, targetEvent);
+      this.Space.DispatchEvent(Events.TargetEvent, targetEvent);
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

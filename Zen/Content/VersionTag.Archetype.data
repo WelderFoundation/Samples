@@ -1,0 +1,63 @@
+[Version:1]
+Cog 
+{
+	var Name = "VersionTag"
+	Transform 
+	{
+		var Translation = Real3{17.5, 9.5, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	SpriteText 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "582c50d330d372c3:AdditiveSprite"
+		var VertexColor = Real4{1, 1, 1, 1}
+		var GeometryMode = SpriteGeometryMode.ZPlane
+		var Text = "Version 0.0.0.0"
+		var Font = "4e532933f85a9cc8:Inconsolata"
+		var FontSize = 48
+		var PixelsPerUnit = 128
+		var TextAlign = TextAlign.Right
+	}
+	UpdateTags 
+	{
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ad44b3bdfd06bcd]
+		{
+			var Name = "BuildNumber"
+			Transform 
+			{
+				var Translation = Real3{0, -0.5, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			SpriteText 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "582c575af53d18c9:AlphaSprite"
+				var VertexColor = Real4{1, 1, 1, 1}
+				var GeometryMode = SpriteGeometryMode.ZPlane
+				var Text = "Build 0"
+				var Font = "4e532933f85a9cc8:Inconsolata"
+				var FontSize = 48
+				var PixelsPerUnit = 128
+				var TextAlign = TextAlign.Right
+			}
+		}
+	}
+}

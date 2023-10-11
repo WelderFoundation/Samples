@@ -1,0 +1,298 @@
+class AnimationDebugGraph : ZilchComponent
+{
+  [Dependency] var AnimationGraph : AnimationGraph;
+  
+  var GraphSpace : Space;
+  var GraphSpaceArchetype : Archetype = Archetype.Space;
+  
+  var GraphCamera : Cog;
+  var GraphCameraArchetype : Archetype = Archetype.GraphCamera;
+  
+  [Property]
+  var GraphCameraStartPosition : Real3 = Real3(0,0, 15);
+  
+  [Property]
+  var GraphLevel : Level = Level.TemplateLevel2D;
+  
+  var Root : Cog;
+  
+  [Property]
+  var BasicNodeArchetype : Archetype = Archetype.BasicAnimationDebugNode;
+  
+  [Property]
+  var CrossArchetype : Archetype = Archetype.CrossBlendDebugNode;
+  
+  [Property]
+  var DirectArchetype : Archetype = Archetype.DirectBlendDebugNode;
+  
+  [Property]
+  var SelectiveArchetype : Archetype = Archetype.SelectiveBlendDebugNode;
+  
+  [Property]
+  var PoseArchetype : Archetype = Archetype.PoseAnimationDebugNode;
+    
+  var NodeMap = HashMap[AnimationNode, Cog]();
+  
+  var ActiveNode : AnimationNode
+  {
+    get { return this.AnimationGraph.ActiveNode; }
+  }
+  
+  
+  [Property]
+  var FromOffset : Real3;
+  
+  [Property]
+  var ToOffset : Real3;
+  
+  var ActiveNodes = Array[AnimationNode]();
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.GraphSpace = this.GameSession.CreateNamedSpace("GraphSpace", this.GraphSpaceArchetype);
+    this.GraphSpace.LoadLevel(this.GraphLevel);
+    this.GraphCamera = this.GraphSpace.CreateAtPosition(this.GraphCameraArchetype, this.GraphCameraStartPosition);
+    
+    Zero.Connect(this.Owner, Events.AnimationNodeCreated, this.OnAnimationNodeCreated);
+    Zero.Connect(this.Owner, Events.ActiveAnimationNodeSet, this.OnActiveAnimationNodeSet);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.PruneGraph();
+    this.BuildGraphRecursive(this.ActiveNode, Real3());
+    this.AnimationGraph.PrintGraph();
+    
+    //var normTime = this.AnimationGraph.ActiveNode.GetNormalizedTime;
+    //var frameCount = this.AnimationGraph.ActiveNode
+  }
+
+  function OnActiveAnimationNodeSet(event : ActiveAnimationNodeSet)
+  {
+    //Console.WriteLine("Active animation set");
+    //this.PruneGraph();
+    //this.BuildGraph();
+  }
+
+  function OnAnimationNodeCreated(event : AnimationNodeCreated)
+  {
+    //Console.WriteLine("OnAnimationNodeCreated");
+    //this.PruneGraph();
+    this.CreateDebugNode(event.Node);
+    //this.BuildGraph();
+  }
+  
+  function CreateDebugNode(node : AnimationNode) : Cog
+  {
+    Console.WriteLine("Creating Debug Node: [AnimationNode]: `node`");
+    
+    //Console.WriteLine(node as BasicAnimation);
+    //Console.WriteLine(node as PoseNode);
+    //Console.WriteLine(node as DirectBlend);
+    //Console.WriteLine(node as CrossBlend);
+    //Console.WriteLine(node as SelectiveNode);
+    //determine the archetype to be used to create the debug node
+    var nodeArchetype = this.BasicNodeArchetype;
+    var name = "";
+    if(node as CrossBlend != null)
+    {
+      name = "Cross";
+      nodeArchetype = this.CrossArchetype;
+    }
+    else if(node as DirectBlend != null)
+    {
+      name = "Direct";
+      nodeArchetype = this.DirectArchetype;
+    }
+    else if(node as SelectiveNode != null)
+    {
+      name = "Selective";
+      nodeArchetype = this.SelectiveArchetype;
+    }
+    else if(node as PoseNode != null)
+    {
+      name = "Pose";
+      nodeArchetype = this.PoseArchetype;
+    }
+    else if(node as BasicAnimation != null)
+    {
+      var basic = node as BasicAnimation;
+      name = basic.Animation.Name;
+    }
+    
+    //create the debug node object and map it to the corresponding animation node
+    var debugNode = this.GraphSpace.Create(nodeArchetype);
+    this.NodeMap[node] = debugNode;
+    debugNode.AnimationDebugNode.Node = node;
+    debugNode.AnimationDebugNode.NameObj.Cog.SpriteText.Text = name;
+    
+    if(node as CrossBlend != null)
+    {
+      debugNode.AnimationDebugNode.From = (node as CrossBlend).From;
+      debugNode.AnimationDebugNode.To = (node as CrossBlend).To;
+    }
+    else if(node as DirectBlend != null)
+    {
+      debugNode.AnimationDebugNode.From = (node as DirectBlend).From;
+      debugNode.AnimationDebugNode.To = (node as DirectBlend).To;
+    }
+    else if(node as SelectiveNode != null)
+    {
+      debugNode.AnimationDebugNode.From = (node as SelectiveNode).From;
+      debugNode.AnimationDebugNode.To = (node as SelectiveNode).To;
+    } 
+    else// is basic
+    {
+      debugNode.AnimationDebugNode.NameObj.Cog.SpriteText.Text = name;
+    }
+    return debugNode;
+  }
+  
+  
+  function CalcNodePos(node : AnimationNode, parentDebugObj : Cog) : Real3
+  {
+    var offset = Real3();
+    var parentPos = Real3();
+    //check if activennode
+    if(parentDebugObj != null)
+    {
+      //Console.WriteLine("activenode: `node`");
+      //Console.WriteLine("from node: `parentDebugObj.AnimationDebugNode.From`");
+      //Console.WriteLine("to node: `parentDebugObj.AnimationDebugNode.To`");
+      if(node == parentDebugObj.AnimationDebugNode.From)
+        offset = this.FromOffset;
+      else if(node == parentDebugObj.AnimationDebugNode.To)
+        offset = this.ToOffset;
+    
+      parentPos = parentDebugObj.Transform.Translation;
+    }
+    
+    //Console.WriteLine("Calculated node position of `node` with parent `parentDebugObj` is `parentPos` + `offset`");
+    return parentPos + offset;
+  }
+  
+  
+  function PruneGraph()
+  {
+    //this.AnimationGraph.
+    //Console.WriteLine("PruneGraph");
+    var keysToRemove = Array[AnimationNode]();
+    foreach(var key in this.NodeMap.Keys)
+    {
+      if(this.ExistsInAnimationGraph(key))
+        continue;
+        
+        keysToRemove.Add(key);
+    }
+    
+    foreach(var key in keysToRemove)
+    {
+      var debugNode = this.NodeMap[key];
+      debugNode.Destroy();
+      this.NodeMap.RemoveOrError(key);
+    }
+  }
+  
+  //take a node and an returns true if it exists in the graph under the ActiveNode of this object's AnimationGraph
+  function ExistsInAnimationGraph(node : AnimationNode) : Boolean
+  {
+    return this.IsActiveChildNode(node, this.ActiveNode);
+  }
+  
+  function IsActiveChildNode(node : AnimationNode, root : AnimationNode) : Boolean
+  {
+    if(node == root)
+      return true;
+    
+    if(root == null)
+      return false;
+    
+    var rootDebugNode = this.NodeMap[root];
+    var from = rootDebugNode.AnimationDebugNode.From;
+    var to = rootDebugNode.AnimationDebugNode.To;
+    
+    return this.IsActiveChildNode(node, from) || this.IsActiveChildNode(node, to);
+  }
+  
+  function UpdateActiveNodes()
+  {
+    this.ActiveNodes = this.GetChildren(this.ActiveNode);
+  }
+  
+  function GetChildren(node : AnimationNode) : Array[AnimationNode]
+  {
+    if(node == null)
+      return null;
+    
+    var children = Array[AnimationNode]();
+    var debugNode = this.NodeMap[node];
+    var from = debugNode.AnimationDebugNode.From;
+    var to = debugNode.AnimationDebugNode.To;
+    
+    var fromChildren = this.GetChildren(from);
+    var toChildren = this.GetChildren(to);
+    
+    if(fromChildren != null)
+    {
+      foreach(var child in fromChildren)
+      {
+        children.Add(child);
+      }
+    }
+    
+    if(toChildren != null)
+    {
+      foreach(var child in toChildren)
+      {
+        children.Add(child);
+      }
+    }
+    
+    return children;
+  }
+  
+  function BuildGraphRecursive(node : AnimationNode, pos : Real3)
+  {
+    if(node == null)
+      return;
+    
+    var debugNode = this.NodeMap[node];
+    if(debugNode == null)
+      debugNode = this.CreateDebugNode(node);
+    
+    debugNode.Transform.Translation = pos;
+    if(node as CrossBlend != null)
+    {
+      var cross = node as CrossBlend;
+      
+      
+      this.BuildGraphRecursive(cross.From, pos + this.FromOffset);
+      this.BuildGraphRecursive(cross.To, pos + this.ToOffset);
+    }
+    else if(node as DirectBlend != null)
+    {
+      var cross = node as DirectBlend;
+      this.BuildGraphRecursive(cross.From, pos + this.FromOffset);
+      this.BuildGraphRecursive(cross.To, pos + this.ToOffset);
+    }
+    else if(node as SelectiveNode != null)
+    {
+      var cross = node as SelectiveNode;
+      this.BuildGraphRecursive(cross.From, pos + this.FromOffset);
+      this.BuildGraphRecursive(cross.To, pos + this.ToOffset);
+    }
+    else if(node as PoseNode != null)
+    {
+      var pose = node as PoseNode;
+      
+    }
+    else if(node as BasicAnimation != null)
+    {
+      var basic = node as BasicAnimation;
+      
+    }
+  }
+}
+
+enum AnimType {Basic, Direct, Cross, Selective, Pose}

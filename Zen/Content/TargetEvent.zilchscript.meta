@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TargetEvent"
+		var ResourceId = 0x5adc040091a4430b
+	}
+}

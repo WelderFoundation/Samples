@@ -1,0 +1,31 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	AlbedoValue 
+	{
+		var AlbedoValue = Real4{1, 1, 1, 0}
+		var GammaCorrect = true
+	}
+	MetallicValue 
+	{
+		var MetallicValue = 0
+	}
+	RoughnessValue 
+	{
+		var RoughnessValue = 1
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+	AlphaDiscard 
+	{
+		var Texture = "5826e695131ca33a:White"
+		var Threshold = 0
+	}
+}

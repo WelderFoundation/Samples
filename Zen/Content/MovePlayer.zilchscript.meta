@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "MovePlayer"
+		var ResourceId = 0x5ae57110e34fda43
+	}
+}

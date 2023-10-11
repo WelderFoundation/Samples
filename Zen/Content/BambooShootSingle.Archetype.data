@@ -1,0 +1,58 @@
+[Version:1]
+Cog 
+{
+	var Name = "BambooShootSingle"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ace9cbc760cf753]
+		{
+			var Name = "leaves000"
+			Transform 
+			{
+				var Translation = Real3{1.34716642, 0.529314339, 0.818744361}
+				var Scale = Real3{1.99999988, 1.99999988, 1}
+				var Rotation = Quaternion{-0.0706922263, -0.0198104549, 0.673387229, 0.735635638}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5ace9cbc76034e26:BambooShootSingle_leaves000"
+			}
+		}
+		Cog [Id:0x5ace9cbc760cf758]
+		{
+			var Name = "Cylinder000"
+			Transform 
+			{
+				var Translation = Real3{2.9580164, -1.01528394, 2.42950273}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0.0485715009, -0.0105707347, -0.333149403, 0.941562831}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5ace9cbc76034e30:BambooShootSingle_Cylinder000"
+			}
+		}
+	}
+}

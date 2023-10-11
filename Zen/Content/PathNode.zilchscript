@@ -1,0 +1,38 @@
+class PathNode : ZilchComponent
+{
+  var WorldPos : Real3; // The position in the world this node is supposed to represent.
+  var GridPos : Integer2; // The position in the gird where this node resides.
+  
+  var GCost : Integer; // The Manhattan distance from the starting node.
+  var HCost : Integer; // The Manhattan distance from the end node.
+  var Parent : Cog; // The node which was used to reach this node.
+  
+  var Enabled : Boolean = true;
+  var ValidForDismount : Boolean = false; // Can the player dismounnt a box to this position?
+  
+  function Initialize(init : CogInitializer)
+  {
+    var pos = Integer2(this.Owner.Transform.Translation.X as Integer, this.Owner.Transform.Translation.Z as Integer);
+    pos = this.LevelSettings.Grid.ConvertToWorldPoint(pos);
+    
+    this.WorldPos = Real3(pos.X, 0, pos.Y);
+    
+    if (!this.LevelSettings.Grid.Debug)
+      this.Owner.Model.Visible = false;
+    
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (this.Enabled)
+      this.Owner.Model.Material = Material.TestOpenNode;
+    else
+      this.Owner.Model.Material = Material.TestClosedNode;
+  }
+  
+  function FCost() : Integer
+  {
+    return this.GCost + this.HCost;
+  }
+}

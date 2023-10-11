@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "PickUpObject"
+		var ResourceId = 0x5ac34d344c38de46
+	}
+}

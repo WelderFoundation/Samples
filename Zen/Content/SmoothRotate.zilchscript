@@ -1,0 +1,61 @@
+////////////////////////////////////////////////////////////
+// File name: SmoothRotate.z
+// Date: 3/4/18
+// Description: When activated by a TriggerEvent, rotates
+//              the parent by an amount specified in the
+//              event.
+////////////////////////////////////////////////////////////
+class SmoothRotate : ZilchComponent
+{
+  [Property]
+  var Duration : Real = 5;
+  [Property]
+  var RotateAmount : Real3; // If the incoming TriggerEvent doesn't specify a distance to move, the script defaults to this value.
+  
+  var StartingRot : Real3;
+  var EndingRot : Real3;
+  var Timer : Real;
+  var TriggeringEnt : Cog;
+  
+  var IsActive : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    // Set the starting and ending positions.
+    if (this.Owner.Transform.EulerAngles == Real3(Math.Pi, this.Owner.Transform.EulerAngles.Y, Math.Pi))
+      this.StartingRot = Math.ToRadians(Real3(0, 180, 0));
+    else
+      this.StartingRot = this.Owner.Transform.EulerAngles;
+    this.EndingRot = this.StartingRot + Math.ToRadians(this.RotateAmount);
+    
+    // Start the move.
+    this.IsActive = true;
+    this.Timer = 0;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Are we rotating?
+    if (this.IsActive)
+    {
+      // Are we done rotating?
+      if (this.Timer > 1)
+      {
+        this.IsActive = false;
+        this.Owner.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+        return;
+      }
+      
+      // Increment the timer & update rotation.
+      this.Timer += event.Dt / this.Duration;
+      var rot = Math.Lerp(this.StartingRot, this.EndingRot, Math.SmoothStep(0.0, 1.0, this.Timer));
+      this.Owner.Transform.SetEulerAnglesXYZ(rot.X, rot.Y, rot.Z);
+    }
+  }
+}

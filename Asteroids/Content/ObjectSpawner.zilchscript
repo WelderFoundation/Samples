@@ -1,0 +1,34 @@
+class ObjectSpawner : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var Orientation : Orientation;
+  
+  [Property]
+  var ArchetypeToSpawn : Archetype;
+  
+  [Property]
+  var InitalVelocity : Real = 25.0;
+  
+  [Property]
+  var UseRandomDirection : Boolean = false;
+  
+  var Random : Random = Random();
+  
+  function Initialize(init : CogInitializer)
+  {
+  }
+  
+  function SpawnObject()
+  {
+    //create the object at an offset of this.Owner
+    var projectile = this.Space.CreateAtPosition(this.ArchetypeToSpawn, this.Transform.WorldTranslation);
+    
+    //pick random or oriented direction
+    var direction = this.Orientation.WorldForward;
+    if(this.UseRandomDirection)
+      direction = Math.Normalize(Real3(this.Random.Real2(1, 1), 0.0));
+    
+    //apply inital velocity
+    projectile.RigidBody.Velocity = direction * this.InitalVelocity;
+  }
+}

@@ -1,0 +1,17 @@
+class LevelInitializer : ZilchComponent
+{
+  function Initialize(init : CogInitializer)
+  {
+    if (!this.GameSession.ChangeLevel.ShowTags)
+      return;
+      
+    this.GameSession.ChangeLevel.MainSpace = this.Space;
+    this.GameSession.ChangeLevel.LoadHUDLevel(Level.DebugUI);
+    
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

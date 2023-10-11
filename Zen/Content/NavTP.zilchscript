@@ -1,0 +1,72 @@
+// Used to facilitate in the seamless presentation of depth. Teleports a colliding player by a specified offset, determined by the camera's orientation and 
+// world position.
+class NavTP : ZilchComponent
+{
+  [Property]
+  var Offset2 : Real3; // The offset to apply to the player. Leaving it as 0 will default to the LevelSettings' WorldOffset value.
+  [Property]
+  var Offset : Real;
+  [Property]
+  var NegativeShift : Boolean;
+  [Property]
+  var Debug : Boolean = false;
+  [Property]
+  var Active : Boolean = true;
+  [Property]
+  var AffectsGridPos : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    if (!this.Debug)
+      this.Owner.Model.Visible = false;
+    
+    if (this.Offset2.X == 0 && this.Offset2.Y == 0 && this.Offset2.Z == 0)
+      this.Offset2 = Real3(this.LevelSettings.Grid.WorldOffset, this.LevelSettings.Grid.WorldOffset, this.LevelSettings.Grid.WorldOffset);
+    
+    Zero.Connect(this.Owner, Events.CollisionEnded, this.OnCollisionEnded);
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    this.Active = !this.Active;
+    event.Sender.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+  }
+
+  function OnCollisionEnded(event : CollisionEvent)
+  {
+    if (!this.Active)
+      return;
+    
+    if (Math.Round(event.OtherObject.Transform.WorldTranslation - this.Owner.Transform.WorldTranslation) != Math.Round(this.Owner.Orientation.WorldRight))
+      return;
+    
+    if (event.OtherObject.SnapToFloor != null)
+      event.OtherObject.SnapToFloor.DisableForFrame();
+      
+    event.OtherObject.Transform.WorldTranslation = Real3(event.OtherObject.Transform.WorldTranslation.X, Math.Round(2 * event.OtherObject.Transform.WorldTranslation.Y) / 2, event.OtherObject.Transform.WorldTranslation.Z);
+    
+    if (this.NegativeShift)
+    {
+      event.OtherObject.Transform.Translation = event.OtherObject.Transform.Translation - this.Offset2;
+     // if (this.AffectsGridPos)
+    //  {
+      //  if (event.OtherObject.MovePlayer != null)
+       // {
+          //event.OtherObject.MovePlayer.GridPos -= Integer2(this.Offset2.X as Integer, this.Offset2.Z as Integer);
+       // }
+      //}
+    }
+    else
+    {
+      event.OtherObject.Transform.Translation = event.OtherObject.Transform.Translation + this.Offset2;
+      //if (this.AffectsGridPos)
+        //if (event.OtherObject.MovePlayer != null)
+          //event.OtherObject.MovePlayer.GridPos += Integer2(this.Offset2.X as Integer, this.Offset2.Z as Integer);
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

@@ -1,0 +1,55 @@
+[Version:1]
+Cog 
+{
+	var Name = "Water"
+	Transform 
+	{
+		var Translation = Real3{-6.5, 8.75, 1.00000036}
+		var Scale = Real3{1, 0.5, 4}
+		var Rotation = Quaternion{0, -0.707106769, 0, 0.707106888}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 1
+		var Material = "5ae7da7eb107c906:TestWater"
+		var Mesh = "4de0354322b345ae:Cube"
+	}
+	BoxCollider 
+	{
+		var Ghost = true
+		var SendsEvents = true
+		var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+		var CollisionGroup = "4e740859314e5515:DefaultGroup"
+		var Offset = Real3{0, 0, 0}
+		var HalfSize = Real3{0.5, 0.5, 0.5}
+	}
+	Region 
+	{
+		var WakeUpOnEffectChange = false
+	}
+	BuoyancyEffect 
+	{
+		var Active = true
+		var WakeUpOnChange = true
+		var DebugDrawEffect = true
+		var Density = 3
+		var Gravity = Real3{0, -9.81000042, 0}
+		var Detail = 5
+		var DebugDrawRuntime = false
+	}
+	ForceEffect 
+	{
+		var Active = true
+		var WakeUpOnChange = true
+		var DebugDrawEffect = true
+		var LocalSpaceDirection = true
+		var Strength = 2
+		var Direction = Real3{0, 0, 1}
+	}
+}

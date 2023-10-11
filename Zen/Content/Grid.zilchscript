@@ -1,0 +1,162 @@
+class Grid : ZilchComponent
+{
+  [Property]
+  var WorldSize : Integer2; // World size, centered on (0, 0).
+  [Property]
+  var Debug : Boolean = false;
+  [Property]
+  var AllowDiagonals : Boolean = false; // Should pathfinding be allowed to consider diagonal movement?
+  [Property]
+  var WorldOffset : Integer; // How much camera shift should occur between nodes in this level and the position they represent?
+  
+  var Grid : Array[Array[Cog]] = Array[Array[Cog]]();
+  var DisabledNodes : Array[Array[Cog]] = Array[Array[Cog]]();
+  var NodeCount : Integer = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // Initialize the grid.
+    this.Grid.Resize(this.WorldSize.X);
+    this.DisabledNodes.Resize(this.WorldSize.X);
+    for (var x = 0; x < this.WorldSize.X; x += 1)
+    {
+      this.Grid[x] = Array[Cog]();
+      this.Grid[x].Resize(this.WorldSize.Y);
+      
+      this.DisabledNodes[x] = Array[Cog]();
+      this.DisabledNodes[x].Resize(this.WorldSize.Y);
+    }
+  }
+  
+  // Marks a given point on the grid as valid for pathfinding.
+  function SetPoint(x : Integer, z : Integer) : Cog
+  {
+    // Avoid creating duplicate nodes.
+    if (this.Grid[x][z] != null)
+    {
+      return this.Grid[x][z];
+    }
+    else if (this.DisabledNodes[x][z] != null)
+    {
+      // Enable the node and return it.
+      this.EnableNode(Integer2(x, z));
+      
+      return this.Grid[x][z];
+    }
+    
+    var node = this.Space.CreateAtPosition(Archetype.Node, Real3(x, 8, z));
+    node.PathNode.GridPos = Integer2(x, z);
+    
+    this.Grid[x][z] = node;
+    
+    if (this.Debug)
+    {
+      Console.WriteLine("Added node `this.NodeCount + 1` at position [`x`][`z`]");
+    }
+    
+    this.NodeCount += 1;
+    
+    return node;
+  }
+  
+  // Marks a given point on the grid as valid for pathfinding, then disabled the node.
+  function SetDisabledPoint(x : Integer, z : Integer) : Cog
+  {
+    var node = this.SetPoint(x, z);
+    
+    this.DisableNode(Integer2(x, z));
+    
+    return node;
+  }
+  
+  // Helper function to fetch an array of all nodes adjacent to the given node.
+  function GetNeighbors(node : Cog) : Array[Cog]
+  {
+    var neighbors = Array[Cog]();
+    
+    for (var x = -1; x <= 1; x += 1)
+    {
+      for (var y = -1; y <= 1; y += 1)
+      {
+        // If diagonals are not valid for pathfinding, skip them. Otherwise, only skip the node whose neighbors we are finding.
+        if (!this.AllowDiagonals)
+          if (Math.Abs(x) == Math.Abs(y))
+            continue;
+        else
+          if (x == 0 && y == 0)
+            continue;
+        
+        // Find the coordinates we are going to check.
+        var check = Integer2(node.PathNode.GridPos.X + x, node.PathNode.GridPos.Y + y);
+        
+        // If this position is not out of bounds, and if there is something in this position in the grid, add it to the list of return values.
+        if (check.X >= 0 && check.X < this.WorldSize.X && check.Y >= 0 && check.Y < this.WorldSize.Y && this.Grid[check.X][check.Y] != null)
+        {
+          neighbors.Add(this.Grid[check.X][check.Y]);
+        }
+      }
+    }
+    
+    return neighbors;
+  }
+  
+  // Helper function to convert a world point into a position on the grid.
+  function ConvertToGridPoint(worldPos : Integer2) : Integer2
+  {
+    if (this.Debug)
+      Console.Write("Converted world position (`worldPos.X`, `worldPos.Y`) to grid position ");
+    
+    worldPos += this.WorldSize / 2;
+    
+    if (this.Debug)
+      Console.WriteLine("[`worldPos.X`][`worldPos.Y`]");
+    
+    return worldPos;
+  }
+  
+  // Helper function to convert a grid point into a position in the world.
+  function ConvertToWorldPoint(gridPos : Integer2) : Integer2
+  {
+    if (this.Debug)
+      Console.Write("Converted grid position [`gridPos.X`, `gridPos.Y`] to world position ");
+    
+    gridPos -= this.WorldSize / 2;
+    
+    if (this.Debug)
+      Console.WriteLine("(`gridPos.X`, `gridPos.Y`)");
+    
+    return gridPos;
+  }
+  
+  function EnableNode(gridPos : Integer2)
+  {
+    var node = this.DisabledNodes[gridPos.X][gridPos.Y];
+    
+    if (node == null)
+      return;
+    
+    if (this.Debug)
+      Console.WriteLine("Enabled node [`gridPos.X`][`gridPos.Y`].");
+    
+    // Enable the node.
+    node.PathNode.Enabled = true;
+    this.Grid[gridPos.X][gridPos.Y] = this.DisabledNodes[gridPos.X][gridPos.Y];
+    this.DisabledNodes[gridPos.X][gridPos.Y] = null;
+  }
+  
+  function DisableNode(gridPos : Integer2)
+  {
+    var node = this.Grid[gridPos.X][gridPos.Y];
+    
+    if (node == null)
+      return;
+    
+    if (this.Debug)
+      Console.WriteLine("Disabled node [`gridPos.X`][`gridPos.Y`].");
+    
+    // Disable the node.
+    node.PathNode.Enabled = false;
+    this.DisabledNodes[gridPos.X][gridPos.Y] = this.Grid[gridPos.X][gridPos.Y];
+    this.Grid[gridPos.X][gridPos.Y] = null;
+  }
+}

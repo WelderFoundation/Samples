@@ -1,0 +1,27 @@
+class CreateOnInterval : ZilchComponent
+{
+  [Dependency] var ObjectSpawner : ObjectSpawner;
+  
+  [Property]
+  var SpawnRate : Real;
+  
+  var SpawnSequence : ActionSet;
+  
+  [Property]
+  var StartOnInit : Boolean = true;
+  
+  function Initialize(init : CogInitializer)
+  {
+    if(this.StartOnInit)
+      this.StartSpawnSequence();
+  }
+  
+  function StartSpawnSequence()
+  {
+    //create an action loop of delay, spawn, then restart loop
+    this.SpawnSequence = Actions.Sequence(this.Owner.Actions);
+    Actions.Delay(this.SpawnSequence, this.SpawnRate);
+    Actions.Call(this.SpawnSequence, this.ObjectSpawner.SpawnObject);
+    Actions.Call(this.SpawnSequence, this.StartSpawnSequence);
+  }
+}

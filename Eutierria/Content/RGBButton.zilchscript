@@ -1,0 +1,102 @@
+//RGBButton
+//AJ Bussman
+//12.14.17
+//This will react to the mouse to provide the user with feedback with RGB
+
+class RGBButton : ZilchComponent
+{
+  [Dependency]
+  var Reactive : Reactive = null;
+  [Dependency]
+  var Sprite : Sprite = null;
+  [Dependency]
+  var Transform : Transform = null;
+  //Color values for different situations
+  var OGColor : Real4 = Real4();
+  [Property]
+  var ClickColor : Real4 = Real4(1,0,0,1);
+  //scale values
+  var OGScale : Real3 = Real3();
+  [Property]
+  var HoverScale : Real = 1.2;
+  [Property]
+  var ClickScale : Real = 0.9;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.OGColor = this.Sprite.VertexColor;
+    this.OGScale = this.Transform.Scale;
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
+    Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
+    Zero.Connect(this.Owner, Events.LeftMouseDown, this.OnMouseDown);
+  }
+
+  function OnMouseDown(event : ViewportMouseEvent)
+  {
+    this.Owner.Actions.Cancel();
+    var seq = Action.Sequence(this.Owner.Actions);
+    var grp = Action.Group(seq);
+    Action.Property(grp, @this.Sprite.VertexColor, this.ClickColor, 0.3, Ease.QuadInOut);
+    Action.Property(grp, @this.Transform.Scale, this.OGScale * this.ClickScale, 0.3, Ease.QuadInOut);
+  }
+
+  function OnMouseExit(event : ViewportMouseEvent)
+  {
+    this.Owner.Actions.Cancel();
+    var seq = Action.Sequence(this.Owner.Actions);
+    var grp = Action.Group(seq);
+    Action.Property(grp, @this.Sprite.VertexColor, this.OGColor, 0.3, Ease.QuadInOut);
+    Action.Property(grp, @this.Transform.Scale, this.OGScale, 0.3, Ease.QuadInOut);
+  }
+
+  function OnMouseEnter(event : ViewportMouseEvent)
+  {
+    this.Owner.Actions.Cancel();
+    var seq = Action.Sequence(this.Owner.Actions);
+    var grp = Action.Group(seq);
+    Action.Property(grp, @this.Transform.Scale, this.OGScale * this.HoverScale, 0.3, Ease.QuadInOut);
+    Action.Call(grp, this.TurnRed);
+  }
+  
+  function TurnRed()
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Property(seq, @this.Sprite.VertexColor, Real4(1,0,0,1), 0.5, Ease.Linear);
+    Action.Call(seq, this.TurnYellow);
+  }
+  function TurnYellow()
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Property(seq, @this.Sprite.VertexColor, Real4(1,1,0,1), 0.5, Ease.Linear);
+    Action.Call(seq, this.TurnGreen);
+  }
+  function TurnGreen()
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Property(seq, @this.Sprite.VertexColor, Real4(0,1,0,1), 0.5, Ease.Linear);
+    Action.Call(seq, this.TurnCyan);
+  }
+  function TurnCyan()
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Property(seq, @this.Sprite.VertexColor, Real4(0,1,1,1), 0.5, Ease.Linear);
+    Action.Call(seq, this.TurnBlue);
+  }
+  function TurnBlue()
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Property(seq, @this.Sprite.VertexColor, Real4(0,0,1,1), 0.5, Ease.Linear);
+    Action.Call(seq, this.TurnMagenta);
+  }
+  function TurnMagenta()
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    Action.Property(seq, @this.Sprite.VertexColor, Real4(1,0,1,1), 0.5, Ease.Linear);
+    Action.Call(seq, this.TurnRed);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

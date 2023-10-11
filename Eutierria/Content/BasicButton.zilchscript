@@ -1,0 +1,64 @@
+//BasicButton
+//AJ Bussman
+//12.14.17
+//This will react to the mouse to provide the user with feedback
+
+class BasicButton : ZilchComponent
+{
+  [Dependency]
+  var Reactive : Reactive = null;
+  [Dependency]
+  var Sprite : Sprite = null;
+  [Dependency]
+  var Transform : Transform = null;
+  //Color values for different situations
+  var OGColor : Real4 = Real4();
+  [Property]
+  var HoverColor : Real4 = Real4(0,0.5,0,1);
+  [Property]
+  var ClickColor : Real4 = Real4(1,0,0,1);
+  //scale values
+  var OGScale : Real3 = Real3();
+  [Property]
+  var HoverScale : Real = 1.2;
+  [Property]
+  var ClickScale : Real = 0.9;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.OGColor = this.Sprite.VertexColor;
+    this.OGScale = this.Transform.Scale;
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.MouseEnter, this.OnMouseEnter);
+    Zero.Connect(this.Owner, Events.MouseExit, this.OnMouseExit);
+    Zero.Connect(this.Owner, Events.LeftMouseDown, this.OnMouseDown);
+  }
+
+  function OnMouseDown(event : ViewportMouseEvent)
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    var grp = Action.Group(seq);
+    Action.Property(grp, @this.Sprite.VertexColor, this.ClickColor, 0.3, Ease.QuadInOut);
+    Action.Property(grp, @this.Transform.Scale, this.OGScale * this.ClickScale, 0.3, Ease.QuadInOut);
+  }
+
+  function OnMouseExit(event : ViewportMouseEvent)
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    var grp = Action.Group(seq);
+    Action.Property(grp, @this.Sprite.VertexColor, this.OGColor, 0.3, Ease.QuadInOut);
+    Action.Property(grp, @this.Transform.Scale, this.OGScale, 0.3, Ease.QuadInOut);
+  }
+
+  function OnMouseEnter(event : ViewportMouseEvent)
+  {
+    var seq = Action.Sequence(this.Owner.Actions);
+    var grp = Action.Group(seq);
+    Action.Property(grp, @this.Sprite.VertexColor, this.HoverColor, 0.3, Ease.QuadInOut);
+    Action.Property(grp, @this.Transform.Scale, this.OGScale * this.HoverScale, 0.3, Ease.QuadInOut);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

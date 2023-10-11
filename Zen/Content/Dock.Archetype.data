@@ -1,0 +1,246 @@
+[Version:1]
+Cog 
+{
+	var Name = "dock"
+	Transform 
+	{
+		var Translation = Real3{30, -7, 20}
+		var Scale = Real3{2, 2, 0.125}
+		var Rotation = Quaternion{-0.50000006, 0.5, 0.49999994, 0.5}
+	}
+	Model 
+	{
+		var Visible = true
+		var ViewCulling = true
+		var VisibilityEvents = true
+		var OverrideBoundingBox = false
+		var LocalAabbCenter = Real3{0, 0, 0}
+		var LocalAabbHalfExtents = Real3{1, 1, 1}
+		var GroupSortValue = 0
+		var Material = "5ac8b27678260173:WoodPlanks"
+		var Mesh = "4de0354322b345ae:Cube"
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ac8b38397acc70d]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{-0.5625, -0.25, -7}
+				var Scale = Real3{0.125000015, 24, 0.125000015}
+				var Rotation = Quaternion{0.707106829, -2.92032723e-07, 4.60620129e-07, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b50c0ebcc3fd:Wood"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5ac8b38397acc750]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{0.5625, -0.25, -7}
+				var Scale = Real3{0.125000015, 24, 0.125000015}
+				var Rotation = Quaternion{0.707106829, -2.92032723e-07, 4.60620129e-07, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b50c0ebcc3fd:Wood"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5ac8b38397acc777]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{-0.5625, 0.625, -7}
+				var Scale = Real3{0.125000015, 24, 0.125000015}
+				var Rotation = Quaternion{0.707106829, -2.92032723e-07, 4.60620129e-07, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b50c0ebcc3fd:Wood"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5ac8b38397acc79c]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{0.5625, 0.625, -7}
+				var Scale = Real3{0.125000015, 24, 0.125000015}
+				var Rotation = Quaternion{0.707106829, -2.92032723e-07, 4.60620129e-07, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b50c0ebcc3fd:Wood"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5ac8b38397acc7dc]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{-0.5625, 1.5, -7}
+				var Scale = Real3{0.125000015, 24, 0.125000015}
+				var Rotation = Quaternion{0.707106829, -2.92032723e-07, 4.60620129e-07, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b50c0ebcc3fd:Wood"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5ac8b38397acc800]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{0.5625, 1.5, -7}
+				var Scale = Real3{0.125000015, 24, 0.125000015}
+				var Rotation = Quaternion{0.707106829, -2.92032723e-07, 4.60620129e-07, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b50c0ebcc3fd:Wood"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5ac8b38397acc822]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{-0.5625, 2.375, -7}
+				var Scale = Real3{0.125000015, 24, 0.125000015}
+				var Rotation = Quaternion{0.707106829, -2.92032723e-07, 4.60620129e-07, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b50c0ebcc3fd:Wood"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5ac8b38397acc845]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{0.5625, 2.375, -7}
+				var Scale = Real3{0.125000015, 24, 0.125000015}
+				var Rotation = Quaternion{0.707106829, -2.92032723e-07, 4.60620129e-07, 0.707106829}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b50c0ebcc3fd:Wood"
+				var Mesh = "4de0354322b3572e:Cylinder"
+			}
+		}
+		Cog [Id:0x5ac8b3a8911ce72a]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{0, 2, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b27678260173:WoodPlanks"
+				var Mesh = "4de0354322b345ae:Cube"
+			}
+		}
+		Cog [Id:0x5ac8b3a8911ce771]
+		{
+			var Name = "stairs2"
+			Transform 
+			{
+				var Translation = Real3{0, 1, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "5ac8b27678260173:WoodPlanks"
+				var Mesh = "4de0354322b345ae:Cube"
+			}
+		}
+	}
+}

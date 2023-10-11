@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "HideToolTextures"
+		var ResourceId = 0x5adbfdc9679b9c38
+	}
+}

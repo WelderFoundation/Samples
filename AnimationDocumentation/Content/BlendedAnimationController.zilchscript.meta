@@ -1,0 +1,15 @@
+[Version:1]
+TextContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+		}
+	}
+	ZilchScriptBuilder 
+	{
+		var Name = "BlendedAnimationController"
+		var ResourceId = 0x59ad8a03ca0f3a7d
+	}
+}

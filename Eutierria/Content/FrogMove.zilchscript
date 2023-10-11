@@ -1,0 +1,30 @@
+class FrogMove : ZilchComponent
+{
+  var Timer : Real = 0;
+  
+  var MoveUp : Boolean = true;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Timer += event.Dt;
+    if (this.Timer > 1 && this.MoveUp)
+    {
+      this.Owner.Sprite.SpriteSource = SpriteSource.FrogUp;
+      this.Owner.Transform.Translation += Real3(0, 1, 0);
+      this.Timer = 0;
+      this.MoveUp = false;
+    }
+    else if (this.Timer > 1)
+    {
+      this.Owner.Sprite.SpriteSource = SpriteSource.FrogDown;
+      this.Owner.Transform.Translation += Real3(0, -1, 0);
+      this.Timer = 0;
+      this.MoveUp = true;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+class PlayerMovement : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var Orientation : Orientation;
+  [Dependency] var RigidBody : RigidBody;
+  
+  [Property]
+  var Speed : Real = 5.0;
+  
+  [Property]
+  var RotationSpeed : Real = 45.0;
+  
+  [Property]
+  var ForwardKey : Keys;
+  
+  [Property]
+  var BackwardKey : Keys;
+  
+  [Property]
+  var LeftKey : Keys;
+  
+  [Property]
+  var RightKey : Keys;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    var force = Real3();
+    //check if forward key is down
+    if(Zero.Keyboard.KeyIsDown(this.ForwardKey))
+      force = this.Orientation.WorldForward * this.Speed;
+    
+    //check if backward key is down
+    if(Zero.Keyboard.KeyIsDown(this.BackwardKey))
+      force = -this.Orientation.WorldForward * this.Speed;
+    
+    this.RigidBody.ApplyForce(force);
+    
+    var direction = Real3();
+    //check if left key is down
+    if(Zero.Keyboard.KeyIsDown(this.LeftKey))
+      direction = this.Orientation.WorldUp;
+    
+    //check if left key is down
+    if(Zero.Keyboard.KeyIsDown(this.RightKey))
+      direction = -this.Orientation.WorldUp;
+    
+    //rotate left
+    var rotationSpeedRadians = Math.ToRadians(this.RotationSpeed);
+    var rotation = Math.ToQuaternion(direction * rotationSpeedRadians * event.Dt);
+    this.Transform.RotateWorld(rotation);
+  }
+}

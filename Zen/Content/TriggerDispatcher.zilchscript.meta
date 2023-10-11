@@ -1,0 +1,16 @@
+[Version:1]
+TextContent 
+{
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"ZilchScript"
+		}
+	}
+	ZilchScriptBuilder 
+	{
+		var Name = "TriggerDispatcher"
+		var ResourceId = 0x5ae7f3bbc6be7d90
+	}
+}

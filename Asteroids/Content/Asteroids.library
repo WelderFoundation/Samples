@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "Asteroids"
+	var LibraryId = 0x5a77572fa7a4f61a
+	var SourceControlType = ""
+	var ReadOnly = false
+}

@@ -1,0 +1,45 @@
+class TargetMarker : ZilchComponent
+{
+  [Property]
+  var Lifetime : Real = 2;
+  [Property]
+  var UseLifetime : Boolean = true;
+  
+  var GridPos : Integer2;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.GridPos = this.LevelSettings.Grid.ConvertToGridPoint(Integer2(Math.Round(this.Owner.Transform.WorldTranslation.X) as Integer, Math.Round(this.Owner.Transform.WorldTranslation.Z) as Integer));
+    
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if (event.OtherObject.Name == "Player")
+      this.Owner.Destroy();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Validate grid position.
+    if (this.LevelSettings.Grid.Grid[this.GridPos.X][this.GridPos.Y] != null && this.LevelSettings.Grid.Grid[this.GridPos.X][this.GridPos.Y].PathNode.Enabled)
+    {
+      var pos = this.LevelSettings.Grid.ConvertToWorldPoint(this.GridPos);
+      this.Owner.Transform.WorldTranslation = Real3(pos.X, this.Owner.Transform.WorldTranslation.Y, pos.Y);
+    }
+    else
+    {
+      this.Owner.Destroy();
+    }
+    
+    if (this.UseLifetime)
+    {
+      if (this.Lifetime > 0)
+        this.Lifetime -= event.Dt;
+      else
+        this.Owner.Destroy();
+    }
+  }
+}

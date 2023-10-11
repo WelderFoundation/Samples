@@ -1,0 +1,12 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "tesa"
+		var ResourceId = 0x5ab57f17219dcb3a
+		var LoaderType = "Material"
+		var Version = 0
+		var ShowInEditor = true
+	}
+}

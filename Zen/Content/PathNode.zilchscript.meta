@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "PathNode"
+		var ResourceId = 0x5ae573814ae80a5e
+	}
+}

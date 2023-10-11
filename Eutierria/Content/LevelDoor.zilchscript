@@ -1,0 +1,16 @@
+//LevelDoor
+//AJ Bussman
+//12.13.17
+//This script will store a level to change to when the player activates it
+
+class LevelDoor : ZilchComponent
+{
+  //Level to change to
+  [Property]
+  var NextLevel : Level = Level.Level11;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Space.FindObjectByName("Player").PlayerCollision.NextLevel = this.NextLevel;
+  }
+}

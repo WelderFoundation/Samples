@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "ComponentManager"
+		var ResourceId = 0x5aca2c09c1419d6e
+	}
+}

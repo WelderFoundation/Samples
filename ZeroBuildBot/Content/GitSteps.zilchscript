@@ -1,0 +1,33 @@
+class GitClone : BaseStep
+{
+  [Property] var Url : String = "ssh://vcs-user@www.zeroengine.io:2222/diffusion/ZCORE/ZeroCore.git";
+  [Property] var WorkingDir : String = "SubFolder";
+  
+  var Process : ProcessClass = ProcessClass();
+  
+  [Override]
+  function Start()
+  {
+    var processStartInfo = ProcessStartInfo();
+    processStartInfo.ApplicationName = "git.";
+    processStartInfo.WorkingDirectory = FilePath.CombineDirectories(Zero.Editor.ProjectCog.ProjectSettings.ProjectFolder, this.WorkingDir);
+    processStartInfo.Arguments = "clone `this.Url`";
+    processStartInfo.RedirectStandardOutput = true;
+    processStartInfo.RedirectStandardError = true;
+    
+    this.Process.Start(processStartInfo);
+  }
+  
+  [Override]
+  function Run() : StepState
+  {
+    if(this.Process.IsRunning())
+      return StepState.Running;
+    return StepState.Finished;
+  }
+  
+  [Override]
+  function Finish()
+  {
+  }
+}

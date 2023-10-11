@@ -1,0 +1,41 @@
+/**
+WaterBottleChangeSprite
+Jessica
+2018.1.10
+This is ment to allow the water bottle to change sprites according to the amount of lives left.
+**/
+
+class WaterBottleChangeSprite : ZilchComponent
+{
+  [Dependency]
+  var Sprite : Sprite = null;
+  
+  [Property]
+  var Sprite01 : SpriteSource = null;
+  [Property]
+  var Sprite02 : SpriteSource = null;
+  [Property]
+  var Sprite03 : SpriteSource = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Sprite.SpriteSource = this.Sprite01;
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+  
+  function UpdateSprite(lives : Integer)
+  {
+    if(lives == 2)
+    {
+      this.Sprite.SpriteSource = this.Sprite02;
+    }
+    else 
+    {
+      this.Sprite.SpriteSource = this.Sprite03;
+    }
+  }
+}

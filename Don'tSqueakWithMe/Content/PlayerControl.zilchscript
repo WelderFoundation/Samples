@@ -1,0 +1,41 @@
+class PlayerControl : ZilchComponent
+{
+  [Dependency]
+  var Rigidbody : RigidBody = null;
+  
+  [Property]
+  var PlayerSpeed:Real=0.3;
+  
+  [Property]
+  var LeftKey:Keys=Keys.A;
+  
+  [Property]
+  var RightKey:Keys=Keys.D;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    this.Space.SoundSpace.PlayCue(SoundCue.Hamster_Motorcycle);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Owner.PlayerVars.Lives<=0)
+    {
+      this.Space.LoadLevel(Level.GameOver);
+    }
+    
+    if(Zero.Keyboard.KeyIsDown(this.LeftKey))
+    {
+      this.Owner.Sprite.FlipX = false;
+      this.Owner.RigidBody.Velocity += Real3(-1*this.PlayerSpeed,0,0);
+      
+    }
+    
+    if(Zero.Keyboard.KeyIsDown(this.RightKey))
+    {
+      this.Owner.Sprite.FlipX = true;
+      this.Owner.RigidBody.Velocity += Real3(this.PlayerSpeed,0,0);
+    }
+  }
+}

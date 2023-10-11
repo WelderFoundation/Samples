@@ -1,0 +1,635 @@
+[Version:1]
+GeometryContent 
+{
+	GeometryImport 
+	{
+		var CollapsePivots = false
+		var OriginOffset = Real3{0, 0, 0}
+		var ScaleFactor = 1
+		var ChangeBasis = false
+		var XBasisTo = BasisType.PositiveX
+		var YBasisTo = BasisType.PositiveY
+		var ZBasisTo = BasisType.PositiveZ
+	}
+	MeshBuilder 
+	{
+		var GenerateSmoothNormals = false
+		var SmoothingAngleDegreesThreshold = 30
+		var GenerateTangentSpace = true
+		var InvertUvYAxis = true
+		var FlipWindingOrder = false
+		var FlipNormals = false
+		var Meshes = Array
+		{
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01spine1"
+				var ResourceId = 0x5b1bf24fb6093163
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01spine2"
+				var ResourceId = 0x5b1bf24fb6093170
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01FinalRobotCharacter3pPlane1"
+				var ResourceId = 0x5b1bf24fb6093174
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hipJoint"
+				var ResourceId = 0x5b1bf24fb6093179
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_upperleg_outer_part"
+				var ResourceId = 0x5b1bf24fb609317e
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_upperleg_inner_part"
+				var ResourceId = 0x5b1bf24fb6093182
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_sidehingeOuter"
+				var ResourceId = 0x5b1bf24fb6093186
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_sidehingeInner"
+				var ResourceId = 0x5b1bf24fb6093191
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_kneepad"
+				var ResourceId = 0x5b1bf24fb6093194
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_kneeJoint"
+				var ResourceId = 0x5b1bf24fb6093198
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_lowerleg"
+				var ResourceId = 0x5b1bf24fb609319d
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_footHinge"
+				var ResourceId = 0x5b1bf24fb60931a1
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_feetJoint"
+				var ResourceId = 0x5b1bf24fb60931a4
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_shoePart1"
+				var ResourceId = 0x5b1bf24fb60931a7
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_shoePart2"
+				var ResourceId = 0x5b1bf24fb60931ad
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hipJoint"
+				var ResourceId = 0x5b1bf24fb60931b1
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_upperleg_inner_part"
+				var ResourceId = 0x5b1bf24fb60931b5
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_upperleg_outer_part"
+				var ResourceId = 0x5b1bf24fb60931b8
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_sidehingeOuter"
+				var ResourceId = 0x5b1bf24fb60931bb
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_sidehingeInner"
+				var ResourceId = 0x5b1bf24fb60931bf
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_kneepad"
+				var ResourceId = 0x5b1bf24fb60931c6
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_kneeJoint"
+				var ResourceId = 0x5b1bf24fb60931c9
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_lowerleg"
+				var ResourceId = 0x5b1bf24fb60931cc
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_footHinge"
+				var ResourceId = 0x5b1bf24fb60931d0
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_feetJoint"
+				var ResourceId = 0x5b1bf24fb60931d3
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_shoePartMid"
+				var ResourceId = 0x5b1bf24fb60931d7
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_shoePartFront"
+				var ResourceId = 0x5b1bf24fb60931da
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_tipThumb"
+				var ResourceId = 0x5b1bf24fb60931dd
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeTipThumb"
+				var ResourceId = 0x5b1bf24fb60931e1
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_midThumb"
+				var ResourceId = 0x5b1bf24fb60931e9
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeMidThumb"
+				var ResourceId = 0x5b1bf24fb60931ed
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_baseThumb"
+				var ResourceId = 0x5b1bf24fb60931f0
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeBaseThumb"
+				var ResourceId = 0x5b1bf24fb60931f4
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_tipIndex"
+				var ResourceId = 0x5b1bf24fb60931f7
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeTipIndex"
+				var ResourceId = 0x5b1bf24fb60931fa
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_midIndex"
+				var ResourceId = 0x5b1bf24fb60931fe
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeMidIndex"
+				var ResourceId = 0x5b1bf24fb6093201
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_baseIndex"
+				var ResourceId = 0x5b1bf24fb6093204
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeBaseIndex"
+				var ResourceId = 0x5b1bf24fb6093207
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeMidMiddle"
+				var ResourceId = 0x5b1bf24fb609320b
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_baseMiddle"
+				var ResourceId = 0x5b1bf24fb609320e
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeBaseMiddle"
+				var ResourceId = 0x5b1bf24fb6093211
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_tipMiddle"
+				var ResourceId = 0x5b1bf24fb6093215
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeTipMiddle"
+				var ResourceId = 0x5b1bf24fb609321f
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_midMiddle"
+				var ResourceId = 0x5b1bf24fb6093222
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_tipRing"
+				var ResourceId = 0x5b1bf24fb6093225
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeTipRing"
+				var ResourceId = 0x5b1bf24fb6093229
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_midRing"
+				var ResourceId = 0x5b1bf24fb609322c
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_tipPinky"
+				var ResourceId = 0x5b1bf24fb6093230
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeTipPinky"
+				var ResourceId = 0x5b1bf24fb6093233
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_midPinky"
+				var ResourceId = 0x5b1bf24fb6093237
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeMidPinky"
+				var ResourceId = 0x5b1bf24fb609323a
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeMidRing"
+				var ResourceId = 0x5b1bf24fb609323d
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_baseRing"
+				var ResourceId = 0x5b1bf24fb6093240
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeBaseRing"
+				var ResourceId = 0x5b1bf24fb6093244
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_basePinky"
+				var ResourceId = 0x5b1bf24fb6093247
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeBasePinky"
+				var ResourceId = 0x5b1bf24fb609324a
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_upperArm1"
+				var ResourceId = 0x5b1bf24fb609324d
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_sholderpartInner"
+				var ResourceId = 0x5b1bf24fb6093251
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hand"
+				var ResourceId = 0x5b1bf24fb6093254
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_objectPalm"
+				var ResourceId = 0x5b1bf24fb6093257
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_shoulderpartOuter"
+				var ResourceId = 0x5b1bf24fb609325a
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeWrist"
+				var ResourceId = 0x5b1bf24fb609325e
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_lowerArm"
+				var ResourceId = 0x5b1bf24fb6093261
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeElbow"
+				var ResourceId = 0x5b1bf24fb609326e
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hingeShoulder"
+				var ResourceId = 0x5b1bf24fb6093271
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeBasePinky"
+				var ResourceId = 0x5b1bf24fb6093275
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_basePinky"
+				var ResourceId = 0x5b1bf24fb6093278
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeBaseRing"
+				var ResourceId = 0x5b1bf24fb609327c
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_baseRing"
+				var ResourceId = 0x5b1bf24fb609327f
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeMidRing"
+				var ResourceId = 0x5b1bf24fb6093283
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeMidPinky"
+				var ResourceId = 0x5b1bf24fb6093286
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_midRing"
+				var ResourceId = 0x5b1bf24fb6093289
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeTipRing"
+				var ResourceId = 0x5b1bf24fb609328d
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_tipRing"
+				var ResourceId = 0x5b1bf24fb6093290
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_midPinky"
+				var ResourceId = 0x5b1bf24fb6093294
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeTipPinky"
+				var ResourceId = 0x5b1bf24fb6093297
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_tipPinky"
+				var ResourceId = 0x5b1bf24fb609329b
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeBaseMiddle"
+				var ResourceId = 0x5b1bf24fb609329e
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_baseMiddle"
+				var ResourceId = 0x5b1bf24fb60932a2
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeMidMiddle"
+				var ResourceId = 0x5b1bf24fb60932a5
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_midMiddle"
+				var ResourceId = 0x5b1bf24fb60932a8
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeTipMiddle"
+				var ResourceId = 0x5b1bf24fb60932ac
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_tipMiddle"
+				var ResourceId = 0x5b1bf24fb60932af
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeBaseIndex"
+				var ResourceId = 0x5b1bf24fb60932b2
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_baseIndex"
+				var ResourceId = 0x5b1bf24fb60932b5
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeMidIndex"
+				var ResourceId = 0x5b1bf24fb60932b8
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_midIndex"
+				var ResourceId = 0x5b1bf24fb60932bc
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeTipIndex"
+				var ResourceId = 0x5b1bf24fb60932bf
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_tipIndex"
+				var ResourceId = 0x5b1bf24fb60932c2
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_midThumb"
+				var ResourceId = 0x5b1bf24fb60932c6
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeTipThumb"
+				var ResourceId = 0x5b1bf24fb60932c9
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_tipThumb"
+				var ResourceId = 0x5b1bf24fb60932cc
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeBaseThumb"
+				var ResourceId = 0x5b1bf24fb60932d0
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_baseThumb"
+				var ResourceId = 0x5b1bf24fb60932d3
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeMidThumb"
+				var ResourceId = 0x5b1bf24fb60932e3
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeElbow"
+				var ResourceId = 0x5b1bf24fb60932e7
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_lowerArm"
+				var ResourceId = 0x5b1bf24fb60932ea
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeWrist"
+				var ResourceId = 0x5b1bf24fb60932ed
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_shoulderpartOuter"
+				var ResourceId = 0x5b1bf24fb60932f0
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_objectPalm"
+				var ResourceId = 0x5b1bf24fb60932f4
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hand"
+				var ResourceId = 0x5b1bf24fb60932f7
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hingeShoulder"
+				var ResourceId = 0x5b1bf24fb60932fa
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_upperArm"
+				var ResourceId = 0x5b1bf24fb60932fd
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_sholderpartInner"
+				var ResourceId = 0x5b1bf24fb6093301
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01midTorso"
+				var ResourceId = 0x5b1bf24fb6093304
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01hip"
+				var ResourceId = 0x5b1bf24fb6093307
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01polySurface1"
+				var ResourceId = 0x5b1bf24fb609330a
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01polySurface2"
+				var ResourceId = 0x5b1bf24fb609330e
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01L_hipRing"
+				var ResourceId = 0x5b1bf24fb6093311
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01neckframePart1"
+				var ResourceId = 0x5b1bf24fb6093315
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01neckframePart2"
+				var ResourceId = 0x5b1bf24fb6093318
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01chestArmour"
+				var ResourceId = 0x5b1bf24fb609331b
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01chestInner"
+				var ResourceId = 0x5b1bf24fb609331f
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01backLight"
+				var ResourceId = 0x5b1bf24fb6093322
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01R_hipRing"
+				var ResourceId = 0x5b1bf24fb6093326
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01helmetVisor"
+				var ResourceId = 0x5b1bf24fb609332a
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01helmet"
+				var ResourceId = 0x5b1bf24fb609332d
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01neckPart1"
+				var ResourceId = 0x5b1bf24fb6093330
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01neckPart2"
+				var ResourceId = 0x5b1bf24fb6093333
+			}
+			Object
+			{
+				var Name = "robot_rig_robot_rig_master_01neckBase"
+				var ResourceId = 0x5b1bf24fb6093337
+			}
+		}
+	}
+	GeneratedArchetype 
+	{
+		var ResourceId = 0x5b1bf24fb639473f
+	}
+}

@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "Don'tSqueakWithMe"
+	var LibraryId = 0x5aea257a25cdf126
+	var SourceControlType = ""
+	var ReadOnly = false
+}

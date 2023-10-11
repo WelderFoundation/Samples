@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	TextBuilder 
+	{
+		var Name = "CreditsText"
+		var ResourceId = 0x5a7d3d9b08105306
+	}
+}

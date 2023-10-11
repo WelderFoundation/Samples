@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "MsBuildStep"
+		var ResourceId = 0x59d70158bb7955ea
+	}
+}

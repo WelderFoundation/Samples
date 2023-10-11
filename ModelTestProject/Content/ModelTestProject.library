@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "ModelTestProject"
+	var LibraryId = 0x5a93c1e0712a5e5c
+	var SourceControlType = ""
+	var ReadOnly = false
+}

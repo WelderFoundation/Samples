@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "UpdateTags"
+		var ResourceId = 0x5ad45270b6d3d0ab
+	}
+}

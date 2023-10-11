@@ -1,0 +1,47 @@
+class ScreenWrap : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  
+  [Property]
+  var Camera : CogPath = CogPath();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    //Get the viewport component
+    var viewport = this.Camera.Cog.CameraViewport;
+    
+    //prevent dividing by zero when the viewport resolution is (0,0) on game close
+    if(Math.LengthSq(viewport.ViewportResolution) == 0.0)
+      return;
+      
+    //get the normalized viewport
+    var worldPos = this.Transform.WorldTranslation;
+    var screenPos = viewport.WorldToScreen(worldPos);
+    var viewportPos = viewport.ScreenToViewport(screenPos);
+    var normalizedViewportPos = viewportPos / viewport.ViewportResolution;
+    
+    //screen wrap in normalized viewport space
+    if(normalizedViewportPos.X > 1.0)
+      normalizedViewportPos.X = 0.0;
+    else if(normalizedViewportPos.X < 0.0)
+      normalizedViewportPos.X = 1.0;
+    
+    if(normalizedViewportPos.Y > 1.0)
+      normalizedViewportPos.Y = 0.0;
+    else if(normalizedViewportPos.Y < 0.0)
+      normalizedViewportPos.Y = 1.0;
+    
+    //convert the wrapped viewport position to world space
+    viewportPos = normalizedViewportPos * viewport.ViewportResolution;
+    screenPos = viewport.ViewportToScreen(viewportPos);
+    worldPos = viewport.ScreenToWorldZPlane(screenPos, worldPos.Z);
+    
+    //set the object's position
+    this.Transform.WorldTranslation = worldPos;
+  }
+}

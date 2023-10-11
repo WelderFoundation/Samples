@@ -1,0 +1,51 @@
+[ComponentInterface]
+class AnimationDebugNode : ZilchComponent
+{
+  [Property]
+  var NameObj : CogPath = CogPath();
+  
+  [Virtual]
+  var Node : AnimationNode;
+  
+  var From : AnimationNode;
+  var To : AnimationNode;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}
+
+class BasicDebugNode : AnimationDebugNode
+{
+  [Override]
+  var Node : BasicAnimation;
+}
+
+class SelectiveDebugNode : AnimationDebugNode
+{
+  [Override]
+  var Node : SelectiveNode;
+}
+
+class DirectBlendDebugNode : AnimationDebugNode
+{
+  [Override]
+  var Node : DirectBlend;
+}
+
+class CrossBlendDebugNode : AnimationDebugNode
+{
+  [Override]
+  var Node : CrossBlend;
+}
+
+class PoseDebugNode : AnimationDebugNode
+{
+  [Override]
+  var Node : PoseNode;
+}

@@ -1,0 +1,20 @@
+class CreateOnInput : ZilchComponent
+{
+  [Dependency] var Transform : Transform;
+  [Dependency] var Orientation : Orientation;
+  [Dependency] var ObjectSpawner : ObjectSpawner;
+  
+  [Property]
+  var SpawnKey : Keys = Keys.Space;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(Zero.Keyboard.KeyIsPressed(this.SpawnKey))
+      this.ObjectSpawner.SpawnObject();
+  }
+}

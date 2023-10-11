@@ -1,0 +1,37 @@
+class CustomMover : ZilchComponent
+{
+  var Constraint : CustomConstraintInfo;
+  
+  var TargetPoint : Real3 = Real3();
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Constraint = this.Owner.CustomJoint.CreateConstraint();
+    //this.Constraint.SolvePosition = true;
+    Zero.Connect(this.Owner, Events.ComputeCustomJointInfo, this.OnComputeCustomJointInfo);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnFrameUpdate(event : UpdateEvent)
+  {
+    
+  }
+
+  function OnComputeCustomJointInfo(event : CustomJointEvent)
+  {
+    var targetCog = this.Owner.ObjectLink.ObjectB;
+    var targetPoint = this.TargetPoint;//Real3(5, 0, 0);
+    var axis = Real3.XAxis;
+    
+    //this.Constraint.SetJacobian(-axis, Real3(), axis, Real3());
+    //this.Constraint.Error = -0.1;
+    this.Owner.CustomJoint.ConstrainLinearPosition(this.Constraint, null, targetCog, targetPoint, Real3(), axis);
+    this.Constraint.ComputeSpring(0.1, 0);
+    DebugDraw.Add(DebugLine(targetPoint + Real3(0, -100, 0), targetPoint + Real3(0, 100, 0)) {Color = Colors.Red} );
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.TargetPoint.X += event.Dt * 55;
+  }
+}

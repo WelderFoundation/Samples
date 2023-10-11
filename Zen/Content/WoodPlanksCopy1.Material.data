@@ -1,0 +1,32 @@
+[Version:1]
+Material 
+{
+	var RenderGroups = Array
+	{
+		"581cffd64d449122:Opaque"
+		"580269d9a1d6b870:ShadowCasters"
+	}
+	AlbedoMap 
+	{
+		var AlbedoMap = "5acd884bebc0373f:woddplanks_2"
+	}
+	NormalMap 
+	{
+		var NormalMap = "5acd8813f5b4b633:woddplanks_2_n"
+		var Bumpiness = 0.5
+		var RedLeft = false
+		var GreenDown = false
+	}
+	MetallicMap 
+	{
+		var MetallicMap = "5acd8813f5b50ac5:woddplanks_2_s"
+	}
+	RoughnessMap 
+	{
+		var RoughnessMap = "5acd8813f5b50ac5:woddplanks_2_s"
+	}
+	SpecularValue 
+	{
+		var SpecularValue = 0.5
+	}
+}

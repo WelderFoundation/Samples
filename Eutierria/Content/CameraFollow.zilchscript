@@ -1,0 +1,26 @@
+//CameraFollow 
+//By AJ Bussman
+//12.11.17
+//Camera will follow the Target Object in 2D
+
+class CameraFollow : ZilchComponent
+{
+  [Property]
+  var Target : CogPath = null;
+  [Property]
+  var LerpValue : Real = 0.1;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Target.Cog != null)
+    {
+      var newPosition = this.Target.Cog.Transform.Translation;
+      newPosition.Z = this.Owner.Transform.Translation.Z;
+      this.Owner.Transform.Translation = Math.Lerp(this.Owner.Transform.Translation, newPosition, this.LerpValue);
+    }
+  }
+}

@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "CreateOnInput"
+		var ResourceId = 0x5a702f941bbb2a85
+	}
+}

@@ -1,0 +1,13 @@
+[Version:1]
+BinaryContent 
+{
+	BinaryBuilder 
+	{
+		var Name = "Level2_TileMap00"
+		var ResourceId = 0x5aa30aea76084f3b
+		var LoaderType = "TileMapSource"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = "5ae9d79fe2fec7c1:Level2"
+	}
+}

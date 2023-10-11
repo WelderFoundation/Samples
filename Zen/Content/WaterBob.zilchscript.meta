@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "WaterBob"
+		var ResourceId = 0x5adf2e984e73b9bf
+	}
+}

@@ -1,0 +1,6 @@
+class TargetEvent : ZilchEvent
+{
+  sends TargetEvent : TargetEvent;
+  
+  var PosToSend : Real3 = Real3(0, 0, 0);
+}

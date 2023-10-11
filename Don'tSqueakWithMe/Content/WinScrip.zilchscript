@@ -1,0 +1,33 @@
+/**
+2018.1.9
+Jessica 
+This will allow for the win! To be attched to the Object that allows for teh win
+**/
+
+class WinScrip : ZilchComponent
+{
+  [Property]
+  var Player : Archetype = null;
+  
+  [Property]
+  var Level : Level = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Archetype == this.Player)
+    {
+      event.OtherObject.CollectingAbility.Collectable *= 100;
+      this.Space.LoadLevel(this.Level);
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

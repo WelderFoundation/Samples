@@ -1,0 +1,15 @@
+class PickColor : ZilchComponent
+{
+  [Property] var Color : Real4;
+  
+  //[NotAAttribute] var Attr : Integer;
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

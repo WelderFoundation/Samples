@@ -1,0 +1,27 @@
+//StartButton
+//AJ Bussman
+//12.14.17
+//This will have the functionality of a start button, loads a new level when done clicking
+
+class StartButton : ZilchComponent
+{
+  [Dependency]
+  var Reactive : Reactive = null;
+  //Level to go to when clicked
+  [Property]
+  var Nextlevel : Level = Level.Level11;
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.LeftMouseUp, this.OnLeftMouseUp);
+  }
+
+  function OnLeftMouseUp(event : ViewportMouseEvent)
+  {
+    this.Space.LoadLevel(this.Nextlevel);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

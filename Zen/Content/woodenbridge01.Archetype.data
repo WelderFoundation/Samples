@@ -1,0 +1,56 @@
+[Version:1]
+Cog 
+{
+	var Name = "woodenbridge01"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5acd8e617e3cbd9e]
+		{
+			var Name = "Cube"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 3, 0.125}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5acd8e617e334f58:woodenbridge01"
+			}
+		}
+		Cog [Id:0x5acd8e617e3cbda3]
+		{
+			var Name = "Lamp"
+			Transform 
+			{
+				var Translation = Real3{4.07624531, 1.00545394, 5.903862}
+				var Scale = Real3{1, 0.99999994, 1}
+				var Rotation = Quaternion{0.169075787, 0.272171348, 0.755880356, 0.570947528}
+			}
+		}
+		Cog [Id:0x5acd8e617e3cbda4]
+		{
+			var Name = "Camera"
+			Transform 
+			{
+				var Translation = Real3{7.48113155, -6.50763988, 5.34366512}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0.483536065, 0.208703622, 0.336871624, 0.780482709}
+			}
+		}
+	}
+}

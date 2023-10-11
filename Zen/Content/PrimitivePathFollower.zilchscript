@@ -1,0 +1,84 @@
+class PrimitivePathFollower : ZilchComponent
+{
+  [Property]
+  var Speed : Real = 10;
+  [Property]
+  var Axis : PrimitiveMoveDir; // TODO: Replace this with a raycast to make sure we aren't inside of neighboring objects.
+  [Property]
+  var InitNode : CogPath;
+  [Property]
+  var Enabled : Boolean = false;
+  
+  var TargetNode : Cog;
+  var ArbitraryDir : Real3;
+  var IsArbitrary : Boolean = false;
+  var FrameDisabled : Boolean = false;
+  
+  var Timer : Real = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.TargetNode = this.InitNode.Cog;
+    
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    // Make sure we hit a node.
+    if (event.OtherObject.PrimitiveNode == null)
+      return;
+    
+    if (this.IsArbitrary)
+      this.IsArbitrary = false;
+    
+    // Update movement axis and target node.
+    // TODO: Rework this to use raycasts to determine distance from nearby objects instead of restricting movement to a single axis.
+    this.Axis = event.OtherObject.PrimitiveNode.MoveDir;
+    this.TargetNode = event.OtherObject.PrimitiveNode.NextNode.Cog;
+    
+    if (this.Owner.SnapToFloor != null)
+          this.Owner.SnapToFloor.Active = true;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (this.Enabled)
+    {
+      if (this.IsArbitrary)
+      {
+        var newVel = this.ArbitraryDir * this.Speed * event.Dt;
+        
+        this.Owner.RigidBody.Velocity = Real3(newVel.X, this.Owner.RigidBody.Velocity.Y, newVel.Z);
+        return;
+      }
+      
+      // Make sure we actually have a target.
+      if (this.TargetNode != null)
+      {
+        // Calculate velocity based on position relative to the target entity. Y velocity is not overwritten to prevent flying objects.
+        var norm = Math.Normalize(this.TargetNode.Transform.WorldTranslation - this.Owner.Transform.WorldTranslation);
+        var newVel = norm * this.Speed * event.Dt;
+        
+        this.Owner.RigidBody.Velocity = Real3(newVel.X, this.Owner.RigidBody.Velocity.Y, newVel.Z);
+      }
+      else
+      {
+        if (this.Owner.SnapToFloor != null)
+          this.Owner.SnapToFloor.Active = false;
+      }
+      
+      // Snap to the nearest increment of 0.5 on all axes which we are not currently moving on.
+      // TODO: Replace this with a raycast.
+      if (this.Axis == PrimitiveMoveDir.ZAxis)
+      {
+        this.Owner.Transform.WorldTranslation = Real3(Math.Round(2 * this.Owner.Transform.WorldTranslation.X) / 2, this.Owner.Transform.WorldTranslation.Y, this.Owner.Transform.WorldTranslation.Z);
+      }
+      else if (this.Axis == PrimitiveMoveDir.XAxis)
+      {
+        this.Owner.Transform.WorldTranslation = Real3(this.Owner.Transform.WorldTranslation.X, this.Owner.Transform.WorldTranslation.Y, Math.Round(2 * this.Owner.Transform.WorldTranslation.Z) / 2);
+      }
+    }
+  }
+}

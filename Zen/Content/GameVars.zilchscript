@@ -1,0 +1,20 @@
+class GameVars : ZilchComponent
+{
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  // Current build number. Unsure on the standard format for these, so here's what I'm using:
+  // [major build number].[minor build number].[revision].[package]
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  // -Major build number: Incremented with major milerstone (alpha, beta, etc.)
+  // -Minor build number: Feature updates, large bug fixes, etc.
+  // -Revision: Minor alterations to existing features, small bug fixes, etc.
+  // -Package: Code remains unchanged; indicates updated assets, etc.
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  [Static]
+  var BuildString : String = "0.1.0.2";
+  
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  // The actual build number. Incremented every time a build is sent out to playtesters.
+  ///////////////////////////////////////////////////////////////////////////////////////////
+  [Static]
+  var BuildNumber : Integer = 7;
+}

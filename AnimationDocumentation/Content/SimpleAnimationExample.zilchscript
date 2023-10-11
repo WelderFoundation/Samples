@@ -1,0 +1,23 @@
+class SimpleAnimationExample : ZilchComponent
+{
+  [Dependency] var SimpleAnimation : SimpleAnimation;
+  
+  [Property]
+  var Animation : Animation;
+  
+  [Property]
+  var PlayMode : AnimationPlayMode;
+  
+  [Property]
+  var IsolatedRoot : CogPath = CogPath();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(Zero.Keyboard, Events.KeyDown, this.OnKeyDown);
+  }
+
+  function OnKeyDown(event : KeyboardEvent)
+  {
+    this.SimpleAnimation.PlayIsolatedAnimation(this.Animation, this.IsolatedRoot.Cog, this.PlayMode);
+  }
+}

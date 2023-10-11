@@ -1,0 +1,35 @@
+/**
+2018.1.9
+Jessica 
+This is ment to allow for the colection of an Object
+**/
+
+class CollectingAbility : ZilchComponent
+{
+  [Property]
+  var Target : Archetype = null;
+  
+  [Dependency]
+  var PlayerVar : PlayerVars = null;
+  
+  var Collectable : Integer = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Archetype == this.Target)
+    {
+      event.OtherObject.Destroy();
+      this.PlayerVar.Pellets += 1;
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

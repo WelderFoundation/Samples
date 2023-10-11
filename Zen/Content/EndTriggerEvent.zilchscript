@@ -1,0 +1,4 @@
+class EndTriggerEvent : ZilchEvent
+{
+  sends EndTriggerEvent : EndTriggerEvent;
+}

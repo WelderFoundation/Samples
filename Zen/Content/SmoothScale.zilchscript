@@ -1,0 +1,70 @@
+////////////////////////////////////////////////////////////
+// File name: SmoothScale.z
+// Date: 3/4/18
+// Description: When activated by a TriggerEvent, scales
+//              the parent by an amount specified in the
+//              event.
+////////////////////////////////////////////////////////////
+class SmoothScale : ZilchComponent
+{
+  [Property]
+  var Duration : Real = 5;
+  [Property]
+  var ScaleAmount : Real3; // If the incoming TriggerEvent doesn't specify a distance to Scale, the script defaults to this value.
+  [Property]
+  var IsExtended : Boolean = false;
+  
+  var StartingScale : Real3;
+  var EndingScale : Real3;
+  var Timer : Real;
+  var IsActive : Boolean = false;
+  var TriggeringEnt : Cog;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    // Snap to the target Scaleition to avoid messed up calculations.
+    if (this.IsActive)
+      this.Owner.Transform.Scale = this.EndingScale;
+    
+    this.IsExtended = !this.IsExtended;
+    
+    var multiplier : Real = 1;
+    
+    // Are we retracting during this state?
+    if (!this.IsExtended)
+      multiplier = -1;
+    
+    // Set the starting and ending scales.
+    this.StartingScale = this.Owner.Transform.Scale;
+    this.EndingScale = this.StartingScale + this.ScaleAmount * multiplier;
+    
+    // Start the scale.
+    this.IsActive = true;
+    this.Timer = 0;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Are we scaling?
+    if (this.IsActive)
+    {
+      // Are we done scaling?
+      if (this.Timer > 1)
+      {
+        this.IsActive = false;
+        this.Owner.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+        return;
+      }
+      
+      // Increment the timer.& update scale.
+      this.Timer += event.Dt/this.Duration;
+      this.Owner.Transform.Scale = Math.Lerp(this.StartingScale, this.EndingScale, Math.SmoothStep(0.0, 1.0, this.Timer));
+    }
+  }
+}

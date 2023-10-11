@@ -1,0 +1,8 @@
+[Version:1]
+ContentLibrary 
+{
+	var Name = "ZeroBuildBot"
+	var LibraryId = 0x59d7014cb7662b04
+	var SourceControlType = ""
+	var ReadOnly = false
+}

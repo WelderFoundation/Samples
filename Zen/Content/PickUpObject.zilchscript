@@ -1,0 +1,161 @@
+class PickUpObject : ZilchComponent
+{
+  [Property]
+  var UsableDistance : Real = 1.25; // The maximum distance from which the player can grab this object.
+  [Property]
+  var BlockPathFinding : Boolean = true; // When enabled, this object will disable any pathfinding nodes which it touches.
+  [Property]
+  var SnapOffset : Real3 = Real3(0, 1, 0); // The distance from the player we should snap to. 
+  
+  [Static]
+  var PlayerIsHolding : Boolean = false; // Is the player currently holding an object?
+  [Static]
+  var IsBeingDropped : Boolean = false; // Are we waiting for the player to reach a target position?
+  
+  var IsHeld : Boolean = false; // Are we currently being held?
+  var TargetPos : Integer2;
+  var Node : Integer2;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.TargetEvent, this.OnTargetEvent);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnTargetEvent(event : TargetEvent)
+  {
+    if (PickUpObject.IsBeingDropped)
+    {
+      var ply = this.Space.FindObjectByName("Player");
+      this.TargetPos = ply.MovePlayer.EndPos;
+      Console.WriteLine("Setting target pos to `this.TargetPos`");
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Update position.
+    if (this.IsHeld)
+    {
+      var ply = this.Space.FindObjectByName("Player");
+      this.Owner.Transform.WorldTranslation = ply.Transform.WorldTranslation + this.SnapOffset;
+      
+      // Is it time to drop the object?
+      if (PickUpObject.IsBeingDropped && Math.Distance(ply.MovePlayer.GridPos, this.TargetPos) <= 1)
+      {
+        
+        this.IsHeld = false;
+        PickUpObject.IsBeingDropped = false;
+        PickUpObject.PlayerIsHolding = false;
+        
+        var dif = ply.MovePlayer.TargetNode.PathNode.GridPos - ply.MovePlayer.GridPos;
+        this.TargetPos = this.LevelSettings.Grid.ConvertToWorldPoint(this.TargetPos);
+        this.Owner.Transform.WorldTranslation = Real3(this.TargetPos.X + dif.X, this.Owner.Transform.WorldTranslation.Y, this.TargetPos.Y + dif.Y);
+      }
+    }
+    else
+    {
+      // Make sure the node beneath us is disabled, if it should be.
+      if (this.BlockPathFinding)
+      {
+        if (this.Node != Real2(0, 0))
+          this.LevelSettings.Grid.EnableNode(this.Node);
+        
+        // Convert the translation to a position on the grid.
+        var gridPos = this.LevelSettings.Grid.ConvertToGridPoint(Integer2(Math.Round(this.Owner.Transform.WorldTranslation.X) as Integer, Math.Round(this.Owner.Transform.WorldTranslation.Z) as Integer));
+        
+        // Disable the node.
+        this.LevelSettings.Grid.DisableNode(gridPos);
+        this.Node = gridPos;
+        
+        this.Owner.RigidBody.DynamicState = RigidBodyDynamicState.Static;
+      }
+    }
+    
+    // Is there a state change this frame?
+    if (Zero.Keyboard.KeyIsPressed(Keys.Space))
+    {
+      // If the player is holding an object, check if we should be dropped. Otherwise, check if we should be grabbed.
+      if (PickUpObject.PlayerIsHolding)
+      {
+        if (this.IsHeld)
+        {
+          // Drop the object.
+          PickUpObject.IsBeingDropped = true;
+        }
+      }
+      else
+      {
+        if (this.CheckPickup())
+        {
+          // Pick up the object.
+          this.IsHeld = true;
+          PickUpObject.PlayerIsHolding = true;
+          this.Owner.RigidBody.DynamicState = RigidBodyDynamicState.Dynamic;
+          
+          // Convert the translation to a position on the grid.
+          var gridPos = this.LevelSettings.Grid.ConvertToGridPoint(Integer2(Math.Round(this.Owner.Transform.WorldTranslation.X) as Integer, Math.Round(this.Owner.Transform.WorldTranslation.Z) as Integer));
+          
+          // Enable the node.
+          this.LevelSettings.Grid.EnableNode(gridPos);
+        }
+      }
+    }
+  }
+  
+  // Checks if this object is eligible to be picked up.
+  function CheckPickup() : Boolean
+  {
+    var ply = this.Space.FindObjectByName("Player");
+    var dir = Math.Normalize(ply.Transform.WorldTranslation - this.Owner.Transform.WorldTranslation);
+    var ray = Ray(this.Owner.Transform.WorldTranslation, dir);
+    
+    // Temporarily unghost the player's collider.
+    ply.BoxCollider.Ghost = false;
+    
+    var result = this.Space.PhysicsSpace.CastRayFirst(ray);
+    
+    // Re-ghost the player's collider.
+    ply.BoxCollider.Ghost = true;
+    
+    // If the first object hit was the player and they were within range, return true. Otherwise, return false.
+    if (result.ObjectHit == ply && result.Distance <= this.UsableDistance)
+    {
+      Console.WriteLine("Player is valid");
+      return true;
+    }
+    
+    Console.WriteLine("Player is not valid");
+    return false;
+  }
+  
+  // Checks if a given position is valid for dropping.
+  function ValidatePosition(pos : Real3) : Boolean
+  {
+    // Convert the provided translation to a position on the grid.
+    var gridPos = this.LevelSettings.Grid.ConvertToGridPoint(Integer2(Math.Round(pos.X) as Integer, Math.Round(pos.Z) as Integer));
+    
+    // If there isn't a node at this position, return false.
+    if (this.LevelSettings.Grid.Grid[gridPos.X][gridPos.Y] != null && !this.LevelSettings.Grid.Grid[gridPos.X][gridPos.Y].PathNode.Enabled)
+    {
+      Console.WriteLine("Node at position `gridPos` invalid; returning false");
+      return false;
+    }
+    
+    // Cast a ray straight downward from the calculated position (with this object's y position)
+    var castPos = Real3(gridPos.X, pos.Y, gridPos.Y);
+    var dir = Real3(0, -1, 0);
+    var ray = Ray(castPos, dir);
+    var result = this.Space.PhysicsSpace.CastRayFirst(ray);
+    
+    // If the first object hit is a path, we've proven that 1. There is a node at this position, 2. The path at this position is beneath us, and
+    // 3. We have direct line of sight to this position. This means we can reasonably conclude that this is a valid position for dropping and return true.
+    if (result.ObjectHit.Walkway != null)
+    {
+      Console.WriteLine("Cast hit object `result.ObjectHit`, which does not have a Walkway; returning false.");
+      return true;
+    }
+    
+    return false;
+  }
+}

@@ -1,0 +1,56 @@
+[Version:1]
+Cog 
+{
+	var Name = "WedgeCollider"
+	Transform 
+	{
+		var Translation = Real3{0, 0, 0}
+		var Scale = Real3{1, 1, 1}
+		var Rotation = Quaternion{0, 0, 0, 1}
+	}
+	Hierarchy 
+	{
+		Cog [Id:0x5ae728a1be328c5d]
+		{
+			var Name = "Lamp"
+			Transform 
+			{
+				var Translation = Real3{407.624542, 590.38623, -100.545395}
+				var Scale = Real3{100.000008, 100.000008, 100.000008}
+				var Rotation = Quaternion{0.169075772, 0.755880475, -0.272171319, 0.570947528}
+			}
+		}
+		Cog [Id:0x5ae728a1be328c62]
+		{
+			var Name = "Camera"
+			Transform 
+			{
+				var Translation = Real3{748.113159, 534.366516, 650.763977}
+				var Scale = Real3{100, 100.000008, 100}
+				var Rotation = Quaternion{-0.212557301, 0.904797077, -0.0843893737, 0.359221727}
+			}
+		}
+		Cog [Id:0x5ae728a1be328c63]
+		{
+			var Name = "Cube002"
+			Transform 
+			{
+				var Translation = Real3{0, 0, 0}
+				var Scale = Real3{1, 1, 1}
+				var Rotation = Quaternion{0, 0, 0, 1}
+			}
+			Model 
+			{
+				var Visible = true
+				var ViewCulling = true
+				var VisibilityEvents = true
+				var OverrideBoundingBox = false
+				var LocalAabbCenter = Real3{0, 0, 0}
+				var LocalAabbHalfExtents = Real3{1, 1, 1}
+				var GroupSortValue = 0
+				var Material = "583afb5e7bf75e18:ZeroMaterial"
+				var Mesh = "5ae728a2be312829:WedgeCollider"
+			}
+		}
+	}
+}

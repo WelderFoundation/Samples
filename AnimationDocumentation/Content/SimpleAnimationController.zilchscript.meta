@@ -1,0 +1,15 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "SimpleAnimationController"
+		var ResourceId = 0x59acd9280b9ddc09
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+		}
+	}
+}

@@ -1,0 +1,56 @@
+/**
+2018.1.9
+Jessica 
+This is ment to allow for objects with this script to be deystoryed
+**/
+
+class ObsticalsDestroyable : ZilchComponent
+{
+  [Dependency]
+  var Sprite : Sprite = null;
+  
+  [Dependency]
+  var BoxCollider : BoxCollider = null;
+  
+  [Property]
+  var ObjectLives : Integer = 3;
+  
+  [Property]
+  var Target : Archetype = null;
+  
+  [Property]
+  var Sprite1 : SpriteSource = null;
+  [Property]
+  var Sprite2 : SpriteSource = null;
+  [Property]
+  var Sprite3 : SpriteSource = null;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Owner.Sprite.SpriteSource = this.Sprite1;
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Archetype == this.Target)
+    {
+      if(this.ObjectLives < 1)
+      {
+        this.BoxCollider.Ghost = true;
+        this.Sprite.SpriteSource = this.Sprite3;
+        this.Space.SoundSpace.PlayCue(SoundCue.Plastic_Debris);
+      }
+      else
+      {
+        this.ObjectLives -= 1;
+        this.Sprite.SpriteSource = this.Sprite2;
+      }
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

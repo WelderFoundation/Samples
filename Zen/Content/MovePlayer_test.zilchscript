@@ -1,0 +1,63 @@
+////////////////////////////////////////////////////////////
+// File name: MovePlayer.z
+// Date: 3/4/18
+// Description: Contains the functionality for moving the
+//              player.
+////////////////////////////////////////////////////////////
+class MovePlayer_test : ZilchComponent
+{
+  [Property]
+  var MoveSpeed : Real = 100;
+  [Property]
+  var Target : CogPath;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if (Zero.Keyboard.KeyIsPressed(Keys.R))
+    {
+      var te = TriggerEvent();
+      te.Sender = this.Owner;
+      
+      this.Owner.DispatchEvent(Events.TriggerEvent, te);
+      this.Owner.Parent.DispatchEvent(Events.TriggerEvent, te);
+    }
+    /*var newVel = Real3(0, 0, 0);
+    
+    if (Zero.Keyboard.KeyIsDown(Keys.D))
+      newVel.X += 1;
+    else if (Zero.Keyboard.KeyIsDown(Keys.A))
+      newVel.X -= 1;
+  
+    if (Zero.Keyboard.KeyIsDown(Keys.S))
+      newVel.Z += 1;
+    else if (Zero.Keyboard.KeyIsDown(Keys.W))
+      newVel.Z -= 1;
+      
+    if (Zero.Keyboard.KeyIsPressed(Keys.C))
+    {
+      var triggerEvent = TriggerEvent();
+      triggerEvent.TargetGroup = "Camera";
+      triggerEvent.Action = "SmoothMove";
+      triggerEvent.Real3ToSend = Real3(0, -20, 0);
+      
+      this.Owner.TriggerDispatcher.Dispatch(triggerEvent);
+    }
+    
+    if (Zero.Keyboard.KeyIsPressed(Keys.R))
+    {
+      var triggerEvent = TriggerEvent();
+      triggerEvent.TargetGroup = "";
+      triggerEvent.Action = "SmoothRotate";
+      triggerEvent.Real3ToSend = Real3(0, 90, 0);
+      
+      this.Owner.TriggerDispatcher.Dispatch(triggerEvent);
+    }
+    
+    this.Owner.RigidBody.Velocity = newVel * this.MoveSpeed * event.Dt;*/
+  }
+}

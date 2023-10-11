@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "TwoPlayerScript"
+		var ResourceId = 0x5aa24d4b05848f50
+	}
+}

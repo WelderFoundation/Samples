@@ -1,0 +1,72 @@
+////////////////////////////////////////////////////////////
+// File name: SmoothMove.z
+// Date: 3/4/18
+// Description: When activated by a TriggerEvent, translates
+//              the parent by an amount specified in the
+//              event.
+////////////////////////////////////////////////////////////
+class SmoothMove : ZilchComponent
+{
+  [Property]
+  var Duration : Real = 5;
+  [Property]
+  var MoveAmount : Real3; // If the incoming TriggerEvent doesn't specify a distance to move, the script defaults to this value.
+  [Property]
+  var IsExtended : Boolean = false;
+  [Property]
+  var TwoState : Boolean = true;
+  
+  var StartingPos : Real3;
+  var EndingPos : Real3;
+  var Timer : Real;
+  var IsActive : Boolean = false;
+  var TriggeringEnt : Cog;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    // Snap to the target position to avoid messed up calculations.
+    if (this.IsActive)
+      this.Owner.Transform.WorldTranslation = this.EndingPos;
+    
+    this.IsExtended = !this.IsExtended;
+    
+    var multiplier : Real = 1;
+    
+    // Are we retracting during this state?
+    if (!this.IsExtended && this.TwoState)
+      multiplier = -1;
+    
+    // Set the starting and ending positions.
+    this.StartingPos = this.Owner.Transform.WorldTranslation;
+    this.EndingPos = this.StartingPos + this.MoveAmount * multiplier;
+    
+    // Start the move.
+    this.IsActive = true;
+    this.Timer = 0;
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Are we moving?
+    if (this.IsActive)
+    {
+      // Are we done moving?
+      if (this.Timer > 1)
+      {
+        this.IsActive = false;
+        this.Owner.DispatchEvent(Events.EndTriggerEvent, EndTriggerEvent());
+        return;
+      }
+      
+      // Increment the timer.& update position.
+      this.Timer += event.Dt/this.Duration;
+      this.Owner.Transform.WorldTranslation = Math.Lerp(this.StartingPos, this.EndingPos, Math.SmoothStep(0.0, 1.0, this.Timer));
+    }
+  }
+}

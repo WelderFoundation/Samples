@@ -1,0 +1,44 @@
+class IntroSequence : ZilchComponent
+{
+  var Timer : Real = 0;
+  var Count : Integer = 1;
+  
+  [Property]
+  var NextLevel : Level = Level.MainMenu;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Timer += event.Dt;
+    if (this.Count == 1)
+    {
+      this.Owner.Sprite.SpriteSource = SpriteSource.GameIntroAnimated;
+      ++this.Count;
+    }
+    else if (this.Owner.Sprite.CurrentFrame == 12 && this.Count == 2)
+    {
+      this.Owner.Sprite.SpriteSource = SpriteSource.GameIntroHold;
+      ++this.Count;
+    }
+    else if (this.Timer > 6 && this.Count == 3)
+    {
+      this.Owner.Sprite.SpriteSource = SpriteSource.Still1;
+      this.Timer = 0;
+      ++this.Count;
+    }
+    else if (this.Timer > 6 && this.Count == 4)
+    {
+      this.Owner.Sprite.SpriteSource = SpriteSource.Still2;
+      this.Timer = 0;
+      ++this.Count;
+    }
+    else if (this.Timer > 8 && this.Count == 5)
+    {
+      this.Space.LoadLevel(this.NextLevel);
+    }
+  }
+}

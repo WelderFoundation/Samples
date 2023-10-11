@@ -1,0 +1,41 @@
+class Builder : ZilchComponent
+{
+  var CurrentStep : Cog;
+  [Editable] var CurrentStepName : String;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(init, Events.AllObjectsInitialized, this.OnAllObjectsInitialized);
+  }
+
+  function OnAllObjectsInitialized(event : CogInitializerEvent)
+  {
+    this.CurrentStep = this.Owner.Children.Current;
+    var step = this.CurrentStep.BaseStep;
+    step.Start();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.CurrentStep == null)
+      return;
+      
+    var step = this.CurrentStep.BaseStep;
+    var state = step.Run();
+    if(state == StepState.Running)
+      return;
+      
+    if(state == StepState.Finished)
+    {
+      this.NextStep();
+      return;
+    }
+    throw new Exception("Failed");
+  }
+  
+  function NextStep()
+  {
+    
+    this.CurrentStep = this.CurrentStep.FindNextInOrder();
+  }
+}

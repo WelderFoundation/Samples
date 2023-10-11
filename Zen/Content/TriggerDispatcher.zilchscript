@@ -1,0 +1,81 @@
+////////////////////////////////////////////////////////////
+// File name: TriggerDispatcher.z
+// Date: 3/4/18
+// Description: Dispatches a TriggerEvent on the specified
+//              object when called from another script.
+////////////////////////////////////////////////////////////
+enum DispatchObjects { Space, LevelSettings, GameSession }
+
+// This class is not actually terribly helpful for the following reasons
+// 1. Zero has no switch statements, reducing the time saved by using an enum,
+// 2. Zero does not allow for default values in function declarations, so TriggerEvents have to be pre-built elsewhere,
+//    rather than simply being able to selectively pass data to the DispatchTrigger function.
+
+// Please do not judge this code too harshly as a result of the aforementioned reasons.
+
+class TriggerDispatcher : ZilchComponent
+{
+  [Property]
+  var ObjectToDispatchTo : DispatchObjects = DispatchObjects.Space;
+  
+  var Object : Cog;
+  
+  function Initialize(init : CogInitializer)
+  {
+    // What are we dispatching this event onto? (note: this would have been slightly more useful if Zero had switch statements)
+    if (this.ObjectToDispatchTo == DispatchObjects.Space)
+    {
+      this.Object = this.Space;
+    }
+    else if (this.ObjectToDispatchTo == DispatchObjects.LevelSettings)
+    {
+      this.Object = this.LevelSettings;
+    }
+    else if (this.ObjectToDispatchTo == DispatchObjects.GameSession)
+    {
+      this.Object = this.GameSession;
+    }
+  }
+  
+  // Dispatch a TriggerEvent on a specific object other than the one specified by the ObjectToDispatchTo variable.
+  // This function exists because I cannot figure out how to provide default values to function calls, otherwise
+  // I would just merge it into a single function.
+  function DispatchOnObject(triggerEvent : TriggerEvent, obj : Cog)
+  {
+    // Store the default object temporarily and set the active object to the one provided by the calling function.
+    var tmpObj = this.Object;
+    this.Object = obj;
+    
+    // Dispatch the TriggerEvent.
+    this.Dispatch(triggerEvent);
+    
+    // Reset the object.
+    this.Object = tmpObj;
+  }
+  
+  function DispatchEndOnObject(endTriggerEvent : EndTriggerEvent, obj : Cog)
+  {
+    // Store the default object temporarily and set the active object to the one provided by the calling function.
+    var tmpObj = this.Object;
+    this.Object = obj;
+    
+    // Dispatch the TriggerEvent.
+    this.DispatchEnd(endTriggerEvent);
+    
+    // Reset the object.
+    this.Object = tmpObj;
+  }
+  
+  // Dispatch a TriggerEvent onto the selected object.
+  function Dispatch(triggerEvent : TriggerEvent)
+  {
+    if (this.Object != null)
+      this.Object.DispatchEvent(Events.TriggerEvent, triggerEvent);
+  }
+  
+  function DispatchEnd(endTriggerEvent : EndTriggerEvent)
+  {
+    if (this.Object != null)
+      this.Object.DispatchEvent(Events.EndTriggerEvent, endTriggerEvent);
+  }
+}

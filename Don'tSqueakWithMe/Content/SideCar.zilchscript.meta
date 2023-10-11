@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "SideCar"
+		var ResourceId = 0x5aa24bf0ca4ed2c3
+	}
+}

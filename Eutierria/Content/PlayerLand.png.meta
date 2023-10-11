@@ -1,0 +1,21 @@
+[Version:1]
+ImageContent 
+{
+	SpriteSourceBuilder 
+	{
+		var Name = "PlayerLand"
+		var ResourceId = 0x5a4a725f2c50852c
+		var AtlasId = 0x5274cf95e4a661fd
+		var FrameSizeX = 640
+		var FrameSizeY = 640
+		var FrameCount = 3
+		var FrameDelay = 0.055555556
+		var OriginX = 320
+		var OriginY = 320
+		var PixelsPerUnit = 64
+		var Sampling = SpriteSampling.Nearest
+		var Looping = true
+		var Slices = Real4{0, 0, 0, 0}
+		var Fill = SpriteFill.Stretch
+	}
+}

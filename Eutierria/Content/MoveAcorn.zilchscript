@@ -1,0 +1,33 @@
+class MoveAcorn : ZilchComponent
+{
+  var Done : Boolean = false;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    this.Owner.Sprite.SpriteSource = SpriteSource.SquirrelSneeze;
+    if(!this.Done && event.OtherObject == this.Space.FindObjectByName("Player"))
+    {
+      // Create an Action Sequence attach to this object
+      var seq = Action.Sequence(this.Space.FindObjectByName("Player").Actions);
+      // Move up
+      
+      Action.Delay(seq, 0.5);
+      Action.Property(seq, @this.Space.FindObjectByName("Acorn").Transform.Translation, Real3(4.16, -5.56, 0), 0.07, Ease.Linear);
+      Action.Property(seq, @this.Space.FindObjectByName("Acorn").Transform.Translation, Real3(5.53, -5.85, 0), 0.07, Ease.Linear);
+      Action.Property(seq, @this.Space.FindObjectByName("Acorn").Transform.Translation, Real3(6.15, -6.34, 0), 0.07, Ease.Linear);
+      Action.Property(seq, @this.Space.FindObjectByName("Acorn").Transform.Translation, Real3(6.97, -7.18, 0), 0.07, Ease.Linear);
+      this.Done = true;
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(this.Owner.Sprite.SpriteSource == SpriteSource.SquirrelSneeze && this.Owner.Sprite.CurrentFrame == 8)
+      this.Owner.Sprite.SpriteSource = SpriteSource.SquirrelSleep;
+  }
+}

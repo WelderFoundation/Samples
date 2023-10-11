@@ -1,0 +1,246 @@
+// raycast to floor
+// use normal of raycast to snap
+
+class MovePlayer : ZilchComponent
+{
+  [Property]
+  var MoveSpeed : Real;
+  [Property]
+  var StartUsesWorldOffset : Boolean; // Does the player's starting position require the LevelSettings' WorldOffset variable to be applied?
+  
+  var Debug : Boolean;
+  var Path : Array[Cog] = Array[Cog]();
+  var GridPos : Integer2;
+  var IsMoving : Boolean = false;
+  var Velocity : Real3 = Real3(0, 0, 0);
+  var TargetNode : Cog;
+  var DistanceMoved : Real;
+  var EndPos : Integer2;
+  var NeedToStop : Boolean = false;
+  
+  function Initialize(init : CogInitializer)
+  {
+    var tmp = Integer2(Math.Round(this.Owner.Transform.WorldTranslation.X) as Integer, Math.Round(this.Owner.Transform.WorldTranslation.Z) as Integer);
+    this.GridPos = this.LevelSettings.Grid.ConvertToGridPoint(tmp);
+    
+    if (this.StartUsesWorldOffset)
+      this.GridPos += Integer2(this.LevelSettings.Grid.WorldOffset);
+    
+    Console.WriteLine(this.GridPos);
+    
+    this.Debug = this.LevelSettings.Grid.Debug;
+    
+    Zero.Connect(this.Owner, Events.TriggerEvent, this.OnTriggerEvent);
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnTriggerEvent(event : TriggerEvent)
+  {
+    // Calculate the target coordinates on the grid.
+    var endX = Math.Round(event.Real3ToSend.X) as Integer;
+    var endY = Math.Round(event.Real3ToSend.Z) as Integer;
+    this.EndPos = this.LevelSettings.Grid.ConvertToGridPoint(Integer2(endX, endY));
+    
+    if (this.LevelSettings.Grid.Grid[this.EndPos.X][this.EndPos.Y] == null)
+      return;
+    
+    // If we're currently moving, we need to wait until we reach the next node before calculating a new path.
+    if (this.IsMoving)
+    {
+      this.NeedToStop = true;
+      return;
+    }
+    
+    this.StartPathFinding();
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    // Update velocity.
+    this.Owner.RigidBody.Velocity = this.Velocity;
+    
+    // Are we moving?
+    if (this.IsMoving)
+    {
+      // Do we need to calculate velocity?
+      if (this.Velocity == Real3(0, 0, 0))
+      {
+        var tmp = (this.TargetNode.PathNode.GridPos - this.GridPos) * this.MoveSpeed;
+        this.Velocity = Real3(tmp.X, 0, tmp.Y);
+        
+        this.DistanceMoved = 0;
+        
+        if (this.Debug)
+          Console.WriteLine("Set velocity to `this.Velocity`. Starting move from `this.GridPos` to `this.TargetNode.PathNode.GridPos`.");
+      }
+      
+      this.DistanceMoved += Math.Abs(this.Velocity.X + this.Velocity.Z) * event.Dt;
+      
+      // Have we reached our target?
+      if (this.DistanceMoved >= 1)
+      {
+        // Update grid position.
+        this.GridPos = this.TargetNode.PathNode.GridPos;
+        
+        if (this.Debug)
+            Console.WriteLine("Completed move to `this.GridPos`.");
+        
+        // Reset variables to prepare for another movement.
+        this.Velocity = Real3(0, 0, 0);
+        this.DistanceMoved = 0;
+        
+        // Clamp position in case we've moved too far.
+        var pos = Real2(this.Owner.Transform.WorldTranslation.X, this.Owner.Transform.WorldTranslation.Z);
+        pos = Math.Round(pos);
+        
+        this.Owner.Transform.WorldTranslation = Real3(pos.X, this.Owner.Transform.WorldTranslation.Y, pos.Y);
+        
+        // Do we need to terminate pathfinding (have we received a new target from the player?)
+        if (this.NeedToStop)
+        {
+          this.IsMoving = false;
+          this.NeedToStop = false;
+          this.StartPathFinding();
+          return;
+        }
+        
+        // If we haven't reached our target, move to the next node.
+        if (this.Path.Count > 0)
+        {
+          this.TargetNode = this.Path.Pop();
+        }
+        else
+        {
+          this.IsMoving = false;
+        }
+      }
+    }
+  }
+  
+  // Contains functionality previously in OnTriggerEvent; moved to its own function because it was called from multiple
+  // places.
+  function StartPathFinding()
+  {
+    // Find a path from the current node to the target node using the A* pathfinding algorithm.
+    this.Path = this.FindPath(this.GridPos, this.EndPos);
+     
+     if (this.Path == null)
+      return;
+     
+    if (this.Path.Count == 0)
+      return;
+    
+    // Set the initial target node.
+    this.TargetNode = this.Path.Pop();
+    
+    // Start moving.
+    this.IsMoving = true;
+  }
+  
+  // Finds a path using the A* pathfinding algorithm. If a path is found, returns an array of all the nodes
+  // used to get there. If no path is found, returns null.
+  function FindPath(start : Integer2, end : Integer2) : Array[Cog]
+  {
+    // Create the sets required to use A*.
+    var openNodes = Array[Cog]();
+    var closedNodes = Array[Cog]();
+    
+    // Add the starting node to the open set.
+    openNodes.Add(this.LevelSettings.Grid.Grid.Get(start.X).Get(start.Y));
+    
+    // Iterate through all nodes until a path is found.
+    while (openNodes.Count > 0)
+    {
+      // Start with the first open node.
+      var currNode = openNodes[0];
+      
+      // Find the open node with the lowest f-cost (or h-cost if f-costs are equal).
+      for (var i = 1; i < openNodes.Count; i += 1)
+      {
+        var iNodeF = openNodes[i].PathNode.FCost();
+        var currNodeF = currNode.PathNode.FCost();
+        
+        if (iNodeF < currNodeF || iNodeF == currNodeF && openNodes[i].PathNode.HCost < currNode.PathNode.HCost)
+        {
+          currNode = openNodes[i];
+        }
+      }
+      
+      // Mark the current node as explored.
+      openNodes.RemoveFirst(currNode);
+      closedNodes.Add(currNode);
+      
+      // Check if we've reached the target node. If so, retrace our steps and save in an array, then exit the loop.
+      if (currNode.PathNode.GridPos.X == end.X && currNode.PathNode.GridPos.Y == end.Y)
+      {
+        var path = this.RetraceSteps(this.LevelSettings.Grid.Grid[start.X][start.Y], this.LevelSettings.Grid.Grid[end.X][end.Y]);
+        
+        if (this.Debug)
+          Console.WriteLine("Path found! `path`");
+        
+        return path;
+      }
+      
+      // Iterate through all nodes adjacent to the current node.
+      foreach (var neighbor in this.LevelSettings.Grid.GetNeighbors(currNode))
+      {
+        // We don't need to update the costs on closed nodes, so they should be skipped.
+        if (closedNodes.FindFirstIndex(neighbor) != -1)
+          continue;
+        
+        // Calculate each neighbor's new move costs (the Manhattan distance from both the start and target nodes)
+        var newMoveCostToNeighbor = currNode.PathNode.GCost + this.GetDistance(currNode, neighbor);
+        
+        // Update the path to the node if we've found a more efficient route, or if the node hasn't been explored yet.
+        if (newMoveCostToNeighbor < neighbor.PathNode.GCost || openNodes.FindFirstIndex(neighbor) == -1)
+        {
+          neighbor.PathNode.GCost = newMoveCostToNeighbor;
+          neighbor.PathNode.HCost = this.GetDistance(neighbor, this.LevelSettings.Grid.Grid[end.X][end.Y]);
+          neighbor.PathNode.Parent = currNode;
+          
+          // Add the neighboring nodes to the list of open nodes.
+          if (openNodes.FindFirstIndex(neighbor) == -1)
+          {
+            openNodes.Add(neighbor);
+          }
+        }
+      }
+    }
+    
+    if (this.Debug)
+      Console.WriteLine("No path was found from position `start` to position `end`");
+    
+    return null;
+  }
+  
+  // Called upon finding a path. Walks backwards through the path, storing each node in an array.
+  function RetraceSteps(start : Cog, end : Cog) : Array[Cog]
+  {
+    var tmp = Array[Cog]();
+    var currNode = end;
+    
+    // Walk backwards towards the starting node from the end node.
+    while (currNode != start)
+    {
+      tmp.Add(currNode);
+      currNode = currNode.PathNode.Parent;
+    }
+    
+    return tmp;
+  }
+  
+  // Returns the Manhattan Distance between two nodes.
+  function GetDistance(nodeA : Cog, nodeB : Cog) : Integer
+  {
+    if (nodeA == null || nodeB == null)
+      return -1;
+    
+    var distX = Math.Abs(nodeA.PathNode.GridPos.X - nodeB.PathNode.GridPos.X);
+    var distZ = Math.Abs(nodeA.PathNode.GridPos.Y - nodeB.PathNode.GridPos.Y);
+    
+    if (distX > distZ)
+      return 14 * distZ + 10 * (distX - distZ);
+    
+    return 14 * distX + 10 * (distZ - distX);
+  }
+}
