@@ -1,8 +1,0 @@
-FontContent = 
-{
-	FontBuilder = 
-	{
-		string Name = "upheavtt",
-		uint64 ResourceId = 583b98a70aa9ef15,
-	},
-},
