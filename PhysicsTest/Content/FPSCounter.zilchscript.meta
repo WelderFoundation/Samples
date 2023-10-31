@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "FPSCounter"
+		var ResourceId = 0x6554559d72340b15
+	}
+}

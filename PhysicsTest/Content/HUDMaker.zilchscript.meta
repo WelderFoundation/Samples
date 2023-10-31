@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "HUDMaker"
+		var ResourceId = 0x652f9c426290e32b
+	}
+}

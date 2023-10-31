@@ -1,0 +1,138 @@
+// MIT Licensed (see LICENSE.md).
+
+class BoxSpawner : ZilchComponent
+{  
+    var UpdateInterval: Real = 0.5; //How often should the number update
+
+    var Accum: Real = 0.0;
+    var Frames: Integer = 0;
+    var Timeleft: Real;
+    var Fps: Integer;
+    
+    [Property]
+    var FPSTextCog: CogPath = CogPath();
+  
+  
+  [Property]
+  var SpawnCoolDown: Real = 0.1;
+  
+  var CurrentCoolDown: Real = 0;
+  
+  [Property]
+  var ObjectToSpawn: Archetype = null;
+  
+  var PRNG : Random = Random();
+  
+  var SpawnCount: Integer = 0;
+  
+  var StopSpawning: Boolean = false;
+  
+  var Cogs : Array[Cog] = Array[Cog]();
+  var CustomMaterials: Array[Material] = Array[Material]();
+  var BoxMaterial: Material = Material.FindOrNull("Box");
+  var UseCustomMaterials: Boolean = false;
+  
+  [Property]
+  var SpawnBatchSize = 10;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Timeleft = this.UpdateInterval;
+    this.CurrentCoolDown = this.SpawnCoolDown;
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+        this.Timeleft -= event.Dt;
+        this.Accum += this.Space.TimeSpace.TimeScale / event.Dt;
+        ++this.Frames;
+        
+    if(Zero.Keyboard.KeyIsPressed(Keys.Space)){
+      this.StopSpawning = !this.StopSpawning;
+    }
+    
+    if(Zero.Keyboard.KeyIsPressed(Keys.M)){
+      this.ChangeMaterials();
+    }
+    
+    if(this.CurrentCoolDown <= 0)
+    {
+      this.SpawnCubes();
+      this.CurrentCoolDown = this.SpawnCoolDown;
+    }
+    this.CurrentCoolDown -= event.Dt;
+    
+    this.UpdateFPSText();
+  }
+  
+  function UpdateFPSText(){
+    // Interval ended - update GUI text and start new interval
+    if (this.Timeleft <= 0.0)
+    {
+        // display two fractional digits (f2 format)
+        this.Fps = (this.Accum / this.Frames) as Integer;
+        this.Timeleft = this.UpdateInterval;
+        this.Accum = 0.0;
+        this.Frames = 0;
+        
+        if(this.FPSTextCog.Cog != null)
+        this.FPSTextCog.Cog.SpriteText.Text = "Corrected FPS: `this.Fps`\nObjects: `this.LevelSettings.BoxSpawner.SpawnCount`";
+    }
+  }
+  
+  function SpawnCubes()
+  {
+    if(this.SpawnCount >= 8000){    
+      this.StopSpawning = true;
+    }
+    
+    if(this.ObjectToSpawn == null || this.StopSpawning)
+    {
+        return;
+    }
+    
+    for(var i = 0; i < this.SpawnBatchSize; ++i){
+      var cog = this.Space.CreateAtPosition(this.ObjectToSpawn, Real3(this.PRNG.Range(-50, 50), 80, this.PRNG.Range(-50, 50)));
+      ++this.SpawnCount;
+      this.Cogs.Push(cog);
+      this.CustomMaterials.Push(null);
+      if(this.UseCustomMaterials){
+        this.CustomMaterials[i] = this.CreateMaterial();
+        cog.Model.Material = this.CustomMaterials[i];
+      }
+    }
+  }
+  
+  function CreateMaterial() : Material{
+  var material = this.BoxMaterial.RuntimeClone();
+      var r = this.PRNG.RangeInclusiveMax(0, 255);
+      var b = this.PRNG.RangeInclusiveMax(0, 255);
+      var g = this.PRNG.RangeInclusiveMax(0, 255);
+      material.AlbedoValue.AlbedoValue = Color.FromBytes(r, g, b, 1);
+      
+      return material;  
+  }
+  
+  function ChangeMaterials()
+  {
+    this.UseCustomMaterials = !this.UseCustomMaterials;
+    for(var i = 0; i < this.SpawnCount; ++i)
+    {
+      if(this.UseCustomMaterials)
+      {
+        if(this.CustomMaterials[i] == null){
+          this.CustomMaterials[i] = this.CreateMaterial();
+        }
+        this.Cogs[i].Model.Material = this.CustomMaterials[i];
+      }else{
+        this.Cogs[i].Model.Material = this.BoxMaterial;
+        this.CustomMaterials[i] = null;
+      }
+    }
+  }
+  
+  function Stop(){
+    this.StopSpawning = true;
+  }
+}

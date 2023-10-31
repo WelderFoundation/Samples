@@ -1,0 +1,44 @@
+[Version:1]
+Cog 
+{
+	var Name = ""
+	ProjectSettings 
+	{
+		var ProjectName = "PhysicsTest"
+		var ProjectOwner = ""
+		var DefaultLevel = "Level"
+		var ProjectSpace = "Space"
+		var AutoTakeProjectScreenshot = true
+		var Guid = 0x1549811679540ca5
+	}
+	WindowLaunchSettings 
+	{
+		var LaunchFullscreen = true
+		var WindowedResolution = Integer2{1280, 720}
+	}
+	FrameRateSettings 
+	{
+		var VerticalSync = false
+		var LimitFrameRate = true
+		var FrameRate = 60
+	}
+	ExportSettings 
+	{
+		var ActiveTargets = Array
+		{
+		}
+	}
+	LauncherProjectInfo 
+	{
+		var Tags = ""
+		var Application = "WelderEditor"
+		var Branch = ""
+		var MajorVersion = 0
+		var MinorVersion = 0
+		var PatchVersion = 0
+		var RevisionId = 2197
+		var ShortChangeSet = ""
+		var MsSinceEpoch = 0
+		var PackageExtension = "zip"
+	}
+}

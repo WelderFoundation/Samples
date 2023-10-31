@@ -1,0 +1,20 @@
+[Version:1]
+BinaryContent 
+{
+	BinaryBuilder 
+	{
+		var Name = "MMCVX"
+		var ResourceId = 0x6555620090066ae0
+		var LoaderType = "MultiConvexMesh"
+		var Version = 0
+		var FilterTag = ""
+		var ResourceOwner = ""
+	}
+	ContentTags 
+	{
+		var Tags = Array
+		{
+			"MultiConvexMesh"
+		}
+	}
+}

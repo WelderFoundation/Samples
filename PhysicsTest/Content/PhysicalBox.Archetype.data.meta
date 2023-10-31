@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "PhysicalBox"
+		var ResourceId = 0x655450698d6fa288
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}
