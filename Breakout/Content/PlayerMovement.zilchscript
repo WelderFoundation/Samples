@@ -1,0 +1,46 @@
+// MIT Licensed (see LICENSE.md).
+
+class PlayerMovement : ZilchComponent
+{
+  [Property] var Speed : Real = 5;
+  
+  var MaxWidth : Real = 17.75;
+  
+  var MovementHorizontal = 0;
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.MoveHorizontal(event.Dt);
+  }
+  
+  function MoveHorizontal(dt: Real)
+  {
+    this.MovementHorizontal = this.GetHorizontalMovement();
+    if(this.MovementHorizontal == 0)
+      return;
+      
+    if(this.MovementHorizontal > 0 && this.Owner.Transform.Translation.X > this.MaxWidth)
+      return;
+    
+    if(this.MovementHorizontal < 0 && this.Owner.Transform.Translation.X < -this.MaxWidth)
+      return;
+      
+    this.Owner.Transform.Translation += Real3.XAxis * this.MovementHorizontal * this.Speed * dt;
+  }
+  
+  function GetHorizontalMovement() : Integer
+  {
+    if(Zero.Keyboard.KeyIsDown(Keys.A) || Zero.Keyboard.KeyIsDown(Keys.Left))
+      return -1;
+      
+    if(Zero.Keyboard.KeyIsDown(Keys.S) || Zero.Keyboard.KeyIsDown(Keys.Right))
+      return 1;
+    
+    return 0;
+  }
+}
