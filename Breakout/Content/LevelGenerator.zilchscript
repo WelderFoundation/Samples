@@ -1,0 +1,27 @@
+// MIT Licensed (see LICENSE.md).
+
+//[RunInEditor]
+class LevelGenerator : ZilchComponent
+{
+  var Size: Real2 = Real2(14, 5);
+  var Offset : Real2 = Real2(0.5, 0.5);
+  
+  function Initialize(init : CogInitializer)
+  {
+    //Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    
+    for(var x: Integer = 0; x < this.Size.X; ++x)
+    {
+      for(var y: Integer = 0; y < this.Size.Y; ++y)
+      {
+        var position = Real3(x * this.Offset.X, y * this.Offset.Y, 1);
+        position += Real3(-16.375 + 2.0125 * x, 3 + 1.0125 * y, 0);
+        this.Space.CreateAtPosition(Archetype.FindOrNull("Block"), position);
+      }
+    }
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+  }
+}

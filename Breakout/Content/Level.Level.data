@@ -38,6 +38,9 @@ Level
 			var HighlightInterval = 10
 			var FollowEditorCamera = false
 		}
+		LevelGenerator 
+		{
+		}
 	}
 	Cog [ContextId:2]
 	{
@@ -77,7 +80,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{4.20764732, 0.000390987843, 9.99999905}
+			var Translation = Real3{0, 0, 10.999999}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -2.18556941e-08, 0, 1}
 		}
@@ -130,7 +133,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 44.5107651
+			var Size = 81.1038513
 		}
 		EditorCameraController 
 		{
@@ -139,7 +142,7 @@ Level
 			var LookDistance = 10
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{4.20764732, 0.000390987843, 3.67844876e-07}
+			var LookTarget = Real3{0, 0, 1}
 			var MoveSensitivity = 1
 		}
 		Hierarchy 
@@ -213,7 +216,7 @@ Level
 			var FarPlane = 200
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 60
-			var Size = 20
+			var Size = 30
 		}
 		SoundListener 
 		{
@@ -278,10 +281,6 @@ Level
 			var AnimationSpeed = 1
 			var StartFrame = 0
 		}
-		PlayerMovement 
-		{
-			var Speed = 5
-		}
 		BoxCollider 
 		{
 			var Ghost = false
@@ -290,6 +289,20 @@ Level
 			var CollisionGroup = "4e740859314e5515:DefaultGroup"
 			var Offset = Real3{0, 0, 0}
 			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+		RigidBody 
+		{
+			var Velocity = Real3{0, 0, 0}
+			var AngularVelocity = Real3{0, 0, 0}
+			var DynamicState = RigidBodyDynamicState.Kinematic
+			var AllowSleep = true
+			var Asleep = false
+			var RotationLocked = false
+			var Mode2D = Mode2DStates.InheritFromSpace
+		}
+		Paddle 
+		{
+			var Speed = 18
 		}
 	}
 	Cog [ContextId:7]
@@ -334,39 +347,62 @@ Level
 			var Velocity = Real3{0, 0, 0}
 			var AngularVelocity = Real3{0, 0, 0}
 			var DynamicState = RigidBodyDynamicState.Dynamic
-			var AllowSleep = true
+			var AllowSleep = false
 			var Asleep = false
 			var RotationLocked = false
 			var Mode2D = Mode2DStates.InheritFromSpace
 		}
+		Ball 
+		{
+			var MaxVelocity = 20
+		}
 	}
 	Cog [ContextId:8]
 	{
-		var Name = "Block"
+		var Name = "WallLeft"
 		Transform 
 		{
-			var Translation = Real3{-16.75, 9.5, 1}
-			var Scale = Real3{2, 1, 1}
+			var Translation = Real3{-18.25, 0, 1}
+			var Scale = Real3{1, 20.220974, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
-		Sprite 
+		BoxCollider 
 		{
-			var Visible = true
-			var ViewCulling = true
-			var VisibilityEvents = true
-			var OverrideBoundingBox = false
-			var LocalAabbCenter = Real3{0, 0, 0}
-			var LocalAabbHalfExtents = Real3{1, 1, 1}
-			var GroupSortValue = 0
-			var Material = "582c575af53d18c9:AlphaSprite"
-			var VertexColor = Real4{0.267749995, 0.629999995, 0.282240063, 1}
-			var GeometryMode = SpriteGeometryMode.ZPlane
-			var SpriteSource = "5275aa4d802dd6dc:Square"
-			var FlipX = false
-			var FlipY = false
-			var AnimationActive = true
-			var AnimationSpeed = 1
-			var StartFrame = 0
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:9]
+	{
+		var Name = "WallRight"
+		Transform 
+		{
+			var Translation = Real3{18.25, 0, 1}
+			var Scale = Real3{1, 20.220974, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
+		}
+		BoxCollider 
+		{
+			var Ghost = false
+			var SendsEvents = true
+			var Material = "4de020863e872da8:DefaultPhysicsMaterial"
+			var CollisionGroup = "4e740859314e5515:DefaultGroup"
+			var Offset = Real3{0, 0, 0}
+			var HalfSize = Real3{0.5, 0.5, 0.5}
+		}
+	}
+	Cog [ContextId:10]
+	{
+		var Name = "WallTop"
+		Transform 
+		{
+			var Translation = Real3{0, 10.5, 1}
+			var Scale = Real3{35.5, 1, 1}
+			var Rotation = Quaternion{0, 0, 0, 1}
 		}
 		BoxCollider 
 		{

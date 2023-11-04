@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "Paddle"
+		var ResourceId = 0x6553ff09b32cfcfc
+	}
+}

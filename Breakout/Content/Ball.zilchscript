@@ -1,0 +1,31 @@
+// MIT Licensed (see LICENSE.md).
+
+class Ball : ZilchComponent
+{
+  [Property] var MaxVelocity : Real = 15;
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+    Zero.Connect(this.LevelSettings, Events.RoundLost, this.OnRoundLost);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    if(Math.Length(this.Owner.RigidBody.Velocity) > this.MaxVelocity)
+    {
+      this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity) * this.MaxVelocity;
+    }
+    
+    if(this.Owner.Transform.Translation.Y <= -10)
+    {
+      this.LevelSettings.DispatchEvent(Events.RoundLost, new LevelEvent());
+    }
+    
+  }
+  
+  function OnRoundLost(event : LevelEvent)
+  {
+    this.Owner.Transform.Translation = Real3(0, 0, 1);
+    this.Owner.RigidBody.Velocity = Real3(0, 0, 0);
+  }
+}

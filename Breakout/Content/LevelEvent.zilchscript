@@ -1,0 +1,6 @@
+// MIT Licensed (see LICENSE.md).
+
+class LevelEvent : ZilchEvent
+{
+  sends RoundLost : LevelEvent;
+}

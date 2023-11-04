@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "Ball"
+		var ResourceId = 0x6553c4f51579a768
+	}
+}

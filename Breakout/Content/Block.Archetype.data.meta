@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "Block"
+		var ResourceId = 0x6553da1496fb3ac9
+		var LoaderType = "Cog"
+		var Version = 0
+	}
+}
