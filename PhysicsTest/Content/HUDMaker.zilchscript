@@ -1,6 +1,6 @@
 // MIT Licensed (see LICENSE.md).
 
-[RunInEditor]
+//[RunInEditor]
 class HUDMaker : ZilchComponent
 {
   [Property] var HudLevel : Level;
@@ -10,16 +10,16 @@ class HUDMaker : ZilchComponent
   
   function Initialize(init : CogInitializer)
   {
-    //this.HudSpace = this.GameSession.CreateNamedSpace("HudSpace", Archetype.DefaultSpace);
-    //this.HudSpace.LoadLevel(this.HudLevel);
+    this.HudSpace = this.GameSession.CreateNamedSpace("HudSpace", Archetype.DefaultSpace);
+    this.HudSpace.LoadLevel(this.HudLevel);
     
-    //Zero.Connect(this.Owner, Events.CogDestroy, this.OnCogDestroy);
+    Zero.Connect(this.Owner, Events.CogDestroy, this.OnCogDestroy);
   }
   
   
   function OnCogDestroy(event : ObjectEvent)
   {
-    //if (this.HudSpace != null)
-    //  this.HudSpace.Destroy();
+    if (this.HudSpace != null)
+      this.HudSpace.Destroy();
   }
 }

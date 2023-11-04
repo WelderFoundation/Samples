@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "FPSUpdater"
+		var ResourceId = 0x6556e14197354825
+	}
+}

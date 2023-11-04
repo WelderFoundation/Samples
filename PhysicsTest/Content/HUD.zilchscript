@@ -1,0 +1,34 @@
+// MIT Licensed (see LICENSE.md).
+
+class HUDEvent : ZilchEvent
+{  
+  sends FPSUpdate : HUDEvent;
+  sends CounterUpdate : HUDEvent;
+  
+  var Value : Integer;
+}
+
+class HUD : ZilchComponent
+{
+  [Property]var FPSLabel : CogPath = CogPath();
+  [Property]var CounterLabel : CogPath = CogPath();
+  
+  function Initialize(init : CogInitializer)
+  {
+    Zero.Connect(this.GameSession, Events.FPSUpdate, this.OnUpdateFPS);
+    Zero.Connect(this.GameSession, Events.CounterUpdate, this.OnUpdateCounter);
+  }
+
+  function OnUpdateFPS(event: HUDEvent){
+      this.FPSLabel.SpriteText.Text = "FPS: `event.Value`";
+  }
+
+  function OnUpdateCounter(event: HUDEvent){
+      this.CounterLabel.SpriteText.Text = "Objects: `event.Value`";
+  }
+  
+  function OnCogDestroy(event : ObjectEvent)
+  {
+    Zero.DisconnectAll(this.GameSession, this);
+  }
+}

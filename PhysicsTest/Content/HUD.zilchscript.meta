@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "HUD"
+		var ResourceId = 0x6557dfac6e223ad4
+	}
+}

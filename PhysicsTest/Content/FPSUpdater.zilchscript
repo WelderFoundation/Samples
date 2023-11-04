@@ -1,0 +1,35 @@
+// MIT Licensed (see LICENSE.md).
+
+class FPSUpdater : ZilchComponent
+{
+  var UpdateInterval: Real = 0.5; //How often should the number update
+
+  var Accum: Real = 0.0;
+  var Frames: Integer = 0;
+  var Timeleft: Real;
+  var Fps: Integer;
+  
+  function Initialize(init : CogInitializer)
+  {
+    this.Timeleft = this.UpdateInterval;
+    Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
+  }
+
+  function OnLogicUpdate(event : UpdateEvent)
+  {
+    this.Timeleft -= event.Dt;
+    this.Accum += this.Space.TimeSpace.TimeScale / event.Dt;
+    ++this.Frames;
+        
+    if (this.Timeleft <= 0.0)
+    {
+      // display two fractional digits (f2 format)
+      this.Fps = (this.Accum / this.Frames) as Integer;
+      this.Timeleft = this.UpdateInterval;
+      this.Accum = 0.0;
+      this.Frames = 0;
+        
+      this.GameSession.DispatchEvent(Events.FPSUpdate, new HUDEvent() { Value = this.Fps });
+    }
+  }
+}
