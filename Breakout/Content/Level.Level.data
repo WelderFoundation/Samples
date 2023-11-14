@@ -6,7 +6,7 @@ Level
 		var Name = "LevelSettings"
 		GravityEffect 
 		{
-			var Active = true
+			var Active = false
 			var WakeUpOnChange = false
 			var DebugDrawEffect = false
 			var LocalSpaceDirection = true
@@ -40,6 +40,10 @@ Level
 		}
 		LevelGenerator 
 		{
+		}
+		HUDCreator 
+		{
+			var HudLevel = "652663d6c7f68608:HUD"
 		}
 	}
 	Cog [ContextId:2]
@@ -80,7 +84,7 @@ Level
 		var Name = "EditorCamera"
 		Transform 
 		{
-			var Translation = Real3{0, 0, 10.999999}
+			var Translation = Real3{-0.229072616, -6.50948, 10.999999}
 			var Scale = Real3{1, 1, 1}
 			var Rotation = Quaternion{0, -2.18556941e-08, 0, 1}
 		}
@@ -133,7 +137,7 @@ Level
 			var FarPlane = 500
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 45
-			var Size = 81.1038513
+			var Size = 49.1919975
 		}
 		EditorCameraController 
 		{
@@ -142,7 +146,7 @@ Level
 			var LookDistance = 10
 			var VerticalAngle = 0
 			var HorizontalAngle = 0
-			var LookTarget = Real3{0, 0, 1}
+			var LookTarget = Real3{-0.229072616, -6.50948, 1}
 			var MoveSensitivity = 1
 		}
 		Hierarchy 
@@ -216,7 +220,7 @@ Level
 			var FarPlane = 200
 			var PerspectiveMode = PerspectiveMode.Orthographic
 			var FieldOfView = 60
-			var Size = 30
+			var Size = 20
 		}
 		SoundListener 
 		{
@@ -259,7 +263,7 @@ Level
 		Transform 
 		{
 			var Translation = Real3{0, -9.5, 1}
-			var Scale = Real3{3, 1, 1}
+			var Scale = Real3{6, 1, 1}
 			var Rotation = Quaternion{0, 0, 0, 1}
 		}
 		Sprite 
@@ -302,7 +306,7 @@ Level
 		}
 		Paddle 
 		{
-			var Speed = 18
+			var Speed = 20
 		}
 	}
 	Cog [ContextId:7]
@@ -354,7 +358,6 @@ Level
 		}
 		Ball 
 		{
-			var MaxVelocity = 20
 		}
 	}
 	Cog [ContextId:8]

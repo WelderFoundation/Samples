@@ -36,4 +36,7 @@ Cog
 		var Offset = Real3{0, 0, 0}
 		var HalfSize = Real3{0.5, 0.5, 0.5}
 	}
+	Block 
+	{
+	}
 }

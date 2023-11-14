@@ -1,0 +1,9 @@
+[Version:1]
+TextContent 
+{
+	ZilchScriptBuilder 
+	{
+		var Name = "Block"
+		var ResourceId = 0x65267982c201a277
+	}
+}

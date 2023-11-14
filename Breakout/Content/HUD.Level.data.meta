@@ -1,0 +1,11 @@
+[Version:1]
+DataContent 
+{
+	DataBuilder 
+	{
+		var Name = "HUD"
+		var ResourceId = 0x652663d6c7f68608
+		var LoaderType = "Level"
+		var Version = 0
+	}
+}

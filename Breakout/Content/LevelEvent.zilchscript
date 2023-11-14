@@ -3,4 +3,5 @@
 class LevelEvent : ZilchEvent
 {
   sends RoundLost : LevelEvent;
+  sends BlockDestroyed: LevelEvent;
 }

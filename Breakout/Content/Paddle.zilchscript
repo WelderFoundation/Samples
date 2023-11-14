@@ -11,7 +11,6 @@ class Paddle : ZilchComponent
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
-    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
     Zero.Connect(this.LevelSettings, Events.RoundLost, this.OnRoundLost);
   }
 
@@ -44,14 +43,6 @@ class Paddle : ZilchComponent
       return 1;
     
     return 0;
-  }
-
-  function OnCollisionStarted(event : CollisionEvent)
-  {
-    if(event.OtherObject.Name != "Ball")
-      return;
-      
-    event.OtherObject.RigidBody.ApplyImpulseAtPoint(Real3(0,2,0), event.FirstPoint.LocalPoint);
   }
   
   function OnRoundLost(event : LevelEvent)

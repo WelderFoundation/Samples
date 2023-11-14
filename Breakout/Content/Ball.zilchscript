@@ -2,30 +2,46 @@
 
 class Ball : ZilchComponent
 {
-  [Property] var MaxVelocity : Real = 15;
+  var MaxVelocity : Real = 22;
+  
+  var Speed : Real = 10;
+  
   function Initialize(init : CogInitializer)
   {
     Zero.Connect(this.Space, Events.LogicUpdate, this.OnLogicUpdate);
     Zero.Connect(this.LevelSettings, Events.RoundLost, this.OnRoundLost);
+    Zero.Connect(this.Owner, Events.CollisionStarted, this.OnCollisionStarted);
+    
+    this.Owner.RigidBody.ApplyForce(Real3(0, -200, 0));
   }
 
   function OnLogicUpdate(event : UpdateEvent)
   {
-    if(Math.Length(this.Owner.RigidBody.Velocity) > this.MaxVelocity)
-    {
-      this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity) * this.MaxVelocity;
-    }
+    //if(Math.Length(this.Owner.RigidBody.Velocity) > this.MaxVelocity)
+    //{
+    //  this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity) * this.MaxVelocity;
+    //}
+    
+    this.Owner.RigidBody.Velocity = Math.Normalize(this.Owner.RigidBody.Velocity) * this.Speed;
     
     if(this.Owner.Transform.Translation.Y <= -10)
     {
       this.LevelSettings.DispatchEvent(Events.RoundLost, new LevelEvent());
     }
-    
+  }
+
+  function OnCollisionStarted(event : CollisionEvent)
+  {
+    if(event.OtherObject.Name != "Paddle")
+      return;
+      
+    //event.Object.RigidBody.ApplyVelocityAtPoint(Real3(0, 5, 0), event.FirstPoint.LocalPoint);
   }
   
   function OnRoundLost(event : LevelEvent)
   {
     this.Owner.Transform.Translation = Real3(0, 0, 1);
     this.Owner.RigidBody.Velocity = Real3(0, 0, 0);
+    this.Owner.RigidBody.ApplyForce(Real3(0, -200, 0));
   }
 }
